@@ -1,0 +1,138 @@
+// Mark: - Common
+"Save" = "Save";
+"Delete" = "Delete";
+"OK" = "OK";
+"Cancel" = "Cancel";
+"Confirm" = "Confirm";
+
+"Total" = "Total";
+"Other" = "Other";
+
+"Memo_Label" = "Memo : ";
+
+"Money" = "$";
+"Money_2" = "";
+"Amount" = "Amount";
+"Month" = "";
+"Year-Month" = "%@-%@";
+"Year-Month_Format" = "yyyy-MM";
+"TargetMonth_Label" = "Achievement month : ";
+"TargetAmount" = "Target amount";
+"TargetAmount_Label" = "Target amount : ";
+
+// Mark: - MainTabBarController (Ma)
+"Icon_1" = "Home";
+"Icon_2" = "Input";
+"Icon_3" = "Goals";
+"Icon_4" = "Plans";
+"Icon_5" = "Setting";
+
+// Mark: - InputViewController (In)
+"In_Title" = "Record Money Movement";
+
+"In_Placeholder_1" = "Select Category";
+"In_Placeholder_2" = "Spending";
+"In_Placeholder_3" = "%.2f JPY remaining";
+"In_Placeholder_4" = "Memo";
+
+"In_SaveButton" = "Input Completed";
+
+"In_MS_Error001" = "This category already exists";
+"In_MS_Error002" = "The target savings amount cannot be exceeded.";
+
+"In_Success" = "Success";
+"In_MS_Success" = "Transaction saved successfully.";
+
+
+// Mark: - GoalsViewController (Go)
+"Go_MS_Error01" = "Please adjust your goal if it exceeds the total amount.";
+"Go_MS_Warning01" = "Are you sure you want to delete this Goal?";
+
+"GoSection_Label_1" = "Total";
+"GoSection_Label_2" = "Income and expenditure target";
+"GoSection_Label_3" = "Planned Savings";
+"GoSection_Label_4" = "Remaining amount";
+
+"GoCell_Label_1" = "rest";
+"SaGoCell_Label_1" = "savings";
+
+// Mark: - CreateGoalViewController (AdGo)
+"AdGo_Title" = "Plan your goal";
+
+"AdGo_Placeholder_1" = "Select Category";
+"AdGo_Placeholder_2" = "Amount";
+"AdGo_Placeholder_3" = "Month";
+
+"AdGo_SaveButton" = "Set Goal";
+
+"AdGo_MS_Error01" = "This category already exists";
+"AdGo_MS_Error02" = "Please adjust your goal if it exceeds the total amount.";
+
+// Mark: - SavingsPlansViewContorller (Sa)
+
+// Mark: - AddSavingsPlanViewContoroller (AdSa)
+"AdSa_Title" = "Short term savings plan";
+
+"AdSa_Placeholder_1" = "Title";
+"AdSa_Placeholder_2" = "Savings target amount";
+"AdSa_Placeholder_3" = "Achievement month";
+
+"AdSa_Label_1" = "The period :";
+"AdSa_Label_2" = "months";
+"AdSa_Label_3" = "Set a savings goal for each month.";
+"AdSa_Label_4" = "Shortage:  ￥%@";
+"AdSa_Label_5" = "More than:  ￥%@";
+
+"AdSa_SaveButton" = "Complete the plan";
+
+"AdSa_MS_Error001" = "Duplicate category name and title.";
+"AdSa_MS_Error002" = "Plans with this title were added in the same month.";
+"AdSa_MS_Error003" = "This title has overlapping planning periods.";
+"AdSa_MS_Error004" = "The planning period overlaps with the planning objective you are creating.";
+"AdSa_MS_Error005" = "The planning period overlaps with the registered planning goal.";
+"AdSa_MS_Error006" = "This title has overlapping planning periods.";
+
+// Mark: - SavingsPlanDetailViewController (DeSa)
+
+// Mark: - EditSavingsPlanViewController (EdSa)
+"EdSa_Title" = "Reset savings plan";
+"EdSa_PurchasingTarget_Label" = "Parchasing Target";
+"EdSa_InputUrl_Placeholder" = "Enter the link to the product site, etc.";
+
+// Mark: - SettingsViewController (Se)
+"Se_Title" = "Settings";
+
+"Se_Section_1" = "Customize";
+"Se_Cell_1-1" = "Monthly management amount";
+"Se_Cell_1-2" = "Categorys";
+
+"Se_Section_2" = "General";
+"Se_Cell_2-1" = "Notification";
+"Se_Cell_2-2" = "Customize notifications";
+"Se_Cell_2-3" = "Screen lock settings";
+"Se_Cell_2-4" = "Language";
+
+"Se_Section_3" = "Information";
+"Se_Cell_3-1" = "Openion";
+"Se_Cell_3-2" = "Review";
+
+"Se_Success" = "Success";
+
+"Se_Mail_Subject" = "Opinions/requests";
+"Se_Mail_Text" = "\n\n\n----------------------------\nPlease enter your text above this.\napp version : %@\n os version : %@\ndevice : %@";
+
+// MonthlyDefaultManagementAmount
+"SeMo_Title" = "Set Monthly Default Amount";
+"SeMo_SaveButton" = "Save";
+
+// CategorysSettingViewController
+"SeCa_Title" = "Setting Categories";
+"SeCa_Section_1" = "Created by user";
+"SeCa_Section_2" = "Basic";
+
+// LanguageSelection
+"SeLa_Dialog_1_Title" = "Change language";
+"SeLa_Dialog_1_Message" = "You must restart the app to change the language. Would you like to restart?";
+"SeLa_Dialog_1_Yes" = "Restart";
+"SeLa_Dialog_1_No" = "Cancel";
+

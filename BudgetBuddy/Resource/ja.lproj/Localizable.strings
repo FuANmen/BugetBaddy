@@ -1,0 +1,239 @@
+// Mark: - Common
+"Save" = "保存";
+"Delete" = "削除";
+"Cancel" = "キャンセル";
+"Back" = "戻る";
+"Confirm" = "確認";
+"Edit" = "編集";
+"Setting" = "設定";
+"Error" = "エラー";
+"Budget" = "予算";
+
+"Total" = "合計";
+"Other" = "その他";
+"categorized" = "振替済み";
+"uncategorized" = "未分類";
+
+"Memo_Label" = "メモ欄 : ";
+"Defo_Label" = "初期値 : ";
+
+"Detail" = "詳細";
+"Title" = "名称";
+"TransferAmount" = "振替金額";
+"DefaultValue" = "初期値";
+
+"Money" = "¥";
+"Money_2" = "万";
+"Amount" = "金額";
+"Incom" = "収入";
+"DirectDebit" = "引落";
+"ManagementMoney" = "管理金";
+"Expenses" = "支出";
+"TotalExpenses" = "総支出";
+"Balance" = "収支";
+"Goal" = "目標";
+"All" = "総合";
+"Breakdown" = "内訳";
+"RemainingBudget" = "残予算";
+"Categorized" = "カテゴリ別";
+
+"IncomTotal" = "総収入";
+"ExpensesTotal" = "総支出";
+
+"Year-Month" = "%@年%@月";
+"Year-Month_Format" = "yyyy年MM月";
+"Year" = "年";
+"Month" = "月";
+"Day" = "日";
+"1Week" = "一週間";
+"1Month" = "一ヶ月";
+
+"Target" = "対象";
+"TargetMonth" = "対象月";
+
+"TargetMonth_Label" = "達成月 : ";
+"TargetAmount" = "目標金額";
+"TargetAmount_Label" = "目標金額 : ";
+"TotalBalance" = "繰越合計";
+"Transfer" = "振替";
+
+"Backup" = "バックアップ";
+"Export" = "データ出力";
+"Import" = "データ登録";
+
+// Mark: - Class
+// Transaction
+"TranProp_Date" = "日付";
+"TranProp_Amount" = "値段";
+// Goal
+"GoalProp_CategorySortOrder" = "デフォルト";
+"GoalProp_CategoryName" = "タイトル";
+"GoalProp_Amount" = "目標金額";
+// Breakdown
+"BrkProp_Title" = "タイトル";
+"BrkProp_Amount" = "金額";
+
+// Mark: - MainTabBarController (Ma)
+"Icon_1" = "ホーム";
+"Icon_2" = "入力";
+"Icon_3" = "目標";
+"Icon_4" = "繰り越し";
+"Icon_5" = "設定";
+
+"Title_3" = "利用状況";
+
+// Mark: - DashboardViewController
+"CreateTransactionLabel" = "データ登録";
+
+// Mark: - InputViewController (In)
+"In_Title" = "お金の動きを記録する";
+
+"In_Placeholder_1" = "カテゴリ";
+"In_Placeholder_2" = "支出";
+"In_Placeholder_3" = "目標まで残り %.2f 円";
+"In_Placeholder_4" = "メモ";
+
+"In_SaveButton" = "入力完了";
+
+"In_MS_Error001" = "このカテゴリはすでに存在しています。";
+"In_MS_Error002" = "目標貯蓄額を超えることはできません。";
+
+"In_Success" = "Success";
+"In_MS_Success" = "正常に保存されました。";
+
+
+// Mark: - GoalsViewController (Go)
+"Go_Title" = "";
+"Go_MS_Error01" = "合計金額を超える場合は目標を調整してください。";
+"Go_MS_Warning01" = "本当に削除しますか？";
+
+"Go_TopLabel_001" = "残り";
+"Go_TopLabel_002" = "管理金額";
+
+"Go_ButtonLabel_001" = "新規追加";
+
+"GoSection_Label_1" = "合計";
+"GoSection_Label_2" = "収支目標";
+"GoSection_Label_3" = "貯蓄予定";
+"GoSection_Label_4" = "残り金額";
+
+"GoCell_Label_1" = "残り";
+"GoCell_Label_2" = "初期値";
+"SaCell_Label_1" = "貯金";
+"SaGoCell_Label_1" = "貯金額";
+
+// Mark: - CreateGoalViewController (AdGo)
+"AdGo_Title" = "%@ の目標を追加";
+
+"AdGo_Placeholder_1" = "カテゴリ選択/追加";
+"AdGo_Placeholder_2" = "目標金額";
+"AdGo_Placeholder_3" = "対象月";
+
+"AdGo_TransferButton_Label" = "目標追加";
+
+"AdGo_SaveButton" = "目標保存";
+
+"AdGo_Label_001" = "振替先";
+"AdGo_Label_002" = "振替元";
+"AdGo_Label_003" = "選択中...";
+"AdGo_Label_004" = "未選択";
+
+"AdGo_MS_SettingSource" = "振替元のカテゴリを選択してください";
+"AdGo_MS_SettingDestination" = "振替先のカテゴリを選択してください";
+"AdGo_MS_SettingAmount" = "振替金額を設定してください";
+
+"AdGo_CellLabel_001" = "登録済み";
+"AdGo_CellLabel_002" = "未登録";
+"AdGo_CellLabel_003" = "カテゴリ追加";
+"AdGo_CellLabel_004" = "残り予算:";
+
+"AdGo_MS_Error01" = "このカテゴリはすでに存在しています。";
+"AdGo_MS_Error02" = "合計金額を超える場合は目標を調整してください。";
+
+// Mark: - BreakdownEditorView
+"BreadownEditor_Add_Title" = "管理金を追加";
+"BreadownEditor_Edit_Title" = "編集";
+
+// Mark: - CreateTransferLogView
+"C_TranLog_Title" = "予算を追加";
+"C_TranLog_MS_SettingSource" = "どの予算から振替ますか？";
+"C_TranLog_MS_SettingAmount" = "追加する予算額を設定してください";
+
+// Mark: - TransferLogTable
+"TranLog_Title" = "予算詳細";
+"TranLog_Label_001" = "（残金）";
+"TranLog_Label_002" = "予算追加";
+"TranLog_Label_003" = "予算追加履歴";
+
+"TranLog_MS_001" = "";
+
+"TranLogCell_Label_001" = "OUT :";
+"TranLogCell_Label_002" = "IN :";
+
+// Mark: - GoalAlertSettingView
+"GoAlertSet_Title" = "通知設定";
+
+"GoAlertSet_Section_1" = "";
+"GoAlertSet_Cell_1-1" = "通知";
+
+// Mark: - SettingGoalView
+"SetGoal_Title" = "カテゴリ設定";
+
+"SetGoal_Section_1" = "カテゴリ";
+"SetGoal_Section_2" = "繰り返し";
+"SetGoal_Section_3" = "初期値設定";
+
+"SetGoal_Cell_1-1" = "名称";
+"SetGoal_Cell_2-1" = "毎月同じ目標を作成する";
+"SetGoal_Cell_2-2" = "目標金額（初期値）";
+"SetGoal_Cell_3-1" = "設定なし";
+
+// Mark: - DelGoalView
+"DelGoal_MS_001" = "この目標を削除しますか？";
+"DelGoalRadio_MS_001" = "この目標のみを削除する";
+"DelGoalRadio_MS_002" = "今月以降の目標をすべて削除する";
+
+// Mark: - SettingsViewController (Se)
+"Se_Title" = "設定";
+
+"Se_Section_1" = "";
+"Se_Cell_1-1" = "月間デフォルト管理額";
+"Se_Cell_1-2" = "カテゴリ";
+
+
+"Se_Section_2" = "一般";
+"Se_Cell_2-1" = "通知";
+"Se_Cell_2-2" = "通知をカスタマイズ";
+"Se_Cell_2-3" = "画面ロック設定";
+"Se_Cell_2-4" = "言語";
+
+"Se_Section_3" = "情報";
+"Se_Cell_3-1" = "ご意見";
+"Se_Cell_3-2" = "レビューする";
+
+"Se_Success" = "保存成功";
+
+"Se_Mail_Subject" = "ご意見・ご要望";
+"Se_Mail_Text" = "\n\n\n----------------------------\nこの上に本文を記入してください。\napp version : %@\n os version : %@\ndevice : %@";
+
+// MonthlyDefaultManagementAmount
+"SeMo_Title" = "毎月のデフォルト管理額を設定";
+"SeMo_SaveButton" = "保存";
+
+// CategorysSettingViewController
+"SeCa_Title" = "カテゴリ設定";
+"SeCa_Section_1" = "ユーザ作成";
+"SeCa_Section_2" = "基本";
+
+// LanguageSelection
+"SeLa_Dialog_1_Title" = "言語の変更";
+"SeLa_Dialog_1_Message" = "言語を変更するにはアプリを再起動する必要があります。再起動しますか？";
+"SeLa_Dialog_1_Yes" = "再起動";
+"SeLa_Dialog_1_No" = "キャンセル";
+
+// Mark: - TotalDetailViewController
+"TotalDetail_SegmentItemLabel_1" = "支出";
+"TotalDetail_SegmentItemLabel_2" = "収入内訳";
+
+// Mark: - CategoryCreateDialogView
+"CateCreDialog_MS_001" = "カテゴリを作成";
