@@ -31,7 +31,6 @@ class TotalDetailView: UIView {
     private let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.showsVerticalScrollIndicator = false
-        scrollView.backgroundColor = BACKGROUND_COLOR
         return scrollView
     }()
     
@@ -186,7 +185,6 @@ class TotalDetailView: UIView {
     // INITIALIZE
     init() {
         super.init(frame: .zero)
-        self.backgroundColor = .white
         setupUI()
     }
     

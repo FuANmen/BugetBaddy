@@ -8,9 +8,9 @@
 import Foundation
 import UIKit
 
-class GoalTableViewCell: UITableViewCell {
-    static let identifier = "GoalTableViewCell"
-    static let cellHeight: CGFloat = 78
+class GoalItemCell: UICollectionViewCell {
+    static let identifier = "GoalItemCell"
+    static let itemHeight: CGFloat = 78
     
     private let balanceLabel: UILabel = {
         let label = UILabel()
@@ -62,8 +62,21 @@ class GoalTableViewCell: UITableViewCell {
                                             .systemPink,
                                             .systemRed]
     
-    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        // contentViewに影を設定
+        contentView.layer.cornerRadius = 24
+        contentView.layer.shadowColor = UIColor.black.cgColor
+        contentView.layer.shadowOpacity = 0.2
+        contentView.layer.shadowOffset = CGSize(width: 0, height: 2)
+        contentView.layer.shadowRadius = 5
+
+        // セルの背景色とcontentViewの背景色を設定
+        backgroundColor = .clear
+
+        // マスクを外して影を描画
+        contentView.layer.masksToBounds = false
+        
         contentView.addSubview(balanceLabel)
         contentView.addSubview(percentLabel)
         contentView.addSubview(categoryNameLabel)
@@ -129,23 +142,6 @@ class GoalTableViewCell: UITableViewCell {
         progressBar.initUI(trackPerscentage:goalAmount == 0 ? 0.0 : 1.0)
         
         let percentage = goalAmount == 0 ? 0.0 : Double(Float(balance) / Float(goalAmount))
-        
-//        var heightConstraint: NSLayoutConstraint?
-//        for constraint in progressBar.constraints {
-//            if constraint.firstAttribute == .height {
-//                heightConstraint = constraint
-//                break
-//            }
-//        }
-//        if let heightConstraint = heightConstraint {
-//            if totalAmount > 0 {
-//                let rate = CGFloat(Double(goalAmount) / Double(totalAmount))
-//                heightConstraint.constant = CGFloat(24) * (rate > 0.2 ? rate : 0.2)
-//            } else {
-//                heightConstraint.constant = 16
-//            }
-//            self.layoutIfNeeded()
-//        }
         
         progressBar.updateProgress(percentage: Float(percentage), animation: true)
         

@@ -127,7 +127,6 @@ class MonthlyViewController: UIViewController {
     private let topAriaHeight: CGFloat = 70
     private let topView: UIView = {
         let view = UIView()
-        view.backgroundColor = BACKGROUND_COLOR
         view.layer.masksToBounds = false
         view.layer.shadowColor = UIColor.black.cgColor
         view.layer.shadowOffset = CGSize(width: 0, height: 1)
@@ -225,14 +224,14 @@ class MonthlyViewController: UIViewController {
     private let balanceLabel: UILabel = {
         let label = UILabel()
         label.text = ": " + NSLocalizedString("Go_TopLabel_001", comment: "")
-        label.textColor = .systemGray2
+        label.textColor = .customNavy
         label.font = UIFont.systemFont(ofSize: 16, weight: .medium)
         return label
     }()
     
     private let balanceValue: UILabel = {
         let label = UILabel()
-        label.textColor = .systemGray2
+        label.textColor = .customRedOrange
         label.font = UIFont.systemFont(ofSize: 20, weight: .semibold)
         return label
     }()
@@ -263,14 +262,14 @@ class MonthlyViewController: UIViewController {
     private let amountLabel: UILabel = {
         let label = UILabel()
         label.text = ": " + NSLocalizedString("Go_TopLabel_002", comment: "")
-        label.textColor = .systemGray2
+        label.textColor = .customNavy
         label.font = UIFont.systemFont(ofSize: 16, weight: .medium)
         return label
     }()
     
     private let amountValue: UILabel = {
         let label = UILabel()
-        label.textColor = .systemGray2
+        label.textColor = .customRedOrange
         label.font = UIFont.systemFont(ofSize: 20, weight: .semibold)
         return label
     }()
@@ -308,14 +307,13 @@ class MonthlyViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = BACKGROUND_COLOR
         // common
         let currentDate = Date()
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM"
         self.targetMonth = dateFormatter.string(from: currentDate)
         // navigation
-        self.navigationController?.navigationBar.backgroundColor = NAVIGATION_BACK_COLOR
+        self.navigationController?.navigationBar.backgroundColor = .clear
         self.navigationController?.navigationBar.barTintColor = .white
         self.navigationController?.navigationBar.tintColor = .white
         self.navigationController?.navigationBar.titleTextAttributes = [
@@ -324,15 +322,7 @@ class MonthlyViewController: UIViewController {
         // top
         setupUI()
         updateButtonState()
-    }
-    
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        if let statusBarFrame = view.window?.windowScene?.statusBarManager?.statusBarFrame {
-            let statusBarView = UIView(frame: statusBarFrame)
-            statusBarView.backgroundColor = NAVIGATION_BACK_COLOR
-            view.addSubview(statusBarView)
-        }
+        addGradientBackground()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -349,6 +339,17 @@ class MonthlyViewController: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         navigationController?.navigationBar.isHidden = false
+    }
+    
+    private func addGradientBackground() {
+        let gradientLayer = CAGradientLayer()
+        gradientLayer.frame = view.bounds
+        gradientLayer.colors = [UIColor.customSkyBlue.cgColor, UIColor.customDodgerBlue.cgColor]
+        gradientLayer.startPoint = CGPoint(x: 0.5, y: 0)
+        gradientLayer.endPoint = CGPoint(x: 0.5, y: 1)
+        
+        // 既存のレイヤーの後ろにグラデーションレイヤーを追加
+        self.view.layer.insertSublayer(gradientLayer, at: 0)
     }
 
     private func setupUI() {

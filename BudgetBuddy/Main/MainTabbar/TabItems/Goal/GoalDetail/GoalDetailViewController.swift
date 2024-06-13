@@ -271,15 +271,6 @@ class GoalDetailViewController: UIViewController {
         setupChartData()
     }
     
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        if let statusBarFrame = view.window?.windowScene?.statusBarManager?.statusBarFrame {
-            let statusBarView = UIView(frame: statusBarFrame)
-            statusBarView.backgroundColor = NAVIGATION_BACK_COLOR
-            view.addSubview(statusBarView)
-        }
-    }
-    
     private func setupUI() {
         // navigation
         if !self.goal!.is_other {

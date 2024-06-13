@@ -24,7 +24,7 @@ class GoalsView: UIView {
     private let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.showsVerticalScrollIndicator = false
-        scrollView.backgroundColor = BACKGROUND_COLOR
+        scrollView.backgroundColor = .clear
         return scrollView
     }()
     
@@ -59,7 +59,7 @@ class GoalsView: UIView {
     private var mainAriaHeightConstraint: NSLayoutConstraint?
     private let mainAria: UIView = {
         let view = UIView()
-        view.backgroundColor = .white
+        view.backgroundColor = .clear
         view.layer.cornerRadius = 18
         view.layer.masksToBounds = true
         return view
@@ -77,7 +77,6 @@ class GoalsView: UIView {
     private let toolbarHeight: CGFloat = 0
     private let tableToolBar: UIView = {
         let view = UIView()
-        view.backgroundColor = .white
         view.layer.shadowColor = UIColor.systemCyan.cgColor
         view.layer.shadowOffset = CGSize(width: 0, height: 0)
         view.layer.shadowOpacity = 0.2
@@ -86,14 +85,8 @@ class GoalsView: UIView {
         return view
     }()
     
-    private let tableView: UITableView = {
-        let tableView = UITableView(frame: .zero, style: .plain)
-        tableView.tag = 0
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
-        tableView.register(GoalTableViewCell.self, forCellReuseIdentifier: GoalTableViewCell.identifier)
-        tableView.tableFooterView = UIView() // 空のセルの区切り線を削除
-        return tableView
-    }()
+    private let inExGoalsMinmumLineSpacing: CGFloat = 20
+    private var inExGoalCollectionView: UICollectionView?
     
     // TotalGoal
     private var otherAriaHeightConstraint: NSLayoutConstraint?
@@ -120,7 +113,6 @@ class GoalsView: UIView {
     // INITIALIZE
     init() {
         super.init(frame: .zero)
-        self.backgroundColor = .white
         setupUI()
     }
     
@@ -132,12 +124,24 @@ class GoalsView: UIView {
         self.targetMonth = targetMonth
         self.inExGoals = GoalDao().getInExGoals(targetMonth: targetMonth)
         self.remainingGoal = GoalDao().getOtherGoal(targetMonth: targetMonth)
-        tableView.reloadData()
+        inExGoalCollectionView!.reloadData()
         other.reloadData()
         updateTableViewHeight()
     }
     
     private func setupUI() {
+        // InExCollectionView
+        let layout = UICollectionViewFlowLayout()
+        layout.itemSize = CGSize(width: UIScreen.main.bounds.width*0.8, height: GoalItemCell.itemHeight)
+        layout.sectionInset = UIEdgeInsets(top: 10, left: 0, bottom: 10, right: 0)
+        layout.minimumLineSpacing = self.inExGoalsMinmumLineSpacing
+
+        inExGoalCollectionView = UICollectionView(frame: self.bounds, collectionViewLayout: layout)
+        inExGoalCollectionView!.backgroundColor = .clear
+        inExGoalCollectionView!.dataSource = self
+        inExGoalCollectionView!.delegate = self
+        inExGoalCollectionView!.register(GoalItemCell.self, forCellWithReuseIdentifier: GoalItemCell.identifier)
+        
         self.addSubview(scrollView)
         scrollView.addSubview(titleLabel)
         scrollView.addSubview(addGoalButton)
@@ -147,8 +151,6 @@ class GoalsView: UIView {
         scrollView.addSubview(otherShadowAria)
         scrollView.addSubview(other)
         
-        tableView.delegate = self
-        tableView.dataSource = self
         other.delegate = self
         other.dataSource = self
         
@@ -210,10 +212,10 @@ class GoalsView: UIView {
         
         // MainAria
         mainAria.addSubview(tableToolBar)
-        mainAria.addSubview(tableView)
+        mainAria.addSubview(inExGoalCollectionView!)
         
         tableToolBar.translatesAutoresizingMaskIntoConstraints = false
-        tableView.translatesAutoresizingMaskIntoConstraints = false
+        inExGoalCollectionView!.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
             tableToolBar.topAnchor.constraint(equalTo: mainAria.topAnchor),
@@ -221,10 +223,10 @@ class GoalsView: UIView {
             tableToolBar.leadingAnchor.constraint(equalTo: mainAria.leadingAnchor),
             tableToolBar.trailingAnchor.constraint(equalTo: mainAria.trailingAnchor),
             
-            tableView.topAnchor.constraint(equalTo: tableToolBar.bottomAnchor),
-            tableView.leadingAnchor.constraint(equalTo: tableToolBar.leadingAnchor),
-            tableView.trailingAnchor.constraint(equalTo: tableToolBar.trailingAnchor),
-            tableView.bottomAnchor.constraint(equalTo: mainAria.bottomAnchor)
+            inExGoalCollectionView!.topAnchor.constraint(equalTo: tableToolBar.bottomAnchor),
+            inExGoalCollectionView!.leadingAnchor.constraint(equalTo: tableToolBar.leadingAnchor),
+            inExGoalCollectionView!.trailingAnchor.constraint(equalTo: tableToolBar.trailingAnchor),
+            inExGoalCollectionView!.bottomAnchor.constraint(equalTo: mainAria.bottomAnchor)
         ])
     }
     
@@ -244,11 +246,10 @@ class GoalsView: UIView {
     // MARK: - EVENTS
     private func updateTableViewHeight() {
         var totalHeight: CGFloat = 0
-        for section in 0..<tableView.numberOfSections {
-            totalHeight += tableView.rectForHeader(inSection: section).height
-            for row in 0..<tableView.numberOfRows(inSection: section) {
+        for section in 0..<inExGoalCollectionView!.numberOfSections {
+            for row in 0..<inExGoalCollectionView!.numberOfItems(inSection: section) {
                 let indexPath = IndexPath(row: row, section: section)
-                totalHeight += tableView.rectForRow(at: indexPath).height
+                totalHeight += GoalItemCell.itemHeight + inExGoalsMinmumLineSpacing
             }
         }
         mainAriaHeightConstraint?.constant = toolbarHeight + totalHeight
@@ -286,30 +287,19 @@ extension GoalsView: UITableViewDataSource, UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch tableView.tag {
-        case 0:
-            let goal = inExGoals[indexPath.row]
-            if goal.createdByUser_flg {
-                let cell = self.tableView.dequeueReusableCell(withIdentifier: GoalTableViewCell.identifier, for: indexPath) as! GoalTableViewCell
-                cell.configure(with: goal, targetMonth: self.targetMonth)
-                return cell
-            } else {
-                let cell = self.tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-                return cell
-            }
         case 1:
             let cell = self.other.dequeueReusableCell(withIdentifier: OtherGoalTableCell.identifier, for: indexPath) as! OtherGoalTableCell
             cell.configure(targetMonth: self.targetMonth)
+            cell.backgroundColor = .customWhiteSmoke
             return cell
         default:
-            let cell = self.tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+            let cell = self.other.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
             return cell
         }
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         switch tableView.tag {
-        case 0:
-            return GoalTableViewCell.cellHeight
         case 1:
             return OtherGoalTableCell.cellHeight
         default:
@@ -320,12 +310,27 @@ extension GoalsView: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         switch tableView.tag {
-        case 0:
-            let cell = tableView.cellForRow(at: indexPath) as! GoalTableViewCell
-            self.delegate!.showGoalDetail(goal: inExGoals[indexPath.row], imageColor: cell.imageColor)
         case 1:
             self.delegate!.showGoalDetail(goal: self.remainingGoal!, imageColor: .systemTeal)
         default: break
         }
+    }
+}
+
+extension GoalsView: UICollectionViewDelegate, UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return self.inExGoals.count
+    }
+
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: GoalItemCell.identifier, for: indexPath) as! GoalItemCell
+        cell.configure(with: inExGoals[indexPath.row], targetMonth: self.targetMonth)
+        cell.contentView.backgroundColor = .customWhiteSmoke
+
+        return cell
+    }
+
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: inExGoalCollectionView!.layer.frame.width, height: GoalItemCell.itemHeight)
     }
 }

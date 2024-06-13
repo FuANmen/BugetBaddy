@@ -45,7 +45,7 @@
 		A67004472B1C6A6800EC50A4 /* MonthYearPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = A67004462B1C6A6800EC50A4 /* MonthYearPicker.swift */; };
 		A670044B2B1CA23300EC50A4 /* CategoryPickerTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = A670044A2B1CA23300EC50A4 /* CategoryPickerTextField.swift */; };
 		A670044E2B1E0DEE00EC50A4 /* PlusOrMinusSwitch.swift in Sources */ = {isa = PBXBuildFile; fileRef = A670044D2B1E0DED00EC50A4 /* PlusOrMinusSwitch.swift */; };
-		A673CED62BF9CA2F001E5679 /* CommonValues.swift in Sources */ = {isa = PBXBuildFile; fileRef = A673CED52BF9CA2F001E5679 /* CommonValues.swift */; };
+		A673CED62BF9CA2F001E5679 /* UIColor+CustomColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = A673CED52BF9CA2F001E5679 /* UIColor+CustomColors.swift */; };
 		A673CEDA2BF9EE8C001E5679 /* IconTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A673CED92BF9EE8C001E5679 /* IconTableCell.swift */; };
 		A6752FFA2B5807B600670CA5 /* CreateTransferLogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6752FF92B5807B600670CA5 /* CreateTransferLogViewController.swift */; };
 		A683234C2B1FE48D003D2F2E /* GoalDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A683234B2B1FE48D003D2F2E /* GoalDetailViewController.swift */; };
@@ -71,7 +71,7 @@
 		A6CCFE3E2B22C6BF00A30A0D /* TransactionDao.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6CCFE3D2B22C6BF00A30A0D /* TransactionDao.swift */; };
 		A6D659272BA72C44008029DC /* back.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A6D659262BA72C44008029DC /* back.jpg */; };
 		A6D659292BAD5C39008029DC /* ShowInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6D659282BAD5C39008029DC /* ShowInfoView.swift */; };
-		A6DF96622B80F8EC00982144 /* GoalTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6DF96612B80F8EC00982144 /* GoalTableViewCell.swift */; };
+		A6DF96622B80F8EC00982144 /* GoalItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6DF96612B80F8EC00982144 /* GoalItemCell.swift */; };
 		A6DF96642B81976700982144 /* TransactionEditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6DF96632B81976700982144 /* TransactionEditorViewController.swift */; };
 		A6DFB2C12B47B6DD001C167C /* KeyboardScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6DFB2C02B47B6DD001C167C /* KeyboardScrollView.swift */; };
 		A6E96F862B93317C001AD486 /* BankAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6E96F852B93317C001AD486 /* BankAccountViewController.swift */; };
@@ -134,7 +134,7 @@
 		A67004462B1C6A6800EC50A4 /* MonthYearPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthYearPicker.swift; sourceTree = "<group>"; };
 		A670044A2B1CA23300EC50A4 /* CategoryPickerTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryPickerTextField.swift; sourceTree = "<group>"; };
 		A670044D2B1E0DED00EC50A4 /* PlusOrMinusSwitch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlusOrMinusSwitch.swift; sourceTree = "<group>"; };
-		A673CED52BF9CA2F001E5679 /* CommonValues.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonValues.swift; sourceTree = "<group>"; };
+		A673CED52BF9CA2F001E5679 /* UIColor+CustomColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+CustomColors.swift"; sourceTree = "<group>"; };
 		A673CED92BF9EE8C001E5679 /* IconTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconTableCell.swift; sourceTree = "<group>"; };
 		A6752FF92B5807B600670CA5 /* CreateTransferLogViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTransferLogViewController.swift; sourceTree = "<group>"; };
 		A683234B2B1FE48D003D2F2E /* GoalDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalDetailViewController.swift; sourceTree = "<group>"; };
@@ -160,7 +160,7 @@
 		A6CCFE3D2B22C6BF00A30A0D /* TransactionDao.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransactionDao.swift; sourceTree = "<group>"; };
 		A6D659262BA72C44008029DC /* back.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = back.jpg; path = ../../../../../../Downloads/back.jpg; sourceTree = "<group>"; };
 		A6D659282BAD5C39008029DC /* ShowInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowInfoView.swift; sourceTree = "<group>"; };
-		A6DF96612B80F8EC00982144 /* GoalTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalTableViewCell.swift; sourceTree = "<group>"; };
+		A6DF96612B80F8EC00982144 /* GoalItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalItemCell.swift; sourceTree = "<group>"; };
 		A6DF96632B81976700982144 /* TransactionEditorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionEditorViewController.swift; sourceTree = "<group>"; };
 		A6DFB2C02B47B6DD001C167C /* KeyboardScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardScrollView.swift; sourceTree = "<group>"; };
 		A6E96F852B93317C001AD486 /* BankAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BankAccountViewController.swift; sourceTree = "<group>"; };
@@ -431,7 +431,7 @@
 			children = (
 				A6D659252BA72C10008029DC /* Image */,
 				A643F2742B35196000FA453D /* Localizable.strings */,
-				A673CED52BF9CA2F001E5679 /* CommonValues.swift */,
+				A673CED52BF9CA2F001E5679 /* UIColor+CustomColors.swift */,
 			);
 			path = Resource;
 			sourceTree = "<group>";
@@ -544,7 +544,7 @@
 		A6DF96602B760F4500982144 /* GoalCell */ = {
 			isa = PBXGroup;
 			children = (
-				A6DF96612B80F8EC00982144 /* GoalTableViewCell.swift */,
+				A6DF96612B80F8EC00982144 /* GoalItemCell.swift */,
 				A62B999A2C01CBC50018A12C /* OtherGoalTableCell.swift */,
 			);
 			path = GoalCell;
@@ -733,7 +733,7 @@
 				A68DCFC32BA2825D0035AA23 /* CarryForwardCell.swift in Sources */,
 				A61F85CD2BBE1B8A00C43531 /* TransferLog.swift in Sources */,
 				A67004432B1C6A1400EC50A4 /* MonthYearPickerTextField.swift in Sources */,
-				A673CED62BF9CA2F001E5679 /* CommonValues.swift in Sources */,
+				A673CED62BF9CA2F001E5679 /* UIColor+CustomColors.swift in Sources */,
 				A68C5E012B8E9E5E00963FD1 /* Breakdown.swift in Sources */,
 				A6ED25282BEFB66E002DE2DC /* EditUserSetTranLogView.swift in Sources */,
 				A643F2822B35747900FA453D /* Extensions.swift in Sources */,
@@ -745,7 +745,7 @@
 				A62B99992C00D0810018A12C /* TransferLogTableCell.swift in Sources */,
 				A60BF1B12B19CA7500AE0B78 /* MainTabBarController.swift in Sources */,
 				A6F85ADA2B329AD0004B70CD /* LongTermSaving.swift in Sources */,
-				A6DF96622B80F8EC00982144 /* GoalTableViewCell.swift in Sources */,
+				A6DF96622B80F8EC00982144 /* GoalItemCell.swift in Sources */,
 				A68E39A92BE213210018A505 /* CreateCategoryDialogView.swift in Sources */,
 				A60E95A22BE9E16800711820 /* SettingsViewController.swift in Sources */,
 				A6752FFA2B5807B600670CA5 /* CreateTransferLogViewController.swift in Sources */,
