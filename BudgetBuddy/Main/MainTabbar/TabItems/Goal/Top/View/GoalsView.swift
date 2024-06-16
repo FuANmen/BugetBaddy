@@ -222,7 +222,7 @@ class GoalsView: UIView {
         otherGoalCollectionView!.backgroundColor = .clear
         otherGoalCollectionView!.dataSource = self
         otherGoalCollectionView!.delegate = self
-        otherGoalCollectionView!.register(OtherGoalCollectionViewCell.self, forCellWithReuseIdentifier: OtherGoalCollectionViewCell.identifier)
+        otherGoalCollectionView!.register(OtherGoalItemCell.self, forCellWithReuseIdentifier: OtherGoalItemCell.identifier)
         otherGoalCollectionView!.tag = 2 // Unique tag for identification
     }
     
@@ -289,7 +289,7 @@ extension GoalsView: UICollectionViewDataSource, UICollectionViewDelegate {
             cell.contentView.backgroundColor = .customWhiteSmoke
             return cell
         case 2:
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: OtherGoalCollectionViewCell.identifier, for: indexPath) as! OtherGoalCollectionViewCell
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: OtherGoalItemCell.identifier, for: indexPath) as! OtherGoalItemCell
             cell.configure(goal: self.remainingGoal!, targetMonth: self.targetMonth)
             cell.contentView.backgroundColor = .customWhiteSmoke
             return cell
