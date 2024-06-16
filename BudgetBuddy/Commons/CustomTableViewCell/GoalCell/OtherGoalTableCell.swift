@@ -1,5 +1,5 @@
 //
-//  TotalGoalTableCell.swift
+//  OtherGoalCollectionViewCell.swift
 //  BudgetBuddy
 //
 //  Created by 柴田健作 on 2024/05/25.
@@ -7,8 +7,8 @@
 
 import UIKit
 
-class OtherGoalTableCell: UITableViewCell {
-    static let identifier = "OtherGoalTableCell"
+class OtherGoalItemCell: UICollectionViewCell {
+    static let identifier = "OtherGoalItemCell"
     static let cellHeight: CGFloat = 80
     
     private var otherGoal: Goal? = nil
@@ -61,8 +61,8 @@ class OtherGoalTableCell: UITableViewCell {
                                           .systemGreen,
                                           .systemTeal]
     
-    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
+    override init(frame: CGRect) {
+        super.init(frame: frame)
         contentView.addSubview(balanceLabel)
         contentView.addSubview(percentLabel)
         contentView.addSubview(categoryNameLabel)
@@ -88,8 +88,8 @@ class OtherGoalTableCell: UITableViewCell {
             balanceLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -32),
             
             progressBar.topAnchor.constraint(equalTo: categoryNameLabel.bottomAnchor, constant: 6),
-            progressBar.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 32),
-            progressBar.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -40),
+            progressBar.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 32),
+            progressBar.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -40),
             progressBar.heightAnchor.constraint(equalToConstant: progressBarHight),
             
             maxScaleLabel.centerXAnchor.constraint(equalTo: progressBar.trackView.trailingAnchor),
@@ -145,3 +145,5 @@ class OtherGoalTableCell: UITableViewCell {
         self.layoutIfNeeded()
     }
 }
+    
+    
