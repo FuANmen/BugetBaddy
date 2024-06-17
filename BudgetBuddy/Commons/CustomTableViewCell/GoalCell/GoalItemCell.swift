@@ -64,8 +64,9 @@ class GoalItemCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        // contentViewに影を設定
+        // contentViewの角丸
         contentView.layer.cornerRadius = 24
+        // contentViewに影を設定
         contentView.layer.shadowColor = UIColor.black.cgColor
         contentView.layer.shadowOpacity = 0.2
         contentView.layer.shadowOffset = CGSize(width: 0, height: 2)
