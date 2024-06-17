@@ -302,6 +302,9 @@ extension GoalsView: UICollectionViewDataSource, UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         collectionView.deselectItem(at: indexPath, animated: true)
         switch collectionView.tag {
+        case 1:
+            let cell = inExGoalCollectionView?.cellForItem(at: indexPath) as! GoalItemCell
+            self.delegate!.showGoalDetail(goal: self.inExGoals[indexPath.row], imageColor: cell.imageColor)
         case 2:
             self.delegate!.showGoalDetail(goal: self.remainingGoal!, imageColor: .systemTeal)
         default: break
