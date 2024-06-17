@@ -14,22 +14,19 @@ class GoalItemCell: UICollectionViewCell {
     
     private let balanceLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 20, weight: .semibold)
-        label.textColor = .systemGray2
-        return label
-    }()
-    
-    private let percentLabel: UILabel = {
-        let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 14, weight: .light)
-        label.textColor = .systemGray3
+        label.font = UIFont.systemFont(ofSize: 26, weight: .bold)
+        label.textColor = .customSteelBlue
+        label.adjustsFontSizeToFitWidth = true
+        label.textAlignment = .right
         return label
     }()
 
     private let categoryNameLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 22, weight: .semibold)
-        label.textColor = .systemGray2
+        label.font = UIFont.systemFont(ofSize: 24, weight: .semibold)
+        label.textColor = .customRoyalBlue
+        label.adjustsFontSizeToFitWidth = true
+        label.textAlignment = .left
         return label
     }()
     
@@ -43,29 +40,21 @@ class GoalItemCell: UICollectionViewCell {
     private let maxScaleLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 14, weight: .light)
-        label.textColor = .systemGray3
+        label.textColor = .customDarkGray
         return label
     }()
     
     private let minScaleLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 14, weight: .light)
-        label.textColor = .systemGray3
+        label.textColor = .customDarkGray
         return label
     }()
-    
-    private let colorPallet: [UIColor] = [
-                                            .systemTeal,
-                                            .systemGreen,
-                                            .systemYellow,
-                                            .systemOrange,
-                                            .systemPink,
-                                            .systemRed]
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         // contentViewの角丸
-        contentView.layer.cornerRadius = 24
+        contentView.layer.cornerRadius = 22
         // contentViewに影を設定
         contentView.layer.shadowColor = UIColor.black.cgColor
         contentView.layer.shadowOpacity = 0.2
@@ -79,14 +68,12 @@ class GoalItemCell: UICollectionViewCell {
         contentView.layer.masksToBounds = false
         
         contentView.addSubview(balanceLabel)
-        contentView.addSubview(percentLabel)
         contentView.addSubview(categoryNameLabel)
         contentView.addSubview(progressBar)
         contentView.addSubview(maxScaleLabel)
         contentView.addSubview(minScaleLabel)
         
         balanceLabel.translatesAutoresizingMaskIntoConstraints = false
-        percentLabel.translatesAutoresizingMaskIntoConstraints = false
         categoryNameLabel.translatesAutoresizingMaskIntoConstraints = false
         progressBar.translatesAutoresizingMaskIntoConstraints = false
         maxScaleLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -95,16 +82,15 @@ class GoalItemCell: UICollectionViewCell {
         NSLayoutConstraint.activate([
             categoryNameLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
             categoryNameLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 32),
+            categoryNameLabel.trailingAnchor.constraint(equalTo: contentView.centerXAnchor, constant: -4),
             
-            percentLabel.centerYAnchor.constraint(equalTo: balanceLabel.centerYAnchor),
-            percentLabel.trailingAnchor.constraint(equalTo: balanceLabel.leadingAnchor, constant: -4),
-            
-            balanceLabel.bottomAnchor.constraint(equalTo: categoryNameLabel.bottomAnchor),
-            balanceLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -32),
+            balanceLabel.centerYAnchor.constraint(equalTo: categoryNameLabel.centerYAnchor),
+            balanceLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -34),
+            balanceLabel.leadingAnchor.constraint(equalTo: contentView.centerXAnchor, constant: 4),
             
             progressBar.topAnchor.constraint(equalTo: categoryNameLabel.bottomAnchor, constant: 6),
-            progressBar.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 32),
-            progressBar.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -40),
+            progressBar.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 28),
+            progressBar.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -32),
             progressBar.heightAnchor.constraint(equalToConstant: progressBarHight),
             
             maxScaleLabel.centerXAnchor.constraint(equalTo: progressBar.trackView.trailingAnchor),
@@ -118,7 +104,6 @@ class GoalItemCell: UICollectionViewCell {
     func configure(with goal: Goal, targetMonth: String) {
         let balance = goal.getBalance()
         balanceLabel.text = formatCurrency(amount: balance)
-        percentLabel.text = goal.getAmount() == 0 ? "" : "(\(Int(round(balance / goal.getAmount() * 100)))%)"
         if let category = goal.category {
             categoryNameLabel.text = category.name + " :"
         }
@@ -146,19 +131,21 @@ class GoalItemCell: UICollectionViewCell {
         
         progressBar.updateProgress(percentage: Float(percentage), animation: true)
         
-        if percentage > 0.8 {
-            imageColor = colorPallet[0]
-        } else if percentage > 0.6 {
-            imageColor = colorPallet[1]
-        } else if percentage > 0.4 {
-            imageColor = colorPallet[2]
-        } else if percentage > 0.2 {
-            imageColor = colorPallet[3]
-        } else if percentage > 0.1 {
-            imageColor = colorPallet[4]
-        } else {
-            imageColor = colorPallet[5]
+        switch percentage {
+        case 0.8...1.0:
+            imageColor = .balanceHigh
+        case 0.6..<0.8:
+            imageColor = .balanceMediumHigh
+        case 0.4..<0.6:
+            imageColor = .balanceMedium
+        case 0.2..<0.4:
+            imageColor = .balanceLow
+        case 0.0..<0.2:
+            imageColor = .balanceVeryLow
+        default:
+            imageColor = .clear
         }
+        
         progressBar.setColor(trackColor: .systemGray5, progressColor: imageColor)
         
         maxScaleLabel.text = String(round(Float(goalAmount / 1000)) / 10) + NSLocalizedString("Money_2", comment: "")
