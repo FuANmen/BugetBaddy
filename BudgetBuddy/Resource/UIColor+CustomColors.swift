@@ -14,6 +14,10 @@ let NAVIGATION_BACK_COLOR: UIColor = UIColor.rgb(red: 121, green: 140, blue: 255
 let DASHBOARD_BACKGROUND_COLOR: UIColor =  UIColor.rgb(red: 220, green: 240, blue: 255)
 
 extension UIColor {
+    // 背景色
+    static let backGradientColorFrom = UIColor(red: 81/255, green: 182/255, blue: 255/255, alpha: 1.0)
+    static let backGradientColorTo = UIColor(red: 0/255, green: 159/255, blue: 204/255, alpha: 1.0)
+    
     // カラーセット1: 落ち着いたブルー系
     static let customSkyBlue = UIColor(red: 135/255, green: 206/255, blue: 235/255, alpha: 1.0)
     static let customDodgerBlue = UIColor(red: 30/255, green: 144/255, blue: 255/255, alpha: 1.0)
