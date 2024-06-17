@@ -49,54 +49,28 @@ class MonthlyViewController: UIViewController {
     private var preview: PreviewStatus = .goalsView {
         didSet {
             if oldValue == preview {
-//                self.goalsView.scrollToTop()
-//                self.transferLogsView.scrollToTop()
-//                self.totalDetailView.scrollToTop()
-//                UIView.animate(withDuration: 0.2, animations: {
-//                    self.goalsView.alpha = 0.5
-//                    self.transferLogsView.alpha = 0.5
-//                    self.totalDetailView.alpha = 0.5
-//                }, completion: { finished in
-//                    UIView.animate(withDuration: 0.3, animations: {
-//                        self.goalsView.alpha = 1.0
-//                        self.transferLogsView.alpha = 1.0
-//                        self.totalDetailView.alpha = 1.0
-//                    })
-//                })
                 return
             }
             switch preview {
             case .goalsView:
                 self.goalsView.configure(targetMonth: self.targetMonth)
-                partitionCneterYAnchor?.constant = self.topAriaHeight / 2
                 validViewHorizontalAlignment?.constant = view.frame.width / 4
                 goalsViewLeadingConstraint?.constant = 0
                 
                 UIView.animate(withDuration: 0.4) {
                     self.view.layoutIfNeeded()
                     self.mainViewLabel_1.textColor = .white
-                    // self.mainViewLabel_2.textColor = .systemGray4
                     self.mainViewLabel_3.textColor = .systemGray4
-                    
-                    self.balanceValue.font = UIFont.systemFont(ofSize: 20, weight: .light)
-                    self.balanceLabel.font = UIFont.systemFont(ofSize: 16, weight: .light)
-                    self.amountValue.font = UIFont.systemFont(ofSize: 20, weight: .light)
-                    self.amountLabel.font = UIFont.systemFont(ofSize: 16, weight: .light)
                 }
             case .totalDetail:
                 self.totalDetailView.configure(targetMonth: self.targetMonth)
-                partitionCneterYAnchor?.constant = self.topAriaHeight
                 validViewHorizontalAlignment?.constant = view.frame.width / 4 * 3
                 goalsViewLeadingConstraint?.constant = -view.frame.width
                 
                 UIView.animate(withDuration: 0.4) {
                     self.view.layoutIfNeeded()
-                    // self.mainViewLabel_2.textColor = .systemGray4
                     self.mainViewLabel_1.textColor = .systemGray4
                     self.mainViewLabel_3.textColor = .white
-                    
-                    self.balanceValue.font = UIFont.systemFont(ofSize: 28, weight: .light)
-                    self.balanceLabel.font = UIFont.systemFont(ofSize: 24, weight: .light)
                 }
             }
         }
@@ -128,10 +102,6 @@ class MonthlyViewController: UIViewController {
     private let topView: UIView = {
         let view = UIView()
         view.layer.masksToBounds = false
-        view.layer.shadowColor = UIColor.black.cgColor
-        view.layer.shadowOffset = CGSize(width: 0, height: 1)
-        view.layer.shadowOpacity = 0.8
-        view.layer.shadowRadius = 2
         view.tag = 0
         return view
     }()
@@ -139,10 +109,6 @@ class MonthlyViewController: UIViewController {
     private let horizonView: UIView = {
         let view = UIView()
         view.backgroundColor = .white
-        view.layer.shadowOffset = CGSize(width: 0, height: 1.5)
-        view.layer.shadowColor = UIColor.black.cgColor
-        view.layer.shadowOpacity = 0.6
-        view.layer.shadowRadius = 2
         return view
     }()
     
@@ -162,16 +128,6 @@ class MonthlyViewController: UIViewController {
         label.tag = 1
         return label
     }()
-    
-//    private let mainViewLabel_2: UILabel = {
-//        let label = UILabel()
-//        label.text = NSLocalizedString("ManagementMoney", comment: "")
-//        label.textAlignment = .center
-//        label.font = UIFont.systemFont(ofSize: 14, weight: .light)
-//        label.textColor = .systemGray6
-//        label.tag = 2
-//        return label
-//    }()
     
     private let mainViewLabel_3: UILabel = {
         let label = UILabel()
@@ -203,29 +159,26 @@ class MonthlyViewController: UIViewController {
     private let topAriaHeight: CGFloat = 90
     private let topAria: UIView = {
         let view = UIView()
-        view.backgroundColor = .systemGray4
+        view.backgroundColor = .customWhiteSmoke
         view.layer.cornerRadius = 12
-        view.layer.masksToBounds = true
-        return view
-    }()
-    private let topShadowAria: UIView = {
-        let view = UIView()
-        view.backgroundColor = .white
-        view.layer.cornerRadius = 12
+        view.layer.shadowColor = UIColor.black.cgColor
+        view.layer.shadowOpacity = 0.2
+        view.layer.shadowOffset = CGSize(width: 0, height: 2)
+        view.layer.shadowRadius = 5
         return view
     }()
     
     // balance
     private let balanceView: UIView = {
         let view = UIView()
-        view.backgroundColor = .white
+        view.backgroundColor = .clear
         return view
     }()
     
     private let balanceLabel: UILabel = {
         let label = UILabel()
         label.text = ": " + NSLocalizedString("Go_TopLabel_001", comment: "")
-        label.textColor = .customNavy
+        label.textColor = .customSteelBlueLight1
         label.font = UIFont.systemFont(ofSize: 22, weight: .medium)
         label.textAlignment = .left
         label.adjustsFontSizeToFitWidth = true
@@ -234,7 +187,7 @@ class MonthlyViewController: UIViewController {
     
     private let balanceValue: UILabel = {
         let label = UILabel()
-        label.textColor = .customRoyalBlue
+        label.textColor = .customRoyalBlueLight1
         label.font = UIFont.systemFont(ofSize: 22, weight: .semibold)
         label.textAlignment = .left
         label.adjustsFontSizeToFitWidth = true
@@ -252,14 +205,14 @@ class MonthlyViewController: UIViewController {
     private var partitionCneterYAnchor: NSLayoutConstraint?
     private let partitionView: UIView = {
         let view = UIView()
-        view.backgroundColor = .systemGray6
+        view.backgroundColor = .systemGray4
         return view
     }()
     
     // amount
     private let amountView: UIView = {
         let view = UIView()
-        view.backgroundColor = .white
+        view.backgroundColor = .clear
         view.layer.masksToBounds = true
         return view
     }()
@@ -267,14 +220,14 @@ class MonthlyViewController: UIViewController {
     private let amountLabel: UILabel = {
         let label = UILabel()
         label.text = ": " + NSLocalizedString("Go_TopLabel_002", comment: "")
-        label.textColor = .customNavy
+        label.textColor = .customSteelBlueLight1
         label.font = UIFont.systemFont(ofSize: 22, weight: .medium)
         return label
     }()
     
     private let amountValue: UILabel = {
         let label = UILabel()
-        label.textColor = .customRoyalBlue
+        label.textColor = .customRoyalBlueLight1
         label.font = UIFont.systemFont(ofSize: 22, weight: .semibold)
         return label
     }()
@@ -409,11 +362,6 @@ class MonthlyViewController: UIViewController {
             mainViewLabel_1.bottomAnchor.constraint(equalTo: validView.topAnchor, constant: -1),
             mainViewLabel_1.centerXAnchor.constraint(equalTo: view.leadingAnchor, constant: view.frame.width / 4),
             mainViewLabel_1.widthAnchor.constraint(equalToConstant: view.frame.width / 2),
-
-//            mainViewLabel_2.bottomAnchor.constraint(equalTo: validView.topAnchor, constant: -1),
-//            mainViewLabel_2.leadingAnchor.constraint(equalTo: horizonView.leadingAnchor, constant: view.frame.width / 6 * 2),
-//            mainViewLabel_2.trailingAnchor.constraint(equalTo: horizonView.leadingAnchor, constant: view.frame.width / 6 * 4),
-//            mainViewLabel_2.widthAnchor.constraint(equalToConstant: view.frame.width / 6),
             
             mainViewLabel_3.bottomAnchor.constraint(equalTo: validView.topAnchor, constant: 1),
             mainViewLabel_3.centerXAnchor.constraint(equalTo: view.leadingAnchor, constant: view.frame.width / 4 * 3),
@@ -424,33 +372,20 @@ class MonthlyViewController: UIViewController {
             goalsView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
             goalsView.widthAnchor.constraint(equalTo: view.widthAnchor),
             
-//            transferLogsView.topAnchor.constraint(equalTo: horizonView.bottomAnchor),
-//            transferLogsView.leadingAnchor.constraint(equalTo: goalsView.trailingAnchor),
-//            transferLogsView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
-//            transferLogsView.widthAnchor.constraint(equalTo: view.widthAnchor),
-            
             totalDetailView.topAnchor.constraint(equalTo: horizonView.bottomAnchor),
             totalDetailView.leadingAnchor.constraint(equalTo: goalsView.trailingAnchor),
             totalDetailView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
             totalDetailView.widthAnchor.constraint(equalTo: view.widthAnchor)
         ])
         
-        topView.addSubview(topShadowAria)
         topView.addSubview(topAria)
-        
-        topShadowAria.translatesAutoresizingMaskIntoConstraints = false
         topAria.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
             topAria.topAnchor.constraint(equalTo: topView.topAnchor, constant: 12),
             topAria.leadingAnchor.constraint(equalTo: topView.leadingAnchor, constant: 36),
             topAria.trailingAnchor.constraint(equalTo: topView.trailingAnchor, constant: -36),
-            topAria.heightAnchor.constraint(equalToConstant: topAriaHeight),
-            
-            topShadowAria.topAnchor.constraint(equalTo: topAria.topAnchor),
-            topShadowAria.leadingAnchor.constraint(equalTo: topAria.leadingAnchor),
-            topShadowAria.trailingAnchor.constraint(equalTo: topAria.trailingAnchor),
-            topShadowAria.bottomAnchor.constraint(equalTo: topAria.bottomAnchor)
+            topAria.heightAnchor.constraint(equalToConstant: topAriaHeight)
         ])
         
         // TopAria

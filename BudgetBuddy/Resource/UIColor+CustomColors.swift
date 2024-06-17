@@ -20,12 +20,28 @@ extension UIColor {
     static let customWhiteSmoke = UIColor(red: 245/255, green: 245/255, blue: 245/255, alpha: 1.0)
     static let customNavy = UIColor(red: 0/255, green: 0/255, blue: 128/255, alpha: 1.0)
     static let customRedOrange = UIColor(red: 255/255, green: 69/255, blue: 0/255, alpha: 1.0)
-    static let customSteelBlue = UIColor(red: 70/255, green: 130/255, blue: 180/255, alpha: 1.0)
     static let customDarkBlue = UIColor(red: 25/255, green: 25/255, blue: 112/255, alpha: 1.0)
     static let customMediumBlue = UIColor(red: 0/255, green: 0/255, blue: 205/255, alpha: 1.0)
     static let customDarkBlue2 = UIColor(red: 0/255, green: 0/255, blue: 139/255, alpha: 0.8)
     static let customSlateBlue = UIColor(red: 70/255, green: 130/255, blue: 180/255, alpha: 1.0)
     static let customRoyalBlue = UIColor(red: 65/255, green: 105/255, blue: 225/255, alpha: 1.0)
+    static let customSteelBlue = UIColor(red: 70/255, green: 130/255, blue: 180/255, alpha: 1.0)
+    // customRoyalBlue のトーンダウン
+    static let customRoyalBlueDark1 = UIColor(red: 52/255, green: 84/255, blue: 180/255, alpha: 1.0)
+    static let customRoyalBlueDark2 = UIColor(red: 41/255, green: 68/255, blue: 144/255, alpha: 1.0)
+    static let customRoyalBlueDark3 = UIColor(red: 31/255, green: 52/255, blue: 108/255, alpha: 1.0)
+    // customSteelBlue のトーンダウン
+    static let customSteelBlueDark1 = UIColor(red: 56/255, green: 104/255, blue: 144/255, alpha: 1.0)
+    static let customSteelBlueDark2 = UIColor(red: 45/255, green: 84/255, blue: 115/255, alpha: 1.0)
+    static let customSteelBlueDark3 = UIColor(red: 36/255, green: 67/255, blue: 92/255, alpha: 1.0)
+    // customRoyalBlue のトーンアップ
+    static let customRoyalBlueLight1 = UIColor(red: 97/255, green: 127/255, blue: 242/255, alpha: 1.0)
+    static let customRoyalBlueLight2 = UIColor(red: 130/255, green: 150/255, blue: 255/255, alpha: 1.0)
+    static let customRoyalBlueLight3 = UIColor(red: 162/255, green: 172/255, blue: 255/255, alpha: 1.0)
+    // customSteelBlue のトーンアップ
+    static let customSteelBlueLight1 = UIColor(red: 102/255, green: 156/255, blue: 210/255, alpha: 1.0)
+    static let customSteelBlueLight2 = UIColor(red: 133/255, green: 178/255, blue: 225/255, alpha: 1.0)
+    static let customSteelBlueLight3 = UIColor(red: 163/255, green: 200/255, blue: 240/255, alpha: 1.0)
 
     // カラーセット2: フレッシュなグリーン系
     static let customPaleGreen = UIColor(red: 152/255, green: 251/255, blue: 152/255, alpha: 1.0)

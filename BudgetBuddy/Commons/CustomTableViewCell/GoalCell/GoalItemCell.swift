@@ -15,7 +15,7 @@ class GoalItemCell: UICollectionViewCell {
     private let balanceLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 26, weight: .bold)
-        label.textColor = .customSteelBlue
+        label.textColor = .customSteelBlueLight2
         label.adjustsFontSizeToFitWidth = true
         label.textAlignment = .right
         return label
@@ -24,7 +24,7 @@ class GoalItemCell: UICollectionViewCell {
     private let categoryNameLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 24, weight: .semibold)
-        label.textColor = .customRoyalBlue
+        label.textColor = .customRoyalBlueLight2
         label.adjustsFontSizeToFitWidth = true
         label.textAlignment = .left
         return label
