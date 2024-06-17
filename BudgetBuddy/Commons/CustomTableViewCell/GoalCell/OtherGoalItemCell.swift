@@ -9,7 +9,7 @@ import UIKit
 
 class OtherGoalItemCell: UICollectionViewCell {
     static let identifier = "OtherGoalItemCell"
-    static let cellHeight: CGFloat = 80
+    static let itemHeight: CGFloat = 80
     
     private var otherGoal: Goal? = nil
     
@@ -63,6 +63,20 @@ class OtherGoalItemCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        // contentViewの角丸
+        contentView.layer.cornerRadius = 24
+        // contentViewに影を設定
+        contentView.layer.shadowColor = UIColor.black.cgColor
+        contentView.layer.shadowOpacity = 0.2
+        contentView.layer.shadowOffset = CGSize(width: 0, height: 2)
+        contentView.layer.shadowRadius = 5
+
+        // セルの背景色とcontentViewの背景色を設定
+        backgroundColor = .clear
+
+        // マスクを外して影を描画
+        contentView.layer.masksToBounds = false
+        
         contentView.addSubview(balanceLabel)
         contentView.addSubview(percentLabel)
         contentView.addSubview(categoryNameLabel)

@@ -33,7 +33,7 @@
 		A62B99912C00BED40018A12C /* TransferLogsDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A62B99902C00BED40018A12C /* TransferLogsDetailView.swift */; };
 		A62B99972C00CAAE0018A12C /* TransferLogsTableSectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = A62B99962C00CAAE0018A12C /* TransferLogsTableSectionHeader.swift */; };
 		A62B99992C00D0810018A12C /* TransferLogTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A62B99982C00D0810018A12C /* TransferLogTableCell.swift */; };
-		A62B999B2C01CBC50018A12C /* OtherGoalTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A62B999A2C01CBC50018A12C /* OtherGoalTableCell.swift */; };
+		A62B999B2C01CBC50018A12C /* OtherGoalItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A62B999A2C01CBC50018A12C /* OtherGoalItemCell.swift */; };
 		A643F2722B35196000FA453D /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = A643F2742B35196000FA453D /* Localizable.strings */; };
 		A643F27A2B355AFA00FA453D /* LanguageSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A643F2792B355AFA00FA453D /* LanguageSelectionViewController.swift */; };
 		A643F2822B35747900FA453D /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A643F2812B35747900FA453D /* Extensions.swift */; };
@@ -119,7 +119,7 @@
 		A62B99902C00BED40018A12C /* TransferLogsDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransferLogsDetailView.swift; sourceTree = "<group>"; };
 		A62B99962C00CAAE0018A12C /* TransferLogsTableSectionHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransferLogsTableSectionHeader.swift; sourceTree = "<group>"; };
 		A62B99982C00D0810018A12C /* TransferLogTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransferLogTableCell.swift; sourceTree = "<group>"; };
-		A62B999A2C01CBC50018A12C /* OtherGoalTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherGoalTableCell.swift; sourceTree = "<group>"; };
+		A62B999A2C01CBC50018A12C /* OtherGoalItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherGoalItemCell.swift; sourceTree = "<group>"; };
 		A643F2732B35196000FA453D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		A643F2772B351A3900FA453D /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
 		A643F2792B355AFA00FA453D /* LanguageSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageSelectionViewController.swift; sourceTree = "<group>"; };
@@ -545,7 +545,7 @@
 			isa = PBXGroup;
 			children = (
 				A6DF96612B80F8EC00982144 /* GoalItemCell.swift */,
-				A62B999A2C01CBC50018A12C /* OtherGoalTableCell.swift */,
+				A62B999A2C01CBC50018A12C /* OtherGoalItemCell.swift */,
 			);
 			path = GoalCell;
 			sourceTree = "<group>";
@@ -788,7 +788,7 @@
 				A60BF1B92B1B7AED00AE0B78 /* Category.swift in Sources */,
 				A643F2852B3674BC00FA453D /* MonthlyDefaultManagementAmountViewController.swift in Sources */,
 				A6B1D5D72B2498E70076D3BF /* DateFuncs.swift in Sources */,
-				A62B999B2C01CBC50018A12C /* OtherGoalTableCell.swift in Sources */,
+				A62B999B2C01CBC50018A12C /* OtherGoalItemCell.swift in Sources */,
 				A62B99872BFF07090018A12C /* TotalDetailView.swift in Sources */,
 				A6487BB72B51846300CAF47B /* MyProgressBar.swift in Sources */,
 				A62B998B2BFF34000018A12C /* TotalTransactionTableCell.swift in Sources */,

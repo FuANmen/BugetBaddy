@@ -85,7 +85,7 @@ class GoalsView: UIView {
         return view
     }()
     
-    private let inExGoalsMinmumLineSpacing: CGFloat = 20
+    private let inExGoalsMinmumLineSpacing: CGFloat = 16
     private var inExGoalCollectionView: UICollectionView?
     
     // TotalGoal
@@ -107,7 +107,7 @@ class GoalsView: UIView {
         self.inExGoals = GoalDao().getInExGoals(targetMonth: targetMonth)
         self.remainingGoal = GoalDao().getOtherGoal(targetMonth: targetMonth)
         inExGoalCollectionView!.reloadData()
-        other.reloadData()
+        otherGoalCollectionView!.reloadData()
         updateTableViewHeight()
     }
     
@@ -123,8 +123,8 @@ class GoalsView: UIView {
         setupOtherGoalCollectionView()
         scrollView.addSubview(otherGoalCollectionView!)
         
-        other.delegate = self
-        other.dataSource = self
+        otherGoalCollectionView!.delegate = self
+        otherGoalCollectionView!.dataSource = self
         
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         addGoalButton.translatesAutoresizingMaskIntoConstraints = false
@@ -136,7 +136,7 @@ class GoalsView: UIView {
         
         // 可変レイアウト
         mainAriaHeightConstraint = mainAria.heightAnchor.constraint(equalToConstant: toolbarHeight)
-        otherAriaHeightConstraint = other.heightAnchor.constraint(equalToConstant: 0)
+        otherAriaHeightConstraint = otherGoalCollectionView!.heightAnchor.constraint(equalToConstant: 0)
         
         NSLayoutConstraint.activate([
             scrollView.topAnchor.constraint(equalTo: self.topAnchor),
@@ -178,9 +178,8 @@ class GoalsView: UIView {
         
         // MainAria
         mainAria.addSubview(tableToolBar)
-        mainAria.addSubview(inExGoalCollectionView!)
-        
         setupGoalsCollectionView()
+        mainAria.addSubview(inExGoalCollectionView!)
         
         tableToolBar.translatesAutoresizingMaskIntoConstraints = false
         inExGoalCollectionView!.translatesAutoresizingMaskIntoConstraints = false
@@ -209,20 +208,22 @@ class GoalsView: UIView {
         inExGoalCollectionView!.dataSource = self
         inExGoalCollectionView!.delegate = self
         inExGoalCollectionView!.register(GoalItemCell.self, forCellWithReuseIdentifier: GoalItemCell.identifier)
+        inExGoalCollectionView!.isScrollEnabled = false
         inExGoalCollectionView!.tag = 1
     }
     
     private func setupOtherGoalCollectionView() {
         let layout = UICollectionViewFlowLayout()
-        layout.itemSize = CGSize(width: UIScreen.main.bounds.width * 0.8, height: 60)
-        layout.sectionInset = UIEdgeInsets(top: 10, left: 0, bottom: 10, right: 0)
-        layout.minimumLineSpacing = 20
+        layout.itemSize = CGSize(width: UIScreen.main.bounds.width * 0.8, height: OtherGoalItemCell.itemHeight)
+        layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+        layout.minimumLineSpacing = 0
         
         otherGoalCollectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         otherGoalCollectionView!.backgroundColor = .clear
         otherGoalCollectionView!.dataSource = self
         otherGoalCollectionView!.delegate = self
         otherGoalCollectionView!.register(OtherGoalItemCell.self, forCellWithReuseIdentifier: OtherGoalItemCell.identifier)
+        otherGoalCollectionView!.isScrollEnabled = false
         otherGoalCollectionView!.tag = 2 // Unique tag for identification
     }
     
@@ -251,15 +252,15 @@ class GoalsView: UIView {
         mainAriaHeightConstraint?.constant = toolbarHeight + totalHeight
         
         var otherTotalHeight: CGFloat = 0
-        for row in 0..<other.numberOfRows(inSection: 0) {
+        for row in 0..<otherGoalCollectionView!.numberOfItems(inSection: 0) {
             let indexPath = IndexPath(row: row, section: 0)
-            otherTotalHeight += other.rectForRow(at: indexPath).height
+            otherTotalHeight += OtherGoalItemCell.itemHeight
         }
         otherAriaHeightConstraint?.constant = otherTotalHeight
         
         self.layoutIfNeeded()
         
-        let contentHeight = max(self.frame.height + 100, other.frame.maxY + otherTotalHeight + 100)
+        let contentHeight = max(self.frame.height + 100, otherGoalCollectionView!.frame.maxY + otherTotalHeight + 100)
         scrollView.contentSize = CGSize(width: self.frame.width, height: contentHeight)
     }
 }
@@ -290,7 +291,7 @@ extension GoalsView: UICollectionViewDataSource, UICollectionViewDelegate {
             return cell
         case 2:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: OtherGoalItemCell.identifier, for: indexPath) as! OtherGoalItemCell
-            cell.configure(goal: self.remainingGoal!, targetMonth: self.targetMonth)
+            cell.configure(targetMonth: self.targetMonth)
             cell.contentView.backgroundColor = .customWhiteSmoke
             return cell
         default:
