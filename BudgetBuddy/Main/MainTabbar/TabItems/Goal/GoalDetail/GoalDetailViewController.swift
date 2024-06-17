@@ -37,7 +37,7 @@ class GoalDetailViewController: UIViewController {
     private let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.showsVerticalScrollIndicator = false
-        scrollView.backgroundColor = BACKGROUND_COLOR
+        scrollView.backgroundColor = .clear
         return scrollView
     }()
     
@@ -46,7 +46,7 @@ class GoalDetailViewController: UIViewController {
     private var amountViewHeightAnchor: NSLayoutConstraint?
     private let amountView: UIView = {
         let view = UIView()
-        view.backgroundColor = NAVIGATION_BACK_COLOR
+        view.backgroundColor = .clear
         view.layer.masksToBounds = false
         view.layer.shadowColor = UIColor.black.cgColor
         view.layer.shadowOffset = CGSize(width: 0, height: 0)
@@ -70,22 +70,22 @@ class GoalDetailViewController: UIViewController {
     private let amountLabel: UILabel = {
         let label = UILabel()
         label.text = NSLocalizedString("Budget", comment: "") + " :"
-        label.textColor = .white
-        label.font = UIFont.systemFont(ofSize: 24, weight: .light)
+        label.textColor = .customWhiteSmoke
+        label.font = UIFont.systemFont(ofSize: 24, weight: .medium)
         return label
     }()
     
     private let amountValue: UILabel = {
         let label = UILabel()
-        label.textColor = .white
-        label.font = UIFont.systemFont(ofSize: 28, weight: .light)
+        label.textColor = .customWhiteSmoke
+        label.font = UIFont.systemFont(ofSize: 28, weight: .medium)
         return label
     }()
 
     private let addTransferLogButton: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(systemName: "plus"), for: .normal)
-        button.tintColor = .white
+        button.tintColor = .customWhiteSmoke
         button.alpha = 0.6
         button.addTarget(self, action: #selector(addTransLogBtnTapped), for: .touchUpInside)
         button.imageView?.contentMode = .scaleAspectFit
@@ -261,14 +261,33 @@ class GoalDetailViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.title = self.category.name
-        view.backgroundColor = BACKGROUND_COLOR
+        // navigation
+        self.navigationItem.title = self.category.name
+        self.navigationController?.navigationBar.backgroundColor = .clear
+        self.navigationController?.navigationBar.barTintColor = .white
+        self.navigationController?.navigationBar.tintColor = .white
+        self.navigationController?.navigationBar.titleTextAttributes = [
+            .foregroundColor: UIColor.white
+        ]
+        self.addGradientBackground()
 
         setupUI()
         updateValues()
         loadTransactions()
         
         setupChartData()
+    }
+    
+    // BACKGROUND
+    private func addGradientBackground() {
+        let gradientLayer = CAGradientLayer()
+        gradientLayer.frame = view.bounds
+        gradientLayer.colors = [UIColor.customSkyBlue.cgColor, UIColor.customDodgerBlue.cgColor]
+        gradientLayer.startPoint = CGPoint(x: 0.5, y: 0)
+        gradientLayer.endPoint = CGPoint(x: 0.5, y: 1)
+        
+        // 既存のレイヤーの後ろにグラデーションレイヤーを追加
+        self.view.layer.insertSublayer(gradientLayer, at: 0)
     }
     
     private func setupUI() {
@@ -278,9 +297,8 @@ class GoalDetailViewController: UIViewController {
             navigationItem.rightBarButtonItem = menuButton
         }
         
-        view.addSubview(amountView)
-        view.addSubview(horizonLineView)
         view.addSubview(scrollView)
+        scrollView.addSubview(amountView)
         scrollView.addSubview(balanceView)
         scrollView.addSubview(lineChartView)
         scrollView.addSubview(expenseView)
@@ -301,22 +319,17 @@ class GoalDetailViewController: UIViewController {
         amountViewHeightAnchor = amountView.heightAnchor.constraint(equalToConstant: amountViewHeight)
         transactionsViewHeightAnchor = transactionsView.heightAnchor.constraint(equalToConstant: view.frame.height)
         NSLayoutConstraint.activate([
-            amountView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            amountView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            amountView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            amountViewHeightAnchor!,
-            
-            horizonLineView.topAnchor.constraint(equalTo: amountView.bottomAnchor, constant: 0),
-            horizonLineView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            horizonLineView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            horizonLineView.heightAnchor.constraint(equalToConstant: 0),
-            
-            scrollView.topAnchor.constraint(equalTo: horizonLineView.bottomAnchor),
+            scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             scrollView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
             
-            balanceView.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 12),
+            amountView.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 16),
+            amountView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            amountView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            amountViewHeightAnchor!,
+            
+            balanceView.topAnchor.constraint(equalTo: amountView.bottomAnchor, constant: 12),
             balanceView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
             balanceView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
             balanceView.heightAnchor.constraint(equalToConstant: 50),
@@ -365,6 +378,8 @@ class GoalDetailViewController: UIViewController {
         NSLayoutConstraint.activate([
             openAndCloseAmountAriaBtn.centerYAnchor.constraint(equalTo: amountView.topAnchor, constant: amountViewHeight / 2),
             openAndCloseAmountAriaBtn.leadingAnchor.constraint(equalTo: amountView.leadingAnchor, constant: 24),
+            openAndCloseAmountAriaBtn.widthAnchor.constraint(equalToConstant: 32),
+            openAndCloseAmountAriaBtn.heightAnchor.constraint(equalToConstant: 32),
             
             amountLabel.centerYAnchor.constraint(equalTo: amountView.topAnchor, constant: amountViewHeight / 2),
             amountLabel.leadingAnchor.constraint(equalTo: openAndCloseAmountAriaBtn.trailingAnchor, constant: 12),

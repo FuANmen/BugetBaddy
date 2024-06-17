@@ -1384,8 +1384,8 @@
             filePath = "BudgetBuddy/Main/MainTabbar/TabItems/Goal/GoalDetail/GoalDetailViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "898"
-            endingLineNumber = "898"
+            startingLineNumber = "894"
+            endingLineNumber = "894"
             landmarkName = "cancelButtonTapped()"
             landmarkType = "7">
             <Locations>
@@ -2237,8 +2237,8 @@
             filePath = "BudgetBuddy/Main/MainTabbar/TabItems/Goal/GoalDetail/GoalDetailViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "700"
-            endingLineNumber = "700"
+            startingLineNumber = "696"
+            endingLineNumber = "696"
             landmarkName = "openAndCloseAmountAriaBtnTapped()"
             landmarkType = "7">
             <Locations>
@@ -2365,8 +2365,8 @@
             filePath = "BudgetBuddy/Main/MainTabbar/TabItems/Goal/GoalDetail/GoalDetailViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "879"
-            endingLineNumber = "879"
+            startingLineNumber = "875"
+            endingLineNumber = "875"
             landmarkName = "didAddTransferLog()"
             landmarkType = "7">
          </BreakpointContent>
@@ -2381,8 +2381,8 @@
             filePath = "BudgetBuddy/Main/MainTabbar/TabItems/Goal/GoalDetail/GoalDetailViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "852"
-            endingLineNumber = "852"
+            startingLineNumber = "848"
+            endingLineNumber = "848"
             landmarkName = "stringForValue(_:axis:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -2397,8 +2397,8 @@
             filePath = "BudgetBuddy/Main/MainTabbar/TabItems/Goal/GoalDetail/GoalDetailViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "868"
-            endingLineNumber = "868"
+            startingLineNumber = "864"
+            endingLineNumber = "864"
             landmarkName = "chartValueSelected(_:entry:highlight:)"
             landmarkType = "7">
          </BreakpointContent>
