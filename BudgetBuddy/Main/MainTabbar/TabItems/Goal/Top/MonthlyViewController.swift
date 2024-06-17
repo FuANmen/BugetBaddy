@@ -124,7 +124,7 @@ class MonthlyViewController: UIViewController {
     }()
     
     // TOP
-    private let topAriaHeight: CGFloat = 70
+    private let topViewHeight: CGFloat = 140
     private let topView: UIView = {
         let view = UIView()
         view.layer.masksToBounds = false
@@ -200,6 +200,7 @@ class MonthlyViewController: UIViewController {
     }()
     
     // TOP
+    private let topAriaHeight: CGFloat = 90
     private let topAria: UIView = {
         let view = UIView()
         view.backgroundColor = .systemGray4
@@ -225,14 +226,18 @@ class MonthlyViewController: UIViewController {
         let label = UILabel()
         label.text = ": " + NSLocalizedString("Go_TopLabel_001", comment: "")
         label.textColor = .customNavy
-        label.font = UIFont.systemFont(ofSize: 16, weight: .medium)
+        label.font = UIFont.systemFont(ofSize: 22, weight: .medium)
+        label.textAlignment = .left
+        label.adjustsFontSizeToFitWidth = true
         return label
     }()
     
     private let balanceValue: UILabel = {
         let label = UILabel()
-        label.textColor = .customRedOrange
-        label.font = UIFont.systemFont(ofSize: 20, weight: .semibold)
+        label.textColor = .customRoyalBlue
+        label.font = UIFont.systemFont(ofSize: 22, weight: .semibold)
+        label.textAlignment = .left
+        label.adjustsFontSizeToFitWidth = true
         return label
     }()
     
@@ -263,14 +268,14 @@ class MonthlyViewController: UIViewController {
         let label = UILabel()
         label.text = ": " + NSLocalizedString("Go_TopLabel_002", comment: "")
         label.textColor = .customNavy
-        label.font = UIFont.systemFont(ofSize: 16, weight: .medium)
+        label.font = UIFont.systemFont(ofSize: 22, weight: .medium)
         return label
     }()
     
     private let amountValue: UILabel = {
         let label = UILabel()
-        label.textColor = .customRedOrange
-        label.font = UIFont.systemFont(ofSize: 20, weight: .semibold)
+        label.textColor = .customRoyalBlue
+        label.font = UIFont.systemFont(ofSize: 22, weight: .semibold)
         return label
     }()
     
@@ -367,7 +372,6 @@ class MonthlyViewController: UIViewController {
         view.addSubview(horizonView)
         view.addSubview(validView)
         view.addSubview(mainViewLabel_1)
-        // view.addSubview(mainViewLabel_2)
         view.addSubview(mainViewLabel_3)
         
         goalsView.delegate = self
@@ -390,7 +394,7 @@ class MonthlyViewController: UIViewController {
             topView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             topView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             topView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            topView.heightAnchor.constraint(equalToConstant: 120),
+            topView.heightAnchor.constraint(equalToConstant: topViewHeight),
             
             horizonView.topAnchor.constraint(equalTo: topView.bottomAnchor),
             horizonView.leadingAnchor.constraint(equalTo: topView.leadingAnchor),
@@ -438,7 +442,7 @@ class MonthlyViewController: UIViewController {
         topAria.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            topAria.topAnchor.constraint(equalTo: topView.topAnchor, constant: 20),
+            topAria.topAnchor.constraint(equalTo: topView.topAnchor, constant: 12),
             topAria.leadingAnchor.constraint(equalTo: topView.leadingAnchor, constant: 36),
             topAria.trailingAnchor.constraint(equalTo: topView.trailingAnchor, constant: -36),
             topAria.heightAnchor.constraint(equalToConstant: topAriaHeight),
@@ -471,42 +475,43 @@ class MonthlyViewController: UIViewController {
         amountIcon.translatesAutoresizingMaskIntoConstraints = false
         
         partitionCneterYAnchor = partitionView.centerYAnchor.constraint(equalTo: topAria.topAnchor, constant: topAriaHeight / 2)
+        
         NSLayoutConstraint.activate([
-            // BALANCE
-            balanceView.topAnchor.constraint(equalTo: topAria.topAnchor),
-            balanceView.leadingAnchor.constraint(equalTo: topAria.leadingAnchor),
-            balanceView.trailingAnchor.constraint(equalTo: topAria.trailingAnchor),
-            balanceView.bottomAnchor.constraint(equalTo: partitionView.topAnchor),
+            // AMOUNT
+            amountView.topAnchor.constraint(equalTo: topAria.topAnchor),
+            amountView.leadingAnchor.constraint(equalTo: topAria.leadingAnchor),
+            amountView.trailingAnchor.constraint(equalTo: topAria.trailingAnchor),
+            amountView.bottomAnchor.constraint(equalTo: partitionView.topAnchor),
             
-            balanceValue.centerYAnchor.constraint(equalTo: balanceView.centerYAnchor),
-            balanceValue.leadingAnchor.constraint(equalTo: balanceView.leadingAnchor, constant: 22),
+            amountIcon.centerYAnchor.constraint(equalTo: amountLabel.centerYAnchor),
+            amountIcon.leadingAnchor.constraint(equalTo: amountView.leadingAnchor, constant: 14),
             
-            balanceLabel.bottomAnchor.constraint(equalTo: balanceValue.bottomAnchor, constant: -3),
-            balanceLabel.leadingAnchor.constraint(equalTo: balanceView.centerXAnchor, constant: 32),
+            amountValue.centerYAnchor.constraint(equalTo: amountView.centerYAnchor),
+            amountValue.leadingAnchor.constraint(equalTo: amountIcon.trailingAnchor, constant: 8),
             
-            balanceIcon.centerYAnchor.constraint(equalTo: balanceLabel.centerYAnchor),
-            balanceIcon.trailingAnchor.constraint(equalTo: balanceView.trailingAnchor, constant: -10),
-            
+            amountLabel.bottomAnchor.constraint(equalTo: amountValue.bottomAnchor, constant: -3),
+            amountLabel.leadingAnchor.constraint(equalTo: amountView.centerXAnchor, constant: 32),
+
             // PARTITION
             partitionView.leadingAnchor.constraint(equalTo: topAria.leadingAnchor),
             partitionView.trailingAnchor.constraint(equalTo: topAria.trailingAnchor),
             partitionView.heightAnchor.constraint(equalToConstant: 1),
             partitionCneterYAnchor!,
             
-            // AMOUNT
-            amountView.topAnchor.constraint(equalTo: partitionView.bottomAnchor),
-            amountView.leadingAnchor.constraint(equalTo: topAria.leadingAnchor),
-            amountView.trailingAnchor.constraint(equalTo: topAria.trailingAnchor),
-            amountView.bottomAnchor.constraint(equalTo: topAria.bottomAnchor),
+            // BALANCE
+            balanceView.topAnchor.constraint(equalTo: partitionView.bottomAnchor),
+            balanceView.leadingAnchor.constraint(equalTo: topAria.leadingAnchor),
+            balanceView.trailingAnchor.constraint(equalTo: topAria.trailingAnchor),
+            balanceView.bottomAnchor.constraint(equalTo: topAria.bottomAnchor),
             
-            amountValue.centerYAnchor.constraint(equalTo: amountView.centerYAnchor),
-            amountValue.leadingAnchor.constraint(equalTo: amountView.leadingAnchor, constant: 22),
+            balanceIcon.centerYAnchor.constraint(equalTo: balanceLabel.centerYAnchor),
+            balanceIcon.leadingAnchor.constraint(equalTo: balanceView.leadingAnchor, constant: 14),
             
-            amountLabel.bottomAnchor.constraint(equalTo: amountValue.bottomAnchor, constant:  -3),
-            amountLabel.leadingAnchor.constraint(equalTo: amountView.centerXAnchor, constant: 32),
+            balanceValue.centerYAnchor.constraint(equalTo: balanceView.centerYAnchor),
+            balanceValue.leadingAnchor.constraint(equalTo: balanceIcon.trailingAnchor, constant: 8),
             
-            amountIcon.centerYAnchor.constraint(equalTo: amountLabel.centerYAnchor),
-            amountIcon.trailingAnchor.constraint(equalTo: amountView.trailingAnchor, constant: -10),
+            balanceLabel.bottomAnchor.constraint(equalTo: balanceValue.bottomAnchor, constant: -3),
+            balanceLabel.leadingAnchor.constraint(equalTo: balanceView.centerXAnchor, constant: 32)
         ])
         
         // MARK: - DIALOG
