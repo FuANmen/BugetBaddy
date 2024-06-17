@@ -160,8 +160,8 @@ class GoalsView: UIView {
             
             // MAIN
             mainAria.topAnchor.constraint(equalTo: underLine.bottomAnchor, constant: 24),
-            mainAria.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 28),
-            mainAria.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -28),
+            mainAria.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+            mainAria.trailingAnchor.constraint(equalTo: self.trailingAnchor),
             mainAriaHeightConstraint!,
             
             mainShadowAria.topAnchor.constraint(equalTo: mainAria.topAnchor),
@@ -171,8 +171,8 @@ class GoalsView: UIView {
           
             // TOTAL
             otherGoalCollectionView!.topAnchor.constraint(equalTo: mainAria.bottomAnchor, constant: 28),
-            otherGoalCollectionView!.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 28),
-            otherGoalCollectionView!.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -28),
+            otherGoalCollectionView!.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+            otherGoalCollectionView!.trailingAnchor.constraint(equalTo: self.trailingAnchor),
             otherAriaHeightConstraint!
         ])
         
@@ -199,7 +199,7 @@ class GoalsView: UIView {
     
     private func setupGoalsCollectionView() {
         let layout = UICollectionViewFlowLayout()
-        layout.itemSize = CGSize(width: UIScreen.main.bounds.width*0.8, height: GoalItemCell.itemHeight)
+        layout.itemSize = CGSize(width: UIScreen.main.bounds.width*0.9, height: GoalItemCell.itemHeight)
         layout.sectionInset = UIEdgeInsets(top: 10, left: 0, bottom: 10, right: 0)
         layout.minimumLineSpacing = self.inExGoalsMinmumLineSpacing
 
@@ -214,7 +214,7 @@ class GoalsView: UIView {
     
     private func setupOtherGoalCollectionView() {
         let layout = UICollectionViewFlowLayout()
-        layout.itemSize = CGSize(width: UIScreen.main.bounds.width * 0.8, height: OtherGoalItemCell.itemHeight)
+        layout.itemSize = CGSize(width: UIScreen.main.bounds.width * 0.9, height: OtherGoalItemCell.itemHeight)
         layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         layout.minimumLineSpacing = 0
         
