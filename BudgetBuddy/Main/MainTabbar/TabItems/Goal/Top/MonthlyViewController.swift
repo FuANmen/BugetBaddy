@@ -302,7 +302,7 @@ class MonthlyViewController: UIViewController {
     private func addGradientBackground() {
         let gradientLayer = CAGradientLayer()
         gradientLayer.frame = view.bounds
-        gradientLayer.colors = [UIColor.backGradientColorFrom.cgColor, UIColor.backGradientColorTo.cgColor]
+        gradientLayer.colors = [UIColor.backGradientColorFrom2.cgColor, UIColor.backGradientColorTo2.cgColor]
         gradientLayer.startPoint = CGPoint(x: 0.2, y: 0)
         gradientLayer.endPoint = CGPoint(x: 1, y: 1)
         
