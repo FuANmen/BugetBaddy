@@ -15,15 +15,15 @@ class TransferLogTableCell: UITableViewCell {
     
     let dateLabel: UILabel = {
         let label = UILabel()
-        label.textColor = .systemGray2
-        label.font = UIFont.systemFont(ofSize: 20, weight: .light)
+        label.textColor = .customDarkGray
+        label.font = UIFont.systemFont(ofSize: 18, weight: .light)
         return label
     }()
 
     let amountValue: UILabel = {
         let label = UILabel()
-        label.textColor = .systemGray2
-        label.font = UIFont.systemFont(ofSize: 20, weight: .light)
+        label.textColor = .customDarkGray
+        label.font = UIFont.systemFont(ofSize: 20, weight: .bold)
         return label
     }()
 

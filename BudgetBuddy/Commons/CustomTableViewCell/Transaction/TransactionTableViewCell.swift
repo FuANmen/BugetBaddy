@@ -14,14 +14,14 @@ class TransactionTableViewCell: UITableViewCell {
     private let titleLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 18)
-        label.textColor = .systemGray2
+        label.textColor = .customDarkGray
         return label
     }()
 
     private let amountLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 20, weight: .bold)
-        label.textColor = .systemGray2
+        label.textColor = .customDarkGray
         return label
     }()
 

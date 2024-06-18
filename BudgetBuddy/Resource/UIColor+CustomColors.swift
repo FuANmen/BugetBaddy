@@ -18,6 +18,12 @@ extension UIColor {
     static let backGradientColorFrom = UIColor(red: 81/255, green: 182/255, blue: 255/255, alpha: 1.0)
     static let backGradientColorTo = UIColor(red: 0/255, green: 159/255, blue: 204/255, alpha: 1.0)
     
+    static let backGradientColorFrom2 = UIColor(red: 135/255, green: 206/255, blue: 235/255, alpha: 1.0)
+    static let backGradientColorTo2 = UIColor(red: 201/255, green: 244/255, blue: 244/255, alpha: 1.0)
+    
+    // セクション
+    static let sectionBackColor = UIColor(red: 224/255, green: 255/255, blue: 255/255, alpha: 1.0)
+    
     // カラーセット1: 落ち着いたブルー系
     static let customSkyBlue = UIColor(red: 135/255, green: 206/255, blue: 235/255, alpha: 1.0)
     static let customDodgerBlue = UIColor(red: 30/255, green: 144/255, blue: 255/255, alpha: 1.0)
@@ -29,20 +35,16 @@ extension UIColor {
     static let customDarkBlue2 = UIColor(red: 0/255, green: 0/255, blue: 139/255, alpha: 0.8)
     static let customSlateBlue = UIColor(red: 70/255, green: 130/255, blue: 180/255, alpha: 1.0)
     static let customRoyalBlue = UIColor(red: 65/255, green: 105/255, blue: 225/255, alpha: 1.0)
-    static let customSteelBlue = UIColor(red: 70/255, green: 130/255, blue: 180/255, alpha: 1.0)
-    // customRoyalBlue のトーンダウン
     static let customRoyalBlueDark1 = UIColor(red: 52/255, green: 84/255, blue: 180/255, alpha: 1.0)
     static let customRoyalBlueDark2 = UIColor(red: 41/255, green: 68/255, blue: 144/255, alpha: 1.0)
     static let customRoyalBlueDark3 = UIColor(red: 31/255, green: 52/255, blue: 108/255, alpha: 1.0)
-    // customSteelBlue のトーンダウン
-    static let customSteelBlueDark1 = UIColor(red: 56/255, green: 104/255, blue: 144/255, alpha: 1.0)
-    static let customSteelBlueDark2 = UIColor(red: 45/255, green: 84/255, blue: 115/255, alpha: 1.0)
-    static let customSteelBlueDark3 = UIColor(red: 36/255, green: 67/255, blue: 92/255, alpha: 1.0)
-    // customRoyalBlue のトーンアップ
     static let customRoyalBlueLight1 = UIColor(red: 97/255, green: 127/255, blue: 242/255, alpha: 1.0)
     static let customRoyalBlueLight2 = UIColor(red: 130/255, green: 150/255, blue: 255/255, alpha: 1.0)
     static let customRoyalBlueLight3 = UIColor(red: 162/255, green: 172/255, blue: 255/255, alpha: 1.0)
-    // customSteelBlue のトーンアップ
+    static let customSteelBlue = UIColor(red: 70/255, green: 130/255, blue: 180/255, alpha: 1.0)
+    static let customSteelBlueDark1 = UIColor(red: 56/255, green: 104/255, blue: 144/255, alpha: 1.0)
+    static let customSteelBlueDark2 = UIColor(red: 45/255, green: 84/255, blue: 115/255, alpha: 1.0)
+    static let customSteelBlueDark3 = UIColor(red: 36/255, green: 67/255, blue: 92/255, alpha: 1.0)
     static let customSteelBlueLight1 = UIColor(red: 102/255, green: 156/255, blue: 210/255, alpha: 1.0)
     static let customSteelBlueLight2 = UIColor(red: 133/255, green: 178/255, blue: 225/255, alpha: 1.0)
     static let customSteelBlueLight3 = UIColor(red: 163/255, green: 200/255, blue: 240/255, alpha: 1.0)
@@ -68,7 +70,6 @@ extension UIColor {
     // グレー
     static let customDarkGray = UIColor(red: 105/255, green: 105/255, blue: 105/255, alpha: 1.0)
 
-    
     // 青系 → 緑系 → 橙系 カラーセット
     static let balanceHigh = UIColor(red: 65/255, green: 105/255, blue: 225/255, alpha: 1.0) // ロイヤルブルー
     static let balanceMediumHigh = UIColor(red: 135/255, green: 206/255, blue: 235/255, alpha: 1.0) // スカイブルー

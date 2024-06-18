@@ -40,105 +40,12 @@ class GoalDetailViewController: UIViewController {
         scrollView.backgroundColor = .clear
         return scrollView
     }()
-    
-    // TransferLog
-    private let amountViewHeight: CGFloat = 40
-    private var amountViewHeightAnchor: NSLayoutConstraint?
-    private let amountView: UIView = {
-        let view = UIView()
-        view.backgroundColor = .clear
-        view.layer.masksToBounds = false
-        view.layer.shadowColor = UIColor.black.cgColor
-        view.layer.shadowOffset = CGSize(width: 0, height: 0)
-        view.layer.shadowOpacity = 0.6
-        view.layer.shadowRadius = 2
-        return view
-    }()
-    
-    private let openAndCloseAmountAriaBtn: UIButton = {
-        let button = UIButton()
-        button.tintColor = .white
-        button.setImage(UIImage(systemName: "chevron.down"), for: .normal)
-        button.alpha = 0.6
-        button.addTarget(self, action: #selector(openAndCloseAmountAriaBtnTapped), for: .touchUpInside)
-        button.imageView?.contentMode = .scaleAspectFit
-        button.contentHorizontalAlignment = .fill
-        button.contentVerticalAlignment = .fill
-        return button
-    }()
-    
-    private let amountLabel: UILabel = {
-        let label = UILabel()
-        label.text = NSLocalizedString("Budget", comment: "") + " :"
-        label.textColor = .customWhiteSmoke
-        label.font = UIFont.systemFont(ofSize: 24, weight: .medium)
-        return label
-    }()
-    
-    private let amountValue: UILabel = {
-        let label = UILabel()
-        label.textColor = .customWhiteSmoke
-        label.font = UIFont.systemFont(ofSize: 28, weight: .medium)
-        return label
-    }()
-
-    private let addTransferLogButton: UIButton = {
-        let button = UIButton()
-        button.setImage(UIImage(systemName: "plus"), for: .normal)
-        button.tintColor = .customWhiteSmoke
-        button.alpha = 0.6
-        button.addTarget(self, action: #selector(addTransLogBtnTapped), for: .touchUpInside)
-        button.imageView?.contentMode = .scaleAspectFit
-        button.contentHorizontalAlignment = .fill
-        button.contentVerticalAlignment = .fill
-        return button
-    }()
-    
-    private let transLogsTableAriaHeaderHeight: CGFloat = 40
-    private let transLogsTableAriaBottomHeight: CGFloat = 20
-    private var transferLogsTableAriaHeightAnchor: NSLayoutConstraint?
-    private let transferLogsTableAria: UIView = {
-        let view = UIView()
-        view.alpha = 0.0
-        view.layer.masksToBounds = true
-        return view
-    }()
-    
-    private let tranLogsAriaLabel: UILabel = {
-        let label = UILabel()
-        label.text = NSLocalizedString("Breakdown", comment: "") + " :"
-        label.textColor = .white
-        label.font = UIFont.systemFont(ofSize: 24, weight: .light)
-        return label
-    }()
-    
-    private let transferLogsTableView: UITableView = {
-        let tableView = UITableView()
-        tableView.tag = 0
-        tableView.register(TransferLogTableCell.self, forCellReuseIdentifier: TransferLogTableCell.identifier)
-        tableView.layer.cornerRadius = 18
-        return tableView
-    }()
-    
-    // LineChartView
-    private let lineChartHeight: CGFloat = 120
-    private let lineChartView: LineChartView = {
-        let chartView = LineChartView()
-        chartView.backgroundColor = .white
-        chartView.layer.masksToBounds = true
-        chartView.layer.cornerRadius = 9
-        chartView.chartDescription.enabled = false
-        chartView.dragEnabled = true
-        chartView.setScaleEnabled(true)
-        chartView.pinchZoomEnabled = true
-        chartView.rightAxis.enabled = false
-        return chartView
-    }()
 
     // Barance
+    private let balanceViewHeaderHeight: CGFloat = 60
     private let balanceView: UIView = {
         let view = UIView()
-        view.backgroundColor = .white
+        view.backgroundColor = .sectionBackColor
         view.layer.cornerRadius = 18
         view.layer.masksToBounds = false
         view.layer.shadowColor = UIColor.black.cgColor
@@ -151,15 +58,15 @@ class GoalDetailViewController: UIViewController {
     private let balanceLabel: UILabel = {
         let label = UILabel()
         label.text = NSLocalizedString("RemainingBudget", comment: "") + " :"
-        label.textColor = .systemGray2
-        label.font = UIFont.systemFont(ofSize: 24, weight: .light)
+        label.textColor = .systemGreen
+        label.font = UIFont.systemFont(ofSize: 24, weight: .medium)
         return label
     }()
     
     private let balanceValue: UILabel = {
         let label = UILabel()
         label.textColor = .systemGreen
-        label.font = UIFont.systemFont(ofSize: 28, weight: .light)
+        label.font = UIFont.systemFont(ofSize: 28, weight: .medium)
         return label
     }()
     
@@ -169,50 +76,152 @@ class GoalDetailViewController: UIViewController {
         return view
     }()
     
+    // LineChartView
+    private let lineChartHeight: CGFloat = 120
+    private let lineChartView: LineChartView = {
+        let chartView = LineChartView()
+        chartView.backgroundColor = .sectionBackColor
+        chartView.layer.masksToBounds = true
+        chartView.layer.cornerRadius = 9
+        chartView.chartDescription.enabled = false
+        chartView.dragEnabled = true
+        chartView.setScaleEnabled(true)
+        chartView.pinchZoomEnabled = true
+        chartView.rightAxis.enabled = false
+        return chartView
+    }()
+    
+    // TransferLog
+    private let amountViewHeight: CGFloat = 60
+    private var amountViewHeightAnchor: NSLayoutConstraint?
+    private let amountView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .sectionBackColor
+        view.layer.masksToBounds = false
+        view.layer.cornerRadius = 16
+        view.layer.shadowColor = UIColor.black.cgColor
+        view.layer.shadowOpacity = 0.2
+        view.layer.shadowOffset = CGSize(width: 0, height: 2)
+        view.layer.shadowRadius = 5
+        return view
+    }()
+    
+    private let openAndCloseAmountAriaBtn: UIButton = {
+        let button = UIButton()
+        button.tintColor = .systemBlue
+        button.setImage(UIImage(systemName: "chevron.down"), for: .normal)
+        button.addTarget(self, action: #selector(openAndCloseAmountBtnTapped), for: .touchUpInside)
+        button.imageView?.contentMode = .scaleAspectFit
+        button.contentHorizontalAlignment = .fill
+        button.contentVerticalAlignment = .fill
+        return button
+    }()
+    
+    private let amountLabel: UILabel = {
+        let label = UILabel()
+        label.text = NSLocalizedString("Budget", comment: "") + " :"
+        label.textColor = .systemBlue
+        label.font = UIFont.systemFont(ofSize: 24, weight: .medium)
+        return label
+    }()
+    
+    private let amountValue: UILabel = {
+        let label = UILabel()
+        label.textColor = .systemBlue
+        label.font = UIFont.systemFont(ofSize: 28, weight: .medium)
+        return label
+    }()
+    
+    private let transLogsTableAriaHeaderHeight: CGFloat = 40
+    private let transLogsTableAriaBottomHeight: CGFloat = 20
+    private var transferLogsTableAriaHeightAnchor: NSLayoutConstraint?
+    private let transferLogsTableAria: UIView = {
+        let view = UIView()
+        view.alpha = 0.0
+        return view
+    }()
+    
+    private let tranLogsAriaLabel: UILabel = {
+        let label = UILabel()
+        label.text = NSLocalizedString("Breakdown", comment: "")
+        label.textColor = .customDarkGray
+        label.font = UIFont.systemFont(ofSize: 20, weight: .light)
+        return label
+    }()
+    
+    private let addTransferLogButton: UIButton = {
+        let button = UIButton()
+        button.setImage(UIImage(systemName: "plus"), for: .normal)
+        button.tintColor = .customDarkGray
+        button.addTarget(self, action: #selector(addTransLogBtnTapped), for: .touchUpInside)
+        button.imageView?.contentMode = .scaleAspectFit
+        button.contentHorizontalAlignment = .fill
+        button.contentVerticalAlignment = .fill
+        return button
+    }()
+    
+    private let transferLogsTableView: UITableView = {
+        let tableView = UITableView()
+        tableView.tag = 0
+        tableView.register(TransferLogTableCell.self, forCellReuseIdentifier: TransferLogTableCell.identifier)
+        return tableView
+    }()
+    
     // Expense
+    private let expenseViewHeight: CGFloat = 60
+    private var expenseViewHeightAnchor: NSLayoutConstraint?
     private let expenseView: UIView = {
         let view = UIView()
-        view.backgroundColor = .white
-        view.layer.cornerRadius = 18
+        view.backgroundColor = .sectionBackColor
         view.layer.masksToBounds = false
+        view.layer.cornerRadius = 16
         view.layer.shadowColor = UIColor.black.cgColor
-        view.layer.shadowOffset = CGSize(width: 0, height: 0)
-        view.layer.shadowOpacity = 0.4
-        view.layer.shadowRadius = 2
+        view.layer.shadowOpacity = 0.2
+        view.layer.shadowOffset = CGSize(width: 0, height: 2)
+        view.layer.shadowRadius = 5
         return view
     }()
     
     private let expenseLabel: UILabel = {
         let label = UILabel()
         label.text = NSLocalizedString("TotalExpenses", comment: "") + " :"
-        label.textColor = .systemGray2
-        label.font = UIFont.systemFont(ofSize: 24, weight: .light)
+        label.textColor = .systemRed
+        label.font = UIFont.systemFont(ofSize: 24, weight: .medium)
         return label
     }()
     
     private let expenseValue: UILabel = {
         let label = UILabel()
         label.textColor = .systemRed
-        label.font = UIFont.systemFont(ofSize: 28, weight: .light)
+        label.font = UIFont.systemFont(ofSize: 28, weight: .medium)
         return label
     }()
     
-    // Transactions
+    private let openAndCloseExpenseAriaBtn: UIButton = {
+        let button = UIButton()
+        button.tintColor = .systemRed
+        button.setImage(UIImage(systemName: "chevron.down"), for: .normal)
+        button.addTarget(self, action: #selector(openAndCloseExpenseBtnTapped), for: .touchUpInside)
+        button.imageView?.contentMode = .scaleAspectFit
+        button.contentHorizontalAlignment = .fill
+        button.contentVerticalAlignment = .fill
+        return button
+    }()
+    
     private let transactionsViewHeaderHeight: CGFloat = 40
+    private let transactionsViewBottomHeight: CGFloat = 20
     private var transactionsViewHeightAnchor: NSLayoutConstraint?
     private let transactionsView: UIView = {
         let view = UIView()
-        view.backgroundColor = .white
-        view.layer.cornerRadius = 9
-        view.layer.masksToBounds = true
+        view.alpha = 1.0
         return view
     }()
     
     private let transactionsLabel: UILabel = {
         let label = UILabel()
-        label.text = NSLocalizedString("Breakdown", comment: "") + " :"
-        label.textColor = .systemGray2
-        label.font = UIFont.systemFont(ofSize: 24, weight: .light)
+        label.text = NSLocalizedString("Breakdown", comment: "")
+        label.textColor = .customDarkGray
+        label.font = UIFont.systemFont(ofSize: 20, weight: .light)
         return label
     }()
     
@@ -220,7 +229,7 @@ class GoalDetailViewController: UIViewController {
         let button = UIButton(type: .system)
         button.addTarget(self, action: #selector(addTransactionButtonTapped), for: .touchUpInside)
         button.setImage(UIImage(systemName: "plus"), for: .normal)
-        button.tintColor = .systemGray
+        button.tintColor = .customDarkGray
         button.imageView?.contentMode = .scaleAspectFit
         button.contentHorizontalAlignment = .fill
         button.contentVerticalAlignment = .fill
@@ -284,8 +293,8 @@ class GoalDetailViewController: UIViewController {
     private func addGradientBackground() {
         let gradientLayer = CAGradientLayer()
         gradientLayer.frame = view.bounds
-        gradientLayer.colors = [UIColor.backGradientColorFrom.cgColor, UIColor.backGradientColorTo.cgColor]
-        gradientLayer.startPoint = CGPoint(x: 0.2, y: 0)
+        gradientLayer.colors = [UIColor.backGradientColorFrom2.cgColor, UIColor.backGradientColorTo2.cgColor]
+        gradientLayer.startPoint = CGPoint(x: 0.6, y: 0)
         gradientLayer.endPoint = CGPoint(x: 1, y: 1)
         
         // 既存のレイヤーの後ろにグラデーションレイヤーを追加
@@ -302,54 +311,62 @@ class GoalDetailViewController: UIViewController {
         view.addSubview(scrollView)
         scrollView.addSubview(amountView)
         scrollView.addSubview(balanceView)
-        scrollView.addSubview(lineChartView)
         scrollView.addSubview(expenseView)
-        scrollView.addSubview(transactionsView)
         
-        lineChartView.delegate = self
         transactionsTableView.delegate = self
         transactionsTableView.dataSource = self
         
         amountView.translatesAutoresizingMaskIntoConstraints = false
-        lineChartView.translatesAutoresizingMaskIntoConstraints = false
         balanceView.translatesAutoresizingMaskIntoConstraints = false
-        horizonLineView.translatesAutoresizingMaskIntoConstraints = false
         scrollView.translatesAutoresizingMaskIntoConstraints = false
-        transactionsView.translatesAutoresizingMaskIntoConstraints = false
         expenseView.translatesAutoresizingMaskIntoConstraints = false
         
         amountViewHeightAnchor = amountView.heightAnchor.constraint(equalToConstant: amountViewHeight)
-        transactionsViewHeightAnchor = transactionsView.heightAnchor.constraint(equalToConstant: view.frame.height)
+        expenseViewHeightAnchor = expenseView.heightAnchor.constraint(equalToConstant: expenseViewHeight)
         NSLayoutConstraint.activate([
             scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             scrollView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
             
-            amountView.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 16),
-            amountView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            amountView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            amountViewHeightAnchor!,
-            
-            balanceView.topAnchor.constraint(equalTo: amountView.bottomAnchor, constant: 12),
+            balanceView.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 24),
             balanceView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
             balanceView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
-            balanceView.heightAnchor.constraint(equalToConstant: 50),
             
-            lineChartView.topAnchor.constraint(equalTo: balanceView.bottomAnchor, constant: 12),
-            lineChartView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 24),
-            lineChartView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -24),
-            lineChartView.heightAnchor.constraint(equalToConstant: lineChartHeight),
+            amountView.topAnchor.constraint(equalTo: balanceView.bottomAnchor, constant: 16),
+            amountView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 18),
+            amountView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -18),
+            amountViewHeightAnchor!,
             
-            expenseView.topAnchor.constraint(equalTo: lineChartView.bottomAnchor, constant: 24),
+            expenseView.topAnchor.constraint(equalTo: amountView.bottomAnchor, constant: 24),
             expenseView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
             expenseView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
-            expenseView.heightAnchor.constraint(equalToConstant: 50),
+            expenseViewHeightAnchor!
+        ])
+        
+        // BALANCE
+        balanceView.addSubview(balanceLabel)
+        balanceView.addSubview(balanceValue)
+        balanceView.addSubview(lineChartView)
+        
+        lineChartView.delegate = self
+        
+        balanceLabel.translatesAutoresizingMaskIntoConstraints = false
+        balanceValue.translatesAutoresizingMaskIntoConstraints = false
+        lineChartView.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            balanceLabel.centerYAnchor.constraint(equalTo: balanceView.topAnchor, constant: balanceViewHeaderHeight / 2),
+            balanceLabel.leadingAnchor.constraint(equalTo: balanceView.leadingAnchor, constant: 48),
             
-            transactionsView.topAnchor.constraint(equalTo: expenseView.bottomAnchor, constant: 12),
-            transactionsView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 24),
-            transactionsView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -24),
-            transactionsViewHeightAnchor!
+            balanceValue.centerYAnchor.constraint(equalTo: balanceLabel.centerYAnchor),
+            balanceValue.trailingAnchor.constraint(equalTo: balanceView.trailingAnchor, constant: -24),
+            
+            lineChartView.topAnchor.constraint(equalTo: balanceView.topAnchor, constant: balanceViewHeaderHeight),
+            lineChartView.leadingAnchor.constraint(equalTo: balanceView.leadingAnchor, constant: 4),
+            lineChartView.trailingAnchor.constraint(equalTo: balanceView.trailingAnchor, constant: -4),
+            lineChartView.heightAnchor.constraint(equalToConstant: lineChartHeight),
+            lineChartView.bottomAnchor.constraint(equalTo: balanceView.bottomAnchor, constant: -8)
         ])
         
         // Amount
@@ -357,7 +374,6 @@ class GoalDetailViewController: UIViewController {
         amountView.addSubview(amountValue)
         amountView.addSubview(transferLogsTableAria)
         amountView.addSubview(openAndCloseAmountAriaBtn)
-        
         transferLogsTableAria.addSubview(addTransferLogButton)
         transferLogsTableAria.addSubview(tranLogsAriaLabel)
         transferLogsTableAria.addSubview(transferLogsTableView)
@@ -379,15 +395,15 @@ class GoalDetailViewController: UIViewController {
         transferLogsTableAriaHeightAnchor = transferLogsTableAria.heightAnchor.constraint(equalToConstant: 0)
         NSLayoutConstraint.activate([
             openAndCloseAmountAriaBtn.centerYAnchor.constraint(equalTo: amountView.topAnchor, constant: amountViewHeight / 2),
-            openAndCloseAmountAriaBtn.leadingAnchor.constraint(equalTo: amountView.leadingAnchor, constant: 24),
-            openAndCloseAmountAriaBtn.widthAnchor.constraint(equalToConstant: 32),
-            openAndCloseAmountAriaBtn.heightAnchor.constraint(equalToConstant: 32),
+            openAndCloseAmountAriaBtn.leadingAnchor.constraint(equalTo: amountView.leadingAnchor, constant: 12),
+            openAndCloseAmountAriaBtn.widthAnchor.constraint(equalToConstant: 24),
+            openAndCloseAmountAriaBtn.heightAnchor.constraint(equalToConstant: 24),
             
             amountLabel.centerYAnchor.constraint(equalTo: amountView.topAnchor, constant: amountViewHeight / 2),
             amountLabel.leadingAnchor.constraint(equalTo: openAndCloseAmountAriaBtn.trailingAnchor, constant: 12),
             
             amountValue.centerYAnchor.constraint(equalTo: amountLabel.centerYAnchor),
-            amountValue.trailingAnchor.constraint(equalTo: amountView.trailingAnchor, constant: -44),
+            amountValue.trailingAnchor.constraint(equalTo: amountView.trailingAnchor, constant: -24),
             
             transferLogsTableAria.bottomAnchor.constraint(equalTo: amountView.bottomAnchor, constant: -transLogsTableAriaBottomHeight),
             transferLogsTableAria.leadingAnchor.constraint(equalTo: amountView.leadingAnchor, constant: 32),
@@ -395,62 +411,58 @@ class GoalDetailViewController: UIViewController {
             transferLogsTableAriaHeightAnchor!,
             
             tranLogsAriaLabel.centerYAnchor.constraint(equalTo: transferLogsTableAria.topAnchor, constant: transLogsTableAriaHeaderHeight / 2),
-            tranLogsAriaLabel.leadingAnchor.constraint(equalTo: transferLogsTableView.leadingAnchor, constant: 18),
+            tranLogsAriaLabel.leadingAnchor.constraint(equalTo: transferLogsTableView.leadingAnchor, constant: 4),
             
             addTransferLogButton.centerYAnchor.constraint(equalTo: transferLogsTableAria.topAnchor, constant: transLogsTableAriaHeaderHeight / 2),
-            addTransferLogButton.trailingAnchor.constraint(equalTo: transferLogsTableView.trailingAnchor, constant: -18),
+            addTransferLogButton.trailingAnchor.constraint(equalTo: transferLogsTableView.trailingAnchor, constant: -4),
 
             transferLogsTableView.topAnchor.constraint(equalTo: transferLogsTableAria.topAnchor, constant: transLogsTableAriaHeaderHeight),
-            transferLogsTableView.leadingAnchor.constraint(equalTo: transferLogsTableAria.leadingAnchor, constant: 16),
-            transferLogsTableView.trailingAnchor.constraint(equalTo: transferLogsTableAria.trailingAnchor, constant: -16),
+            transferLogsTableView.leadingAnchor.constraint(equalTo: transferLogsTableAria.leadingAnchor),
+            transferLogsTableView.trailingAnchor.constraint(equalTo: transferLogsTableAria.trailingAnchor),
             transferLogsTableView.bottomAnchor.constraint(equalTo: transferLogsTableAria.bottomAnchor)
-        ])
-        
-        // BALANCE
-        balanceView.addSubview(balanceLabel)
-        balanceView.addSubview(balanceValue)
-        
-        balanceLabel.translatesAutoresizingMaskIntoConstraints = false
-        balanceValue.translatesAutoresizingMaskIntoConstraints = false
-        
-        NSLayoutConstraint.activate([
-            balanceLabel.centerYAnchor.constraint(equalTo: balanceView.centerYAnchor),
-            balanceLabel.trailingAnchor.constraint(equalTo: amountLabel.trailingAnchor),
-            
-            balanceValue.centerYAnchor.constraint(equalTo: balanceView.centerYAnchor),
-            balanceValue.trailingAnchor.constraint(equalTo: amountValue.trailingAnchor)
         ])
         
         // EXPENSE
         expenseView.addSubview(expenseLabel)
         expenseView.addSubview(expenseValue)
-        
-        expenseLabel.translatesAutoresizingMaskIntoConstraints = false
-        expenseValue.translatesAutoresizingMaskIntoConstraints = false
-        
-        NSLayoutConstraint.activate([
-            expenseLabel.centerYAnchor.constraint(equalTo: expenseView.centerYAnchor),
-            expenseLabel.trailingAnchor.constraint(equalTo: amountLabel.trailingAnchor),
-            
-            expenseValue.centerYAnchor.constraint(equalTo: expenseView.centerYAnchor),
-            expenseValue.trailingAnchor.constraint(equalTo: amountValue.trailingAnchor)
-        ])
-        
-        // TRANSACTIONS
+        expenseView.addSubview(openAndCloseExpenseAriaBtn)
+        expenseView.addSubview(transactionsView)
         transactionsView.addSubview(transactionsLabel)
         transactionsView.addSubview(addTransactionButton)
         transactionsView.addSubview(transactionsTableView)
+        
+        expenseLabel.translatesAutoresizingMaskIntoConstraints = false
+        expenseValue.translatesAutoresizingMaskIntoConstraints = false
+        transactionsView.translatesAutoresizingMaskIntoConstraints = false
+        openAndCloseExpenseAriaBtn.translatesAutoresizingMaskIntoConstraints = false
         
         transactionsLabel.translatesAutoresizingMaskIntoConstraints = false
         addTransactionButton.translatesAutoresizingMaskIntoConstraints = false
         transactionsTableView.translatesAutoresizingMaskIntoConstraints = false
         
+        transactionsViewHeightAnchor = transactionsView.heightAnchor.constraint(equalToConstant: 0)
         NSLayoutConstraint.activate([
+            openAndCloseExpenseAriaBtn.centerYAnchor.constraint(equalTo: expenseView.topAnchor, constant: expenseViewHeight / 2),
+            openAndCloseExpenseAriaBtn.leadingAnchor.constraint(equalTo: expenseView.leadingAnchor, constant: 12),
+            openAndCloseExpenseAriaBtn.widthAnchor.constraint(equalToConstant: 24),
+            openAndCloseExpenseAriaBtn.heightAnchor.constraint(equalToConstant: 24),
+            
+            expenseLabel.centerYAnchor.constraint(equalTo: expenseView.topAnchor, constant: expenseViewHeight / 2),
+            expenseLabel.leadingAnchor.constraint(equalTo: openAndCloseExpenseAriaBtn.trailingAnchor, constant: 12),
+            
+            expenseValue.centerYAnchor.constraint(equalTo: expenseView.topAnchor, constant: expenseViewHeight / 2),
+            expenseValue.trailingAnchor.constraint(equalTo: expenseView.trailingAnchor, constant: -24),
+            
+            transactionsView.bottomAnchor.constraint(equalTo: expenseView.bottomAnchor, constant: -transactionsViewBottomHeight),
+            transactionsView.leadingAnchor.constraint(equalTo: expenseView.leadingAnchor, constant: 32),
+            transactionsView.trailingAnchor.constraint(equalTo: expenseView.trailingAnchor, constant: -32),
+            transactionsViewHeightAnchor!,
+            
             transactionsLabel.centerYAnchor.constraint(equalTo: transactionsView.topAnchor, constant: transactionsViewHeaderHeight / 2),
-            transactionsLabel.trailingAnchor.constraint(equalTo: amountLabel.trailingAnchor),
+            transactionsLabel.leadingAnchor.constraint(equalTo: transactionsTableView.leadingAnchor, constant: 4),
             
             addTransactionButton.centerYAnchor.constraint(equalTo: transactionsLabel.centerYAnchor),
-            addTransactionButton.trailingAnchor.constraint(equalTo: amountValue.trailingAnchor),
+            addTransactionButton.trailingAnchor.constraint(equalTo: transactionsTableView.trailingAnchor, constant: -4),
             
             transactionsTableView.topAnchor.constraint(equalTo: transactionsView.topAnchor, constant: transactionsViewHeaderHeight),
             transactionsTableView.leadingAnchor.constraint(equalTo: transactionsView.leadingAnchor),
@@ -477,15 +489,14 @@ class GoalDetailViewController: UIViewController {
     
     private func loadTransactions() {
         transactions = self.goal!.getTransactions(sortedBy: "date", ascending_flg: true)
-        let transViewHeight = TransactionTableViewCell.cellHeight * CGFloat(self.transactions.count) + transactionsViewHeaderHeight
+        let transViewHeight = self.transactions.count == 0 ? 0.0 : TransactionTableViewCell.cellHeight * CGFloat(self.transactions.count) + transactionsViewHeaderHeight
+        let transBtnImage = transViewHeight == 0.0 ? UIImage(systemName: "chevron.down") : UIImage(systemName: "chevron.up")
+        self.transactionsView.alpha = transViewHeight == 0.0 ? 0.0 : 1.0
         UIView.animate(withDuration: 0, animations: { [self] in
             self.transactionsViewHeightAnchor!.constant = transViewHeight
+            self.openAndCloseExpenseAriaBtn.setImage(transBtnImage, for: .normal)
+            self.expenseViewHeightAnchor!.constant = transViewHeight == 0.0 ? self.expenseViewHeight : transViewHeight + self.expenseViewHeight + self.transactionsViewBottomHeight
             self.balanceValue.text = formatCurrency(amount: goal!.getBalance())
-            if(goal!.getBalance() < 0) {
-                balanceValue.textColor = .systemRed
-            } else {
-                balanceValue.textColor = .systemGreen
-            }
             self.expenseValue.text = formatCurrency(amount: goal!.getTransactionsAmountSum())
             self.view.layoutIfNeeded()
         }, completion: { [self] finish in
@@ -536,12 +547,12 @@ class GoalDetailViewController: UIViewController {
         lineChartView.data = lineChartData
         // グラフの線の下に色をつける設定
         lineDataSet.drawFilledEnabled = true
-        lineDataSet.fillColor = self.imageColor
-        lineDataSet.fillAlpha = 0.3
+        lineDataSet.fillColor = .systemGreen
+        // lineDataSet.fillAlpha = 0.3
         // X軸
         lineChartView.xAxis.labelPosition = .bottom
         lineChartView.xAxis.axisMinimum = 1.0
-        lineChartView.xAxis.labelTextColor = .systemGray
+        lineChartView.xAxis.labelTextColor = .customDarkGray
         lineChartView.xAxis.drawGridLinesEnabled = false
         lineChartView.xAxis.axisLineColor = .black
         lineChartView.xAxis.granularityEnabled = true
@@ -552,8 +563,8 @@ class GoalDetailViewController: UIViewController {
         lineChartView.leftAxis.axisMinimum = values.min()! >= 0 ? 0 : 10000.0 * Double(floor(values.min()! / 10000.0))
         lineChartView.leftAxis.axisMaximum = self.goal!.getAmount() + self.goal!.getAmount() / 8
         lineChartView.leftAxis.drawZeroLineEnabled = true
-        lineChartView.leftAxis.labelTextColor = .systemGray
-        lineChartView.leftAxis.zeroLineColor = .systemGray
+        lineChartView.leftAxis.labelTextColor = .customDarkGray
+        lineChartView.leftAxis.zeroLineColor = .customDarkGray
         lineChartView.leftAxis.valueFormatter = CustomYAxisFormatter()
         
         lineChartView.rightAxis.enabled = false
@@ -568,7 +579,7 @@ class GoalDetailViewController: UIViewController {
         lineChartView.highlightPerDragEnabled = true
         lineChartView.highlightPerTapEnabled = true
         // アニメーション
-        lineChartView.animate(xAxisDuration: 1.0, yAxisDuration: 0.0, easingOption: .linear)
+        // lineChartView.animate(xAxisDuration: 1.0, yAxisDuration: 0.0, easingOption: .linear)
         
         // 更新
         lineChartView.notifyDataSetChanged()
@@ -693,8 +704,8 @@ class GoalDetailViewController: UIViewController {
     @objc private func deleteGoalTapped() {
     }
     
-    @objc private func openAndCloseAmountAriaBtnTapped() {
-        if transferLogsTableView.frame.height == 0 {
+    @objc private func openAndCloseAmountBtnTapped() {
+        if transferLogsTableAriaHeightAnchor!.constant == 0 {
             UIView.animate(withDuration: 0.3, animations: { [self] in
                 let tableAriaHeight: CGFloat = CGFloat(self.goal!.transLogsAsDest.count) * TransferLogTableCell.cellHeight + transLogsTableAriaHeaderHeight
                 self.transferLogsTableAriaHeightAnchor!.constant = tableAriaHeight
@@ -714,6 +725,33 @@ class GoalDetailViewController: UIViewController {
                     self.transferLogsTableAriaHeightAnchor!.constant = 0
                     self.amountViewHeightAnchor!.constant = amountViewHeight
                     self.openAndCloseAmountAriaBtn.setImage(UIImage(systemName: "chevron.down"), for: .normal)
+                    self.view.layoutIfNeeded()
+                }
+            })
+        }
+    }
+    
+    @objc private func openAndCloseExpenseBtnTapped() {
+        if transactionsViewHeightAnchor!.constant == 0 {
+            UIView.animate(withDuration: 0.3, animations: { [self] in
+                let transViewHeight: CGFloat = CGFloat(transactions.count) * TransactionTableViewCell.cellHeight + transactionsViewHeaderHeight
+                self.transactionsViewHeightAnchor!.constant = transViewHeight
+                self.expenseViewHeightAnchor!.constant = transViewHeight + self.expenseViewHeight + self.transactionsViewBottomHeight
+                self.openAndCloseExpenseAriaBtn.setImage(UIImage(systemName: "chevron.up"), for: .normal)
+                self.view.layoutIfNeeded()
+            }, completion: { [self] finished in
+                UIView.animate(withDuration: 0.2) {
+                    self.transactionsView.alpha = 1.0
+                }
+            })
+        } else {
+            UIView.animate(withDuration: 0.2, animations: {
+                self.transactionsView.alpha = 0.0
+            }, completion: { [self] finished in
+                UIView.animate(withDuration: 0.3) { [self] in
+                    self.transactionsViewHeightAnchor!.constant = 0
+                    self.expenseViewHeightAnchor!.constant = amountViewHeight
+                    self.openAndCloseExpenseAriaBtn.setImage(UIImage(systemName: "chevron.down"), for: .normal)
                     self.view.layoutIfNeeded()
                 }
             })

@@ -14,14 +14,14 @@ class BreakdownTableCell: UITableViewCell {
     let titleLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 18, weight: .light)
-        label.textColor = .systemGray2
+        label.textColor = .customDarkGray
         return label
     }()
 
     let amountLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 20, weight: .bold)
-        label.textColor = .systemGray2
+        label.textColor = .customDarkGray
         return label
     }()
 
