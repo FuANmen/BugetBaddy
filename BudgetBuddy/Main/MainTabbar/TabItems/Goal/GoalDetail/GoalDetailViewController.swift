@@ -42,7 +42,7 @@ class GoalDetailViewController: UIViewController {
     }()
 
     // Barance
-    private let balanceViewHeaderHeight: CGFloat = 60
+    private let balanceViewHeaderHeight: CGFloat = 100
     private let balanceView: UIView = {
         let view = UIView()
         view.backgroundColor = .sectionBackColor
@@ -55,25 +55,73 @@ class GoalDetailViewController: UIViewController {
         return view
     }()
     
+    private let titleIcon: UIImageView = {
+        let icon = UIImageView()
+        icon.setSymbolImage(UIImage(systemName: "dollarsign")!, contentTransition: .automatic)
+        icon.tintColor = .customMediumSeaGreen
+        return icon
+    }()
+    private let titleLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = .customMediumSeaGreen
+        label.font = UIFont.systemFont(ofSize: 22, weight: .medium)
+        return label
+    }()
+    
+    private let todayView: UIView = {
+        let view = UIView()
+        return view
+    }()
     private let balanceLabel: UILabel = {
         let label = UILabel()
-        label.text = NSLocalizedString("RemainingBudget", comment: "") + " :"
-        label.textColor = .systemGreen
-        label.font = UIFont.systemFont(ofSize: 24, weight: .medium)
+        label.text = NSLocalizedString("Remain", comment: "")
+        label.textColor = .customDarkGray
+        label.font = UIFont.systemFont(ofSize: 12, weight: .bold)
         return label
     }()
-    
     private let balanceValue: UILabel = {
         let label = UILabel()
-        label.textColor = .systemGreen
-        label.font = UIFont.systemFont(ofSize: 28, weight: .medium)
+        label.textColor = .customMediumSeaGreen
+        label.font = UIFont.systemFont(ofSize: 28, weight: .bold)
+        label.adjustsFontSizeToFitWidth = true
+        return label
+    }()
+    private let targetDateLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = .customDarkGrayLight4
+        label.font = UIFont.systemFont(ofSize: 16, weight: .bold)
         return label
     }()
     
-    private let horizonLineView: UIView = {
+    private let selectedDayView: UIView = {
         let view = UIView()
-        view.backgroundColor = .systemGray6
+        view.alpha = 0.0
         return view
+    }()
+    private let selectedDayBalanceLabel: UILabel = {
+        let label = UILabel()
+        label.text = NSLocalizedString("Remain", comment: "")
+        label.textColor = .customDarkGray
+        label.font = UIFont.systemFont(ofSize: 12, weight: .bold)
+        return label
+    }()
+    private let selectedDayBalanceValue: UILabel = {
+        let label = UILabel()
+        label.textColor = .customMediumSeaGreen
+        label.font = UIFont.systemFont(ofSize: 28, weight: .bold)
+        label.adjustsFontSizeToFitWidth = true
+        return label
+    }()
+    private let selectedDateLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = .customDarkGrayLight4
+        label.font = UIFont.systemFont(ofSize: 16, weight: .bold)
+        return label
+    }()
+    private let selectedDayViewIcon: UIImageView = {
+        let icon = UIImageView()
+        icon.tintColor = .customMediumSeaGreen
+        return icon
     }()
     
     // LineChartView
@@ -307,6 +355,9 @@ class GoalDetailViewController: UIViewController {
             menuButton.target = self
             navigationItem.rightBarButtonItem = menuButton
         }
+        // Value
+        titleLabel.text = self.goal?.category!.name
+        targetDateLabel.text = DateFuncs().convertStringFromDate(Date(), format: "yyyy/MM/dd")
         
         view.addSubview(scrollView)
         scrollView.addSubview(amountView)
@@ -345,28 +396,88 @@ class GoalDetailViewController: UIViewController {
         ])
         
         // BALANCE
-        balanceView.addSubview(balanceLabel)
-        balanceView.addSubview(balanceValue)
+        balanceView.addSubview(titleIcon)
+        balanceView.addSubview(titleLabel)
+        balanceView.addSubview(todayView)
+        balanceView.addSubview(selectedDayView)
+        
+        todayView.addSubview(balanceLabel)
+        todayView.addSubview(balanceValue)
+        todayView.addSubview(targetDateLabel)
+        
+        selectedDayView.addSubview(selectedDayBalanceLabel)
+        selectedDayView.addSubview(selectedDayBalanceValue)
+        selectedDayView.addSubview(selectedDateLabel)
+        selectedDayView.addSubview(selectedDayViewIcon)
+        
         balanceView.addSubview(lineChartView)
         
         lineChartView.delegate = self
         
+        titleIcon.translatesAutoresizingMaskIntoConstraints = false
+        titleLabel.translatesAutoresizingMaskIntoConstraints = false
+        
+        todayView.translatesAutoresizingMaskIntoConstraints = false
         balanceLabel.translatesAutoresizingMaskIntoConstraints = false
         balanceValue.translatesAutoresizingMaskIntoConstraints = false
+        targetDateLabel.translatesAutoresizingMaskIntoConstraints = false
+        
+        selectedDayView.translatesAutoresizingMaskIntoConstraints = false
+        selectedDayBalanceLabel.translatesAutoresizingMaskIntoConstraints = false
+        selectedDayBalanceValue.translatesAutoresizingMaskIntoConstraints = false
+        selectedDateLabel.translatesAutoresizingMaskIntoConstraints = false
+        selectedDayViewIcon.translatesAutoresizingMaskIntoConstraints = false
+        
         lineChartView.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            balanceLabel.centerYAnchor.constraint(equalTo: balanceView.topAnchor, constant: balanceViewHeaderHeight / 2),
-            balanceLabel.leadingAnchor.constraint(equalTo: balanceView.leadingAnchor, constant: 48),
+            titleIcon.topAnchor.constraint(equalTo: balanceView.topAnchor, constant: 12),
+            titleIcon.leadingAnchor.constraint(equalTo: balanceView.leadingAnchor, constant: 16),
             
-            balanceValue.centerYAnchor.constraint(equalTo: balanceLabel.centerYAnchor),
-            balanceValue.trailingAnchor.constraint(equalTo: balanceView.trailingAnchor, constant: -24),
+            titleLabel.centerYAnchor.constraint(equalTo: titleIcon.centerYAnchor),
+            titleLabel.leadingAnchor.constraint(equalTo: titleIcon.trailingAnchor, constant: 4),
+            
+            todayView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor),
+            todayView.leadingAnchor.constraint(equalTo: balanceView.centerXAnchor),
+            todayView.trailingAnchor.constraint(equalTo: balanceView.trailingAnchor),
+            todayView.bottomAnchor.constraint(equalTo: balanceView.topAnchor, constant: balanceViewHeaderHeight),
+            
+            selectedDayView.topAnchor.constraint(equalTo: todayView.topAnchor),
+            selectedDayView.leadingAnchor.constraint(equalTo: balanceView.leadingAnchor),
+            selectedDayView.trailingAnchor.constraint(equalTo: todayView.leadingAnchor),
+            selectedDayView.bottomAnchor.constraint(equalTo: todayView.bottomAnchor),
             
             lineChartView.topAnchor.constraint(equalTo: balanceView.topAnchor, constant: balanceViewHeaderHeight),
             lineChartView.leadingAnchor.constraint(equalTo: balanceView.leadingAnchor, constant: 4),
             lineChartView.trailingAnchor.constraint(equalTo: balanceView.trailingAnchor, constant: -4),
             lineChartView.heightAnchor.constraint(equalToConstant: lineChartHeight),
-            lineChartView.bottomAnchor.constraint(equalTo: balanceView.bottomAnchor, constant: -8)
+            lineChartView.bottomAnchor.constraint(equalTo: balanceView.bottomAnchor, constant: -8),
+            
+            // TODAY
+            balanceLabel.leadingAnchor.constraint(equalTo: todayView.leadingAnchor, constant: 4),
+            balanceLabel.centerYAnchor.constraint(equalTo: balanceValue.topAnchor),
+            
+            balanceValue.bottomAnchor.constraint(equalTo: targetDateLabel.topAnchor, constant: 2),
+            balanceValue.leadingAnchor.constraint(equalTo: balanceLabel.trailingAnchor),
+            balanceValue.trailingAnchor.constraint(equalTo: targetDateLabel.trailingAnchor),
+            
+            targetDateLabel.trailingAnchor.constraint(equalTo: todayView.trailingAnchor, constant: -24),
+            targetDateLabel.bottomAnchor.constraint(equalTo: todayView.bottomAnchor),
+            
+            // SELECTED DAY
+            selectedDayBalanceLabel.leadingAnchor.constraint(equalTo: selectedDayView.leadingAnchor, constant: 12),
+            selectedDayBalanceLabel.centerYAnchor.constraint(equalTo: selectedDayBalanceValue.topAnchor),
+            
+            selectedDayBalanceValue.bottomAnchor.constraint(equalTo: selectedDateLabel.topAnchor, constant: 2),
+            selectedDayBalanceValue.leadingAnchor.constraint(equalTo: selectedDayBalanceLabel.trailingAnchor),
+            selectedDayBalanceValue.trailingAnchor.constraint(equalTo: selectedDateLabel.trailingAnchor),
+            
+            selectedDateLabel.trailingAnchor.constraint(equalTo: selectedDayViewIcon.leadingAnchor, constant: -8),
+            selectedDateLabel.bottomAnchor.constraint(equalTo: selectedDayView.bottomAnchor),
+            
+            selectedDayViewIcon.centerYAnchor.constraint(equalTo: selectedDayBalanceValue.centerYAnchor),
+            selectedDayViewIcon.heightAnchor.constraint(equalToConstant: 16),
+            selectedDayViewIcon.widthAnchor.constraint(equalToConstant: 16)
         ])
         
         // Amount
@@ -513,7 +624,8 @@ class GoalDetailViewController: UIViewController {
         // Here you can add your data points. For example:
         var values: [Double] = []
         var valueOfDay = self.goal!.getAmount()
-        for idx in 1...DateFuncs.numberOfDaysInMonth(yearMonth: self.targetMonth)! {let dateFormatter = DateFormatter()
+        for idx in 1...DateFuncs.numberOfDaysInMonth(yearMonth: self.targetMonth)! {
+            let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "yyyy-MM-dd"
             let dayStr = String(format: "%02d", idx)
             let dayTrans = self.goal?.getTransactionsAtDate(date: dateFormatter.date(from: self.targetMonth + "-" + dayStr)!)
@@ -548,8 +660,8 @@ class GoalDetailViewController: UIViewController {
         // グラフの線の下に色をつける設定
         lineDataSet.drawFilledEnabled = true
         lineDataSet.fillColor = .systemGreen
-        // lineDataSet.fillAlpha = 0.3
         // X軸
+        print(values.count)
         lineChartView.xAxis.labelPosition = .bottom
         lineChartView.xAxis.axisMinimum = 1.0
         lineChartView.xAxis.labelTextColor = .customDarkGray
@@ -557,12 +669,13 @@ class GoalDetailViewController: UIViewController {
         lineChartView.xAxis.axisLineColor = .black
         lineChartView.xAxis.granularityEnabled = true
         lineChartView.xAxis.granularity = 1
-        lineChartView.xAxis.labelCount = values.count
+        lineChartView.xAxis.labelCount = values.count + 1
         lineChartView.xAxis.valueFormatter = CustomXAxisFormatter(targetMonth: self.targetMonth)
         // Y軸
         lineChartView.leftAxis.axisMinimum = values.min()! >= 0 ? 0 : 10000.0 * Double(floor(values.min()! / 10000.0))
-        lineChartView.leftAxis.axisMaximum = self.goal!.getAmount() + self.goal!.getAmount() / 8
+        lineChartView.leftAxis.axisMaximum = self.goal!.getAmount()
         lineChartView.leftAxis.drawZeroLineEnabled = true
+        lineChartView.leftAxis.labelCount = 4
         lineChartView.leftAxis.labelTextColor = .customDarkGray
         lineChartView.leftAxis.zeroLineColor = .customDarkGray
         lineChartView.leftAxis.valueFormatter = CustomYAxisFormatter()
@@ -622,11 +735,10 @@ class GoalDetailViewController: UIViewController {
         lineChartView.data = lineChartData
         // グラフの線の下に色をつける設定
         lineDataSet.drawFilledEnabled = true
-        lineDataSet.fillColor = self.imageColor
-        lineDataSet.fillAlpha = 0.3
+        lineDataSet.fillColor = .systemGreen
         // Y軸
         lineChartView.leftAxis.axisMinimum = values.min()! >= 0 ? 0 : 10000.0 * Double(floor(values.min()! / 10000.0))
-        lineChartView.leftAxis.axisMaximum = self.goal!.getAmount() + self.goal!.getAmount() / 8
+        lineChartView.leftAxis.axisMaximum = self.goal!.getAmount()
         
         // 更新
         lineChartView.notifyDataSetChanged()
@@ -901,11 +1013,18 @@ class CustomYAxisFormatter: IndexAxisValueFormatter {
 
 extension GoalDetailViewController: ChartViewDelegate {
     func chartValueSelected(_ chartView: ChartViewBase, entry: ChartDataEntry, highlight: Highlight) {
-        chartView.chartDescription.text = "\(Int(entry.x) + 1)\(NSLocalizedString("Day", comment: "")): \(formatCurrency(amount: entry.y)!)"
-        // チャート説明の位置を設定（右上）
-        let xPos = chartView.frame.width - 20
-        let yPos = 1.4
-        chartView.chartDescription.position = CGPoint(x: xPos, y: yPos)
+        let selectedDate: String = String(format: "%02d", Int(entry.x) + 1)
+        let selectedDayString: String = "\(self.targetMonth)-\(selectedDate)"
+        let selectedDay: Date = DateFuncs().convertStringToDate(selectedDayString, format: "yyyy-MM-dd")!
+        
+        selectedDayViewIcon.setSymbolImage(Date() > selectedDay ? UIImage(systemName: "arrow.forward")! : UIImage(systemName: "arrow.backward")!, contentTransition: .automatic)
+        selectedDayBalanceValue.text = formatCurrency(amount: entry.y)!
+        selectedDateLabel.text = DateFuncs().convertStringFromDate(selectedDay, format: "yyyy/MM/dd")!
+        
+        UIView.animate(withDuration: 0.2, animations: {
+            let thisDay = DateFuncs().convertStringFromDate(Date(), format: "yyyy-MM-dd")
+            self.selectedDayView.alpha = thisDay == selectedDayString ? 0.0 : 1.0
+        })
     }
 }
 

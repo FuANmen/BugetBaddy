@@ -69,6 +69,11 @@ extension UIColor {
     
     // グレー
     static let customDarkGray = UIColor(red: 105/255, green: 105/255, blue: 105/255, alpha: 1.0)
+    static let customDarkGrayLight1 = UIColor(red: 125/255, green: 125/255, blue: 125/255, alpha: 1.0)
+    static let customDarkGrayLight2 = UIColor(red: 145/255, green: 145/255, blue: 145/255, alpha: 1.0)
+    static let customDarkGrayLight3 = UIColor(red: 165/255, green: 165/255, blue: 165/255, alpha: 1.0)
+    static let customDarkGrayLight4 = UIColor(red: 185/255, green: 185/255, blue: 185/255, alpha: 1.0)
+    static let customDarkGrayLight5 = UIColor(red: 205/255, green: 205/255, blue: 205/255, alpha: 1.0)
 
     // 青系 → 緑系 → 橙系 カラーセット
     static let balanceHigh = UIColor(red: 65/255, green: 105/255, blue: 225/255, alpha: 1.0) // ロイヤルブルー
