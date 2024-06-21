@@ -21,8 +21,6 @@ class MonthlyViewController: UIViewController {
                                          String(self.targetMonth.suffix(2)))
             // 初期表示時はアニメーションなし
             if oldValue == "" {
-                self.updateTotalGoal()
-                self.goalsView.configure(targetMonth: self.targetMonth)
                 return
             }
             
@@ -33,8 +31,7 @@ class MonthlyViewController: UIViewController {
                 self.totalDetailView.alpha = 0.0
             }, completion: { finished in
                 self.updateDatas()
-                self.goalsView.scrollToTop()
-                self.totalDetailView.scrollToTop()
+                self.scrollToTop()
                 UIView.animate(withDuration: 0.3, animations: {
                     self.amountValue.alpha = 1.0
                     self.balanceValue.alpha = 1.0
@@ -44,6 +41,13 @@ class MonthlyViewController: UIViewController {
             })
         }
     }
+    
+    private let scrollView: UIScrollView = {
+        let scrollView = UIScrollView()
+        scrollView.showsVerticalScrollIndicator = false
+        scrollView.isUserInteractionEnabled = true
+        return scrollView
+    }()
 
     private var totalGoal: Goal?
     private var preview: PreviewStatus = .goalsView {
@@ -51,27 +55,32 @@ class MonthlyViewController: UIViewController {
             if oldValue == preview {
                 return
             }
+            
             switch preview {
             case .goalsView:
                 self.goalsView.configure(targetMonth: self.targetMonth)
                 validViewHorizontalAlignment?.constant = view.frame.width / 4
                 goalsViewLeadingConstraint?.constant = 0
                 
-                UIView.animate(withDuration: 0.4) {
+                UIView.animate(withDuration: 0.4, animations: {
                     self.view.layoutIfNeeded()
                     self.mainViewLabel_1.textColor = .white
-                    self.mainViewLabel_3.textColor = .systemGray4
-                }
+                    self.mainViewLabel_3.textColor = .systemGray6
+                }, completion: { finished in
+                    self.scrollToTop()
+                })
             case .totalDetail:
                 self.totalDetailView.configure(targetMonth: self.targetMonth)
                 validViewHorizontalAlignment?.constant = view.frame.width / 4 * 3
                 goalsViewLeadingConstraint?.constant = -view.frame.width
                 
-                UIView.animate(withDuration: 0.4) {
+                UIView.animate(withDuration: 0.4, animations: {
                     self.view.layoutIfNeeded()
-                    self.mainViewLabel_1.textColor = .systemGray4
+                    self.mainViewLabel_1.textColor = .systemGray6
                     self.mainViewLabel_3.textColor = .white
-                }
+                }, completion: { finished in
+                    self.scrollToTop()
+                })
             }
         }
     }
@@ -318,18 +327,20 @@ class MonthlyViewController: UIViewController {
         navigationItem.rightBarButtonItem = nextButton
         
         // view
-        view.addSubview(topView)
-        view.addSubview(transferLogsView)
-        view.addSubview(goalsView)
-        view.addSubview(totalDetailView)
-        view.addSubview(horizonView)
-        view.addSubview(validView)
-        view.addSubview(mainViewLabel_1)
-        view.addSubview(mainViewLabel_3)
+        view.addSubview(scrollView)
+        scrollView.addSubview(topView)
+        scrollView.addSubview(transferLogsView)
+        scrollView.addSubview(goalsView)
+        scrollView.addSubview(totalDetailView)
+        scrollView.addSubview(horizonView)
+        scrollView.addSubview(validView)
+        scrollView.addSubview(mainViewLabel_1)
+        scrollView.addSubview(mainViewLabel_3)
         
         goalsView.delegate = self
         totalDetailView.delegate = self
         
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
         topView.translatesAutoresizingMaskIntoConstraints = false
         transferLogsView.translatesAutoresizingMaskIntoConstraints = false
         goalsView.translatesAutoresizingMaskIntoConstraints = false
@@ -337,14 +348,18 @@ class MonthlyViewController: UIViewController {
         horizonView.translatesAutoresizingMaskIntoConstraints = false
         validView.translatesAutoresizingMaskIntoConstraints = false
         mainViewLabel_1.translatesAutoresizingMaskIntoConstraints = false
-        // mainViewLabel_2.translatesAutoresizingMaskIntoConstraints = false
         mainViewLabel_3.translatesAutoresizingMaskIntoConstraints = false
         
         goalsViewLeadingConstraint = goalsView.leadingAnchor.constraint(equalTo: view.leadingAnchor)
         validViewHorizontalAlignment = validView.centerXAnchor.constraint(equalTo: horizonView.leadingAnchor, constant: view.frame.width / 4 * 1)
         
         NSLayoutConstraint.activate([
-            topView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            scrollView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
+            scrollView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
+            scrollView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
+            scrollView.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor),
+            
+            topView.topAnchor.constraint(equalTo: scrollView.topAnchor),
             topView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             topView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             topView.heightAnchor.constraint(equalToConstant: topViewHeight),
@@ -369,12 +384,12 @@ class MonthlyViewController: UIViewController {
             
             goalsView.topAnchor.constraint(equalTo: horizonView.bottomAnchor),
             goalsViewLeadingConstraint!,
-            goalsView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            goalsView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
             goalsView.widthAnchor.constraint(equalTo: view.widthAnchor),
             
             totalDetailView.topAnchor.constraint(equalTo: horizonView.bottomAnchor),
             totalDetailView.leadingAnchor.constraint(equalTo: goalsView.trailingAnchor),
-            totalDetailView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            totalDetailView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
             totalDetailView.widthAnchor.constraint(equalTo: view.widthAnchor)
         ])
         
@@ -464,9 +479,6 @@ class MonthlyViewController: UIViewController {
         let tapGesture_mainViewLabel_1 = UITapGestureRecognizer(target: self, action: #selector(mainViewLabelTapped(_:)))
         mainViewLabel_1.isUserInteractionEnabled = true
         mainViewLabel_1.addGestureRecognizer(tapGesture_mainViewLabel_1)
-//        let tapGesture_mainViewLabel_2 = UITapGestureRecognizer(target: self, action: #selector(mainViewLabelTapped(_:)))
-//        mainViewLabel_2.isUserInteractionEnabled = true
-//        mainViewLabel_2.addGestureRecognizer(tapGesture_mainViewLabel_2)
         let tapGesture_mainViewLabel_3 = UITapGestureRecognizer(target: self, action: #selector(mainViewLabelTapped(_:)))
         mainViewLabel_3.isUserInteractionEnabled = true
         mainViewLabel_3.addGestureRecognizer(tapGesture_mainViewLabel_3)
@@ -483,6 +495,18 @@ class MonthlyViewController: UIViewController {
         balanceValue.text = formatCurrency(amount: totalGoal!.getBalance())
         amountValue.text = formatCurrency(amount: totalGoal!.getAmount())
         self.view.layoutIfNeeded()
+    }
+    
+    private func scrollToTop() {
+        self.scrollView.scrollRectToVisible(.init(x: scrollView.contentOffset.x
+                                                  , y: 0
+                                                  , width: scrollView.frame.width
+                                                  , height: scrollView.frame.height)
+                                            , animated: true)
+    }
+    
+    private func updateScrollViewContentHeight(height: CGFloat) {
+        scrollView.contentSize = CGSize(width: self.view.frame.width, height: height)
     }
     
     private func updateButtonState() {
@@ -592,14 +616,20 @@ class MonthlyViewController: UIViewController {
  
 // MARK: - GoalsViewDelegate
 extension MonthlyViewController: GoalsViewDelegate {
-    func addGoalButtonTapped() {
+    internal func updatedGoalsViewHeight(viewHeight: CGFloat) {
+        let contentSize = scrollView
+        let contentHeight = self.horizonView.frame.maxY + viewHeight
+        self.updateScrollViewContentHeight(height: contentHeight)
+    }
+    
+    internal func addGoalButtonTapped() {
         let addGoalViewController = CreateTransferLogViewController()
         addGoalViewController.configure(targetMonth: self.targetMonth)
         addGoalViewController.delegate = self
         present(addGoalViewController, animated: true, completion: nil)
     }
     
-    func showGoalDetail(goal: Goal, imageColor: UIColor) {
+    internal func showGoalDetail(goal: Goal, imageColor: UIColor) {
         let goalDetailViewController = GoalDetailViewController(category: goal.category!, targetMonth: goal.targetMonth, imageColor: imageColor)
         goalDetailViewController.delegate = self
         navigationController?.pushViewController(goalDetailViewController, animated: true)
@@ -615,6 +645,12 @@ extension MonthlyViewController: GoalDetailViewDelegate {
 
 // MARK: - TotalDetailView
 extension MonthlyViewController: TotalDetailDelegate {
+    internal func updatedTotalDetailViewHeight(viewHeight: CGFloat) {
+        let contentSize = scrollView
+        let contentHeight = self.horizonView.frame.maxY + viewHeight
+        self.updateScrollViewContentHeight(height: contentHeight)
+    }
+    
     internal func addBreakdownTapped() {
         createBreakdownView.configure(targetMonth: self.targetMonth)
         createBreakdownView.isHidden = false

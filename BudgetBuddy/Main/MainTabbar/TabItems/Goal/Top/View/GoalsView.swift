@@ -10,6 +10,7 @@ import UIKit
 protocol GoalsViewDelegate: AnyObject {
     func addGoalButtonTapped()
     func showGoalDetail(goal: Goal, imageColor: UIColor)
+    func updatedGoalsViewHeight(viewHeight: CGFloat)
 }
 
 class GoalsView: UIView {
@@ -19,14 +20,6 @@ class GoalsView: UIView {
     
     private var inExGoals: [Goal] = []
     private var remainingGoal: Goal?
-     
-    // Scroll
-    private let scrollView: UIScrollView = {
-        let scrollView = UIScrollView()
-        scrollView.showsVerticalScrollIndicator = false
-        scrollView.backgroundColor = .clear
-        return scrollView
-    }()
     
     // TITLE
     private let titleLabel: UILabel = {
@@ -112,24 +105,18 @@ class GoalsView: UIView {
     }
     
     private func setupUI() {
-        
-        self.addSubview(scrollView)
-        scrollView.addSubview(titleLabel)
-        scrollView.addSubview(addGoalButton)
-        scrollView.addSubview(underLine)
-        scrollView.addSubview(mainShadowAria)
-        scrollView.addSubview(mainAria)
+        self.addSubview(titleLabel)
+        self.addSubview(addGoalButton)
+        self.addSubview(underLine)
+        self.addSubview(mainShadowAria)
+        self.addSubview(mainAria)
         
         setupOtherGoalCollectionView()
-        scrollView.addSubview(otherGoalCollectionView!)
-        
-        otherGoalCollectionView!.delegate = self
-        otherGoalCollectionView!.dataSource = self
+        self.addSubview(otherGoalCollectionView!)
         
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         addGoalButton.translatesAutoresizingMaskIntoConstraints = false
         underLine.translatesAutoresizingMaskIntoConstraints = false
-        scrollView.translatesAutoresizingMaskIntoConstraints = false
         mainAria.translatesAutoresizingMaskIntoConstraints = false
         mainShadowAria.translatesAutoresizingMaskIntoConstraints = false
         otherGoalCollectionView!.translatesAutoresizingMaskIntoConstraints = false
@@ -139,11 +126,6 @@ class GoalsView: UIView {
         otherAriaHeightConstraint = otherGoalCollectionView!.heightAnchor.constraint(equalToConstant: 0)
         
         NSLayoutConstraint.activate([
-            scrollView.topAnchor.constraint(equalTo: self.topAnchor),
-            scrollView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
-            scrollView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
-            scrollView.bottomAnchor.constraint(equalTo: self.bottomAnchor),
-            
             // TITLE
             titleLabel.bottomAnchor.constraint(equalTo: underLine.topAnchor, constant: -4),
             titleLabel.leadingAnchor.constraint(equalTo: underLine.leadingAnchor, constant: 16),
@@ -153,7 +135,7 @@ class GoalsView: UIView {
             addGoalButton.heightAnchor.constraint(equalToConstant: 20),
             addGoalButton.widthAnchor.constraint(equalToConstant: 20),
             
-            underLine.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: underLinePositionHeight),
+            underLine.topAnchor.constraint(equalTo: self.topAnchor, constant: underLinePositionHeight),
             underLine.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 32),
             underLine.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -32),
             underLine.heightAnchor.constraint(equalToConstant: 2),
@@ -209,6 +191,7 @@ class GoalsView: UIView {
         inExGoalCollectionView!.delegate = self
         inExGoalCollectionView!.register(GoalItemCell.self, forCellWithReuseIdentifier: GoalItemCell.identifier)
         inExGoalCollectionView!.isScrollEnabled = false
+        inExGoalCollectionView!.layer.masksToBounds = false
         inExGoalCollectionView!.tag = 1
     }
     
@@ -224,15 +207,8 @@ class GoalsView: UIView {
         otherGoalCollectionView!.delegate = self
         otherGoalCollectionView!.register(OtherGoalItemCell.self, forCellWithReuseIdentifier: OtherGoalItemCell.identifier)
         otherGoalCollectionView!.isScrollEnabled = false
+        otherGoalCollectionView!.layer.masksToBounds = false
         otherGoalCollectionView!.tag = 2 // Unique tag for identification
-    }
-    
-    internal func scrollToTop() {
-        self.scrollView.scrollRectToVisible(.init(x: scrollView.contentOffset.x
-                                                  , y: 0
-                                                  , width: scrollView.frame.width
-                                                  , height: scrollView.frame.height)
-                                            , animated: true)
     }
     
     // MARK: - ACTIONS
@@ -261,7 +237,7 @@ class GoalsView: UIView {
         self.layoutIfNeeded()
         
         let contentHeight = max(self.frame.height + 100, otherGoalCollectionView!.frame.maxY + otherTotalHeight + 100)
-        scrollView.contentSize = CGSize(width: self.frame.width, height: contentHeight)
+        self.delegate!.updatedGoalsViewHeight(viewHeight: contentHeight)
     }
 }
 

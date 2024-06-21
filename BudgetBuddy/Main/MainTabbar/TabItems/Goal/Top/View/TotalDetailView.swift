@@ -12,6 +12,7 @@ protocol TotalDetailDelegate: AnyObject {
     func breakdownSelected(target: Breakdown)
     func addTransactionTapped()
     func transactionSelected(target: Transaction)
+    func updatedTotalDetailViewHeight(viewHeight: CGFloat)
 }
 
 class TotalDetailView: UIView {
@@ -27,12 +28,6 @@ class TotalDetailView: UIView {
     
     private var breakdowns: [Breakdown] = []
     private var transactions: [Transaction] = []
-    
-    private let scrollView: UIScrollView = {
-        let scrollView = UIScrollView()
-        scrollView.showsVerticalScrollIndicator = false
-        return scrollView
-    }()
     
     // TITLE
     private let titleLabel: UILabel = {
@@ -196,33 +191,15 @@ class TotalDetailView: UIView {
         self.targetMonth = targetMonth
     }
     
-    internal func scrollToTop() {
-        self.scrollView.scrollRectToVisible(.init(x: scrollView.contentOffset.x
-                                                  , y: 0
-                                                  , width: scrollView.frame.width
-                                                  , height: scrollView.frame.height)
-                                            , animated: true)
-    }
-    
     private func setupUI() {
-        self.addSubview(scrollView)
-        scrollView.translatesAutoresizingMaskIntoConstraints = false
-        
-        NSLayoutConstraint.activate([
-            scrollView.topAnchor.constraint(equalTo: self.topAnchor),
-            scrollView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
-            scrollView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
-            scrollView.bottomAnchor.constraint(equalTo: self.bottomAnchor)
-        ])
-        
-        scrollView.addSubview(titleLabel)
-        scrollView.addSubview(underLine)
-        scrollView.addSubview(incomTitleLabel)
-        scrollView.addSubview(addBreakdownBtn)
-        scrollView.addSubview(incomTableAria)
-        scrollView.addSubview(expenseTitleLabel)
-        scrollView.addSubview(addTransactionBtn)
-        scrollView.addSubview(expenseTableAria)
+        self.addSubview(titleLabel)
+        self.addSubview(underLine)
+        self.addSubview(incomTitleLabel)
+        self.addSubview(addBreakdownBtn)
+        self.addSubview(incomTableAria)
+        self.addSubview(expenseTitleLabel)
+        self.addSubview(addTransactionBtn)
+        self.addSubview(expenseTableAria)
         
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         underLine.translatesAutoresizingMaskIntoConstraints = false
@@ -241,7 +218,7 @@ class TotalDetailView: UIView {
             titleLabel.bottomAnchor.constraint(equalTo: underLine.topAnchor, constant: -4),
             titleLabel.leadingAnchor.constraint(equalTo: underLine.leadingAnchor, constant: 16),
             
-            underLine.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: underLinePositionHeight),
+            underLine.topAnchor.constraint(equalTo: self.topAnchor, constant: underLinePositionHeight),
             underLine.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 32),
             underLine.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -32),
             underLine.heightAnchor.constraint(equalToConstant: 1),
@@ -384,7 +361,7 @@ class TotalDetailView: UIView {
         self.layoutIfNeeded()
         
         let contentHeight = max(self.frame.height + 100, expenseTableAria.frame.maxY + 100)
-        scrollView.contentSize = CGSize(width: self.frame.width, height: contentHeight)
+        self.delegate!.updatedTotalDetailViewHeight(viewHeight: contentHeight)
     }
     
     // MARK: - Action
