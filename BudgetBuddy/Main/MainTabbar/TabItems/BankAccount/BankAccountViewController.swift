@@ -32,7 +32,7 @@ class BankAccountViewController: UIViewController {
     private let topViewHeight: CGFloat = 70
     private let topView: UIView = {
         let view = UIView()
-        view.backgroundColor = .white
+        view.backgroundColor = .customWhiteSmoke
         view.layer.cornerRadius = 9
         return view
     }()
@@ -58,8 +58,12 @@ class BankAccountViewController: UIViewController {
         let tableView = UITableView(frame: .zero, style: .insetGrouped)
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
         tableView.register(CarryForwardCell.self, forCellReuseIdentifier: CarryForwardCell.identifier)
-        tableView.backgroundColor = BACKGROUND_COLOR
         tableView.sectionHeaderTopPadding = 0
+        tableView.backgroundColor = .clear
+        tableView.layer.shadowColor = UIColor.black.cgColor
+        tableView.layer.shadowOpacity = 0.2
+        tableView.layer.shadowOffset = CGSize(width: 0, height: 2)
+        tableView.layer.shadowRadius = 5
         tableView.tableFooterView = UIView()
         return tableView
     }()
@@ -69,13 +73,13 @@ class BankAccountViewController: UIViewController {
         self.view.backgroundColor = BACKGROUND_COLOR
         
         // navigation
-        self.navigationController?.navigationBar.backgroundColor = NAVIGATION_BACK_COLOR
+        self.navigationController?.navigationBar.backgroundColor = .clear
         self.navigationController?.navigationBar.barTintColor = .white
         self.navigationController?.navigationBar.tintColor = .white
         self.navigationController?.navigationBar.titleTextAttributes = [
             .foregroundColor: UIColor.white
         ]
-        
+        addGradientBackground()
         updateShowData()
         setupViews()
     }
@@ -85,6 +89,17 @@ class BankAccountViewController: UIViewController {
         
         updateShowData()
         tableView.reloadData()
+    }
+    
+    private func addGradientBackground() {
+        let gradientLayer = CAGradientLayer()
+        gradientLayer.frame = view.bounds
+        gradientLayer.colors = [UIColor.backGradientColorFrom.cgColor, UIColor.backGradientColorTo.cgColor]
+        gradientLayer.startPoint = CGPoint(x: 0.2, y: 0)
+        gradientLayer.endPoint = CGPoint(x: 1, y: 1)
+        
+        // 既存のレイヤーの後ろにグラデーションレイヤーを追加
+        self.view.layer.insertSublayer(gradientLayer, at: 0)
     }
     
     private func updateShowData() {
@@ -185,14 +200,14 @@ extension BankAccountViewController: UITableViewDelegate, UITableViewDataSource 
         } else {
             title.text = yearth[thisMonthBreakdowns.count > 0 ? section - 1 : section] + NSLocalizedString("Year", comment: "")
         }
-        title.font = UIFont.systemFont(ofSize: 24, weight: .light)
+        title.font = UIFont.systemFont(ofSize: 24, weight: .medium)
         title.textColor = .white
         title.sizeToFit()
         headerView.addSubview(title)
         
         title.translatesAutoresizingMaskIntoConstraints = false
         title.bottomAnchor.constraint(equalTo: headerView.bottomAnchor, constant: -4).isActive = true
-        title.trailingAnchor.constraint(equalTo: headerView.trailingAnchor, constant: -24).isActive = true
+        title.leadingAnchor.constraint(equalTo: headerView.leadingAnchor, constant: 24).isActive = true
 
         return headerView
     }
@@ -219,11 +234,13 @@ extension BankAccountViewController: UITableViewDelegate, UITableViewDataSource 
         if thisMonthBreakdowns.count > 0 && indexPath.section == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
             cell.textLabel!.text = thisMonthBreakdowns[indexPath.row].title
+            cell.backgroundColor = .customWhiteSmoke
             return cell
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: CarryForwardCell.identifier, for: indexPath) as! CarryForwardCell
             cell.selected(selected: selectedIndexPath == indexPath)
             cell.configure(goal: monthryCarryForwardGoals[thisMonthBreakdowns.count > 0 ? indexPath.section - 1 : indexPath.section][indexPath.row])
+            cell.backgroundColor = .customWhiteSmoke
             cell.delegate = self
             return cell
         }

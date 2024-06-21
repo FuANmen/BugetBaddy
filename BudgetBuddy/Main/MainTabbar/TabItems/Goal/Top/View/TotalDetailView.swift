@@ -54,7 +54,7 @@ class TotalDetailView: UIView {
     private var addBreakdownBtn: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(systemName: "plus"), for: .normal)
-        button.tintColor = .systemGray5
+        button.tintColor = .white
         button.alpha = 0.6
         button.addTarget(self, action: #selector(addBreakdownTapped), for: .touchUpInside)
         button.imageView?.contentMode = .scaleAspectFit
@@ -95,7 +95,7 @@ class TotalDetailView: UIView {
     private let incomTotalLabel: UILabel = {
         let label = UILabel()
         label.alpha = 0.8
-        label.textColor = .systemGray2
+        label.textColor = .customDarkGray
         label.text = NSLocalizedString("Total", comment: "") + " :"
         label.font = UIFont.systemFont(ofSize: 22, weight: .bold)
         return label
@@ -104,7 +104,7 @@ class TotalDetailView: UIView {
     private let incomTotalValue: UILabel = {
         let label = UILabel()
         label.alpha = 0.8
-        label.textColor = .systemGreen
+        label.textColor = .systemBlue
         label.font = UIFont.systemFont(ofSize: 22, weight: .bold)
         return label
     }()
@@ -120,7 +120,7 @@ class TotalDetailView: UIView {
     private var addTransactionBtn: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(systemName: "plus"), for: .normal)
-        button.tintColor = .systemGray5
+        button.tintColor = .white
         button.alpha = 0.6
         button.addTarget(self, action: #selector(addTransactionTapped), for: .touchUpInside)
         button.imageView?.contentMode = .scaleAspectFit
@@ -161,7 +161,7 @@ class TotalDetailView: UIView {
     private let expenseTotalLabel: UILabel = {
         let label = UILabel()
         label.alpha = 0.8
-        label.textColor = .systemGray2
+        label.textColor = .customDarkGray
         label.text = NSLocalizedString("Total", comment: "") + " :"
         label.font = UIFont.systemFont(ofSize: 22, weight: .bold)
         return label
@@ -248,30 +248,30 @@ class TotalDetailView: UIView {
             
             // INCOME
             incomTitleLabel.topAnchor.constraint(equalTo: underLine.bottomAnchor, constant: 18),
-            incomTitleLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -32),
+            incomTitleLabel.trailingAnchor.constraint(equalTo: incomTableAria.trailingAnchor, constant: -16),
             
             addBreakdownBtn.centerYAnchor.constraint(equalTo: incomTitleLabel.centerYAnchor),
-            addBreakdownBtn.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 28),
+            addBreakdownBtn.leadingAnchor.constraint(equalTo: incomTableAria.leadingAnchor, constant: 16),
             addBreakdownBtn.widthAnchor.constraint(equalToConstant: 20),
             addBreakdownBtn.heightAnchor.constraint(equalToConstant: 20),
             
             incomTableAria.topAnchor.constraint(equalTo: incomTitleLabel.bottomAnchor, constant: 6),
-            incomTableAria.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16),
-            incomTableAria.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16),
+            incomTableAria.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 32),
+            incomTableAria.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -32),
             incomTableAriaHeightConstraint!,
             
             // EXPENSE
             expenseTitleLabel.topAnchor.constraint(equalTo: incomTableAria.bottomAnchor, constant: 18),
-            expenseTitleLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -32),
+            expenseTitleLabel.trailingAnchor.constraint(equalTo: expenseTableAria.trailingAnchor, constant: -16),
             
             addTransactionBtn.centerYAnchor.constraint(equalTo: expenseTitleLabel.centerYAnchor),
-            addTransactionBtn.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 28),
+            addTransactionBtn.leadingAnchor.constraint(equalTo: expenseTableAria.leadingAnchor, constant: 16),
             addTransactionBtn.widthAnchor.constraint(equalToConstant: 20),
             addTransactionBtn.heightAnchor.constraint(equalToConstant: 20),
             
             expenseTableAria.topAnchor.constraint(equalTo: expenseTitleLabel.bottomAnchor, constant: 6),
-            expenseTableAria.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16),
-            expenseTableAria.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16),
+            expenseTableAria.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 32),
+            expenseTableAria.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -32),
             expenseTableAriaHeightConstraint!
         ])
         

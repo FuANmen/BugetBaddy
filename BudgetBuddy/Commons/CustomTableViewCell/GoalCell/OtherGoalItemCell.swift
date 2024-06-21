@@ -9,7 +9,7 @@ import UIKit
 
 class OtherGoalItemCell: UICollectionViewCell {
     static let identifier = "OtherGoalItemCell"
-    static let itemHeight: CGFloat = 80
+    static let itemHeight: CGFloat = 100
     
     private var otherGoal: Goal? = nil
     
@@ -87,7 +87,7 @@ class OtherGoalItemCell: UICollectionViewCell {
         minScaleLabel.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            categoryNameLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
+            categoryNameLabel.bottomAnchor.constraint(equalTo: contentView.topAnchor, constant: OtherGoalItemCell.itemHeight/2 - 4),
             categoryNameLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 32),
             categoryNameLabel.trailingAnchor.constraint(equalTo: contentView.centerXAnchor, constant: -4),
             
@@ -95,7 +95,7 @@ class OtherGoalItemCell: UICollectionViewCell {
             balanceLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -34),
             balanceLabel.leadingAnchor.constraint(equalTo: contentView.centerXAnchor, constant: 4),
             
-            progressBar.topAnchor.constraint(equalTo: categoryNameLabel.bottomAnchor, constant: 6),
+            progressBar.topAnchor.constraint(equalTo: contentView.topAnchor, constant: OtherGoalItemCell.itemHeight/2 + 4),
             progressBar.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 28),
             progressBar.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -32),
             progressBar.heightAnchor.constraint(equalToConstant: progressBarHight),
@@ -137,20 +137,20 @@ class OtherGoalItemCell: UICollectionViewCell {
         var imageColor: UIColor = .clear
         switch percentage {
         case 0.8...1.0:
-            imageColor = .balanceHigh
+            imageColor = .otherBalanceHigh
         case 0.6..<0.8:
-            imageColor = .balanceMediumHigh
+            imageColor = .otherBalanceMediumHigh
         case 0.4..<0.6:
-            imageColor = .balanceMedium
+            imageColor = .otherBalanceMedium
         case 0.2..<0.4:
-            imageColor = .balanceLow
+            imageColor = .otherBalanceLow
         case 0.0..<0.2:
-            imageColor = .balanceVeryLow
+            imageColor = .otherBalanceVeryLow
         default:
             imageColor = .clear
         }
         
-        progressBar.setColor(trackColor: .systemGray5, progressColor: imageColor)
+        progressBar.setColor(trackColor: .customDarkGrayLight5, progressColor: imageColor)
         
         maxScaleLabel.text = String(round(Float(goalAmount / 1000)) / 10) + NSLocalizedString("Money_2", comment: "")
         minScaleLabel.text = "0"

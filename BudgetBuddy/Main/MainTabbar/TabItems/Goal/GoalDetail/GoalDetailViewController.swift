@@ -341,7 +341,7 @@ class GoalDetailViewController: UIViewController {
     private func addGradientBackground() {
         let gradientLayer = CAGradientLayer()
         gradientLayer.frame = view.bounds
-        gradientLayer.colors = [UIColor.backGradientColorFrom2.cgColor, UIColor.backGradientColorTo2.cgColor]
+        gradientLayer.colors = [UIColor.backGradientColorFrom.cgColor, UIColor.backGradientColorTo.cgColor]
         gradientLayer.startPoint = CGPoint(x: 0.6, y: 0)
         gradientLayer.endPoint = CGPoint(x: 1, y: 1)
         

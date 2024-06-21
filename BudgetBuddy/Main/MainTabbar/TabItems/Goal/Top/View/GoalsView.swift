@@ -32,7 +32,7 @@ class GoalsView: UIView {
     private let titleLabel: UILabel = {
         let label = UILabel()
         label.text = NSLocalizedString("Categorized", comment: "") + " :"
-        label.font = UIFont.systemFont(ofSize: 24, weight: .light)
+        label.font = UIFont.systemFont(ofSize: 24, weight: .medium)
         label.textColor = .white
         return label
     }()
@@ -156,7 +156,7 @@ class GoalsView: UIView {
             underLine.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: underLinePositionHeight),
             underLine.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 32),
             underLine.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -32),
-            underLine.heightAnchor.constraint(equalToConstant: 1),
+            underLine.heightAnchor.constraint(equalToConstant: 2),
             
             // MAIN
             mainAria.topAnchor.constraint(equalTo: underLine.bottomAnchor, constant: 24),

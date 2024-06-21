@@ -10,12 +10,12 @@ import UIKit
 
 class GoalItemCell: UICollectionViewCell {
     static let identifier = "GoalItemCell"
-    static let itemHeight: CGFloat = 78
+    static let itemHeight: CGFloat = 90
     
     private let balanceLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 26, weight: .bold)
-        label.textColor = .customSteelBlueLight2
+        label.textColor = .sectionMainLabelColor
         label.adjustsFontSizeToFitWidth = true
         label.textAlignment = .right
         return label
@@ -24,7 +24,7 @@ class GoalItemCell: UICollectionViewCell {
     private let categoryNameLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 24, weight: .semibold)
-        label.textColor = .customRoyalBlueLight2
+        label.textColor = .sectionMainLabelColor
         label.adjustsFontSizeToFitWidth = true
         label.textAlignment = .left
         return label
@@ -80,7 +80,7 @@ class GoalItemCell: UICollectionViewCell {
         minScaleLabel.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            categoryNameLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
+            categoryNameLabel.bottomAnchor.constraint(equalTo: contentView.topAnchor, constant: GoalItemCell.itemHeight/2 - 4),
             categoryNameLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 32),
             categoryNameLabel.trailingAnchor.constraint(equalTo: contentView.centerXAnchor, constant: -4),
             
@@ -88,7 +88,7 @@ class GoalItemCell: UICollectionViewCell {
             balanceLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -34),
             balanceLabel.leadingAnchor.constraint(equalTo: contentView.centerXAnchor, constant: 4),
             
-            progressBar.topAnchor.constraint(equalTo: categoryNameLabel.bottomAnchor, constant: 6),
+            progressBar.topAnchor.constraint(equalTo: contentView.topAnchor, constant: GoalItemCell.itemHeight/2 + 4),
             progressBar.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 28),
             progressBar.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -32),
             progressBar.heightAnchor.constraint(equalToConstant: progressBarHight),
@@ -146,7 +146,7 @@ class GoalItemCell: UICollectionViewCell {
             imageColor = .clear
         }
         
-        progressBar.setColor(trackColor: .systemGray5, progressColor: imageColor)
+        progressBar.setColor(trackColor: .customDarkGrayLight5, progressColor: imageColor)
         
         maxScaleLabel.text = String(round(Float(goalAmount / 1000)) / 10) + NSLocalizedString("Money_2", comment: "")
         minScaleLabel.text = "0"

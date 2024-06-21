@@ -123,7 +123,7 @@ class MonthlyViewController: UIViewController {
         let label = UILabel()
         label.text = NSLocalizedString("Goal", comment: "")
         label.textAlignment = .center
-        label.font = UIFont.systemFont(ofSize: 14, weight: .light)
+        label.font = UIFont.systemFont(ofSize: 18, weight: .medium)
         label.textColor = .white
         label.tag = 1
         return label
@@ -133,7 +133,7 @@ class MonthlyViewController: UIViewController {
         let label = UILabel()
         label.text = NSLocalizedString("Breakdown", comment: "")
         label.textAlignment = .center
-        label.font = UIFont.systemFont(ofSize: 14, weight: .light)
+        label.font = UIFont.systemFont(ofSize: 18, weight: .medium)
         label.textColor = .systemGray6
         label.tag = 2
         return label
@@ -168,6 +168,36 @@ class MonthlyViewController: UIViewController {
         return view
     }()
     
+    // amount
+    private let amountView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .clear
+        view.layer.masksToBounds = true
+        return view
+    }()
+    
+    private let amountLabel: UILabel = {
+        let label = UILabel()
+        label.text = ": " + NSLocalizedString("Go_TopLabel_001", comment: "")
+        label.textColor = .customSteelBlue
+        label.font = UIFont.systemFont(ofSize: 22, weight: .medium)
+        return label
+    }()
+    
+    private let amountValue: UILabel = {
+        let label = UILabel()
+        label.textColor = .customSteelBlue
+        label.font = UIFont.systemFont(ofSize: 22, weight: .semibold)
+        return label
+    }()
+    
+    private let amountIcon: UIImageView = {
+        let icon = UIImageView()
+        // icon.setSymbolImage(UIImage(systemName: "chevron.compact.right")!, contentTransition: .automatic)
+        icon.tintColor = .systemGray4
+        return icon
+    }()
+    
     // balance
     private let balanceView: UIView = {
         let view = UIView()
@@ -177,8 +207,8 @@ class MonthlyViewController: UIViewController {
     
     private let balanceLabel: UILabel = {
         let label = UILabel()
-        label.text = ": " + NSLocalizedString("Go_TopLabel_001", comment: "")
-        label.textColor = .customSteelBlueLight1
+        label.text = ": " + NSLocalizedString("Go_TopLabel_002", comment: "")
+        label.textColor = .customSlateGreen
         label.font = UIFont.systemFont(ofSize: 22, weight: .medium)
         label.textAlignment = .left
         label.adjustsFontSizeToFitWidth = true
@@ -187,7 +217,7 @@ class MonthlyViewController: UIViewController {
     
     private let balanceValue: UILabel = {
         let label = UILabel()
-        label.textColor = .customRoyalBlueLight1
+        label.textColor = .customSlateGreen
         label.font = UIFont.systemFont(ofSize: 22, weight: .semibold)
         label.textAlignment = .left
         label.adjustsFontSizeToFitWidth = true
@@ -207,36 +237,6 @@ class MonthlyViewController: UIViewController {
         let view = UIView()
         view.backgroundColor = .systemGray4
         return view
-    }()
-    
-    // amount
-    private let amountView: UIView = {
-        let view = UIView()
-        view.backgroundColor = .clear
-        view.layer.masksToBounds = true
-        return view
-    }()
-    
-    private let amountLabel: UILabel = {
-        let label = UILabel()
-        label.text = ": " + NSLocalizedString("Go_TopLabel_002", comment: "")
-        label.textColor = .customSteelBlueLight1
-        label.font = UIFont.systemFont(ofSize: 22, weight: .medium)
-        return label
-    }()
-    
-    private let amountValue: UILabel = {
-        let label = UILabel()
-        label.textColor = .customRoyalBlueLight1
-        label.font = UIFont.systemFont(ofSize: 22, weight: .semibold)
-        return label
-    }()
-    
-    private let amountIcon: UIImageView = {
-        let icon = UIImageView()
-        // icon.setSymbolImage(UIImage(systemName: "chevron.compact.right")!, contentTransition: .automatic)
-        icon.tintColor = .systemGray4
-        return icon
     }()
 
     // DIALOG
@@ -302,7 +302,7 @@ class MonthlyViewController: UIViewController {
     private func addGradientBackground() {
         let gradientLayer = CAGradientLayer()
         gradientLayer.frame = view.bounds
-        gradientLayer.colors = [UIColor.backGradientColorFrom2.cgColor, UIColor.backGradientColorTo2.cgColor]
+        gradientLayer.colors = [UIColor.backGradientColorFrom.cgColor, UIColor.backGradientColorTo.cgColor]
         gradientLayer.startPoint = CGPoint(x: 0.2, y: 0)
         gradientLayer.endPoint = CGPoint(x: 1, y: 1)
         
@@ -424,7 +424,7 @@ class MonthlyViewController: UIViewController {
             amountValue.centerYAnchor.constraint(equalTo: amountView.centerYAnchor),
             amountValue.leadingAnchor.constraint(equalTo: amountIcon.trailingAnchor, constant: 8),
             
-            amountLabel.bottomAnchor.constraint(equalTo: amountValue.bottomAnchor, constant: -3),
+            amountLabel.centerYAnchor.constraint(equalTo: amountValue.centerYAnchor),
             amountLabel.leadingAnchor.constraint(equalTo: amountView.centerXAnchor, constant: 32),
 
             // PARTITION
@@ -445,7 +445,7 @@ class MonthlyViewController: UIViewController {
             balanceValue.centerYAnchor.constraint(equalTo: balanceView.centerYAnchor),
             balanceValue.leadingAnchor.constraint(equalTo: balanceIcon.trailingAnchor, constant: 8),
             
-            balanceLabel.bottomAnchor.constraint(equalTo: balanceValue.bottomAnchor, constant: -3),
+            balanceLabel.centerYAnchor.constraint(equalTo: balanceValue.centerYAnchor),
             balanceLabel.leadingAnchor.constraint(equalTo: balanceView.centerXAnchor, constant: 32)
         ])
         
