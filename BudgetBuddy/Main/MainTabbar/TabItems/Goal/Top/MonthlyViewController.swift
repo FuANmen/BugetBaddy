@@ -45,7 +45,6 @@ class MonthlyViewController: UIViewController {
     private let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.showsVerticalScrollIndicator = false
-        scrollView.isUserInteractionEnabled = true
         return scrollView
     }()
 
@@ -154,11 +153,13 @@ class MonthlyViewController: UIViewController {
     }()
     
     private var goalsViewLeadingConstraint: NSLayoutConstraint?
+    private var goalsViewHeightConstraint: NSLayoutConstraint?
     private let goalsView: GoalsView = {
         let goalsView = GoalsView()
         return goalsView
     }()
     
+    private var totalDetailViewHeightConstraint: NSLayoutConstraint?
     private let totalDetailView: TotalDetailView = {
         let view = TotalDetailView()
         return view
@@ -348,11 +349,13 @@ class MonthlyViewController: UIViewController {
         horizonView.translatesAutoresizingMaskIntoConstraints = false
         validView.translatesAutoresizingMaskIntoConstraints = false
         mainViewLabel_1.translatesAutoresizingMaskIntoConstraints = false
+        // mainViewLabel_2.translatesAutoresizingMaskIntoConstraints = false
         mainViewLabel_3.translatesAutoresizingMaskIntoConstraints = false
         
         goalsViewLeadingConstraint = goalsView.leadingAnchor.constraint(equalTo: view.leadingAnchor)
         validViewHorizontalAlignment = validView.centerXAnchor.constraint(equalTo: horizonView.leadingAnchor, constant: view.frame.width / 4 * 1)
-        
+        goalsViewHeightConstraint = goalsView.heightAnchor.constraint(equalToConstant: 0)
+        totalDetailViewHeightConstraint = totalDetailView.heightAnchor.constraint(equalToConstant: 0)
         NSLayoutConstraint.activate([
             scrollView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
             scrollView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
@@ -384,12 +387,12 @@ class MonthlyViewController: UIViewController {
             
             goalsView.topAnchor.constraint(equalTo: horizonView.bottomAnchor),
             goalsViewLeadingConstraint!,
-            goalsView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
+            goalsViewHeightConstraint!,
             goalsView.widthAnchor.constraint(equalTo: view.widthAnchor),
             
             totalDetailView.topAnchor.constraint(equalTo: horizonView.bottomAnchor),
             totalDetailView.leadingAnchor.constraint(equalTo: goalsView.trailingAnchor),
-            totalDetailView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
+            totalDetailViewHeightConstraint!,
             totalDetailView.widthAnchor.constraint(equalTo: view.widthAnchor)
         ])
         
@@ -619,6 +622,7 @@ extension MonthlyViewController: GoalsViewDelegate {
     internal func updatedGoalsViewHeight(viewHeight: CGFloat) {
         let contentSize = scrollView
         let contentHeight = self.horizonView.frame.maxY + viewHeight
+        self.goalsViewHeightConstraint?.constant = contentHeight
         self.updateScrollViewContentHeight(height: contentHeight)
     }
     
@@ -648,6 +652,7 @@ extension MonthlyViewController: TotalDetailDelegate {
     internal func updatedTotalDetailViewHeight(viewHeight: CGFloat) {
         let contentSize = scrollView
         let contentHeight = self.horizonView.frame.maxY + viewHeight
+        self.totalDetailViewHeightConstraint?.constant = contentHeight
         self.updateScrollViewContentHeight(height: contentHeight)
     }
     
