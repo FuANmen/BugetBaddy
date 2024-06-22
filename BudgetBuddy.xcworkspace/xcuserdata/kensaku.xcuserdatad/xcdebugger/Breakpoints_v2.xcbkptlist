@@ -1399,42 +1399,10 @@
             filePath = "BudgetBuddy/Main/MainTabbar/TabItems/Goal/GoalDetail/GoalDetailViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1053"
-            endingLineNumber = "1053"
+            startingLineNumber = "1054"
+            endingLineNumber = "1054"
             landmarkName = "cancelButtonTapped()"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "811228CE-FE46-4E31-A8E5-BF9515CBAD6D - 1aa94fbafe112ccc"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 () -&gt; () in BudgetBuddy.GoalDetailViewController.cancelButtonTapped() -&gt; ()"
-                  moduleName = "BudgetBuddy"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/kensaku/Documents/GitHub/BugetBady/BudgetBuddy/Main/MainTabbar/TabItems/Goal/GoalDetail/GoalDetailViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "1053"
-                  endingLineNumber = "1053"
-                  offsetFromSymbolStart = "37">
-               </Location>
-               <Location
-                  uuid = "811228CE-FE46-4E31-A8E5-BF9515CBAD6D - 1aa94fbafe112ccc"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 () -&gt; () in BudgetBuddy.GoalDetailViewController.cancelButtonTapped() -&gt; ()"
-                  moduleName = "BudgetBuddy"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/kensaku/Documents/GitHub/BugetBady/BudgetBuddy/Main/MainTabbar/TabItems/Goal/GoalDetail/GoalDetailViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "1053"
-                  endingLineNumber = "1053"
-                  offsetFromSymbolStart = "36">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -2317,8 +2285,8 @@
             filePath = "BudgetBuddy/Main/MainTabbar/TabItems/Goal/GoalDetail/GoalDetailViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1034"
-            endingLineNumber = "1034"
+            startingLineNumber = "1035"
+            endingLineNumber = "1035"
             landmarkName = "didAddTransferLog()"
             landmarkType = "7">
          </BreakpointContent>
@@ -2333,8 +2301,8 @@
             filePath = "BudgetBuddy/Main/MainTabbar/TabItems/Goal/GoalDetail/GoalDetailViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1000"
-            endingLineNumber = "1000"
+            startingLineNumber = "1001"
+            endingLineNumber = "1001"
             landmarkName = "stringForValue(_:axis:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -2413,8 +2381,8 @@
             filePath = "BudgetBuddy/Main/MainTabbar/TabItems/Goal/Top/MonthlyViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "570"
-            endingLineNumber = "570"
+            startingLineNumber = "581"
+            endingLineNumber = "581"
             landmarkName = "updateButtonState()"
             landmarkType = "7">
          </BreakpointContent>
@@ -2429,8 +2397,8 @@
             filePath = "BudgetBuddy/Main/MainTabbar/TabItems/Goal/Top/MonthlyViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "579"
-            endingLineNumber = "579"
+            startingLineNumber = "590"
+            endingLineNumber = "590"
             landmarkName = "updateDatas()"
             landmarkType = "7">
          </BreakpointContent>
@@ -2445,8 +2413,8 @@
             filePath = "BudgetBuddy/Main/MainTabbar/TabItems/Goal/Top/MonthlyViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "580"
-            endingLineNumber = "580"
+            startingLineNumber = "591"
+            endingLineNumber = "591"
             landmarkName = "updateDatas()"
             landmarkType = "7">
          </BreakpointContent>
@@ -2618,8 +2586,8 @@
             filePath = "BudgetBuddy/Main/MainTabbar/TabItems/Goal/Top/MonthlyViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "611"
-            endingLineNumber = "611"
+            startingLineNumber = "628"
+            endingLineNumber = "628"
             landmarkName = "targetMonthLabelTapped(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -2634,8 +2602,8 @@
             filePath = "BudgetBuddy/Main/MainTabbar/TabItems/Goal/Top/MonthlyViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "610"
-            endingLineNumber = "610"
+            startingLineNumber = "627"
+            endingLineNumber = "627"
             landmarkName = "targetMonthLabelTapped(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -3125,8 +3093,8 @@
             filePath = "BudgetBuddy/Main/MainTabbar/TabItems/Goal/Top/MonthlyViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "328"
-            endingLineNumber = "328"
+            startingLineNumber = "332"
+            endingLineNumber = "332"
             landmarkName = "viewDidLoad()"
             landmarkType = "7">
          </BreakpointContent>
@@ -3141,8 +3109,8 @@
             filePath = "BudgetBuddy/Main/MainTabbar/TabItems/Goal/Top/MonthlyViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "327"
-            endingLineNumber = "327"
+            startingLineNumber = "331"
+            endingLineNumber = "331"
             landmarkName = "viewDidLoad()"
             landmarkType = "7">
          </BreakpointContent>
@@ -3157,49 +3125,17 @@
             filePath = "BudgetBuddy/Main/MainTabbar/TabItems/Goal/GoalDetail/GoalDetailViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "847"
-            endingLineNumber = "847"
+            startingLineNumber = "848"
+            endingLineNumber = "848"
             landmarkName = "openAndCloseExpenseBtnTapped()"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "064617F8-A19C-46BB-9D10-2D4126E4739D - 42532fe45b041eb1"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "BudgetBuddy.GoalDetailViewController.openAndCloseExpenseBtnTapped() -&gt; ()"
-                  moduleName = "BudgetBuddy"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/kensaku/Documents/GitHub/BugetBady/BudgetBuddy/Main/MainTabbar/TabItems/Goal/GoalDetail/GoalDetailViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "847"
-                  endingLineNumber = "847"
-                  offsetFromSymbolStart = "38">
-               </Location>
-               <Location
-                  uuid = "064617F8-A19C-46BB-9D10-2D4126E4739D - 42532fe45b041eb1"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "BudgetBuddy.GoalDetailViewController.openAndCloseExpenseBtnTapped() -&gt; ()"
-                  moduleName = "BudgetBuddy"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/kensaku/Documents/GitHub/BugetBady/BudgetBuddy/Main/MainTabbar/TabItems/Goal/GoalDetail/GoalDetailViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "847"
-                  endingLineNumber = "847"
-                  offsetFromSymbolStart = "80">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "56692638-34B5-4713-92B7-FE405FA09366"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BudgetBuddy/Main/MainTabbar/TabItems/Goal/Top/View/GoalsView.swift"
@@ -3240,6 +3176,21 @@
                   endingLineNumber = "283"
                   offsetFromSymbolStart = "684">
                </Location>
+               <Location
+                  uuid = "56692638-34B5-4713-92B7-FE405FA09366 - b03dfd54be7ae5d8"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "BudgetBuddy.GoalsView.collectionView(_: __C.UICollectionView, didSelectItemAt: Foundation.IndexPath) -&gt; ()"
+                  moduleName = "BudgetBuddy"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/kensaku/Documents/GitHub/BugetBady/BudgetBuddy/Main/MainTabbar/TabItems/Goal/Top/View/GoalsView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "283"
+                  endingLineNumber = "283"
+                  offsetFromSymbolStart = "641">
+               </Location>
             </Locations>
          </BreakpointContent>
       </BreakpointProxy>
@@ -3247,7 +3198,7 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "3AFB1D25-C1F3-4AFC-BAA9-76C9BECD2E3D"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BudgetBuddy/Main/MainTabbar/TabItems/Goal/Top/View/GoalsView.swift"
@@ -3288,6 +3239,21 @@
                   endingLineNumber = "280"
                   offsetFromSymbolStart = "288">
                </Location>
+               <Location
+                  uuid = "3AFB1D25-C1F3-4AFC-BAA9-76C9BECD2E3D - b03dfd54be7ae5a5"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "BudgetBuddy.GoalsView.collectionView(_: __C.UICollectionView, didSelectItemAt: Foundation.IndexPath) -&gt; ()"
+                  moduleName = "BudgetBuddy"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/kensaku/Documents/GitHub/BugetBady/BudgetBuddy/Main/MainTabbar/TabItems/Goal/Top/View/GoalsView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "280"
+                  endingLineNumber = "280"
+                  offsetFromSymbolStart = "222">
+               </Location>
             </Locations>
          </BreakpointContent>
       </BreakpointProxy>
@@ -3295,7 +3261,7 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "1211EC59-AA00-4D17-BE63-58F359809B67"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BudgetBuddy/Main/MainTabbar/TabItems/Goal/Top/View/GoalsView.swift"
@@ -3336,7 +3302,150 @@
                   endingLineNumber = "216"
                   offsetFromSymbolStart = "64">
                </Location>
+               <Location
+                  uuid = "1211EC59-AA00-4D17-BE63-58F359809B67 - c57086f98e324e55"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "BudgetBuddy.GoalsView.addGoalButtonTapped() -&gt; ()"
+                  moduleName = "BudgetBuddy"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/kensaku/Documents/GitHub/BugetBady/BudgetBuddy/Main/MainTabbar/TabItems/Goal/Top/View/GoalsView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "216"
+                  endingLineNumber = "216"
+                  offsetFromSymbolStart = "30">
+               </Location>
             </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "E81FA784-6028-4E92-A4EB-07559A808D56"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BudgetBuddy/Main/MainTabbar/TabItems/Goal/Top/MonthlyViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "601"
+            endingLineNumber = "601"
+            landmarkName = "previousButtonTapped()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "DEDA2746-78E3-4008-9945-AC95B3DA38E0"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BudgetBuddy/Main/MainTabbar/TabItems/Goal/Top/MonthlyViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "610"
+            endingLineNumber = "610"
+            landmarkName = "nextButtonTapped()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "99944C87-227E-4062-B5F5-A0427C74E61B"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BudgetBuddy/Main/MainTabbar/TabItems/Goal/Top/MonthlyViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "600"
+            endingLineNumber = "600"
+            landmarkName = "previousButtonTapped()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "C8909401-414B-4BA6-80FB-60120A42E202"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BudgetBuddy/Main/MainTabbar/TabItems/Goal/HamburgerMenuViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "21"
+            endingLineNumber = "21"
+            landmarkName = "menuView"
+            landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "41A1CDEB-84EF-4871-8D51-C646885B5E86"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BudgetBuddy/Main/MainTabbar/TabItems/Goal/HamburgerMenuViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "76"
+            endingLineNumber = "76"
+            landmarkName = "openThisView()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "41A1CDEB-84EF-4871-8D51-C646885B5E86 - 4b2a8fc2c1bd00dc"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "BudgetBuddy.HamburgerMenuViewController.openThisView() -&gt; ()"
+                  moduleName = "BudgetBuddy"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/kensaku/Documents/GitHub/BugetBady/BudgetBuddy/Main/MainTabbar/TabItems/Goal/HamburgerMenuViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "76"
+                  endingLineNumber = "76"
+                  offsetFromSymbolStart = "180">
+               </Location>
+               <Location
+                  uuid = "41A1CDEB-84EF-4871-8D51-C646885B5E86 - 7f6b8f74ac2e27e9"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () -&gt; () in BudgetBuddy.HamburgerMenuViewController.openThisView() -&gt; ()"
+                  moduleName = "BudgetBuddy"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/kensaku/Documents/GitHub/BugetBady/BudgetBuddy/Main/MainTabbar/TabItems/Goal/HamburgerMenuViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "77"
+                  endingLineNumber = "77"
+                  offsetFromSymbolStart = "36">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "804295BB-DFB3-45B1-A535-5F89638A8D12"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BudgetBuddy/Main/MainTabbar/TabItems/Goal/HamburgerMenuViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "69"
+            endingLineNumber = "69"
+            landmarkName = "setupUI()"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

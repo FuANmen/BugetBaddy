@@ -77,7 +77,7 @@ class Goal: Object {
                 goals.forEach { goal in
                     if category.name == goal.category!.name { is_contain = true }
                 }
-                print(category.name + "," + String(is_contain))
+                
                 if !is_contain {
                     result.append(contentsOf: TransactionDao().getTransactionsForCategory(category: category, targetMonth: self.targetMonth))
                 }

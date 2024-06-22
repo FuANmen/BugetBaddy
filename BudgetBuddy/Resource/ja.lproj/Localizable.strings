@@ -108,7 +108,7 @@
 "Go_MS_Error01" = "合計金額を超える場合は目標を調整してください。";
 "Go_MS_Warning01" = "本当に削除しますか？";
 
-"Go_TopLabel_001" = "予算合計";
+"Go_TopLabel_001" = "予算";
 "Go_TopLabel_002" = "残高";
 
 "Go_ButtonLabel_001" = "新規追加";

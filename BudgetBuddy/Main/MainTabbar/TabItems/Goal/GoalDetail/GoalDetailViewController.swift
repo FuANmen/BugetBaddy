@@ -318,8 +318,6 @@ class GoalDetailViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // navigation
-        self.navigationItem.title = self.category.name
         // NavigationBarの背景色とタイトルの色を設定
         let appearance = UINavigationBarAppearance()
         appearance.configureWithOpaqueBackground()
@@ -328,6 +326,9 @@ class GoalDetailViewController: UIViewController {
         self.navigationController?.navigationBar.standardAppearance = appearance
         self.navigationController?.navigationBar.scrollEdgeAppearance = appearance
         self.navigationController?.navigationBar.compactAppearance = appearance
+        // navigation
+        self.navigationItem.title = self.category.name
+        
         self.addGradientBackground()
 
         setupUI()

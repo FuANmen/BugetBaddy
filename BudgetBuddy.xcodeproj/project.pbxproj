@@ -22,6 +22,7 @@
 		A60E95A22BE9E16800711820 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A60E95A12BE9E16800711820 /* SettingsViewController.swift */; };
 		A60E95A42BEB371600711820 /* SelectTargetMonthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A60E95A32BEB371600711820 /* SelectTargetMonthView.swift */; };
 		A60E95A62BEE05A600711820 /* DeleteGoalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A60E95A52BEE05A600711820 /* DeleteGoalView.swift */; };
+		A6167CD42C26F03A0099EFA7 /* HamburgerMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6167CD32C26F03A0099EFA7 /* HamburgerMenuViewController.swift */; };
 		A61984CB2B1EA28800A05A69 /* CategoryDao.swift in Sources */ = {isa = PBXBuildFile; fileRef = A61984CA2B1EA28800A05A69 /* CategoryDao.swift */; };
 		A61984CD2B1EA30600A05A69 /* GoalDao.swift in Sources */ = {isa = PBXBuildFile; fileRef = A61984CC2B1EA30600A05A69 /* GoalDao.swift */; };
 		A6198DDB2B5AD79C00B400BA /* HCollectionPickerViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6198DDA2B5AD79C00B400BA /* HCollectionPickerViewCell.swift */; };
@@ -108,6 +109,7 @@
 		A60E95A12BE9E16800711820 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		A60E95A32BEB371600711820 /* SelectTargetMonthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectTargetMonthView.swift; sourceTree = "<group>"; };
 		A60E95A52BEE05A600711820 /* DeleteGoalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteGoalView.swift; sourceTree = "<group>"; };
+		A6167CD32C26F03A0099EFA7 /* HamburgerMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HamburgerMenuViewController.swift; sourceTree = "<group>"; };
 		A61984CA2B1EA28800A05A69 /* CategoryDao.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryDao.swift; sourceTree = "<group>"; };
 		A61984CC2B1EA30600A05A69 /* GoalDao.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalDao.swift; sourceTree = "<group>"; };
 		A6198DDA2B5AD79C00B400BA /* HCollectionPickerViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HCollectionPickerViewCell.swift; sourceTree = "<group>"; };
@@ -322,6 +324,7 @@
 				A60E959F2BE5276200711820 /* Top */,
 				A60E959D2BE5267A00711820 /* GoalDetail */,
 				A60E959C2BE525DD00711820 /* CreateGoal */,
+				A6167CD32C26F03A0099EFA7 /* HamburgerMenuViewController.swift */,
 			);
 			path = Goal;
 			sourceTree = "<group>";
@@ -762,6 +765,7 @@
 				A6ED25352BF1C5D4002DE2DC /* GoalAlertSettingViewController.swift in Sources */,
 				A60BF1AD2B19A18200AE0B78 /* Transaction.swift in Sources */,
 				A62B99912C00BED40018A12C /* TransferLogsDetailView.swift in Sources */,
+				A6167CD42C26F03A0099EFA7 /* HamburgerMenuViewController.swift in Sources */,
 				A62B998E2BFF36170018A12C /* BreakdownEditorView.swift in Sources */,
 				A6487BB42B5183F400CAF47B /* MyUI.swift in Sources */,
 				A60BF1B72B19CF3100AE0B78 /* Goal.swift in Sources */,
