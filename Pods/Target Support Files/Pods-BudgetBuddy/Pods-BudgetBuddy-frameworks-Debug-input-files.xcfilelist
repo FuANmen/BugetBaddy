@@ -1,5 +1,0 @@
-${PODS_ROOT}/Target Support Files/Pods-BudgetBuddy/Pods-BudgetBuddy-frameworks.sh
-${BUILT_PRODUCTS_DIR}/Charts/Charts.framework
-${BUILT_PRODUCTS_DIR}/Realm/Realm.framework
-${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework
-${BUILT_PRODUCTS_DIR}/SwiftAlgorithms/Algorithms.framework

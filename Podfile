@@ -1,11 +1,13 @@
 # Uncomment the next line to define a global platform for your project
 # platform :ios, '9.0'
 
-target 'BudgetBuddy' do
+target 'BudgetBaddy' do
   # Comment the next line if you don't want to use dynamic frameworks
   use_frameworks!
 
-  # Pods for BudgetBuddy
+  # Pods for BudgetBaddy
   pod 'RealmSwift'
   pod 'Charts'
+  pod 'Firebase/Auth'
+  pod 'Firebase/Firestore'
 end
