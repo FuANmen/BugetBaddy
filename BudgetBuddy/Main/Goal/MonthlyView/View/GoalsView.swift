@@ -236,7 +236,8 @@ class GoalsView: UIView {
         
         self.layoutIfNeeded()
         
-        let contentHeight = max(self.frame.height + 100, otherGoalCollectionView!.frame.maxY + otherTotalHeight + 100)
+        let contentHeight = max(UIScreen.main.bounds.height + 40, otherGoalCollectionView!.frame.maxY + 80)
+        
         self.delegate!.updatedGoalsViewHeight(viewHeight: contentHeight)
     }
 }

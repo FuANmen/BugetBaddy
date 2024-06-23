@@ -10,18 +10,6 @@ import UIKit
 class HamburgerMenuViewController: UIViewController {
     private var menuViewWidth: CGFloat = 0.0
     
-    private var menuViewLeadingAnchor: NSLayoutConstraint?
-    private let menuView: UIView = {
-        let view = UIView()
-        view.backgroundColor = .customWhiteSmoke
-        view.layer.shadowColor = UIColor.black.cgColor
-        view.layer.shadowOpacity = 0.2
-        view.layer.shadowOffset = CGSize(width: 0, height: 2)
-        view.layer.shadowRadius = 5
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
-    }()
-    
     private let outView: UIView = {
         let view = UIView()
         view.backgroundColor = .customDarkGray
@@ -30,10 +18,53 @@ class HamburgerMenuViewController: UIViewController {
         return view
     }()
     
+    private var menuViewLeadingAnchor: NSLayoutConstraint?
+    private let menuView: UIView = {
+        let view = UIView()
+        view.layer.shadowColor = UIColor.black.cgColor
+        view.layer.shadowOpacity = 0.2
+        view.layer.shadowOffset = CGSize(width: 0, height: 2)
+        view.layer.shadowRadius = 5
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
+    // Menu
+    private let headerViewHeight: CGFloat = 180
+    private let headerView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .white
+        view.layer.shadowColor = UIColor.systemGray4.cgColor
+        view.layer.shadowOpacity = 1.0
+        view.layer.shadowOffset = CGSize(width: 0, height: 1)
+        view.layer.shadowRadius = 0
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
+    private let mainView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .white
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
+    private let footerViewHeight: CGFloat = 60
+    private let footerView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .white
+        view.layer.shadowColor = UIColor.systemGray4.cgColor
+        view.layer.shadowOpacity = 1.0
+        view.layer.shadowOffset = CGSize(width: 0, height: -1)
+        view.layer.shadowRadius = 0
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .systemGray3
-        self.menuViewWidth = self.view.frame.width * 0.7
+        self.menuViewWidth = UIScreen.main.bounds.width * 0.7
         
         self.setupUI()
     }
@@ -59,6 +90,27 @@ class HamburgerMenuViewController: UIViewController {
             outView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor),
             outView.leadingAnchor.constraint(equalTo: menuView.leadingAnchor),
             outView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor)
+        ])
+        
+        // Menu
+        menuView.addSubview(mainView)
+        menuView.addSubview(headerView)
+        menuView.addSubview(footerView)
+        NSLayoutConstraint.activate([
+            headerView.topAnchor.constraint(equalTo: menuView.topAnchor),
+            headerView.leadingAnchor.constraint(equalTo: menuView.leadingAnchor),
+            headerView.trailingAnchor.constraint(equalTo: menuView.trailingAnchor),
+            headerView.heightAnchor.constraint(equalToConstant: headerViewHeight),
+            
+            mainView.topAnchor.constraint(equalTo: headerView.bottomAnchor),
+            mainView.leadingAnchor.constraint(equalTo: menuView.leadingAnchor),
+            mainView.trailingAnchor.constraint(equalTo: menuView.trailingAnchor),
+            mainView.bottomAnchor.constraint(equalTo: footerView.topAnchor),
+            
+            footerView.leadingAnchor.constraint(equalTo: menuView.leadingAnchor),
+            footerView.trailingAnchor.constraint(equalTo: menuView.trailingAnchor),
+            footerView.heightAnchor.constraint(equalToConstant: footerViewHeight),
+            footerView.bottomAnchor.constraint(equalTo: menuView.bottomAnchor)
         ])
         
         // MARK: - GESTURE

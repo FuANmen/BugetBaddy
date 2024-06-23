@@ -360,7 +360,7 @@ class TotalDetailView: UIView {
         
         self.layoutIfNeeded()
         
-        let contentHeight = max(self.frame.height + 100, expenseTableAria.frame.maxY + 100)
+        let contentHeight = max(UIScreen.main.bounds.height + 40, expenseTableAria.frame.maxY + 80)
         self.delegate!.updatedTotalDetailViewHeight(viewHeight: contentHeight)
     }
     

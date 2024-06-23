@@ -96,7 +96,7 @@ class MonthlyViewController: UIViewController {
     }()
     
     // TOP
-    private let topViewHeight: CGFloat = 140
+    private let topViewHeight: CGFloat = 150
     private let topView: UIView = {
         let view = UIView()
         view.layer.masksToBounds = false
@@ -135,11 +135,6 @@ class MonthlyViewController: UIViewController {
         label.textColor = .systemGray6
         label.tag = 2
         return label
-    }()
-    
-    private var transferLogsView: TransferLogsDetailView = {
-        let view = TransferLogsDetailView()
-        return view
     }()
     
     private var goalsViewLeadingConstraint: NSLayoutConstraint?
@@ -338,10 +333,6 @@ class MonthlyViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        if let tabBar = self.tabBarController as? MainTabBarController {
-            updatePreview(to: tabBar.monthlyVC_preview)
-        }
-        
         updateTotalGoal()
         updateButtonState()
     }
@@ -370,7 +361,6 @@ class MonthlyViewController: UIViewController {
         // view
         view.addSubview(scrollView)
         scrollView.addSubview(topView)
-        scrollView.addSubview(transferLogsView)
         scrollView.addSubview(goalsView)
         scrollView.addSubview(totalDetailView)
         scrollView.addSubview(horizonView)
@@ -384,7 +374,6 @@ class MonthlyViewController: UIViewController {
         
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         topView.translatesAutoresizingMaskIntoConstraints = false
-        transferLogsView.translatesAutoresizingMaskIntoConstraints = false
         goalsView.translatesAutoresizingMaskIntoConstraints = false
         totalDetailView.translatesAutoresizingMaskIntoConstraints = false
         horizonView.translatesAutoresizingMaskIntoConstraints = false
@@ -444,7 +433,7 @@ class MonthlyViewController: UIViewController {
         topAria.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            topAria.topAnchor.constraint(equalTo: topView.topAnchor, constant: 12),
+            topAria.topAnchor.constraint(equalTo: topView.topAnchor, constant: 22),
             topAria.leadingAnchor.constraint(equalTo: topView.leadingAnchor, constant: 36),
             topAria.trailingAnchor.constraint(equalTo: topView.trailingAnchor, constant: -36),
             topAria.heightAnchor.constraint(equalToConstant: topAriaHeight),
@@ -585,9 +574,22 @@ class MonthlyViewController: UIViewController {
     
     private func updateDatas() {
         self.updateTotalGoal()
-        self.transferLogsView.configure(targetMonth: self.targetMonth)
-        self.goalsView.configure(targetMonth: self.targetMonth)
-        self.totalDetailView.configure(targetMonth: self.targetMonth)
+        switch preview {
+        case .goalsView :
+            self.goalsView.configure(targetMonth: self.targetMonth)
+        case.totalDetail :
+            self.totalDetailView.configure(targetMonth: self.targetMonth)
+        }
+    }
+    
+    private func updateNavigationTitle() {
+        let offset = scrollView.contentOffset.y
+
+        if offset > topViewHeight / 2 {
+            self.navigationItem.title = String("\(self.targetMonth.suffix(2))\(NSLocalizedString("month", comment: "")) \(NSLocalizedString("Remaining", comment: "")): \(formatCurrency(amount: totalGoal!.getBalance()))")
+        } else {
+            self.navigationItem.title = ""
+        }
     }
     
     // MARK: - ActionEvent
@@ -690,23 +692,15 @@ class MonthlyViewController: UIViewController {
 // MARK: - NAVIGATIONVIEW
 extension MonthlyViewController: UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        let offset = scrollView.contentOffset.y
-
-        if offset > topViewHeight / 2 {
-            self.navigationItem.title = "新しいタイトル"
-        } else {
-            self.navigationItem.title = "元のタイトル"
-        }
+        self.updateNavigationTitle()
     }
 }
 
 // MARK: - GoalsViewDelegate
 extension MonthlyViewController: GoalsViewDelegate {
     internal func updatedGoalsViewHeight(viewHeight: CGFloat) {
-        let contentSize = scrollView
-        let contentHeight = self.horizonView.frame.maxY + viewHeight
-        self.goalsViewHeightConstraint?.constant = contentHeight
-        self.updateScrollViewContentHeight(height: contentHeight)
+        self.goalsViewHeightConstraint?.constant = viewHeight
+        self.updateScrollViewContentHeight(height: self.horizonView.frame.maxY + viewHeight)
     }
     
     internal func addGoalButtonTapped() {
@@ -733,10 +727,8 @@ extension MonthlyViewController: GoalDetailViewDelegate {
 // MARK: - TotalDetailView
 extension MonthlyViewController: TotalDetailDelegate {
     internal func updatedTotalDetailViewHeight(viewHeight: CGFloat) {
-        let contentSize = scrollView
-        let contentHeight = self.horizonView.frame.maxY + viewHeight
-        self.totalDetailViewHeightConstraint?.constant = contentHeight
-        self.updateScrollViewContentHeight(height: contentHeight)
+        self.totalDetailViewHeightConstraint?.constant = viewHeight
+        self.updateScrollViewContentHeight(height: self.horizonView.frame.maxY + viewHeight)
     }
     
     internal func addBreakdownTapped() {

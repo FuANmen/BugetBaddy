@@ -14,8 +14,6 @@
 		A60BF19D2B19A06F00AE0B78 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A60BF19C2B19A06F00AE0B78 /* Assets.xcassets */; };
 		A60BF1A02B19A06F00AE0B78 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A60BF19E2B19A06F00AE0B78 /* LaunchScreen.storyboard */; };
 		A60BF1AD2B19A18200AE0B78 /* Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = A60BF1AC2B19A18200AE0B78 /* Transaction.swift */; };
-		A60BF1B12B19CA7500AE0B78 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A60BF1B02B19CA7500AE0B78 /* MainTabBarController.swift */; };
-		A60BF1B32B19CC9200AE0B78 /* DashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A60BF1B22B19CC9200AE0B78 /* DashboardViewController.swift */; };
 		A60BF1B52B19CEFD00AE0B78 /* MonthlyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A60BF1B42B19CEFD00AE0B78 /* MonthlyViewController.swift */; };
 		A60BF1B72B19CF3100AE0B78 /* Goal.swift in Sources */ = {isa = PBXBuildFile; fileRef = A60BF1B62B19CF3100AE0B78 /* Goal.swift */; };
 		A60BF1B92B1B7AED00AE0B78 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = A60BF1B82B1B7AED00AE0B78 /* Category.swift */; };
@@ -23,6 +21,7 @@
 		A60E95A42BEB371600711820 /* SelectTargetMonthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A60E95A32BEB371600711820 /* SelectTargetMonthView.swift */; };
 		A60E95A62BEE05A600711820 /* DeleteGoalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A60E95A52BEE05A600711820 /* DeleteGoalView.swift */; };
 		A6167CD42C26F03A0099EFA7 /* HamburgerMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6167CD32C26F03A0099EFA7 /* HamburgerMenuViewController.swift */; };
+		A6167CD72C2714450099EFA7 /* TransactionEditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6167CD62C2714450099EFA7 /* TransactionEditorViewController.swift */; };
 		A61984CB2B1EA28800A05A69 /* CategoryDao.swift in Sources */ = {isa = PBXBuildFile; fileRef = A61984CA2B1EA28800A05A69 /* CategoryDao.swift */; };
 		A61984CD2B1EA30600A05A69 /* GoalDao.swift in Sources */ = {isa = PBXBuildFile; fileRef = A61984CC2B1EA30600A05A69 /* GoalDao.swift */; };
 		A6198DDB2B5AD79C00B400BA /* HCollectionPickerViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6198DDA2B5AD79C00B400BA /* HCollectionPickerViewCell.swift */; };
@@ -31,8 +30,6 @@
 		A62B99872BFF07090018A12C /* TotalDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A62B99862BFF07090018A12C /* TotalDetailView.swift */; };
 		A62B998B2BFF34000018A12C /* TotalTransactionTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A62B998A2BFF34000018A12C /* TotalTransactionTableCell.swift */; };
 		A62B998E2BFF36170018A12C /* BreakdownEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A62B998D2BFF36170018A12C /* BreakdownEditorView.swift */; };
-		A62B99912C00BED40018A12C /* TransferLogsDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A62B99902C00BED40018A12C /* TransferLogsDetailView.swift */; };
-		A62B99972C00CAAE0018A12C /* TransferLogsTableSectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = A62B99962C00CAAE0018A12C /* TransferLogsTableSectionHeader.swift */; };
 		A62B99992C00D0810018A12C /* TransferLogTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A62B99982C00D0810018A12C /* TransferLogTableCell.swift */; };
 		A62B999B2C01CBC50018A12C /* OtherGoalItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A62B999A2C01CBC50018A12C /* OtherGoalItemCell.swift */; };
 		A643F2722B35196000FA453D /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = A643F2742B35196000FA453D /* Localizable.strings */; };
@@ -59,11 +56,6 @@
 		A68DCFC32BA2825D0035AA23 /* CarryForwardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A68DCFC22BA2825D0035AA23 /* CarryForwardCell.swift */; };
 		A68E39A72BE0ED260018A505 /* TransferLogDao.swift in Sources */ = {isa = PBXBuildFile; fileRef = A68E39A62BE0ED260018A505 /* TransferLogDao.swift */; };
 		A68E39A92BE213210018A505 /* CreateCategoryDialogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A68E39A82BE213210018A505 /* CreateCategoryDialogView.swift */; };
-		A692B0D72C08586900620711 /* AlertCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A692B0D62C08586900620711 /* AlertCollectionCell.swift */; };
-		A692B0DA2C08ADAE00620711 /* AlertAriaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A692B0D92C08ADAE00620711 /* AlertAriaView.swift */; };
-		A692B0DC2C08B49D00620711 /* DataAriaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A692B0DB2C08B49D00620711 /* DataAriaView.swift */; };
-		A692B0DE2C09912F00620711 /* SettingAriaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A692B0DD2C09912F00620711 /* SettingAriaView.swift */; };
-		A692B0E02C09925D00620711 /* BackupAriaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A692B0DF2C09925D00620711 /* BackupAriaView.swift */; };
 		A6A0D9322B37137F00395E51 /* CategorysSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6A0D9312B37137F00395E51 /* CategorysSettingViewController.swift */; };
 		A6A0D9342B3724D400395E51 /* CategorysSettingViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6A0D9332B3724D300395E51 /* CategorysSettingViewCell.swift */; };
 		A6B1D5D52B235AAA0076D3BF /* ShowAlerts.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6B1D5D42B235AAA0076D3BF /* ShowAlerts.swift */; };
@@ -73,9 +65,7 @@
 		A6D659272BA72C44008029DC /* back.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A6D659262BA72C44008029DC /* back.jpg */; };
 		A6D659292BAD5C39008029DC /* ShowInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6D659282BAD5C39008029DC /* ShowInfoView.swift */; };
 		A6DF96622B80F8EC00982144 /* GoalItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6DF96612B80F8EC00982144 /* GoalItemCell.swift */; };
-		A6DF96642B81976700982144 /* TransactionEditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6DF96632B81976700982144 /* TransactionEditorViewController.swift */; };
 		A6DFB2C12B47B6DD001C167C /* KeyboardScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6DFB2C02B47B6DD001C167C /* KeyboardScrollView.swift */; };
-		A6E96F862B93317C001AD486 /* BankAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6E96F852B93317C001AD486 /* BankAccountViewController.swift */; };
 		A6ED251C2BEF859E002DE2DC /* SettingGoalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6ED251B2BEF859E002DE2DC /* SettingGoalViewController.swift */; };
 		A6ED251F2BEF90F2002DE2DC /* SwitchTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6ED251E2BEF90F2002DE2DC /* SwitchTableCell.swift */; };
 		A6ED25212BEFAC14002DE2DC /* UserSetTransferLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6ED25202BEFAC14002DE2DC /* UserSetTransferLog.swift */; };
@@ -101,8 +91,6 @@
 		A60BF19F2B19A06F00AE0B78 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A60BF1A12B19A06F00AE0B78 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A60BF1AC2B19A18200AE0B78 /* Transaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transaction.swift; sourceTree = "<group>"; };
-		A60BF1B02B19CA7500AE0B78 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
-		A60BF1B22B19CC9200AE0B78 /* DashboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewController.swift; sourceTree = "<group>"; };
 		A60BF1B42B19CEFD00AE0B78 /* MonthlyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthlyViewController.swift; sourceTree = "<group>"; };
 		A60BF1B62B19CF3100AE0B78 /* Goal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Goal.swift; sourceTree = "<group>"; };
 		A60BF1B82B1B7AED00AE0B78 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
@@ -110,6 +98,9 @@
 		A60E95A32BEB371600711820 /* SelectTargetMonthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectTargetMonthView.swift; sourceTree = "<group>"; };
 		A60E95A52BEE05A600711820 /* DeleteGoalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteGoalView.swift; sourceTree = "<group>"; };
 		A6167CD32C26F03A0099EFA7 /* HamburgerMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HamburgerMenuViewController.swift; sourceTree = "<group>"; };
+		A6167CD62C2714450099EFA7 /* TransactionEditorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TransactionEditorViewController.swift; path = ../../../../../../Desktop/TransactionEditorViewController.swift; sourceTree = "<group>"; };
+		A6167CD92C2714540099EFA7 /* TransactionEditorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionEditorViewController.swift; sourceTree = "<group>"; };
+		A6167CDA2C2714720099EFA7 /* TransactionEditorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TransactionEditorViewController.swift; path = ../../../../../../../Desktop/TransactionEditorViewController.swift; sourceTree = "<group>"; };
 		A61984CA2B1EA28800A05A69 /* CategoryDao.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryDao.swift; sourceTree = "<group>"; };
 		A61984CC2B1EA30600A05A69 /* GoalDao.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalDao.swift; sourceTree = "<group>"; };
 		A6198DDA2B5AD79C00B400BA /* HCollectionPickerViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HCollectionPickerViewCell.swift; sourceTree = "<group>"; };
@@ -118,8 +109,6 @@
 		A62B99862BFF07090018A12C /* TotalDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TotalDetailView.swift; sourceTree = "<group>"; };
 		A62B998A2BFF34000018A12C /* TotalTransactionTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TotalTransactionTableCell.swift; sourceTree = "<group>"; };
 		A62B998D2BFF36170018A12C /* BreakdownEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreakdownEditorView.swift; sourceTree = "<group>"; };
-		A62B99902C00BED40018A12C /* TransferLogsDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransferLogsDetailView.swift; sourceTree = "<group>"; };
-		A62B99962C00CAAE0018A12C /* TransferLogsTableSectionHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransferLogsTableSectionHeader.swift; sourceTree = "<group>"; };
 		A62B99982C00D0810018A12C /* TransferLogTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransferLogTableCell.swift; sourceTree = "<group>"; };
 		A62B999A2C01CBC50018A12C /* OtherGoalItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherGoalItemCell.swift; sourceTree = "<group>"; };
 		A643F2732B35196000FA453D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -149,11 +138,6 @@
 		A68DCFC22BA2825D0035AA23 /* CarryForwardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarryForwardCell.swift; sourceTree = "<group>"; };
 		A68E39A62BE0ED260018A505 /* TransferLogDao.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransferLogDao.swift; sourceTree = "<group>"; };
 		A68E39A82BE213210018A505 /* CreateCategoryDialogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateCategoryDialogView.swift; sourceTree = "<group>"; };
-		A692B0D62C08586900620711 /* AlertCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertCollectionCell.swift; sourceTree = "<group>"; };
-		A692B0D92C08ADAE00620711 /* AlertAriaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertAriaView.swift; sourceTree = "<group>"; };
-		A692B0DB2C08B49D00620711 /* DataAriaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataAriaView.swift; sourceTree = "<group>"; };
-		A692B0DD2C09912F00620711 /* SettingAriaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingAriaView.swift; sourceTree = "<group>"; };
-		A692B0DF2C09925D00620711 /* BackupAriaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackupAriaView.swift; sourceTree = "<group>"; };
 		A6A0D9312B37137F00395E51 /* CategorysSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategorysSettingViewController.swift; sourceTree = "<group>"; };
 		A6A0D9332B3724D300395E51 /* CategorysSettingViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategorysSettingViewCell.swift; sourceTree = "<group>"; };
 		A6B1D5D42B235AAA0076D3BF /* ShowAlerts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowAlerts.swift; sourceTree = "<group>"; };
@@ -163,9 +147,7 @@
 		A6D659262BA72C44008029DC /* back.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = back.jpg; path = ../../../../../../Downloads/back.jpg; sourceTree = "<group>"; };
 		A6D659282BAD5C39008029DC /* ShowInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowInfoView.swift; sourceTree = "<group>"; };
 		A6DF96612B80F8EC00982144 /* GoalItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalItemCell.swift; sourceTree = "<group>"; };
-		A6DF96632B81976700982144 /* TransactionEditorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionEditorViewController.swift; sourceTree = "<group>"; };
 		A6DFB2C02B47B6DD001C167C /* KeyboardScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardScrollView.swift; sourceTree = "<group>"; };
-		A6E96F852B93317C001AD486 /* BankAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BankAccountViewController.swift; sourceTree = "<group>"; };
 		A6ED251B2BEF859E002DE2DC /* SettingGoalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingGoalViewController.swift; sourceTree = "<group>"; };
 		A6ED251E2BEF90F2002DE2DC /* SwitchTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchTableCell.swift; sourceTree = "<group>"; };
 		A6ED25202BEFAC14002DE2DC /* UserSetTransferLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSetTransferLog.swift; sourceTree = "<group>"; };
@@ -279,65 +261,21 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
-		A60E95912BE523D500711820 /* MainTabbar */ = {
-			isa = PBXGroup;
-			children = (
-				A60BF1B02B19CA7500AE0B78 /* MainTabBarController.swift */,
-				A60E95922BE523F300711820 /* TabItems */,
-			);
-			path = MainTabbar;
-			sourceTree = "<group>";
-		};
-		A60E95922BE523F300711820 /* TabItems */ = {
-			isa = PBXGroup;
-			children = (
-				A60E95932BE5242E00711820 /* Home */,
-				A60E95942BE5244100711820 /* Transaction */,
-				A60E95952BE5247B00711820 /* Goal */,
-				A60E95962BE5248D00711820 /* BankAccount */,
-				A60E95972BE5249D00711820 /* Setting */,
-			);
-			path = TabItems;
-			sourceTree = "<group>";
-		};
-		A60E95932BE5242E00711820 /* Home */ = {
-			isa = PBXGroup;
-			children = (
-				A60BF1B22B19CC9200AE0B78 /* DashboardViewController.swift */,
-				A692B0D82C08AD9D00620711 /* View */,
-				A692B0D52C08584A00620711 /* CollectionCell */,
-			);
-			path = Home;
-			sourceTree = "<group>";
-		};
-		A60E95942BE5244100711820 /* Transaction */ = {
-			isa = PBXGroup;
-			children = (
-				A6DF96632B81976700982144 /* TransactionEditorViewController.swift */,
-			);
-			path = Transaction;
-			sourceTree = "<group>";
-		};
 		A60E95952BE5247B00711820 /* Goal */ = {
 			isa = PBXGroup;
 			children = (
-				A60E959F2BE5276200711820 /* Top */,
+				A6167CD62C2714450099EFA7 /* TransactionEditorViewController.swift */,
+				A6167CD52C2712F00099EFA7 /* HamburgerMenuView */,
+				A60E959F2BE5276200711820 /* MonthlyView */,
 				A60E959D2BE5267A00711820 /* GoalDetail */,
 				A60E959C2BE525DD00711820 /* CreateGoal */,
-				A6167CD32C26F03A0099EFA7 /* HamburgerMenuViewController.swift */,
+				A6167CD82C27144A0099EFA7 /* TransactionEditorView */,
+				A60E95972BE5249D00711820 /* SettingView */,
 			);
 			path = Goal;
 			sourceTree = "<group>";
 		};
-		A60E95962BE5248D00711820 /* BankAccount */ = {
-			isa = PBXGroup;
-			children = (
-				A6E96F852B93317C001AD486 /* BankAccountViewController.swift */,
-			);
-			path = BankAccount;
-			sourceTree = "<group>";
-		};
-		A60E95972BE5249D00711820 /* Setting */ = {
+		A60E95972BE5249D00711820 /* SettingView */ = {
 			isa = PBXGroup;
 			children = (
 				A60E95A12BE9E16800711820 /* SettingsViewController.swift */,
@@ -345,13 +283,13 @@
 				A643F2842B3674BB00FA453D /* MonthlyDefaultManagementAmountViewController.swift */,
 				A6A0D9312B37137F00395E51 /* CategorysSettingViewController.swift */,
 			);
-			path = Setting;
+			path = SettingView;
 			sourceTree = "<group>";
 		};
 		A60E959A2BE525A800711820 /* Main */ = {
 			isa = PBXGroup;
 			children = (
-				A60E95912BE523D500711820 /* MainTabbar */,
+				A60E95952BE5247B00711820 /* Goal */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -376,14 +314,31 @@
 			path = GoalDetail;
 			sourceTree = "<group>";
 		};
-		A60E959F2BE5276200711820 /* Top */ = {
+		A60E959F2BE5276200711820 /* MonthlyView */ = {
 			isa = PBXGroup;
 			children = (
 				A60BF1B42B19CEFD00AE0B78 /* MonthlyViewController.swift */,
 				A6C3F8DF2C06C6B800A888DA /* View */,
 				A62B998C2BFF35F40018A12C /* Dialog */,
 			);
-			path = Top;
+			path = MonthlyView;
+			sourceTree = "<group>";
+		};
+		A6167CD52C2712F00099EFA7 /* HamburgerMenuView */ = {
+			isa = PBXGroup;
+			children = (
+				A6167CD32C26F03A0099EFA7 /* HamburgerMenuViewController.swift */,
+			);
+			path = HamburgerMenuView;
+			sourceTree = "<group>";
+		};
+		A6167CD82C27144A0099EFA7 /* TransactionEditorView */ = {
+			isa = PBXGroup;
+			children = (
+				A6167CDA2C2714720099EFA7 /* TransactionEditorViewController.swift */,
+				A6167CD92C2714540099EFA7 /* TransactionEditorViewController.swift */,
+			);
+			path = TransactionEditorView;
 			sourceTree = "<group>";
 		};
 		A62B99882BFF17590018A12C /* Breakdown */ = {
@@ -410,23 +365,6 @@
 				A62B998D2BFF36170018A12C /* BreakdownEditorView.swift */,
 			);
 			path = Dialog;
-			sourceTree = "<group>";
-		};
-		A62B998F2C00BD780018A12C /* TransferLogsDetail */ = {
-			isa = PBXGroup;
-			children = (
-				A62B99902C00BED40018A12C /* TransferLogsDetailView.swift */,
-				A62B99952C00CA770018A12C /* TableViewSection */,
-			);
-			path = TransferLogsDetail;
-			sourceTree = "<group>";
-		};
-		A62B99952C00CA770018A12C /* TableViewSection */ = {
-			isa = PBXGroup;
-			children = (
-				A62B99962C00CAAE0018A12C /* TransferLogsTableSectionHeader.swift */,
-			);
-			path = TableViewSection;
 			sourceTree = "<group>";
 		};
 		A643F2782B351A5C00FA453D /* Resource */ = {
@@ -482,25 +420,6 @@
 			path = UITableViewCells;
 			sourceTree = "<group>";
 		};
-		A692B0D52C08584A00620711 /* CollectionCell */ = {
-			isa = PBXGroup;
-			children = (
-				A692B0D62C08586900620711 /* AlertCollectionCell.swift */,
-			);
-			path = CollectionCell;
-			sourceTree = "<group>";
-		};
-		A692B0D82C08AD9D00620711 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				A692B0D92C08ADAE00620711 /* AlertAriaView.swift */,
-				A692B0DB2C08B49D00620711 /* DataAriaView.swift */,
-				A692B0DD2C09912F00620711 /* SettingAriaView.swift */,
-				A692B0DF2C09925D00620711 /* BackupAriaView.swift */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
 		A6A6EF282BFB154B00D6E402 /* TransferLog */ = {
 			isa = PBXGroup;
 			children = (
@@ -530,7 +449,6 @@
 			isa = PBXGroup;
 			children = (
 				A62B99842BFE2C650018A12C /* GoalsView.swift */,
-				A62B998F2C00BD780018A12C /* TransferLogsDetail */,
 				A62B99862BFF07090018A12C /* TotalDetailView.swift */,
 			);
 			path = View;
@@ -728,7 +646,6 @@
 				A6ED25212BEFAC14002DE2DC /* UserSetTransferLog.swift in Sources */,
 				A6B1D5D52B235AAA0076D3BF /* ShowAlerts.swift in Sources */,
 				A60BF1942B19A06C00AE0B78 /* AppDelegate.swift in Sources */,
-				A62B99972C00CAAE0018A12C /* TransferLogsTableSectionHeader.swift in Sources */,
 				A683234C2B1FE48D003D2F2E /* GoalDetailViewController.swift in Sources */,
 				A68C5E052B8EA74100963FD1 /* BreakdownTableCell.swift in Sources */,
 				A6ED25232BEFACE5002DE2DC /* UserSetTransferLogDao.swift in Sources */,
@@ -743,10 +660,8 @@
 				A643F27A2B355AFA00FA453D /* LanguageSelectionViewController.swift in Sources */,
 				A6198DDB2B5AD79C00B400BA /* HCollectionPickerViewCell.swift in Sources */,
 				A61984CB2B1EA28800A05A69 /* CategoryDao.swift in Sources */,
-				A6E96F862B93317C001AD486 /* BankAccountViewController.swift in Sources */,
 				A683234E2B1FE95C003D2F2E /* TransactionTableViewCell.swift in Sources */,
 				A62B99992C00D0810018A12C /* TransferLogTableCell.swift in Sources */,
-				A60BF1B12B19CA7500AE0B78 /* MainTabBarController.swift in Sources */,
 				A6F85ADA2B329AD0004B70CD /* LongTermSaving.swift in Sources */,
 				A6DF96622B80F8EC00982144 /* GoalItemCell.swift in Sources */,
 				A68E39A92BE213210018A505 /* CreateCategoryDialogView.swift in Sources */,
@@ -756,15 +671,14 @@
 				A68C5DF52B8B80B400963FD1 /* RealmClassCommon.swift in Sources */,
 				A6CCFE3E2B22C6BF00A30A0D /* TransactionDao.swift in Sources */,
 				A6460F052B936AFA002B07A1 /* UpdateCommon.swift in Sources */,
+				A6167CD72C2714450099EFA7 /* TransactionEditorViewController.swift in Sources */,
 				A60BF1962B19A06C00AE0B78 /* SceneDelegate.swift in Sources */,
-				A692B0E02C09925D00620711 /* BackupAriaView.swift in Sources */,
 				A60BF1B52B19CEFD00AE0B78 /* MonthlyViewController.swift in Sources */,
 				A68C5E032B8EA01400963FD1 /* BreakdownDao.swift in Sources */,
 				A6ED253A2BF205E9002DE2DC /* TranLogSourceGoalCell.swift in Sources */,
 				A6ED252A2BF096D8002DE2DC /* DetailLabelTableCell.swift in Sources */,
 				A6ED25352BF1C5D4002DE2DC /* GoalAlertSettingViewController.swift in Sources */,
 				A60BF1AD2B19A18200AE0B78 /* Transaction.swift in Sources */,
-				A62B99912C00BED40018A12C /* TransferLogsDetailView.swift in Sources */,
 				A6167CD42C26F03A0099EFA7 /* HamburgerMenuViewController.swift in Sources */,
 				A62B998E2BFF36170018A12C /* BreakdownEditorView.swift in Sources */,
 				A6487BB42B5183F400CAF47B /* MyUI.swift in Sources */,
@@ -773,18 +687,13 @@
 				A6A0D9342B3724D400395E51 /* CategorysSettingViewCell.swift in Sources */,
 				A670044E2B1E0DEE00EC50A4 /* PlusOrMinusSwitch.swift in Sources */,
 				A6B1D5D92B249DE80076D3BF /* AmountProcessings.swift in Sources */,
-				A692B0DE2C09912F00620711 /* SettingAriaView.swift in Sources */,
 				A6ED251F2BEF90F2002DE2DC /* SwitchTableCell.swift in Sources */,
-				A6DF96642B81976700982144 /* TransactionEditorViewController.swift in Sources */,
 				A6A0D9322B37137F00395E51 /* CategorysSettingViewController.swift in Sources */,
-				A692B0DA2C08ADAE00620711 /* AlertAriaView.swift in Sources */,
 				A6DFB2C12B47B6DD001C167C /* KeyboardScrollView.swift in Sources */,
 				A6ED25372BF1D091002DE2DC /* TextFieldCell.swift in Sources */,
-				A692B0D72C08586900620711 /* AlertCollectionCell.swift in Sources */,
 				A6D659292BAD5C39008029DC /* ShowInfoView.swift in Sources */,
 				A68E39A72BE0ED260018A505 /* TransferLogDao.swift in Sources */,
 				A6ED251C2BEF859E002DE2DC /* SettingGoalViewController.swift in Sources */,
-				A60BF1B32B19CC9200AE0B78 /* DashboardViewController.swift in Sources */,
 				A62B99852BFE2C650018A12C /* GoalsView.swift in Sources */,
 				A670044B2B1CA23300EC50A4 /* CategoryPickerTextField.swift in Sources */,
 				A60E95A62BEE05A600711820 /* DeleteGoalView.swift in Sources */,
@@ -796,7 +705,6 @@
 				A62B99872BFF07090018A12C /* TotalDetailView.swift in Sources */,
 				A6487BB72B51846300CAF47B /* MyProgressBar.swift in Sources */,
 				A62B998B2BFF34000018A12C /* TotalTransactionTableCell.swift in Sources */,
-				A692B0DC2C08B49D00620711 /* DataAriaView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

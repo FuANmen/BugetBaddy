@@ -3448,5 +3448,117 @@
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "80E488EE-0558-4CB2-8A8F-77C0C6DED597"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BudgetBuddy/Main/Goal/Top/MonthlyViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "22"
+            endingLineNumber = "22"
+            landmarkName = "targetMonth"
+            landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "7F09EB0F-F143-48D2-BC44-D1296B11D957"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BudgetBuddy/Main/Goal/HamburgerMenuView/HamburgerMenuViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "136"
+            endingLineNumber = "136"
+            landmarkName = "closeThisView()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "7F09EB0F-F143-48D2-BC44-D1296B11D957 - 37e4fdd33177cd8a"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "BudgetBuddy.HamburgerMenuViewController.closeThisView() -&gt; ()"
+                  moduleName = "BudgetBuddy"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/kensaku/Documents/GitHub/BugetBady/BudgetBuddy/Main/Goal/HamburgerMenuView/HamburgerMenuViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "107"
+                  endingLineNumber = "107"
+                  offsetFromSymbolStart = "218">
+               </Location>
+               <Location
+                  uuid = "7F09EB0F-F143-48D2-BC44-D1296B11D957 - adfe13d98e1389e9"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () -&gt; () in BudgetBuddy.HamburgerMenuViewController.closeThisView() -&gt; ()"
+                  moduleName = "BudgetBuddy"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/kensaku/Documents/GitHub/BugetBady/BudgetBuddy/Main/Goal/HamburgerMenuView/HamburgerMenuViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "108"
+                  endingLineNumber = "108"
+                  offsetFromSymbolStart = "36">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "CCF72ADF-F4EE-4334-9C85-D77F3B96636A"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BudgetBuddy/Main/Goal/HamburgerMenuView/HamburgerMenuViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "128"
+            endingLineNumber = "128"
+            landmarkName = "openThisView()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "CCF72ADF-F4EE-4334-9C85-D77F3B96636A - 45fcbb9af9e4b6cf"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "BudgetBuddy.HamburgerMenuViewController.openThisView() -&gt; ()"
+                  moduleName = "BudgetBuddy"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/kensaku/Documents/GitHub/BugetBady/BudgetBuddy/Main/Goal/HamburgerMenuView/HamburgerMenuViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "99"
+                  endingLineNumber = "99"
+                  offsetFromSymbolStart = "180">
+               </Location>
+               <Location
+                  uuid = "CCF72ADF-F4EE-4334-9C85-D77F3B96636A - 71bdbb2c94779184"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () -&gt; () in BudgetBuddy.HamburgerMenuViewController.openThisView() -&gt; ()"
+                  moduleName = "BudgetBuddy"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/kensaku/Documents/GitHub/BugetBady/BudgetBuddy/Main/Goal/HamburgerMenuView/HamburgerMenuViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "100"
+                  endingLineNumber = "100"
+                  offsetFromSymbolStart = "36">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
    </Breakpoints>
 </Bucket>

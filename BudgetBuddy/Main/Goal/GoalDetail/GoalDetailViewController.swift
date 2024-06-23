@@ -323,6 +323,9 @@ class GoalDetailViewController: UIViewController {
         appearance.configureWithOpaqueBackground()
         appearance.backgroundColor = .clear
         appearance.titleTextAttributes = [.foregroundColor: UIColor.white]
+        appearance.buttonAppearance.normal.titleTextAttributes = [.foregroundColor: UIColor.white]
+        appearance.buttonAppearance.highlighted.titleTextAttributes = [.foregroundColor: UIColor.lightGray]
+        self.navigationController?.navigationBar.tintColor = UIColor.white
         self.navigationController?.navigationBar.standardAppearance = appearance
         self.navigationController?.navigationBar.scrollEdgeAppearance = appearance
         self.navigationController?.navigationBar.compactAppearance = appearance
