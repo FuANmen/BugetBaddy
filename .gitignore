@@ -1,0 +1,39 @@
+# Xcode
+DerivedData/
+build/
+*.xcworkspace
+*.xcuserdata
+*.xcuserstate
+
+# CocoaPods
+Pods/
+Podfile.lock
+
+# Carthage
+Carthage/Build/
+
+# Swift Package Manager
+/.build
+/Package.resolved
+
+# Bundler
+/.bundle
+
+# fastlane
+/fastlane/report.xml
+/fastlane/Preview.html
+/fastlane/screenshots
+/fastlane/test_output
+*.lock
+
+# Archives
+*.xcarchive
+*.ipa
+*.app
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Secret keys
+GoogleService-Info.plist
