@@ -54,7 +54,7 @@ class LoginViewController: UIViewController {
         setupUI()
         
         emailTextField.text = "s.ke.marisa@gmail.com"
-        passwordTextField.text = "password"
+        passwordTextField.text = "K68k4839"
     }
     
     private func setupUI() {
@@ -118,23 +118,12 @@ class LoginViewController: UIViewController {
                     guard let userId = authResult?.user.uid else {
                         throw SomeError.error("ユーザIDの取得に失敗")
                     }
-                    UsersDao.fetchUserData(userId: userId) { user in
-                        do {
-                            if let user = user {
-                                // ログインとユーザ情報の取得が完了したら画面遷移
-                                self?.navigateToMainScreen(user: user)
-                            } else {
-                                throw SomeError.error("ユーザ情報の取得に失敗")
-                            }
-                        } catch SomeError.error(let message) {
-                            let alert = UIAlertController(title: NSLocalizedString("Error", comment: ""), message: message, preferredStyle: .alert)
-                            let ok = UIAlertAction(title: "OK", style: .default) { (action) in
-                                self?.dismiss(animated: true, completion: nil)
-                            }
-                            alert.addAction(ok)
-                            self?.present(alert, animated: true, completion: nil)
-                        } catch {
-                            return
+                    
+                    Task {
+                        if let user = await UsersDao.fetchUserData(userId: userId) {
+                            self!.navigateToMainScreen(user: user)
+                        } else {
+                            throw SomeError.error("ユーザ情報の取得に失敗")
                         }
                     }
                 } catch SomeError.error(let message) {

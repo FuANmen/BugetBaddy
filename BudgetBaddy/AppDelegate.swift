@@ -7,6 +7,7 @@
 
 import UIKit
 import FirebaseCore
+import FirebaseFirestore
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -31,11 +32,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             UserDefaults.standard.set(true, forKey: "isFirstLaunch")
             UserDefaults.standard.synchronize()
         }
-        // Firebase初期化
-        FirebaseApp.configure()
         
         // Test
         UserDefaults.standard.set("2024-4", forKey: "firstLaunchDate")
+        
+        // Firebaseの初期化
+        FirebaseApp.configure()
         
         // 初期表示Windowの設定
         window = UIWindow(frame: UIScreen.main.bounds)

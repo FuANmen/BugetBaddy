@@ -97,6 +97,36 @@
                   endingLineNumber = "92"
                   offsetFromSymbolStart = "324">
                </Location>
+               <Location
+                  uuid = "F8DB5FD9-F1B1-439B-8928-6C45D49706D2 - fd1bf7f0f84369e7"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "BudgetBaddy.SignUpViewController.signUpButtonTapped() -&gt; ()"
+                  moduleName = "BudgetBaddy"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/kensaku/Documents/GitHub/BugetBaddy/BudgetBaddy/UI/UIViewController/SignUpViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "92"
+                  endingLineNumber = "92"
+                  offsetFromSymbolStart = "83">
+               </Location>
+               <Location
+                  uuid = "F8DB5FD9-F1B1-439B-8928-6C45D49706D2 - fd1bf7f0f84369e7"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "BudgetBaddy.SignUpViewController.signUpButtonTapped() -&gt; ()"
+                  moduleName = "BudgetBaddy"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/kensaku/Documents/GitHub/BugetBaddy/BudgetBaddy/UI/UIViewController/SignUpViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "92"
+                  endingLineNumber = "92"
+                  offsetFromSymbolStart = "386">
+               </Location>
             </Locations>
          </BreakpointContent>
       </BreakpointProxy>
@@ -114,6 +144,38 @@
             endingLineNumber = "102"
             landmarkName = "signUpButtonTapped()"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "E449C5D9-6F11-4023-8A62-0B89B8B74BA0 - 1f830fb659436cb9"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Optional&lt;__C.FIRAuthDataResult&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in BudgetBaddy.SignUpViewController.signUpButtonTapped() -&gt; ()"
+                  moduleName = "BudgetBaddy"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/kensaku/Documents/GitHub/BugetBaddy/BudgetBaddy/UI/UIViewController/SignUpViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "102"
+                  endingLineNumber = "102"
+                  offsetFromSymbolStart = "176">
+               </Location>
+               <Location
+                  uuid = "E449C5D9-6F11-4023-8A62-0B89B8B74BA0 - 1f830fb659436cb9"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Optional&lt;__C.FIRAuthDataResult&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in BudgetBaddy.SignUpViewController.signUpButtonTapped() -&gt; ()"
+                  moduleName = "BudgetBaddy"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/kensaku/Documents/GitHub/BugetBaddy/BudgetBaddy/UI/UIViewController/SignUpViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "102"
+                  endingLineNumber = "102"
+                  offsetFromSymbolStart = "296">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -161,7 +223,257 @@
                   endingLineNumber = "102"
                   offsetFromSymbolStart = "176">
                </Location>
+               <Location
+                  uuid = "5A2FBB92-5A77-4D66-A7C9-C0C175BDDA88 - fd1bf7f0f84368ce"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "BudgetBaddy.SignUpViewController.signUpButtonTapped() -&gt; ()"
+                  moduleName = "BudgetBaddy"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/kensaku/Documents/GitHub/BugetBaddy/BudgetBaddy/UI/UIViewController/SignUpViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "99"
+                  endingLineNumber = "99"
+                  offsetFromSymbolStart = "1118">
+               </Location>
+               <Location
+                  uuid = "5A2FBB92-5A77-4D66-A7C9-C0C175BDDA88 - 1f830fb659436cb9"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Optional&lt;__C.FIRAuthDataResult&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in BudgetBaddy.SignUpViewController.signUpButtonTapped() -&gt; ()"
+                  moduleName = "BudgetBaddy"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/kensaku/Documents/GitHub/BugetBaddy/BudgetBaddy/UI/UIViewController/SignUpViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "102"
+                  endingLineNumber = "102"
+                  offsetFromSymbolStart = "296">
+               </Location>
             </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "CB368B72-8DDF-4E02-B41D-42BC6111877D"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BudgetBaddy/UI/UIViewController/LoginViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "113"
+            endingLineNumber = "113"
+            landmarkName = "loginButtonTapped()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "D856352B-D9F1-410D-9795-CBE7B9A675D4"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BudgetBaddy/UI/UIViewController/LoginViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "137"
+            endingLineNumber = "137"
+            landmarkName = "loginButtonTapped()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "DACC85DB-CB73-46CD-885D-3C9EC83CB982"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BudgetBaddy/UI/UIViewController/LoginViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "130"
+            endingLineNumber = "130"
+            landmarkName = "loginButtonTapped()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "2A7A63C1-2473-40E7-A75C-CBD975704FA1"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BudgetBaddy/UI/UIViewController/LoginViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "129"
+            endingLineNumber = "129"
+            landmarkName = "loginButtonTapped()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "2A7A63C1-2473-40E7-A75C-CBD975704FA1 - b99467175f73a650"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Optional&lt;__C.FIRAuthDataResult&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in BudgetBaddy.LoginViewController.loginButtonTapped() -&gt; ()"
+                  moduleName = "BudgetBaddy"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/kensaku/Documents/GitHub/BugetBaddy/BudgetBaddy/UI/UIViewController/LoginViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "140"
+                  endingLineNumber = "140"
+                  offsetFromSymbolStart = "905">
+               </Location>
+               <Location
+                  uuid = "2A7A63C1-2473-40E7-A75C-CBD975704FA1 - b99467175f73a650"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Optional&lt;__C.FIRAuthDataResult&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in BudgetBaddy.LoginViewController.loginButtonTapped() -&gt; ()"
+                  moduleName = "BudgetBaddy"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/kensaku/Documents/GitHub/BugetBaddy/BudgetBaddy/UI/UIViewController/LoginViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "140"
+                  endingLineNumber = "140"
+                  offsetFromSymbolStart = "1135">
+               </Location>
+               <Location
+                  uuid = "2A7A63C1-2473-40E7-A75C-CBD975704FA1 - b99467175f73a650"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Optional&lt;__C.FIRAuthDataResult&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in BudgetBaddy.LoginViewController.loginButtonTapped() -&gt; ()"
+                  moduleName = "BudgetBaddy"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/kensaku/Documents/GitHub/BugetBaddy/BudgetBaddy/UI/UIViewController/LoginViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "140"
+                  endingLineNumber = "140"
+                  offsetFromSymbolStart = "1790">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "BE95CB3A-25A6-4833-88A9-53DF800F6761"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BudgetBaddy/UI/UIViewController/LoginViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "122"
+            endingLineNumber = "122"
+            landmarkName = "loginButtonTapped()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "BE95CB3A-25A6-4833-88A9-53DF800F6761 - b99467175f73a4c5"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Optional&lt;__C.FIRAuthDataResult&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in BudgetBaddy.LoginViewController.loginButtonTapped() -&gt; ()"
+                  moduleName = "BudgetBaddy"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/kensaku/Documents/GitHub/BugetBaddy/BudgetBaddy/UI/UIViewController/LoginViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "121"
+                  endingLineNumber = "121"
+                  offsetFromSymbolStart = "922">
+               </Location>
+               <Location
+                  uuid = "BE95CB3A-25A6-4833-88A9-53DF800F6761 - d6c4ed19bc3ffbc1"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Optional&lt;BudgetBaddy.User&gt;) -&gt; () in closure #1 (Swift.Optional&lt;__C.FIRAuthDataResult&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in BudgetBaddy.LoginViewController.loginButtonTapped() -&gt; ()"
+                  moduleName = "BudgetBaddy"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/kensaku/Documents/GitHub/BugetBaddy/BudgetBaddy/UI/UIViewController/LoginViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "111"
+                  endingLineNumber = "111"
+                  offsetFromSymbolStart = "155">
+               </Location>
+               <Location
+                  uuid = "BE95CB3A-25A6-4833-88A9-53DF800F6761 - b99467175f73a4c5"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Optional&lt;__C.FIRAuthDataResult&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in BudgetBaddy.LoginViewController.loginButtonTapped() -&gt; ()"
+                  moduleName = "BudgetBaddy"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/kensaku/Documents/GitHub/BugetBaddy/BudgetBaddy/UI/UIViewController/LoginViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "121"
+                  endingLineNumber = "121"
+                  offsetFromSymbolStart = "684">
+               </Location>
+               <Location
+                  uuid = "BE95CB3A-25A6-4833-88A9-53DF800F6761 - 35c1dabe9b4a20fa"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Result&lt;BudgetBaddy.User, Swift.Error&gt;) -&gt; () in closure #1 (Swift.Optional&lt;__C.FIRAuthDataResult&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in BudgetBaddy.LoginViewController.loginButtonTapped() -&gt; ()"
+                  moduleName = "BudgetBaddy"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/kensaku/Documents/GitHub/BugetBaddy/BudgetBaddy/UI/UIViewController/LoginViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "111"
+                  endingLineNumber = "111"
+                  offsetFromSymbolStart = "80">
+               </Location>
+               <Location
+                  uuid = "BE95CB3A-25A6-4833-88A9-53DF800F6761 - 35c1dabe9b4a20fa"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Result&lt;BudgetBaddy.User, Swift.Error&gt;) -&gt; () in closure #1 (Swift.Optional&lt;__C.FIRAuthDataResult&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in BudgetBaddy.LoginViewController.loginButtonTapped() -&gt; ()"
+                  moduleName = "BudgetBaddy"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/kensaku/Documents/GitHub/BugetBaddy/BudgetBaddy/UI/UIViewController/LoginViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "111"
+                  endingLineNumber = "111"
+                  offsetFromSymbolStart = "164">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "CD327E77-87C0-43D1-A82A-5D45E84BE01C"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BudgetBaddy/Dao/UsersDao.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "25"
+            endingLineNumber = "25"
+            landmarkName = "saveUserData(userId:email:username:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

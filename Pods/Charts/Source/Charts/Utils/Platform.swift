@@ -216,18 +216,18 @@ types are aliased to either their UI* implementation (on iOS) or their NS* imple
 			self.setNeedsDisplay(self.bounds)
 		}
 
-		open var BACKGROUND_COLOR: NSUIColor?
+		open var backgroundColor: NSUIColor?
         {
             get
             {
-                return self.layer?.BACKGROUND_COLOR == nil
+                return self.layer?.backgroundColor == nil
                     ? nil
-                    : NSColor(cgColor: self.layer!.BACKGROUND_COLOR!)
+                    : NSColor(cgColor: self.layer!.backgroundColor!)
             }
             set
             {
                 self.wantsLayer = true
-                self.layer?.BACKGROUND_COLOR = newValue == nil ? nil : newValue!.cgColor
+                self.layer?.backgroundColor = newValue == nil ? nil : newValue!.cgColor
             }
         }
 

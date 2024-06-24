@@ -128,21 +128,13 @@ class SignUpViewController: UIViewController {
                 guard let userId = authResult?.user.uid else { return }
                 
                 // アカウントに紐づく情報の登録
-                UsersDao.saveUserData(userId: userId, email: email, username: username, completion: { success in
-                    if !success {
-                        print("ユーザ情報の登録に失敗")
-                        // 登録失敗時、アカウントを削除
-                        authResult?.user.delete { error in
-                            if let error = error {
-                                // アカウント削除失敗時の処理
-                                // TODO
-                                return
-                            }
-                        }
-                    } else {
+                Task {
+                    if await UsersDao.saveUserData(userId: userId, email: email, username: username) {
                         self.dismiss(animated: true)
+                    } else {
+                        throw SignUpError.error("ユーザ情報の取得に失敗")
                     }
-                })
+                }
             } catch SignUpError.error(let message) {
                 let alert = UIAlertController(title: NSLocalizedString("Error", comment: ""), message: message, preferredStyle: .alert)
                 let ok = UIAlertAction(title: "OK", style: .default) { (action) in

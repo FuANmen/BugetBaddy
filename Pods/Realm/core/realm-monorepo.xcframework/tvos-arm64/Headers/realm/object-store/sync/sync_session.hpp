@@ -22,12 +22,12 @@
 #include <realm/object-store/feature_checks.hpp>
 #include <realm/object-store/shared_realm.hpp>
 #include <realm/object-store/sync/generic_network_transport.hpp>
+#include <realm/sync/client_base.hpp>
 #include <realm/sync/config.hpp>
 #include <realm/sync/subscriptions.hpp>
 
 #include <realm/util/checked_mutex.hpp>
 #include <realm/util/future.hpp>
-#include <realm/util/optional.hpp>
 #include <realm/version_id.hpp>
 
 #include <mutex>
@@ -41,9 +41,8 @@ class SyncUser;
 
 namespace sync {
 class Session;
-struct SessionErrorInfo;
 class MigrationStore;
-}
+} // namespace sync
 
 namespace _impl {
 class RealmCoordinator;
@@ -55,12 +54,13 @@ public:
     using ProgressNotifierCallback = void(uint64_t transferred_bytes, uint64_t transferrable_bytes,
                                           double progress_estimate);
 
-    uint64_t register_callback(std::function<ProgressNotifierCallback>, NotifierType direction, bool is_streaming);
+    uint64_t register_callback(std::function<ProgressNotifierCallback>, NotifierType direction, bool is_streaming,
+                               int64_t pending_query_version);
     void unregister_callback(uint64_t);
 
     void set_local_version(uint64_t);
     void update(uint64_t downloaded, uint64_t downloadable, uint64_t uploaded, uint64_t uploadable,
-                uint64_t snapshot_version, double download_estimate = 1.0, double upload_estimate = 1.0);
+                uint64_t snapshot_version, double download_estimate, double upload_estimate, int64_t query_version);
 
 private:
     mutable std::mutex m_mutex;
@@ -74,18 +74,19 @@ private:
         double upload_estimate;
         double download_estimate;
         uint64_t snapshot_version;
+        int64_t query_version;
     };
 
     // A PODS encapsulating some information for progress notifier callbacks a binding
     // can register upon this session.
     struct NotifierPackage {
         std::function<ProgressNotifierCallback> notifier;
-        util::Optional<uint64_t> captured_transferrable;
         uint64_t snapshot_version;
         bool is_streaming;
         bool is_download;
-
-        util::UniqueFunction<void()> create_invocation(const Progress&, bool&);
+        int64_t pending_query_version = 0;
+        std::optional<uint64_t> captured_transferable;
+        util::UniqueFunction<void()> create_invocation(const Progress&, bool& is_expired);
     };
 
     // A counter used as a token to identify progress notifier callbacks registered on this session.
@@ -99,7 +100,7 @@ private:
     // event more up-to-date information isn't yet available.  FIXME: If we support transparent
     // client reset in the future, we might need to reset the progress state variables if the Realm
     // is rolled back.
-    util::Optional<Progress> m_current_progress;
+    std::optional<Progress> m_current_progress;
 
     std::unordered_map<uint64_t, NotifierPackage> m_packages;
 };
@@ -173,7 +174,7 @@ public:
     // Note that bindings should dispatch the callback onto a separate thread or queue
     // in order to avoid blocking the sync client.
     uint64_t register_progress_notifier(std::function<ProgressNotifierCallback>&&, ProgressDirection,
-                                        bool is_streaming);
+                                        bool is_streaming) REQUIRES(!m_state_mutex);
 
     // Unregister a previously registered notifier. If the token is invalid,
     // this method does nothing.
@@ -235,7 +236,7 @@ public:
 
     // The access token needs to periodically be refreshed and this is how to
     // let the sync session know to update it's internal copy.
-    void update_access_token(const std::string& signed_token) REQUIRES(!m_state_mutex, !m_config_mutex);
+    void update_access_token(std::string_view signed_token) REQUIRES(!m_state_mutex, !m_config_mutex);
 
     // Request an updated access token from this session's sync user.
     void initiate_access_token_refresh() REQUIRES(!m_config_mutex);
@@ -387,13 +388,13 @@ private:
                                                const RealmConfig& config, SyncManager* sync_manager)
     {
         REALM_ASSERT(config.sync_config);
-        return std::make_shared<SyncSession>(Private(), client, std::move(db), config, std::move(sync_manager));
+        return std::make_shared<SyncSession>(Private(), client, std::move(db), config, sync_manager);
     }
     // }
 
     std::shared_ptr<SyncManager> sync_manager() const REQUIRES(!m_state_mutex);
 
-    static util::UniqueFunction<void(util::Optional<app::AppError>)>
+    static util::UniqueFunction<void(std::optional<app::AppError>)>
     handle_refresh(const std::shared_ptr<SyncSession>&, bool);
 
     // Initialize or tear down the subscription store based on whether or not flx_sync_requested is true
@@ -405,10 +406,9 @@ private:
     void apply_sync_config_after_migration_or_rollback() REQUIRES(!m_config_mutex, !m_state_mutex);
     void save_sync_config_after_migration_or_rollback() REQUIRES(!m_config_mutex);
 
-    void download_fresh_realm(sync::ProtocolErrorInfo::Action server_requests_action)
+    void download_fresh_realm(const sync::SessionErrorInfo& error_info)
         REQUIRES(!m_config_mutex, !m_state_mutex, !m_connection_state_mutex);
-    void handle_fresh_realm_downloaded(DBRef db, Status status,
-                                       sync::ProtocolErrorInfo::Action server_requests_action,
+    void handle_fresh_realm_downloaded(DBRef db, Status result, const sync::SessionErrorInfo& cr_error_info,
                                        std::optional<sync::SubscriptionSet> new_subs = std::nullopt)
         REQUIRES(!m_state_mutex, !m_config_mutex, !m_connection_state_mutex);
     void handle_error(sync::SessionErrorInfo) REQUIRES(!m_state_mutex, !m_config_mutex, !m_connection_state_mutex);
@@ -421,7 +421,7 @@ private:
     void cancel_pending_waits(util::CheckedUniqueLock, Status) RELEASE(m_state_mutex);
     enum class ShouldBackup { yes, no };
     void update_error_and_mark_file_for_deletion(SyncError&, ShouldBackup) REQUIRES(m_state_mutex, !m_config_mutex);
-    void handle_progress_update(uint64_t, uint64_t, uint64_t, uint64_t, uint64_t, double, double);
+    void handle_progress_update(uint64_t, uint64_t, uint64_t, uint64_t, uint64_t, double, double, int64_t);
     void handle_new_flx_sync_query(int64_t version);
 
     void nonsync_transact_notify(VersionID::version_type) REQUIRES(!m_state_mutex);
@@ -503,8 +503,7 @@ private:
     std::shared_ptr<SyncConfig> m_migrated_sync_config GUARDED_BY(m_config_mutex);
     const std::shared_ptr<sync::MigrationStore> m_migration_store;
     std::optional<int64_t> m_migration_sentinel_query_version GUARDED_BY(m_state_mutex);
-    sync::ProtocolErrorInfo::Action
-        m_server_requests_action GUARDED_BY(m_state_mutex) = sync::ProtocolErrorInfo::Action::NoAction;
+    std::optional<sync::SessionErrorInfo> m_client_reset_error GUARDED_BY(m_state_mutex);
     DBRef m_client_reset_fresh_copy GUARDED_BY(m_state_mutex);
     _impl::SyncClient& m_client;
     SyncManager* m_sync_manager GUARDED_BY(m_state_mutex) = nullptr;

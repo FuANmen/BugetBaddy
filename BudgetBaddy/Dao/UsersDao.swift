@@ -8,40 +8,31 @@
 import FirebaseFirestore
 
 class UsersDao {
-    static func fetchUserData(userId: String, completion: @escaping (User?) -> Void){
+    static func fetchUserData(userId: String) async -> User? {
         let db = Firestore.firestore()
-        db.collection("users").document(userId).getDocument { (document, error) in
-            if let error = error {
-                print("ユーザーデータの取得に失敗しました: \(error.localizedDescription)")
-                completion(nil)
-                return
+        do {
+            let document = try await db.collection("users").document(userId).getDocument()
+            guard let data = document.data() else {
+                return nil
             }
-            
-            guard let document = document, document.exists, var data = document.data() else {
-                print("ユーザーデータが見つかりませんでした")
-                completion(nil)
-                return
-            }
-            
-            data["userId"] = userId
-            completion(User(dictionary: data))
-            return
+            return User(dictionary: data)
+        } catch {
+            return nil
         }
     }
     
-    static func saveUserData(userId: String, email: String, username: String, completion: @escaping (Bool) -> Void) {
+    static func saveUserData(userId: String, email: String, username: String) async -> Bool {
         let db = Firestore.firestore()
-        db.collection("users").document(userId).setData([
-            "userId": userId,
-            "email": email,
-            "username": username,
-            "created_at": Timestamp(date: Date())
-        ]) { error in
-            if let error = error {
-                completion(false)
-            } else {
-                completion(true)
-            }
+        do {
+            let ref: Void = try await db.collection("users").document(userId).setData([
+                "userId": userId,
+                "email": email,
+                "username": username,
+                "created_at": Timestamp(date: Date())
+            ])
+            return true
+        } catch {
+            return false
         }
     }
 }

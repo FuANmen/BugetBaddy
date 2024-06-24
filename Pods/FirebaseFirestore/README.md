@@ -1,297 +1,102 @@
-<p align="center">
-  <a href="https://cocoapods.org/pods/Firebase">
-    <img src="https://img.shields.io/github/v/release/Firebase/firebase-ios-sdk?style=flat&label=CocoaPods"/>
-  </a>
-  <a href="https://swiftpackageindex.com/firebase/firebase-ios-sdk">
-    <img src="https://img.shields.io/github/v/release/Firebase/firebase-ios-sdk?style=flat&label=Swift%20Package%20Index&color=red"/>
-  </a>
-  <a href="https://cocoapods.org/pods/Firebase">
-    <img src="https://img.shields.io/github/license/Firebase/firebase-ios-sdk?style=flat"/>
-  </a><br/>
-  <a href="https://swiftpackageindex.com/firebase/firebase-ios-sdk">
-    <img src="https://img.shields.io/endpoint?url=https%3A%2F%2Fswiftpackageindex.com%2Fapi%2Fpackages%2Ffirebase%2Ffirebase-ios-sdk%2Fbadge%3Ftype%3Dplatforms"/>
-  </a>
-  <a href="https://swiftpackageindex.com/firebase/firebase-ios-sdk">
-    <img src="https://img.shields.io/endpoint?url=https%3A%2F%2Fswiftpackageindex.com%2Fapi%2Fpackages%2Ffirebase%2Ffirebase-ios-sdk%2Fbadge%3Ftype%3Dswift-versions"/>
-  </a>
-</p>
+# Firestore iOS SDK Binary Distribution
 
-# Firebase Apple Open Source Development
+Precompiled Firestore iOS SDK `xcframework` files extracted from the Firebase iOS SDK repository release downloads, tagged by Firebase iOS SDK version and presented as a consumable `podspec`.
 
-This repository contains the source code for all Apple platform Firebase SDKs except FirebaseAnalytics.
+## Why
 
-Firebase is an app development platform with tools to help you build, grow, and
-monetize your app. More information about Firebase can be found on the
-[official Firebase website](https://firebase.google.com).
+Currently the Firestore iOS SDK depends on some 500k lines of mostly C++, which when compiling as part of your Xcode build takes a long time - even more so in CI environments.
 
-## Installation
+**Related Issues**
 
-See the subsections below for details about the different installation methods. Where
-available, it's recommended to install any libraries with a `Swift` suffix to get the
-best experience when writing your app in Swift.
+- [firebase/firebase-ios-sdk](https://github.com/firebase/firebase-ios-sdk)
+  - [#4284](https://github.com/firebase/firebase-ios-sdk/issues/4284) `Adding FirebaseFirestore pod dependency adds minutes to build time`
+- [FirebaseExtended/flutterfire](https://github.com/FirebaseExtended/flutterfire)
+  - [#349](https://github.com/FirebaseExtended/flutterfire/issues/349) `[cloud_firestore] Xcode build extremely slow`
 
-1. [Standard pod install](#standard-pod-install)
-2. [Swift Package Manager](#swift-package-manager)
-3. [Installing from the GitHub repo](#installing-from-github)
-4. [Experimental Carthage](#carthage-ios-only)
+### Before & After
 
-### Standard pod install
+Before and after timing below, timed when running Xcode build (with cache fully cleared) in a project with Firestore.
 
-For instructions on the standard pod install, visit:
-[https://firebase.google.com/docs/ios/setup](https://firebase.google.com/docs/ios/setup).
+**Mac mini (2018) 6 cores**:
 
-### Swift Package Manager
-
-Instructions for [Swift Package Manager](https://swift.org/package-manager/) support can be
-found in the [SwiftPackageManager.md](SwiftPackageManager.md) Markdown file.
-
-### Installing from GitHub
-
-These instructions can be used to access the Firebase repo at other branches,
-tags, or commits.
-
-#### Background
-
-See [the Podfile Syntax Reference](https://guides.cocoapods.org/syntax/podfile.html#pod)
-for instructions and options about overriding pod source locations.
-
-#### Accessing Firebase Source Snapshots
-
-All official releases are tagged in this repo and available via CocoaPods. To access a local
-source snapshot or unreleased branch, use Podfile directives like the following:
-
-To access FirebaseFirestore via a branch:
-```ruby
-pod 'FirebaseCore', :git => 'https://github.com/firebase/firebase-ios-sdk.git', :branch => 'main'
-pod 'FirebaseFirestore', :git => 'https://github.com/firebase/firebase-ios-sdk.git', :branch => 'main'
+```bash
+Before:    ~ 240s
+After:     ~  45s
 ```
 
-To access FirebaseMessaging via a checked-out version of the firebase-ios-sdk repo:
-```ruby
-pod 'FirebaseCore', :path => '/path/to/firebase-ios-sdk'
-pod 'FirebaseMessaging', :path => '/path/to/firebase-ios-sdk'
+**GitHub Action CI 2 cores**:
+
+```bash
+Before:    ~ 551s
+After:     ~ 174s
 ```
 
-### Carthage (iOS only)
+### Usage
 
-Instructions for the experimental Carthage distribution can be found at
-[Carthage.md](Carthage.md).
+Integrating is as simple as adding 1 line to your main target in your projects `Podfile`. Any dependencies in your project that already consume the Firebase iOS SDK from pods will then automatically source Firestore from these precompiled binaries rather than from source.
 
-### Using Firebase from a Framework or a library
-
-For details on using Firebase from a Framework or a library, refer to [firebase_in_libraries.md](docs/firebase_in_libraries.md).
-
-## Development
-
-To develop Firebase software in this repository, ensure that you have at least
-the following software:
-
-* Xcode 15.2 (or later)
-
-CocoaPods is still the canonical way to develop, but much of the repo now supports
-development with Swift Package Manager.
-
-### CocoaPods
-
-Install the following:
-* CocoaPods 1.12.0 (or later)
-* [CocoaPods generate](https://github.com/square/cocoapods-generate)
-
-For the pod that you want to develop:
+- For Flutter & React Native this file is usually located at `ios/Podfile`
+- For Flutter the target is usually called `Runner` and can be added inside the `target 'Runner' do` block in your podfile.
+- For React Native this would be inside the target that has all your local `React-*` pods included.
 
 ```ruby
-pod gen Firebase{name here}.podspec --local-sources=./ --auto-open --platforms=ios
+pod 'FirebaseFirestore', :git => 'https://github.com/invertase/firestore-ios-sdk-frameworks.git', :tag => '10.19.0'
 ```
 
-Note: If the CocoaPods cache is out of date, you may need to run
-`pod repo update` before the `pod gen` command.
+> **⚠️ Note:** where the tag says `10.19.0` this should be changed to the pod version of `Firebase/Firestore` that you or your dependencies are using - in the format `X.X.X`, for FlutterFire the version that is being used can be seen [here](https://github.com/FirebaseExtended/flutterfire/blob/master/packages/firebase_core/firebase_core/ios/firebase_sdk_version.rb), for React Native Firebase [here](https://github.com/invertase/react-native-firebase/blob/master/packages/app/package.json#L70). If no version is specified on your current `Firebase/Firestore` pod then you can omit `, :tag => '10.19.0'` from the line above and use the latest version on master.
 
-Note: Set the `--platforms` option to `macos` or `tvos` to develop/test for
-those platforms. Since 10.2, Xcode does not properly handle multi-platform
-CocoaPods workspaces.
+The first time you `pod install` a specific version, CocoaPods will remotely retrieve this git repository at the specified tag and cache it locally for use as a source for the `FirebaseFirestore` pod.
 
-Firestore has a self-contained Xcode project. See
-[Firestore/README](Firestore/README.md) Markdown file.
+> **⚠️ Note:** if you were previously caching iOS builds on CI you may now find that when using precompiled binaries that caching is no longer required and it may actually slow down your build times by several minutes.
 
-#### Development for Catalyst
-* `pod gen {name here}.podspec --local-sources=./ --auto-open --platforms=ios`
-* Check the Mac box in the App-iOS Build Settings
-* Sign the App in the Settings Signing & Capabilities tab
-* Click Pods in the Project Manager
-* Add Signing to the iOS host app and unit test targets
-* Select the Unit-unit scheme
-* Run it to build and test
+### Supported Firebase iOS SDK versions
 
-Alternatively, disable signing in each target:
-* Go to Build Settings tab
-* Click `+`
-* Select `Add User-Defined Setting`
-* Add `CODE_SIGNING_REQUIRED` setting with a value of `NO`
+The below are the currently supported Firebase iOS SDK versions of this repository, this list is updated automatically.
 
-### Swift Package Manager
-* To enable test schemes: `./scripts/setup_spm_tests.sh`
-* `open Package.swift` or double click `Package.swift` in Finder.
-* Xcode will open the project
-  * Choose a scheme for a library to build or test suite to run
-  * Choose a target platform by selecting the run destination along with the scheme
+> **⚠️ Note:** if you are looking for a new version that is not listed in the supported versions list, examine the upstream release notes for firebase-ios-sdk carefully. This can happen if the firebase-ios-sdk team issues an interim release to solve some urgent problem, but do not run their full release process. If that happens, don't worry - just wait for the next supported version before moving forward, or temporarily de-integrate this pre-compiled framework if you must use the interim version. 6.31.1 is an example of this, with more details [here](https://github.com/firebase/firebase-ios-sdk/pull/6368#issuecomment-685030446) for why it might happen.
 
-### Adding a New Firebase Pod
+<!--NEW_VERSION_PLACEHOLDER-->
+ - [10.27.0](https://github.com/invertase/firestore-ios-sdk-frameworks/releases/tag/10.27.0)
+ - [10.25.0](https://github.com/invertase/firestore-ios-sdk-frameworks/releases/tag/10.25.0)
+ - [10.24.0](https://github.com/invertase/firestore-ios-sdk-frameworks/releases/tag/10.24.0)
+ - [10.23.0](https://github.com/invertase/firestore-ios-sdk-frameworks/releases/tag/10.23.0)
+ - [10.22.0](https://github.com/invertase/firestore-ios-sdk-frameworks/releases/tag/10.22.0)
+ - [10.21.0](https://github.com/invertase/firestore-ios-sdk-frameworks/releases/tag/10.21.0)
+- [10.20.0](https://github.com/invertase/firestore-ios-sdk-frameworks/releases/tag/10.20.0)
+- [10.19.0](https://github.com/invertase/firestore-ios-sdk-frameworks/releases/tag/10.19.0)
+- [10.18.0](https://github.com/invertase/firestore-ios-sdk-frameworks/releases/tag/10.18.0)
+- [10.17.0](https://github.com/invertase/firestore-ios-sdk-frameworks/releases/tag/10.17.0)
+- [10.16.0](https://github.com/invertase/firestore-ios-sdk-frameworks/releases/tag/10.16.0)
+- [10.15.0](https://github.com/invertase/firestore-ios-sdk-frameworks/releases/tag/10.15.0)
+- [10.14.0](https://github.com/invertase/firestore-ios-sdk-frameworks/releases/tag/10.14.0)
+- [10.13.0](https://github.com/invertase/firestore-ios-sdk-frameworks/releases/tag/10.13.0)
+- [10.12.0](https://github.com/invertase/firestore-ios-sdk-frameworks/releases/tag/10.12.0)
+- [10.11.0](https://github.com/invertase/firestore-ios-sdk-frameworks/releases/tag/10.11.0)
+- [10.10.0](https://github.com/invertase/firestore-ios-sdk-frameworks/releases/tag/10.10.0)
+- [10.9.0](https://github.com/invertase/firestore-ios-sdk-frameworks/releases/tag/10.9.0)
+- [10.8.0](https://github.com/invertase/firestore-ios-sdk-frameworks/releases/tag/10.8.0)
+- [10.7.0](https://github.com/invertase/firestore-ios-sdk-frameworks/releases/tag/10.7.0)
+- [10.6.0](https://github.com/invertase/firestore-ios-sdk-frameworks/releases/tag/10.6.0)
+- [10.5.0](https://github.com/invertase/firestore-ios-sdk-frameworks/releases/tag/10.5.0)
+- [10.4.0](https://github.com/invertase/firestore-ios-sdk-frameworks/releases/tag/10.4.0)
+- [10.3.0](https://github.com/invertase/firestore-ios-sdk-frameworks/releases/tag/10.3.0)
+- [10.2.0](https://github.com/invertase/firestore-ios-sdk-frameworks/releases/tag/10.2.0)
+- [10.1.0](https://github.com/invertase/firestore-ios-sdk-frameworks/releases/tag/10.1.0)
+- [10.0.0](https://github.com/invertase/firestore-ios-sdk-frameworks/releases/tag/10.0.0)
 
-Refer to [AddNewPod](AddNewPod.md) Markdown file for details.
-
-### Managing Headers and Imports
-
-For information about managing headers and imports, see [HeadersImports](HeadersImports.md) Markdown file.
-
-### Code Formatting
-
-To ensure that the code is formatted consistently, run the script
-[./scripts/check.sh](https://github.com/firebase/firebase-ios-sdk/blob/main/scripts/check.sh)
-before creating a pull request (PR).
-
-GitHub Actions will verify that any code changes are done in a style-compliant
-way. Install `clang-format` and `mint`:
-
-```console
-brew install clang-format@18
-brew install mint
-```
-
-### Running Unit Tests
-
-Select a scheme and press Command-u to build a component and run its unit tests.
-
-### Running Sample Apps
-To run the sample apps and integration tests, you'll need a valid
-`GoogleService-Info.plist
-` file. The Firebase Xcode project contains dummy plist
-files without real values, but they can be replaced with real plist files. To get your own
-`GoogleService-Info.plist` files:
-
-1. Go to the [Firebase Console](https://console.firebase.google.com/)
-2. Create a new Firebase project, if you don't already have one
-3. For each sample app you want to test, create a new Firebase app with the sample app's bundle
-identifier (e.g., `com.google.Database-Example`)
-4. Download the resulting `GoogleService-Info.plist` and add it to the Xcode project.
-
-### Coverage Report Generation
-
-For coverage report generation instructions, see [scripts/code_coverage_report/README](scripts/code_coverage_report/README.md) Markdown file.
-
-## Specific Component Instructions
-See the sections below for any special instructions for those components.
-
-### Firebase Auth
-
-For specific Firebase Auth development, refer to the [Auth Sample README](FirebaseAuth/Tests/Sample/README.md) for instructions about
-building and running the FirebaseAuth pod along with various samples and tests.
-
-### Firebase Database
-
-The Firebase Database Integration tests can be run against a locally running Database Emulator
-or against a production instance.
-
-To run against a local emulator instance, invoke `./scripts/run_database_emulator.sh start` before
-running the integration test.
-
-To run against a production instance, provide a valid `GoogleServices-Info.plist` and copy it to
-`FirebaseDatabase/Tests/Resources/GoogleService-Info.plist`. Your Security Rule must be set to
-[public](https://firebase.google.com/docs/database/security/quickstart) while your tests are
-running.
-
-### Firebase Dynamic Links
-
-Firebase Dynamic Links is **deprecated** and should not be used in new projects. The service will shut down on August 25, 2025.
-
-Please see our [Dynamic Links Deprecation FAQ documentation](https://firebase.google.com/support/dynamic-links-faq) for more guidance.
-
-### Firebase Performance Monitoring
-
-For specific Firebase Performance Monitoring development, see
-[the Performance README](FirebasePerformance/README.md) for instructions about building the SDK
-and [the Performance TestApp README](FirebasePerformance/Tests/TestApp/README.md) for instructions about
-integrating Performance with the dev test App.
-
-### Firebase Storage
-
-To run the Storage Integration tests, follow the instructions in
-[StorageIntegration.swift](FirebaseStorage/Tests/Integration/StorageIntegration.swift).
-
-#### Push Notifications
-
-Push notifications can only be delivered to specially provisioned App IDs in the developer portal.
-In order to test receiving push notifications, you will need to:
-
-1. Change the bundle identifier of the sample app to something you own in your Apple Developer
-account and enable that App ID for push notifications.
-2. You'll also need to
-[upload your APNs Provider Authentication Key or certificate to the
-Firebase Console](https://firebase.google.com/docs/cloud-messaging/ios/certs)
-at **Project Settings > Cloud Messaging > [Your Firebase App]**.
-3. Ensure your iOS device is added to your Apple Developer portal as a test device.
-
-#### iOS Simulator
-
-The iOS Simulator cannot register for remote notifications and will not receive push notifications.
-To receive push notifications, follow the steps above and run the app on a physical device.
-
-## Building with Firebase on Apple platforms
-
-Firebase provides official beta support for macOS, Catalyst, and tvOS. visionOS and watchOS
-are community supported. Thanks to community contributions for many of the multi-platform PRs.
-
-At this time, most of Firebase's products are available across Apple platforms. There are still
-a few gaps, especially on visionOS and watchOS. For details about the current support matrix, see
-[this chart](https://firebase.google.com/docs/ios/learn-more#firebase_library_support_by_platform)
-in Firebase's documentation.
-
-### visionOS
-
-Where supported, visionOS works as expected with the exception of Firestore via Swift Package
-Manager where it is required to use the source distribution.
-
-To enable the Firestore source distribution, quit Xcode and open the desired
-project from the command line with the `FIREBASE_SOURCE_FIRESTORE` environment
-variable: `open --env FIREBASE_SOURCE_FIRESTORE /path/to/project.xcodeproj`.
-To go back to using the binary distribution of Firestore, quit Xcode and open
-Xcode like normal, without the environment variable.
-
-### watchOS
-Thanks to contributions from the community, many of Firebase SDKs now compile, run unit tests, and
-work on watchOS. See the [Independent Watch App Sample](Example/watchOSSample).
-
-Keep in mind that watchOS is not officially supported by Firebase. While we can catch basic unit
-test issues with GitHub Actions, there may be some changes where the SDK no longer works as expected
-on watchOS. If you encounter this, please
-[file an issue](https://github.com/firebase/firebase-ios-sdk/issues).
-
-During app setup in the console, you may get to a step that mentions something like "Checking if the
-app has communicated with our servers". This relies on Analytics and will not work on watchOS.
-**It's safe to ignore the message and continue**, the rest of the SDKs will work as expected.
-
-#### Additional Crashlytics Notes
-* watchOS has limited support. Due to watchOS restrictions, mach exceptions and signal crashes are
-not recorded. (Crashes in SwiftUI are generated as mach exceptions, so will not be recorded)
-
-## Combine
-Thanks to contributions from the community, _FirebaseCombineSwift_ contains support for Apple's Combine
-framework. This module is currently under development and not yet supported for use in production
-environments. For more details, please refer to the [docs](FirebaseCombineSwift/README.md).
-
-## Roadmap
-
-See [Roadmap](ROADMAP.md) for more about the Firebase Apple SDK Open Source
-plans and directions.
-
-## Contributing
-
-See [Contributing](CONTRIBUTING.md) for more information on contributing to the Firebase
-Apple SDK.
+...and [more](https://github.com/invertase/firestore-ios-sdk-frameworks/tags).
 
 ## License
 
-The contents of this repository are licensed under the
-[Apache License, version 2.0](http://www.apache.org/licenses/LICENSE-2.0).
+- See [LICENSE](/LICENSE)
 
-Your use of Firebase is governed by the
-[Terms of Service for Firebase Services](https://firebase.google.com/terms/).
+---
+
+<p align="center">
+  <a href="https://invertase.io/?utm_source=readme&utm_medium=footer&utm_campaign=firestore-ios-sdk-frameworks">
+    <img width="75px" src="https://static.invertase.io/assets/invertase/invertase-rounded-avatar.png">
+  </a>
+  <p align="center">
+    Built and maintained by <a href="https://invertase.io/?utm_source=readme&utm_medium=footer&utm_campaign=firestore-ios-sdk-frameworks">Invertase</a>.
+  </p>
+</p>
