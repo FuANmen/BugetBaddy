@@ -42,6 +42,16 @@ class MonthlyGoals {
             Goal(dictionary: document)!
         }
     }
+    
+    func toDictionary() -> [String: Any] {
+        return [
+            "walletId": walletId,
+            "targetMonth": targetMonth,
+            "budget": budget,
+            "transferLogs": transferLogs.map { $0.toDictionary() },
+            "goals": goals.map { $0.toDictionary() }
+        ]
+    }
 }
 
 class TransferLog {
@@ -61,28 +71,37 @@ class TransferLog {
         self.title = title
         self.amount = amount
     }
+    
+    func toDictionary() -> [String: Any] {
+        return [
+            "title": title,
+            "amount": amount
+        ]
+    }
 }
 
 class Goal {
     var categoryId: String
     var budget: Double
-    var balance: Double
-    
     
     init(categoryId: String, budget: Double, balance: Double) {
         self.categoryId = categoryId
         self.budget = budget
-        self.balance = balance
     }
 
     init?(dictionary: [String: Any]) {
         guard let categoryId = dictionary["categoryId"] as? String,
-              let budget = dictionary["budget"] as? Double,
-              let balance = dictionary["balance"] as? Double else {
+              let budget = dictionary["budget"] as? Double else {
             return nil
         }
         self.categoryId = categoryId
         self.budget = budget
-        self.balance = balance
+    }
+    
+    func toDictionary() -> [String: Any] {
+        return [
+            "categoryId": categoryId,
+            "budget": budget
+        ]
     }
 }
