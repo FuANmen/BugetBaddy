@@ -193,9 +193,9 @@
 			isa = PBXGroup;
 			children = (
 				A6B1D5D32B235A8F0076D3BF /* Commons */,
-				A60BF1A92B19A0A000AE0B78 /* Models */,
-				A60BF1A82B19A09A00AE0B78 /* Dao */,
-				A6167CE62C280ED30099EFA7 /* UI */,
+				A60BF1A92B19A0A000AE0B78 /* DataClass */,
+				A60BF1A82B19A09A00AE0B78 /* DaoClass */,
+				A6167CE62C280ED30099EFA7 /* UIClass */,
 				A60E959A2BE525A800711820 /* Main */,
 				A643F2782B351A5C00FA453D /* Resource */,
 				A60BF1932B19A06C00AE0B78 /* AppDelegate.swift */,
@@ -208,7 +208,7 @@
 			path = BudgetBaddy;
 			sourceTree = "<group>";
 		};
-		A60BF1A82B19A09A00AE0B78 /* Dao */ = {
+		A60BF1A82B19A09A00AE0B78 /* DaoClass */ = {
 			isa = PBXGroup;
 			children = (
 				A685A3EE2C29B1D500EA8A8E /* UsersDao.swift */,
@@ -216,10 +216,10 @@
 				A685A3F02C2A2F5400EA8A8E /* MonthlyGoalsDao.swift */,
 				A685A3F42C2A85F000EA8A8E /* MonthlyTransactionsDao.swift */,
 			);
-			path = Dao;
+			path = DaoClass;
 			sourceTree = "<group>";
 		};
-		A60BF1A92B19A0A000AE0B78 /* Models */ = {
+		A60BF1A92B19A0A000AE0B78 /* DataClass */ = {
 			isa = PBXGroup;
 			children = (
 				A685A3E42C29A2F700EA8A8E /* User.swift */,
@@ -227,7 +227,7 @@
 				A685A3E82C29AA8700EA8A8E /* MonthlyGoals.swift */,
 				A685A3EA2C29AEB100EA8A8E /* MonthlyTransactions.swift */,
 			);
-			path = Models;
+			path = DataClass;
 			sourceTree = "<group>";
 		};
 		A60E95952BE5247B00711820 /* Goal */ = {
@@ -332,13 +332,13 @@
 			path = UICollectionViewCell;
 			sourceTree = "<group>";
 		};
-		A6167CE62C280ED30099EFA7 /* UI */ = {
+		A6167CE62C280ED30099EFA7 /* UIClass */ = {
 			isa = PBXGroup;
 			children = (
 				A652EAC72C280F4F00EA7C91 /* uncommon */,
 				A652EAC62C280F3C00EA7C91 /* common */,
 			);
-			path = UI;
+			path = UIClass;
 			sourceTree = "<group>";
 		};
 		A62B99882BFF17590018A12C /* Breakdown */ = {
