@@ -9,7 +9,7 @@ import Foundation
 import FirebaseFirestore
 
 class WalletsDao {
-    // Wallets
+    //　MARK: - Wallets
     static func addWallet(wallet: Wallet) {
         let db = Firestore.firestore()
         let walletRef = db.collection("Wallets").document(wallet.walletId)
@@ -57,7 +57,7 @@ class WalletsDao {
         }
     }
     
-    // SharedUserInfo
+    //　MARK: - SharedUserInfo
     static func addSharedUserToWallet(walletId: String, newUser: User) {
         let db = Firestore.firestore()
         let walletRef = db.collection("Wallets").document(walletId)
@@ -136,7 +136,7 @@ class WalletsDao {
         }
     }
     
-    // Category
+    //　MARK: - Category
     static func addCategoryToWallet(walletId: String, newCategory: Category) {
         let db = Firestore.firestore()
         let walletRef = db.collection("Wallets").document(walletId)
