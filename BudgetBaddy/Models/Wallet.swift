@@ -3,17 +3,17 @@ import Foundation
 class Wallet {
     var walletId: String
     var name: String
-    var ownerInfo: UserInfo
+    var ownerId: String
     var is_default: Bool
     var is_private: Bool
     var sharedUsersInfo: [UserInfo]
     var sort_order: Int
     var categories: [Category]
     
-    init(walletId: String, name: String, ownerInfo: UserInfo, is_default: Bool, is_private: Bool, sharedUsersInfo: [UserInfo], sort_order: Int, categories: [Category] = []) {
+    init(walletId: String, name: String, ownerId: String, is_default: Bool, is_private: Bool, sharedUsersInfo: [UserInfo], sort_order: Int, categories: [Category] = []) {
         self.walletId = walletId
         self.name = name
-        self.ownerInfo = ownerInfo
+        self.ownerId = ownerId
         self.is_default = is_default
         self.is_private = is_private
         self.sharedUsersInfo = sharedUsersInfo
@@ -24,7 +24,7 @@ class Wallet {
     init?(dictionary: [String: Any]) {
         guard let walletId = dictionary["walletId"] as? String,
               let name = dictionary["name"] as? String,
-              let ownerInfoData = dictionary["ownerInfo"] as? [String: Any],
+              let ownerId = dictionary["ownerId"] as? String,
               let is_default = dictionary["is_default"] as? Bool,
               let is_private = dictionary["is_private"] as? Bool,
               let sharedUsersInfoData = dictionary["sharedUsersInfo"] as? [[String: Any]],
@@ -34,19 +34,29 @@ class Wallet {
         }
         self.walletId = walletId
         self.name = name
-        self.ownerInfo = UserInfo(dictionary: ownerInfoData)!
-        
+        self.ownerId = ownerId
         self.is_default = is_default
         self.is_private = is_private
         self.sharedUsersInfo = sharedUsersInfoData.map { document in
             UserInfo(dictionary: document)!
         }
-        
         self.sort_order = sort_order
-        
         self.categories = categoriesData.map { document in
             Category(dictionary: document)!
         }
+    }
+    
+    func toDictionary() -> [String: Any] {
+        return [
+            "walletId": walletId,
+            "name": name,
+            "ownerId": ownerId,
+            "is_default": is_default,
+            "is_private": is_private,
+            "sharedUsersInfo": sharedUsersInfo.map { $0.toDictionary() },
+            "sort_order": sort_order,
+            "categories": categories.map { $0.toDictionary() }
+        ]
     }
 }
 
@@ -66,6 +76,13 @@ class UserInfo {
         }
         self.userId = userId
         self.username = username
+    }
+    
+    func toDictionary() -> [String: Any] {
+        return [
+            "userId": userId,
+            "username": username
+        ]
     }
 }
 
@@ -89,5 +106,13 @@ class Category {
         self.categoryId = categoryId
         self.name = name
         self.sort_order = sort_order
+    }
+    
+    func toDictionary() -> [String: Any] {
+        return [
+            "categoryId": categoryId,
+            "name": name,
+            "sort_order": sort_order
+        ]
     }
 }

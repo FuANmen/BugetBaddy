@@ -45,6 +45,8 @@
 		A685A3E92C29AA8700EA8A8E /* MonthlyGoals.swift in Sources */ = {isa = PBXBuildFile; fileRef = A685A3E82C29AA8700EA8A8E /* MonthlyGoals.swift */; };
 		A685A3EB2C29AEB100EA8A8E /* MonthlyTransactions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A685A3EA2C29AEB100EA8A8E /* MonthlyTransactions.swift */; };
 		A685A3EF2C29B1D500EA8A8E /* UsersDao.swift in Sources */ = {isa = PBXBuildFile; fileRef = A685A3EE2C29B1D500EA8A8E /* UsersDao.swift */; };
+		A685A3F12C2A2F5400EA8A8E /* MonthlyGoalsDao.swift in Sources */ = {isa = PBXBuildFile; fileRef = A685A3F02C2A2F5400EA8A8E /* MonthlyGoalsDao.swift */; };
+		A685A3F32C2A381200EA8A8E /* WalletsDao.swift in Sources */ = {isa = PBXBuildFile; fileRef = A685A3F22C2A381200EA8A8E /* WalletsDao.swift */; };
 		A68C5DF52B8B80B400963FD1 /* RealmClassCommon.swift in Sources */ = {isa = PBXBuildFile; fileRef = A68C5DF42B8B80B400963FD1 /* RealmClassCommon.swift */; };
 		A68C5DFD2B8DBFBC00963FD1 /* Formatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A68C5DFC2B8DBFBC00963FD1 /* Formatter.swift */; };
 		A68C5E052B8EA74100963FD1 /* BreakdownTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A68C5E042B8EA74100963FD1 /* BreakdownTableCell.swift */; };
@@ -111,6 +113,8 @@
 		A685A3E82C29AA8700EA8A8E /* MonthlyGoals.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthlyGoals.swift; sourceTree = "<group>"; };
 		A685A3EA2C29AEB100EA8A8E /* MonthlyTransactions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthlyTransactions.swift; sourceTree = "<group>"; };
 		A685A3EE2C29B1D500EA8A8E /* UsersDao.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UsersDao.swift; sourceTree = "<group>"; };
+		A685A3F02C2A2F5400EA8A8E /* MonthlyGoalsDao.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthlyGoalsDao.swift; sourceTree = "<group>"; };
+		A685A3F22C2A381200EA8A8E /* WalletsDao.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletsDao.swift; sourceTree = "<group>"; };
 		A68C5DF42B8B80B400963FD1 /* RealmClassCommon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmClassCommon.swift; sourceTree = "<group>"; };
 		A68C5DFC2B8DBFBC00963FD1 /* Formatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Formatter.swift; sourceTree = "<group>"; };
 		A68C5E042B8EA74100963FD1 /* BreakdownTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreakdownTableCell.swift; sourceTree = "<group>"; };
@@ -206,6 +210,8 @@
 			isa = PBXGroup;
 			children = (
 				A685A3EE2C29B1D500EA8A8E /* UsersDao.swift */,
+				A685A3F22C2A381200EA8A8E /* WalletsDao.swift */,
+				A685A3F02C2A2F5400EA8A8E /* MonthlyGoalsDao.swift */,
 			);
 			path = Dao;
 			sourceTree = "<group>";
@@ -648,6 +654,7 @@
 				A685A3EB2C29AEB100EA8A8E /* MonthlyTransactions.swift in Sources */,
 				A673CED62BF9CA2F001E5679 /* UIColor+CustomColors.swift in Sources */,
 				A6ED25282BEFB66E002DE2DC /* EditUserSetTranLogView.swift in Sources */,
+				A685A3F32C2A381200EA8A8E /* WalletsDao.swift in Sources */,
 				A643F2822B35747900FA453D /* Extensions.swift in Sources */,
 				A643F27A2B355AFA00FA453D /* LanguageSelectionViewController.swift in Sources */,
 				A683234E2B1FE95C003D2F2E /* TransactionTableViewCell.swift in Sources */,
@@ -683,6 +690,7 @@
 				A67004472B1C6A6800EC50A4 /* MonthYearPicker.swift in Sources */,
 				A643F2852B3674BC00FA453D /* MonthlyDefaultManagementAmountViewController.swift in Sources */,
 				A6B1D5D72B2498E70076D3BF /* DateFuncs.swift in Sources */,
+				A685A3F12C2A2F5400EA8A8E /* MonthlyGoalsDao.swift in Sources */,
 				A62B999B2C01CBC50018A12C /* OtherGoalItemCell.swift in Sources */,
 				A62B99872BFF07090018A12C /* TotalDetailView.swift in Sources */,
 				A6487BB72B51846300CAF47B /* MyProgressBar.swift in Sources */,
