@@ -195,8 +195,8 @@
 				A6B1D5D32B235A8F0076D3BF /* Commons */,
 				A60BF1A92B19A0A000AE0B78 /* DataClass */,
 				A60BF1A82B19A09A00AE0B78 /* DaoClass */,
-				A6167CE62C280ED30099EFA7 /* UIClass */,
-				A60E959A2BE525A800711820 /* Main */,
+				A6167CE62C280ED30099EFA7 /* CommonUI */,
+				A60E959A2BE525A800711820 /* MainViewControllers */,
 				A643F2782B351A5C00FA453D /* Resource */,
 				A60BF1932B19A06C00AE0B78 /* AppDelegate.swift */,
 				A60BF1952B19A06C00AE0B78 /* SceneDelegate.swift */,
@@ -230,18 +230,6 @@
 			path = DataClass;
 			sourceTree = "<group>";
 		};
-		A60E95952BE5247B00711820 /* Goal */ = {
-			isa = PBXGroup;
-			children = (
-				A6167CD52C2712F00099EFA7 /* HamburgerMenuView */,
-				A60E959F2BE5276200711820 /* MonthlyView */,
-				A60E959D2BE5267A00711820 /* GoalDetail */,
-				A60E959C2BE525DD00711820 /* CreateGoal */,
-				A60E95972BE5249D00711820 /* SettingView */,
-			);
-			path = Goal;
-			sourceTree = "<group>";
-		};
 		A60E95972BE5249D00711820 /* SettingView */ = {
 			isa = PBXGroup;
 			children = (
@@ -254,12 +242,18 @@
 			path = SettingView;
 			sourceTree = "<group>";
 		};
-		A60E959A2BE525A800711820 /* Main */ = {
+		A60E959A2BE525A800711820 /* MainViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				A60E95952BE5247B00711820 /* Goal */,
+				A685A3F72C2A8BC500EA8A8E /* LoginView */,
+				A685A3F62C2A8BAE00EA8A8E /* TransactionEditor */,
+				A6167CD52C2712F00099EFA7 /* HamburgerMenuView */,
+				A60E959F2BE5276200711820 /* MonthlyView */,
+				A60E959D2BE5267A00711820 /* GoalDetail */,
+				A60E959C2BE525DD00711820 /* CreateGoal */,
+				A60E95972BE5249D00711820 /* SettingView */,
 			);
-			path = Main;
+			path = MainViewControllers;
 			sourceTree = "<group>";
 		};
 		A60E959C2BE525DD00711820 /* CreateGoal */ = {
@@ -300,45 +294,13 @@
 			path = HamburgerMenuView;
 			sourceTree = "<group>";
 		};
-		A6167CE22C280E1A0099EFA7 /* UIViewController */ = {
+		A6167CE62C280ED30099EFA7 /* CommonUI */ = {
 			isa = PBXGroup;
 			children = (
-				A6167CE02C280D690099EFA7 /* SignUpViewController.swift */,
-				A6167CDE2C2807100099EFA7 /* LoginViewController.swift */,
-				A652EACA2C2811BB00EA7C91 /* TransactionEditorViewController.swift */,
+				A652EAC92C280FAB00EA7C91 /* UITableViewCell */,
+				A652EAC82C280F9900EA7C91 /* UIView */,
 			);
-			path = UIViewController;
-			sourceTree = "<group>";
-		};
-		A6167CE32C280E210099EFA7 /* UIView */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = UIView;
-			path = "New Group1";
-			sourceTree = "<group>";
-		};
-		A6167CE42C280E580099EFA7 /* UITableViewCell */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = UITableViewCell;
-			sourceTree = "<group>";
-		};
-		A6167CE52C280E760099EFA7 /* UICollectionViewCell */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = UICollectionViewCell;
-			sourceTree = "<group>";
-		};
-		A6167CE62C280ED30099EFA7 /* UIClass */ = {
-			isa = PBXGroup;
-			children = (
-				A652EAC72C280F4F00EA7C91 /* uncommon */,
-				A652EAC62C280F3C00EA7C91 /* common */,
-			);
-			path = UIClass;
+			path = CommonUI;
 			sourceTree = "<group>";
 		};
 		A62B99882BFF17590018A12C /* Breakdown */ = {
@@ -377,27 +339,6 @@
 			path = Resource;
 			sourceTree = "<group>";
 		};
-		A652EAC62C280F3C00EA7C91 /* common */ = {
-			isa = PBXGroup;
-			children = (
-				A652EAC92C280FAB00EA7C91 /* UITableViewCell */,
-				A652EAC82C280F9900EA7C91 /* UIView */,
-			);
-			name = common;
-			sourceTree = "<group>";
-		};
-		A652EAC72C280F4F00EA7C91 /* uncommon */ = {
-			isa = PBXGroup;
-			children = (
-				A652EACC2C28121E00EA7C91 /* UITextField */,
-				A6167CE22C280E1A0099EFA7 /* UIViewController */,
-				A6167CE32C280E210099EFA7 /* UIView */,
-				A6167CE42C280E580099EFA7 /* UITableViewCell */,
-				A6167CE52C280E760099EFA7 /* UICollectionViewCell */,
-			);
-			name = uncommon;
-			sourceTree = "<group>";
-		};
 		A652EAC82C280F9900EA7C91 /* UIView */ = {
 			isa = PBXGroup;
 			children = (
@@ -417,12 +358,22 @@
 			name = UITableViewCell;
 			sourceTree = "<group>";
 		};
-		A652EACC2C28121E00EA7C91 /* UITextField */ = {
+		A685A3F62C2A8BAE00EA8A8E /* TransactionEditor */ = {
 			isa = PBXGroup;
 			children = (
+				A652EACA2C2811BB00EA7C91 /* TransactionEditorViewController.swift */,
 				A670044A2B1CA23300EC50A4 /* CategoryPickerTextField.swift */,
 			);
-			path = UITextField;
+			path = TransactionEditor;
+			sourceTree = "<group>";
+		};
+		A685A3F72C2A8BC500EA8A8E /* LoginView */ = {
+			isa = PBXGroup;
+			children = (
+				A6167CDE2C2807100099EFA7 /* LoginViewController.swift */,
+				A6167CE02C280D690099EFA7 /* SignUpViewController.swift */,
+			);
+			path = LoginView;
 			sourceTree = "<group>";
 		};
 		A6A6EF282BFB154B00D6E402 /* TransferLog */ = {
