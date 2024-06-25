@@ -47,6 +47,7 @@
 		A685A3EF2C29B1D500EA8A8E /* UsersDao.swift in Sources */ = {isa = PBXBuildFile; fileRef = A685A3EE2C29B1D500EA8A8E /* UsersDao.swift */; };
 		A685A3F12C2A2F5400EA8A8E /* MonthlyGoalsDao.swift in Sources */ = {isa = PBXBuildFile; fileRef = A685A3F02C2A2F5400EA8A8E /* MonthlyGoalsDao.swift */; };
 		A685A3F32C2A381200EA8A8E /* WalletsDao.swift in Sources */ = {isa = PBXBuildFile; fileRef = A685A3F22C2A381200EA8A8E /* WalletsDao.swift */; };
+		A685A3F52C2A85F000EA8A8E /* MonthlyTransactionsDao.swift in Sources */ = {isa = PBXBuildFile; fileRef = A685A3F42C2A85F000EA8A8E /* MonthlyTransactionsDao.swift */; };
 		A68C5DF52B8B80B400963FD1 /* RealmClassCommon.swift in Sources */ = {isa = PBXBuildFile; fileRef = A68C5DF42B8B80B400963FD1 /* RealmClassCommon.swift */; };
 		A68C5DFD2B8DBFBC00963FD1 /* Formatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A68C5DFC2B8DBFBC00963FD1 /* Formatter.swift */; };
 		A68C5E052B8EA74100963FD1 /* BreakdownTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A68C5E042B8EA74100963FD1 /* BreakdownTableCell.swift */; };
@@ -115,6 +116,7 @@
 		A685A3EE2C29B1D500EA8A8E /* UsersDao.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UsersDao.swift; sourceTree = "<group>"; };
 		A685A3F02C2A2F5400EA8A8E /* MonthlyGoalsDao.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthlyGoalsDao.swift; sourceTree = "<group>"; };
 		A685A3F22C2A381200EA8A8E /* WalletsDao.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletsDao.swift; sourceTree = "<group>"; };
+		A685A3F42C2A85F000EA8A8E /* MonthlyTransactionsDao.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthlyTransactionsDao.swift; sourceTree = "<group>"; };
 		A68C5DF42B8B80B400963FD1 /* RealmClassCommon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmClassCommon.swift; sourceTree = "<group>"; };
 		A68C5DFC2B8DBFBC00963FD1 /* Formatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Formatter.swift; sourceTree = "<group>"; };
 		A68C5E042B8EA74100963FD1 /* BreakdownTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreakdownTableCell.swift; sourceTree = "<group>"; };
@@ -212,6 +214,7 @@
 				A685A3EE2C29B1D500EA8A8E /* UsersDao.swift */,
 				A685A3F22C2A381200EA8A8E /* WalletsDao.swift */,
 				A685A3F02C2A2F5400EA8A8E /* MonthlyGoalsDao.swift */,
+				A685A3F42C2A85F000EA8A8E /* MonthlyTransactionsDao.swift */,
 			);
 			path = Dao;
 			sourceTree = "<group>";
@@ -684,6 +687,7 @@
 				A6ED25372BF1D091002DE2DC /* TextFieldCell.swift in Sources */,
 				A6D659292BAD5C39008029DC /* ShowInfoView.swift in Sources */,
 				A6ED251C2BEF859E002DE2DC /* SettingGoalViewController.swift in Sources */,
+				A685A3F52C2A85F000EA8A8E /* MonthlyTransactionsDao.swift in Sources */,
 				A62B99852BFE2C650018A12C /* GoalsView.swift in Sources */,
 				A670044B2B1CA23300EC50A4 /* CategoryPickerTextField.swift in Sources */,
 				A60E95A62BEE05A600711820 /* DeleteGoalView.swift in Sources */,

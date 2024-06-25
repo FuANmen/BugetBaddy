@@ -30,15 +30,25 @@ class MonthlyTransactions {
             Transaction(dictionary: document)!
         }
     }
+    
+    func toDictionary() -> [String: Any] {
+        return [
+            "walletId": walletId,
+            "targetMonth": targetMonth,
+            "transactions": transactions.map { $0.toDictionary() }
+        ]
+    }
 }
 
 class Transaction {
+    var id: String
     var date: Date
     var categoryId: String
     var title: String
     var amount: Double
     
-    init(date: Date, categoryId: String, title: String, amount: Double) {
+    init(id: String, date: Date, categoryId: String, title: String, amount: Double) {
+        self.id = id
         self.date = date
         self.categoryId = categoryId
         self.title = title
@@ -46,15 +56,27 @@ class Transaction {
     }
     
     init?(dictionary: [String: Any]) {
-        guard let date = dictionary["date"] as? Date,
+        guard let id = dictionary["id"] as? String,
+              let date = dictionary["date"] as? Date,
               let categoryId = dictionary["categoryId"] as? String,
               let title = dictionary["title"] as? String,
               let amount = dictionary["amount"] as? Double else {
             return nil
         }
+        self.id = id
         self.date = date
         self.categoryId = categoryId
         self.title = title
         self.amount = amount
+    }
+    
+    func toDictionary() -> [String: Any] {
+        return [
+            "id": id,
+            "date": date,
+            "categoryId": categoryId,
+            "title": title,
+            "amount": amount
+        ]
     }
 }
