@@ -23,9 +23,9 @@ class WalletsDao {
         }
     }
     
-    static func updateWallet(walletId: String, editedWallet: Wallet) {
+    static func updateWallet(editedWallet: Wallet) {
         let db = Firestore.firestore()
-        let walletRef = db.collection("Wallets").document(walletId)
+        let walletRef = db.collection("Wallets").document(editedWallet.walletId)
 
         walletRef.updateData([
             "name": editedWallet.name,
@@ -37,6 +37,21 @@ class WalletsDao {
                 print("Error update Wallet: \(error)")
             } else {
                 print("Update wallet successfully")
+            }
+        }
+    }
+    
+    static func deleteWallet(wallet: Wallet, completion: @escaping (Error?) -> Void) {
+        let db = Firestore.firestore()
+        let walletRef = db.collection("Wallets").document(wallet.walletId)
+
+        walletRef.delete { error in
+            if let error = error {
+                print("Error deleting Wallet: \(error)")
+                completion(error)
+            } else {
+                print("Wallet successfully deleted")
+                completion(nil)
             }
         }
     }
@@ -64,8 +79,6 @@ class WalletsDao {
 
         walletRef.getDocument { (document, error) in
             if let document = document, document.exists {
-                var walletData = document.data()!
-                
                 let newUserInfo = UserInfo(userId: newUser.userId, username: newUser.username)
                 let newUserInfoData = newUserInfo.toDictionary()
                 
@@ -84,7 +97,7 @@ class WalletsDao {
         }
     }
     
-    func updateSharedUserInWallet(walletId: String, editedUserInfo: UserInfo) {
+    static func updateSharedUserInWallet(walletId: String, editedUserInfo: UserInfo) {
         let db = Firestore.firestore()
         let walletRef = db.collection("Wallets").document(walletId)
 
@@ -118,7 +131,7 @@ class WalletsDao {
         }
     }
     
-    func removeSharedUserFromWallet(walletId: String, userInfo: UserInfo) {
+    static func removeSharedUserFromWallet(walletId: String, userInfo: UserInfo) {
         let db = Firestore.firestore()
         let walletRef = db.collection("Wallets").document(walletId)
 
@@ -145,8 +158,6 @@ class WalletsDao {
 
         walletRef.getDocument { (document, error) in
             if let document = document, document.exists {
-                var walletData = document.data()!
-                
                 walletRef.updateData([
                         "categories": FieldValue.arrayUnion([newCategoryData])
                     ]) { error in
@@ -162,7 +173,7 @@ class WalletsDao {
         }
     }
     
-    func updateCategoryInWallet(walletId: String, editedCategory: Category) {
+    static func updateCategoryInWallet(walletId: String, editedCategory: Category) {
         let db = Firestore.firestore()
         let walletRef = db.collection("Wallets").document(walletId)
 
@@ -196,7 +207,7 @@ class WalletsDao {
         }
     }
     
-    func removeCategoryFromWallet(walletId: String, category: Category) {
+    static func removeCategoryFromWallet(walletId: String, category: Category) {
         let db = Firestore.firestore()
         let walletRef = db.collection("Wallets").document(walletId)
 
