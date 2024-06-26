@@ -7,23 +7,30 @@
 
 import UIKit
 protocol TransactionEditorViewDelegate: AnyObject {
-    func saveBtnTapped_atTransactionEditor()
+    func addTransaction(transaction: Transaction)
+    func updateTransaction(transaction: Transaction)
+    func addCategory(category: Category)
 }
 
 class TransactionEditorViewController: UIViewController {
     weak var delegate: TransactionEditorViewDelegate?
     
-    private var defaultCategory: Category = CategoryDao().getOrCreateOtherCategory()
+    private var wallet: Wallet
+    private var targetMonth: String
+    private var selectedCategoryId: String
+    
     private var transaction: Transaction? = nil {
         didSet {
             if transaction == nil {
-                self.categoryPickerTextField.text = self.defaultCategory.name
+                self.categoryPickerTextField.text = self.wallet.categories[0].name
                 self.datePicker.date = Date()
                 self.amountTextField.text = ""
             } else {
-                self.categoryPickerTextField.text = transaction!.category!.name
-                self.datePicker.date = transaction!.date
-                self.amountTextField.text = String(Int(transaction!.amount))
+                if let category = self.wallet.categories.first(where: { $0.categoryId == transaction!.categoryId }) {
+                    self.categoryPickerTextField.text = category.name
+                    self.datePicker.date = transaction!.date
+                    self.amountTextField.text = String(Int(transaction!.amount))
+                }
             }
         }
     }
@@ -38,7 +45,6 @@ class TransactionEditorViewController: UIViewController {
     
     private let categoryPickerTextField: CategoryPickerTextField = {
         let textField = CategoryPickerTextField()
-        textField.tranInputTarget_flg = true
         textField.placeholder = NSLocalizedString("In_Placeholder_1", comment: "")
         textField.borderStyle = .roundedRect
         return textField
@@ -59,8 +65,16 @@ class TransactionEditorViewController: UIViewController {
         return button
     }()
     
-    init() {
+    init(wallet: Wallet, targetMonth: String, transaction: Transaction? = nil) {
+        self.wallet = wallet
+        self.targetMonth = targetMonth
+        self.transaction = transaction
+        self.selectedCategoryId = transaction == nil ? wallet.categories[0].categoryId : transaction!.categoryId
+        
         super.init(nibName: nil, bundle: nil)
+        
+        // CategoryPicker
+        categoryPickerTextField.configure(wallet: wallet, targetMonth: targetMonth)
     }
     
     required init?(coder: NSCoder) {
@@ -71,17 +85,6 @@ class TransactionEditorViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .white
         setupUI()
-    }
-
-    internal func configure(targetMonth: String = DateFuncs().convertStringFromDate(Date(), format: "yyyy-MM"), transaction: Transaction? = nil, defaultCategory: Category? = nil) {
-        // Category
-        categoryPickerTextField.targetMonth = targetMonth
-        categoryPickerTextField.loadCategories()
-        if defaultCategory != nil {
-            self.defaultCategory = defaultCategory!
-        }
-        // Transaction
-        self.transaction = transaction
     }
     
     private func setupUI() {
@@ -128,42 +131,45 @@ class TransactionEditorViewController: UIViewController {
     
     @objc private func saveButtonTapped() {
         if self.transaction == nil {
-            TransactionDao().addTransaction(amount: Double(self.amountTextField.text!)!
-                                            , memo: ""
-                                            , date: datePicker.date
-                                            , paymentMethod: ""
-                                            , location: ""
-                                            , category: CategoryDao().getCategory(name: self.categoryPickerTextField.text!)!)
+            let newTrans = Transaction(id: nil,
+                                       date: datePicker.date,
+                                       categoryId: self.selectedCategoryId,
+                                       title: "",
+                                       amount: Double(self.amountTextField.text!)!)
+            MonthlyTransactionsDao.addTransactionToMonthlyTransactions(walletId: self.wallet.walletId, targetMonth: self.targetMonth, newTransaction: newTrans)
+            self.delegate?.addTransaction(transaction: newTrans)
         } else {
-            TransactionDao().updateTransaction(transaction: self.transaction!
-                                               , amount: Double(self.amountTextField.text!)!
-                                               , date: datePicker.date
-                                               , paymentMethod: ""
-                                               , location: "")
+            let updTrans = Transaction(id: self.transaction!.id,
+                                       date: datePicker.date,
+                                       categoryId: self.selectedCategoryId,
+                                       title: "",
+                                       amount: Double(self.amountTextField.text!)!)
+            MonthlyTransactionsDao.updateTransactionInMonthlyTransactions(walletId: self.wallet.walletId, targetMonth: self.targetMonth, updatedTransaction: updTrans)
+            self.delegate?.updateTransaction(transaction: updTrans)
         }
-        self.delegate?.saveBtnTapped_atTransactionEditor()
         dismiss(animated: true, completion: nil)
     }
     
     @objc func datePickerValueChanged(_ sender: UIDatePicker) {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM"
-        
-        categoryPickerTextField.targetMonth = formatter.string(from: Date())
-        categoryPickerTextField.loadCategories()
+        self.targetMonth = formatter.string(from: datePicker.date)
+        categoryPickerTextField.configure(wallet: self.wallet, targetMonth: self.targetMonth)
     }
 }
 
 extension TransactionEditorViewController: UITextFieldDelegate, CategoryPickerTextFieldDelegate {
-    func checkAddCategory(name: String) -> Bool! {
-        if CategoryDao().getCategory(name: name) != nil {
+    func addCategory(category: Category) {
+        if wallet.categories.firstIndex(where: { $0.name == category.name }) != nil {
             present(ShowAlerts().showErrorAlert(message:  NSLocalizedString("In_MS_Error001", comment: "")), animated: true, completion: nil)
-            return false
+            return
+        } else {
+            self.wallet.categories.append(category)
         }
-        return true
+        self.delegate!.addCategory(category: category)
     }
     
     func enterdCategory(category: Category) {
-        
+        self.selectedCategoryId = category.categoryId
     }
 }

@@ -13,8 +13,6 @@
 		A60BF19D2B19A06F00AE0B78 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A60BF19C2B19A06F00AE0B78 /* Assets.xcassets */; };
 		A60BF1A02B19A06F00AE0B78 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A60BF19E2B19A06F00AE0B78 /* LaunchScreen.storyboard */; };
 		A60BF1B52B19CEFD00AE0B78 /* MonthlyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A60BF1B42B19CEFD00AE0B78 /* MonthlyViewController.swift */; };
-		A60E95A22BE9E16800711820 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A60E95A12BE9E16800711820 /* SettingsViewController.swift */; };
-		A60E95A42BEB371600711820 /* SelectTargetMonthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A60E95A32BEB371600711820 /* SelectTargetMonthView.swift */; };
 		A60E95A62BEE05A600711820 /* DeleteGoalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A60E95A52BEE05A600711820 /* DeleteGoalView.swift */; };
 		A6167CD42C26F03A0099EFA7 /* HamburgerMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6167CD32C26F03A0099EFA7 /* HamburgerMenuViewController.swift */; };
 		A6167CDF2C2807100099EFA7 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6167CDE2C2807100099EFA7 /* LoginViewController.swift */; };
@@ -23,13 +21,8 @@
 		A62B99872BFF07090018A12C /* TotalDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A62B99862BFF07090018A12C /* TotalDetailView.swift */; };
 		A62B998B2BFF34000018A12C /* TotalTransactionTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A62B998A2BFF34000018A12C /* TotalTransactionTableCell.swift */; };
 		A62B998E2BFF36170018A12C /* BreakdownEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A62B998D2BFF36170018A12C /* BreakdownEditorView.swift */; };
-		A62B99992C00D0810018A12C /* TransferLogTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A62B99982C00D0810018A12C /* TransferLogTableCell.swift */; };
-		A62B999B2C01CBC50018A12C /* OtherGoalItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A62B999A2C01CBC50018A12C /* OtherGoalItemCell.swift */; };
 		A643F2722B35196000FA453D /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = A643F2742B35196000FA453D /* Localizable.strings */; };
-		A643F27A2B355AFA00FA453D /* LanguageSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A643F2792B355AFA00FA453D /* LanguageSelectionViewController.swift */; };
 		A643F2822B35747900FA453D /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A643F2812B35747900FA453D /* Extensions.swift */; };
-		A643F2852B3674BC00FA453D /* MonthlyDefaultManagementAmountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A643F2842B3674BB00FA453D /* MonthlyDefaultManagementAmountViewController.swift */; };
-		A6460F052B936AFA002B07A1 /* UpdateCommon.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6460F042B936AFA002B07A1 /* UpdateCommon.swift */; };
 		A6487BB72B51846300CAF47B /* MyProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6487BB62B51846300CAF47B /* MyProgressBar.swift */; };
 		A652EACB2C2811BB00EA7C91 /* TransactionEditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A652EACA2C2811BB00EA7C91 /* TransactionEditorViewController.swift */; };
 		A652EAD82C28FAFE00EA7C91 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A652EAD72C28FAFE00EA7C91 /* GoogleService-Info.plist */; };
@@ -37,7 +30,6 @@
 		A670044B2B1CA23300EC50A4 /* CategoryPickerTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = A670044A2B1CA23300EC50A4 /* CategoryPickerTextField.swift */; };
 		A673CED62BF9CA2F001E5679 /* UIColor+CustomColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = A673CED52BF9CA2F001E5679 /* UIColor+CustomColors.swift */; };
 		A673CEDA2BF9EE8C001E5679 /* IconTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A673CED92BF9EE8C001E5679 /* IconTableCell.swift */; };
-		A6752FFA2B5807B600670CA5 /* CreateTransferLogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6752FF92B5807B600670CA5 /* CreateTransferLogViewController.swift */; };
 		A683234C2B1FE48D003D2F2E /* GoalDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A683234B2B1FE48D003D2F2E /* GoalDetailViewController.swift */; };
 		A683234E2B1FE95C003D2F2E /* TransactionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A683234D2B1FE95C003D2F2E /* TransactionTableViewCell.swift */; };
 		A685A3E12C299AFA00EA8A8E /* Wallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = A685A3E02C299AFA00EA8A8E /* Wallet.swift */; };
@@ -52,23 +44,15 @@
 		A68C5DFD2B8DBFBC00963FD1 /* Formatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A68C5DFC2B8DBFBC00963FD1 /* Formatter.swift */; };
 		A68C5E052B8EA74100963FD1 /* BreakdownTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A68C5E042B8EA74100963FD1 /* BreakdownTableCell.swift */; };
 		A68E39A92BE213210018A505 /* CreateCategoryDialogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A68E39A82BE213210018A505 /* CreateCategoryDialogView.swift */; };
-		A6A0D9322B37137F00395E51 /* CategorysSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6A0D9312B37137F00395E51 /* CategorysSettingViewController.swift */; };
-		A6A0D9342B3724D400395E51 /* CategorysSettingViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6A0D9332B3724D300395E51 /* CategorysSettingViewCell.swift */; };
 		A6B1D5D52B235AAA0076D3BF /* ShowAlerts.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6B1D5D42B235AAA0076D3BF /* ShowAlerts.swift */; };
 		A6B1D5D72B2498E70076D3BF /* DateFuncs.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6B1D5D62B2498E70076D3BF /* DateFuncs.swift */; };
 		A6B1D5D92B249DE80076D3BF /* AmountProcessings.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6B1D5D82B249DE80076D3BF /* AmountProcessings.swift */; };
 		A6D659292BAD5C39008029DC /* ShowInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6D659282BAD5C39008029DC /* ShowInfoView.swift */; };
 		A6DF96622B80F8EC00982144 /* GoalItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6DF96612B80F8EC00982144 /* GoalItemCell.swift */; };
 		A6DFB2C12B47B6DD001C167C /* KeyboardScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6DFB2C02B47B6DD001C167C /* KeyboardScrollView.swift */; };
-		A6ED251C2BEF859E002DE2DC /* SettingGoalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6ED251B2BEF859E002DE2DC /* SettingGoalViewController.swift */; };
 		A6ED251F2BEF90F2002DE2DC /* SwitchTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6ED251E2BEF90F2002DE2DC /* SwitchTableCell.swift */; };
-		A6ED25262BEFB075002DE2DC /* CreateUserSetTranLogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6ED25252BEFB075002DE2DC /* CreateUserSetTranLogView.swift */; };
-		A6ED25282BEFB66E002DE2DC /* EditUserSetTranLogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6ED25272BEFB66E002DE2DC /* EditUserSetTranLogView.swift */; };
 		A6ED252A2BF096D8002DE2DC /* DetailLabelTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6ED25292BF096D8002DE2DC /* DetailLabelTableCell.swift */; };
-		A6ED25352BF1C5D4002DE2DC /* GoalAlertSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6ED25342BF1C5D4002DE2DC /* GoalAlertSettingViewController.swift */; };
 		A6ED25372BF1D091002DE2DC /* TextFieldCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6ED25362BF1D091002DE2DC /* TextFieldCell.swift */; };
-		A6ED253A2BF205E9002DE2DC /* TranLogSourceGoalCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6ED25392BF205E9002DE2DC /* TranLogSourceGoalCell.swift */; };
-		A6ED253C2BF205F9002DE2DC /* TranLogDestinationCategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6ED253B2BF205F9002DE2DC /* TranLogDestinationCategoryCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -80,8 +64,6 @@
 		A60BF19F2B19A06F00AE0B78 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A60BF1A12B19A06F00AE0B78 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A60BF1B42B19CEFD00AE0B78 /* MonthlyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthlyViewController.swift; sourceTree = "<group>"; };
-		A60E95A12BE9E16800711820 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
-		A60E95A32BEB371600711820 /* SelectTargetMonthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectTargetMonthView.swift; sourceTree = "<group>"; };
 		A60E95A52BEE05A600711820 /* DeleteGoalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteGoalView.swift; sourceTree = "<group>"; };
 		A6167CD32C26F03A0099EFA7 /* HamburgerMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HamburgerMenuViewController.swift; sourceTree = "<group>"; };
 		A6167CDE2C2807100099EFA7 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -90,14 +72,9 @@
 		A62B99862BFF07090018A12C /* TotalDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TotalDetailView.swift; sourceTree = "<group>"; };
 		A62B998A2BFF34000018A12C /* TotalTransactionTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TotalTransactionTableCell.swift; sourceTree = "<group>"; };
 		A62B998D2BFF36170018A12C /* BreakdownEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreakdownEditorView.swift; sourceTree = "<group>"; };
-		A62B99982C00D0810018A12C /* TransferLogTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransferLogTableCell.swift; sourceTree = "<group>"; };
-		A62B999A2C01CBC50018A12C /* OtherGoalItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherGoalItemCell.swift; sourceTree = "<group>"; };
 		A643F2732B35196000FA453D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		A643F2772B351A3900FA453D /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
-		A643F2792B355AFA00FA453D /* LanguageSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageSelectionViewController.swift; sourceTree = "<group>"; };
 		A643F2812B35747900FA453D /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
-		A643F2842B3674BB00FA453D /* MonthlyDefaultManagementAmountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthlyDefaultManagementAmountViewController.swift; sourceTree = "<group>"; };
-		A6460F042B936AFA002B07A1 /* UpdateCommon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateCommon.swift; sourceTree = "<group>"; };
 		A6487BB62B51846300CAF47B /* MyProgressBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProgressBar.swift; sourceTree = "<group>"; };
 		A652EACA2C2811BB00EA7C91 /* TransactionEditorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransactionEditorViewController.swift; sourceTree = "<group>"; };
 		A652EACF2C28193400EA7C91 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
@@ -106,7 +83,6 @@
 		A670044A2B1CA23300EC50A4 /* CategoryPickerTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryPickerTextField.swift; sourceTree = "<group>"; };
 		A673CED52BF9CA2F001E5679 /* UIColor+CustomColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+CustomColors.swift"; sourceTree = "<group>"; };
 		A673CED92BF9EE8C001E5679 /* IconTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconTableCell.swift; sourceTree = "<group>"; };
-		A6752FF92B5807B600670CA5 /* CreateTransferLogViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTransferLogViewController.swift; sourceTree = "<group>"; };
 		A683234B2B1FE48D003D2F2E /* GoalDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalDetailViewController.swift; sourceTree = "<group>"; };
 		A683234D2B1FE95C003D2F2E /* TransactionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionTableViewCell.swift; sourceTree = "<group>"; };
 		A685A3E02C299AFA00EA8A8E /* Wallet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Wallet.swift; sourceTree = "<group>"; };
@@ -121,23 +97,15 @@
 		A68C5DFC2B8DBFBC00963FD1 /* Formatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Formatter.swift; sourceTree = "<group>"; };
 		A68C5E042B8EA74100963FD1 /* BreakdownTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreakdownTableCell.swift; sourceTree = "<group>"; };
 		A68E39A82BE213210018A505 /* CreateCategoryDialogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateCategoryDialogView.swift; sourceTree = "<group>"; };
-		A6A0D9312B37137F00395E51 /* CategorysSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategorysSettingViewController.swift; sourceTree = "<group>"; };
-		A6A0D9332B3724D300395E51 /* CategorysSettingViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategorysSettingViewCell.swift; sourceTree = "<group>"; };
 		A6B1D5D42B235AAA0076D3BF /* ShowAlerts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowAlerts.swift; sourceTree = "<group>"; };
 		A6B1D5D62B2498E70076D3BF /* DateFuncs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFuncs.swift; sourceTree = "<group>"; };
 		A6B1D5D82B249DE80076D3BF /* AmountProcessings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmountProcessings.swift; sourceTree = "<group>"; };
 		A6D659282BAD5C39008029DC /* ShowInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowInfoView.swift; sourceTree = "<group>"; };
 		A6DF96612B80F8EC00982144 /* GoalItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalItemCell.swift; sourceTree = "<group>"; };
 		A6DFB2C02B47B6DD001C167C /* KeyboardScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardScrollView.swift; sourceTree = "<group>"; };
-		A6ED251B2BEF859E002DE2DC /* SettingGoalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingGoalViewController.swift; sourceTree = "<group>"; };
 		A6ED251E2BEF90F2002DE2DC /* SwitchTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchTableCell.swift; sourceTree = "<group>"; };
-		A6ED25252BEFB075002DE2DC /* CreateUserSetTranLogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateUserSetTranLogView.swift; sourceTree = "<group>"; };
-		A6ED25272BEFB66E002DE2DC /* EditUserSetTranLogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditUserSetTranLogView.swift; sourceTree = "<group>"; };
 		A6ED25292BF096D8002DE2DC /* DetailLabelTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailLabelTableCell.swift; sourceTree = "<group>"; };
-		A6ED25342BF1C5D4002DE2DC /* GoalAlertSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalAlertSettingViewController.swift; sourceTree = "<group>"; };
 		A6ED25362BF1D091002DE2DC /* TextFieldCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldCell.swift; sourceTree = "<group>"; };
-		A6ED25392BF205E9002DE2DC /* TranLogSourceGoalCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranLogSourceGoalCell.swift; sourceTree = "<group>"; };
-		A6ED253B2BF205F9002DE2DC /* TranLogDestinationCategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranLogDestinationCategoryCell.swift; sourceTree = "<group>"; };
 		F94564C582F12A2D0FD82CB8 /* Pods-BudgetBaddy.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BudgetBaddy.debug.xcconfig"; path = "Target Support Files/Pods-BudgetBaddy/Pods-BudgetBaddy.debug.xcconfig"; sourceTree = "<group>"; };
 		FA6DA237AF364B523F98E359 /* Pods-BudgetBaddy.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BudgetBaddy.release.xcconfig"; path = "Target Support Files/Pods-BudgetBaddy/Pods-BudgetBaddy.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -230,28 +198,15 @@
 			path = DataClass;
 			sourceTree = "<group>";
 		};
-		A60E95972BE5249D00711820 /* SettingView */ = {
-			isa = PBXGroup;
-			children = (
-				A60E95A12BE9E16800711820 /* SettingsViewController.swift */,
-				A643F2792B355AFA00FA453D /* LanguageSelectionViewController.swift */,
-				A643F2842B3674BB00FA453D /* MonthlyDefaultManagementAmountViewController.swift */,
-				A6A0D9312B37137F00395E51 /* CategorysSettingViewController.swift */,
-				A6A0D9332B3724D300395E51 /* CategorysSettingViewCell.swift */,
-			);
-			path = SettingView;
-			sourceTree = "<group>";
-		};
 		A60E959A2BE525A800711820 /* MainViewControllers */ = {
 			isa = PBXGroup;
 			children = (
 				A685A3F72C2A8BC500EA8A8E /* LoginView */,
-				A685A3F62C2A8BAE00EA8A8E /* TransactionEditor */,
 				A6167CD52C2712F00099EFA7 /* HamburgerMenuView */,
 				A60E959F2BE5276200711820 /* MonthlyView */,
-				A60E959D2BE5267A00711820 /* GoalDetail */,
 				A60E959C2BE525DD00711820 /* CreateGoal */,
-				A60E95972BE5249D00711820 /* SettingView */,
+				A60E959D2BE5267A00711820 /* GoalDetail */,
+				A685A3F62C2A8BAE00EA8A8E /* TransactionEditor */,
 			);
 			path = MainViewControllers;
 			sourceTree = "<group>";
@@ -259,7 +214,6 @@
 		A60E959C2BE525DD00711820 /* CreateGoal */ = {
 			isa = PBXGroup;
 			children = (
-				A6752FF92B5807B600670CA5 /* CreateTransferLogViewController.swift */,
 				A68E39A82BE213210018A505 /* CreateCategoryDialogView.swift */,
 			);
 			path = CreateGoal;
@@ -270,8 +224,6 @@
 			children = (
 				A683234B2B1FE48D003D2F2E /* GoalDetailViewController.swift */,
 				A60E95A52BEE05A600711820 /* DeleteGoalView.swift */,
-				A6ED25332BF1C5A4002DE2DC /* GoalAlertSetting */,
-				A6ED25242BEFAFEC002DE2DC /* SettingGoal */,
 			);
 			path = GoalDetail;
 			sourceTree = "<group>";
@@ -323,7 +275,6 @@
 		A62B998C2BFF35F40018A12C /* Dialog */ = {
 			isa = PBXGroup;
 			children = (
-				A60E95A32BEB371600711820 /* SelectTargetMonthView.swift */,
 				A62B998D2BFF36170018A12C /* BreakdownEditorView.swift */,
 				A67004462B1C6A6800EC50A4 /* MonthYearPicker.swift */,
 			);
@@ -376,14 +327,6 @@
 			path = LoginView;
 			sourceTree = "<group>";
 		};
-		A6A6EF282BFB154B00D6E402 /* TransferLog */ = {
-			isa = PBXGroup;
-			children = (
-				A62B99982C00D0810018A12C /* TransferLogTableCell.swift */,
-			);
-			path = TransferLog;
-			sourceTree = "<group>";
-		};
 		A6B1D5D32B235A8F0076D3BF /* Commons */ = {
 			isa = PBXGroup;
 			children = (
@@ -394,7 +337,6 @@
 				A6DFB2C02B47B6DD001C167C /* KeyboardScrollView.swift */,
 				A68C5DF42B8B80B400963FD1 /* RealmClassCommon.swift */,
 				A68C5DFC2B8DBFBC00963FD1 /* Formatter.swift */,
-				A6460F042B936AFA002B07A1 /* UpdateCommon.swift */,
 				A6ED251D2BEF90D7002DE2DC /* CustomTableViewCell */,
 			);
 			path = Commons;
@@ -404,8 +346,8 @@
 			isa = PBXGroup;
 			children = (
 				A62B99842BFE2C650018A12C /* GoalsView.swift */,
-				A6487BB62B51846300CAF47B /* MyProgressBar.swift */,
 				A62B99862BFF07090018A12C /* TotalDetailView.swift */,
+				A6487BB62B51846300CAF47B /* MyProgressBar.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -414,7 +356,6 @@
 			isa = PBXGroup;
 			children = (
 				A6DF96612B80F8EC00982144 /* GoalItemCell.swift */,
-				A62B999A2C01CBC50018A12C /* OtherGoalItemCell.swift */,
 			);
 			path = GoalCell;
 			sourceTree = "<group>";
@@ -422,40 +363,11 @@
 		A6ED251D2BEF90D7002DE2DC /* CustomTableViewCell */ = {
 			isa = PBXGroup;
 			children = (
-				A6ED25382BF205AC002DE2DC /* CreateTransferLogTableCell */,
 				A6DF96602B760F4500982144 /* GoalCell */,
-				A6A6EF282BFB154B00D6E402 /* TransferLog */,
 				A62B99882BFF17590018A12C /* Breakdown */,
 				A62B99892BFF33600018A12C /* Transaction */,
 			);
 			path = CustomTableViewCell;
-			sourceTree = "<group>";
-		};
-		A6ED25242BEFAFEC002DE2DC /* SettingGoal */ = {
-			isa = PBXGroup;
-			children = (
-				A6ED251B2BEF859E002DE2DC /* SettingGoalViewController.swift */,
-				A6ED25252BEFB075002DE2DC /* CreateUserSetTranLogView.swift */,
-				A6ED25272BEFB66E002DE2DC /* EditUserSetTranLogView.swift */,
-			);
-			path = SettingGoal;
-			sourceTree = "<group>";
-		};
-		A6ED25332BF1C5A4002DE2DC /* GoalAlertSetting */ = {
-			isa = PBXGroup;
-			children = (
-				A6ED25342BF1C5D4002DE2DC /* GoalAlertSettingViewController.swift */,
-			);
-			path = GoalAlertSetting;
-			sourceTree = "<group>";
-		};
-		A6ED25382BF205AC002DE2DC /* CreateTransferLogTableCell */ = {
-			isa = PBXGroup;
-			children = (
-				A6ED253B2BF205F9002DE2DC /* TranLogDestinationCategoryCell.swift */,
-				A6ED25392BF205E9002DE2DC /* TranLogSourceGoalCell.swift */,
-			);
-			path = CreateTransferLogTableCell;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -594,8 +506,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				A685A3E12C299AFA00EA8A8E /* Wallet.swift in Sources */,
-				A6ED25262BEFB075002DE2DC /* CreateUserSetTranLogView.swift in Sources */,
-				A6ED253C2BF205F9002DE2DC /* TranLogDestinationCategoryCell.swift in Sources */,
 				A685A3EF2C29B1D500EA8A8E /* UsersDao.swift in Sources */,
 				A673CEDA2BF9EE8C001E5679 /* IconTableCell.swift in Sources */,
 				A6B1D5D52B235AAA0076D3BF /* ShowAlerts.swift in Sources */,
@@ -604,49 +514,35 @@
 				A685A3E92C29AA8700EA8A8E /* MonthlyGoals.swift in Sources */,
 				A683234C2B1FE48D003D2F2E /* GoalDetailViewController.swift in Sources */,
 				A68C5E052B8EA74100963FD1 /* BreakdownTableCell.swift in Sources */,
-				A60E95A42BEB371600711820 /* SelectTargetMonthView.swift in Sources */,
 				A685A3EB2C29AEB100EA8A8E /* MonthlyTransactions.swift in Sources */,
 				A673CED62BF9CA2F001E5679 /* UIColor+CustomColors.swift in Sources */,
-				A6ED25282BEFB66E002DE2DC /* EditUserSetTranLogView.swift in Sources */,
 				A685A3F32C2A381200EA8A8E /* WalletsDao.swift in Sources */,
 				A643F2822B35747900FA453D /* Extensions.swift in Sources */,
-				A643F27A2B355AFA00FA453D /* LanguageSelectionViewController.swift in Sources */,
 				A683234E2B1FE95C003D2F2E /* TransactionTableViewCell.swift in Sources */,
-				A62B99992C00D0810018A12C /* TransferLogTableCell.swift in Sources */,
 				A6DF96622B80F8EC00982144 /* GoalItemCell.swift in Sources */,
 				A68E39A92BE213210018A505 /* CreateCategoryDialogView.swift in Sources */,
-				A60E95A22BE9E16800711820 /* SettingsViewController.swift in Sources */,
-				A6752FFA2B5807B600670CA5 /* CreateTransferLogViewController.swift in Sources */,
 				A6167CDF2C2807100099EFA7 /* LoginViewController.swift in Sources */,
 				A68C5DF52B8B80B400963FD1 /* RealmClassCommon.swift in Sources */,
-				A6460F052B936AFA002B07A1 /* UpdateCommon.swift in Sources */,
 				A685A3E52C29A2F700EA8A8E /* User.swift in Sources */,
 				A652EACB2C2811BB00EA7C91 /* TransactionEditorViewController.swift in Sources */,
 				A60BF1962B19A06C00AE0B78 /* SceneDelegate.swift in Sources */,
 				A60BF1B52B19CEFD00AE0B78 /* MonthlyViewController.swift in Sources */,
-				A6ED253A2BF205E9002DE2DC /* TranLogSourceGoalCell.swift in Sources */,
 				A6ED252A2BF096D8002DE2DC /* DetailLabelTableCell.swift in Sources */,
-				A6ED25352BF1C5D4002DE2DC /* GoalAlertSettingViewController.swift in Sources */,
 				A6167CD42C26F03A0099EFA7 /* HamburgerMenuViewController.swift in Sources */,
 				A62B998E2BFF36170018A12C /* BreakdownEditorView.swift in Sources */,
 				A68C5DFD2B8DBFBC00963FD1 /* Formatter.swift in Sources */,
-				A6A0D9342B3724D400395E51 /* CategorysSettingViewCell.swift in Sources */,
 				A6B1D5D92B249DE80076D3BF /* AmountProcessings.swift in Sources */,
 				A6ED251F2BEF90F2002DE2DC /* SwitchTableCell.swift in Sources */,
-				A6A0D9322B37137F00395E51 /* CategorysSettingViewController.swift in Sources */,
 				A6DFB2C12B47B6DD001C167C /* KeyboardScrollView.swift in Sources */,
 				A6ED25372BF1D091002DE2DC /* TextFieldCell.swift in Sources */,
 				A6D659292BAD5C39008029DC /* ShowInfoView.swift in Sources */,
-				A6ED251C2BEF859E002DE2DC /* SettingGoalViewController.swift in Sources */,
 				A685A3F52C2A85F000EA8A8E /* MonthlyTransactionsDao.swift in Sources */,
 				A62B99852BFE2C650018A12C /* GoalsView.swift in Sources */,
 				A670044B2B1CA23300EC50A4 /* CategoryPickerTextField.swift in Sources */,
 				A60E95A62BEE05A600711820 /* DeleteGoalView.swift in Sources */,
 				A67004472B1C6A6800EC50A4 /* MonthYearPicker.swift in Sources */,
-				A643F2852B3674BC00FA453D /* MonthlyDefaultManagementAmountViewController.swift in Sources */,
 				A6B1D5D72B2498E70076D3BF /* DateFuncs.swift in Sources */,
 				A685A3F12C2A2F5400EA8A8E /* MonthlyGoalsDao.swift in Sources */,
-				A62B999B2C01CBC50018A12C /* OtherGoalItemCell.swift in Sources */,
 				A62B99872BFF07090018A12C /* TotalDetailView.swift in Sources */,
 				A6487BB72B51846300CAF47B /* MyProgressBar.swift in Sources */,
 				A62B998B2BFF34000018A12C /* TotalTransactionTableCell.swift in Sources */,

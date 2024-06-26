@@ -8,11 +8,15 @@
 import UIKit
 
 protocol CreateCategoryDialogViewDelegate: AnyObject {
-    func okButtonTapped()
+    func okButtonTapped(category: Category)
     func cancelButtonTapped()
 }
 
 class CreateCategoryDialogView: UIView {
+    weak var delegate: CreateCategoryDialogViewDelegate?
+    
+    private var walletId: String? = nil
+    
     private var dialogView: UIView = {
         let view = UIView()
         view.backgroundColor = .white
@@ -76,9 +80,10 @@ class CreateCategoryDialogView: UIView {
         return line
     }()
     
-    weak var delegate: CreateCategoryDialogViewDelegate?
-    
     // MARK: - Initialization
+    internal func configure(walletId: String) {
+        self.walletId = walletId
+    }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -87,7 +92,6 @@ class CreateCategoryDialogView: UIView {
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        setupDialogView()
     }
     
     // MARK: - Setup
@@ -180,9 +184,9 @@ class CreateCategoryDialogView: UIView {
     }
     
     @objc private func okButtonTapped() {
-        CategoryDao().addCategory(name: self.nameField.text!
-                                  , category_type_div: 0)
-        delegate?.okButtonTapped()
+        let newCategory = Category(name: self.nameField.text!)
+        WalletsDao.addCategoryToWallet(walletId: self.walletId!, newCategory: newCategory)
+        delegate?.okButtonTapped(category: newCategory)
     }
     
     @objc private func cancelButtonTapped() {

@@ -8,19 +8,34 @@
 import UIKit
 
 protocol HamburgerMenuViewDelegate: AnyObject {
+    func walletSelected(wallet: Wallet)
     func logout()
+}
+
+class TableCellsInSection {
+    var section: String
+    var cells: [String]
+    init(section: String, cells: [String]) {
+        self.section = section
+        self.cells = cells
+    }
 }
 
 class HamburgerMenuViewController: UIViewController {
     weak var delegate: HamburgerMenuViewDelegate?
-    
+
     var completion: (() -> Void)?
+    
+    private var userWallets: [Wallet]
+    private var selectedWallet: Wallet?
     
     private var menuViewWidth: CGFloat = 0.0
     
     // MenuTable
-    private let menuCellLabel: [String] = [
-        NSLocalizedString("Logout", comment: "")
+    private let tableCellsInSections: [TableCellsInSection] = [
+        TableCellsInSection(section: NSLocalizedString("Wallet", comment: ""), cells: []),
+        TableCellsInSection(section: NSLocalizedString("Action", comment: ""),
+                            cells: [NSLocalizedString("Logout", comment: "")])
     ]
     
     private let outView: UIView = {
@@ -80,6 +95,15 @@ class HamburgerMenuViewController: UIViewController {
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
         return tableView
     }()
+    
+    init(userWallets: [Wallet], selectedWallet: Wallet?) {
+        self.userWallets = userWallets
+        self.selectedWallet = selectedWallet
+        super.init(nibName: nil, bundle: nil)
+    }
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -197,22 +221,45 @@ class HamburgerMenuViewController: UIViewController {
 }
 
 extension HamburgerMenuViewController: UITableViewDelegate, UITableViewDataSource {
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return self.tableCellsInSections.count
+    }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return self.tableCellsInSections[section].section
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.menuCellLabel.count
+        return self.tableCellsInSections[section].cells.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
-        cell.textLabel?.text = self.menuCellLabel[indexPath.row]
-        cell.accessoryType = .disclosureIndicator
+        if indexPath.section == 0 {
+            cell.textLabel?.text = self.userWallets[indexPath.row].name
+            if self.userWallets[indexPath.row].walletId == self.selectedWallet?.walletId {
+                cell.backgroundColor = .systemYellow
+            }
+            cell.accessoryType = .disclosureIndicator
+        } else {
+            cell.textLabel?.text = self.tableCellsInSections[indexPath.section].cells[indexPath.row]
+        }
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        switch indexPath.row {
+        switch indexPath.section {
         case 0:
+            self.delegate?.walletSelected(wallet: self.userWallets[indexPath.row])
             self.closeThisView()
-            self.delegate?.logout()
+        case 1:
+            switch indexPath.row {
+            case 0:
+                self.closeThisView()
+                self.delegate?.logout()
+            default:
+                break
+            }
         default:
             break
         }

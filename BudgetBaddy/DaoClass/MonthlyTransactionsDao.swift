@@ -9,8 +9,12 @@ import Foundation
 import FirebaseFirestore
 
 class MonthlyTransactionsDao {
+    static func getMonthlyTransactionsDocumentId(walletId: String, targetMonth: String) -> String {
+        return "\(walletId)-\(targetMonth)"
+    }
+    
     // MonthlyTransactions
-    static func addMonthlyTransactionsToFirestore(monthlyTransactions: MonthlyTransactions) {
+    static func addMonthlyTransactions(monthlyTransactions: MonthlyTransactions) {
         let db = Firestore.firestore()
         let documentId = monthlyTransactions.targetMonth
         let monthlyTransactionsRef = db.collection("MonthlyTransactions").document(documentId)
@@ -39,26 +43,27 @@ class MonthlyTransactionsDao {
         }
     }
 
-    static func fetchMonthlyTransactionsFromFirestore(targetMonth: String, completion: @escaping (MonthlyTransactions?) -> Void) {
+    static func fetchMonthlyTransactions(walletId: String, targetMonth: String) async -> MonthlyTransactions? {
         let db = Firestore.firestore()
+        let documentId = MonthlyTransactionsDao.getMonthlyTransactionsDocumentId(walletId: walletId, targetMonth: targetMonth)
         let monthlyTransactionsRef = db.collection("MonthlyTransactions").document(targetMonth)
-
-        monthlyTransactionsRef.getDocument { (document, error) in
-            if let document = document, document.exists {
-                let data = document.data()
-                let monthlyTransactions = MonthlyTransactions(dictionary: data!)
-                completion(monthlyTransactions)
+        do {
+            let document = try await monthlyTransactionsRef.getDocument()
+            if let data = document.data() {
+                return MonthlyTransactions(dictionary: data)
             } else {
-                print("MonthlyTransactions not found")
-                completion(nil)
+                return nil
             }
+        } catch {
+            return nil
         }
     }
     
     // Transactionsfunc
-    static func addTransactionToMonthlyTransactions(targetMonth: String, newTransaction: Transaction) {
+    static func addTransactionToMonthlyTransactions(walletId: String, targetMonth: String, newTransaction: Transaction) {
         let db = Firestore.firestore()
-        let monthlyTransactionsRef = db.collection("MonthlyTransactions").document(targetMonth)
+        let documentId = MonthlyTransactionsDao.getMonthlyTransactionsDocumentId(walletId: walletId, targetMonth: targetMonth)
+        let monthlyTransactionsRef = db.collection("MonthlyTransactions").document(documentId)
 
         // 新しいTransactionを辞書に変換
         let newTransactionData = newTransaction.toDictionary()
@@ -75,9 +80,10 @@ class MonthlyTransactionsDao {
         }
     }
     
-    func updateTransactionInMonthlyTransactions(targetMonth: String, updatedTransaction: Transaction) {
+    static func updateTransactionInMonthlyTransactions(walletId: String, targetMonth: String, updatedTransaction: Transaction) {
         let db = Firestore.firestore()
-        let monthlyTransactionsRef = db.collection("MonthlyTransactions").document(targetMonth)
+        let documentId = MonthlyTransactionsDao.getMonthlyTransactionsDocumentId(walletId: walletId, targetMonth: targetMonth)
+        let monthlyTransactionsRef = db.collection("MonthlyTransactions").document(documentId)
 
         monthlyTransactionsRef.getDocument { (document, error) in
             if let document = document, document.exists {
@@ -108,9 +114,10 @@ class MonthlyTransactionsDao {
         }
     }
 
-    func removeTransactionFromMonthlyTransactions(targetMonth: String, transactionToRemove: Transaction) {
+    static func removeTransactionFromMonthlyTransactions(walletId: String, targetMonth: String, transactionToRemove: Transaction) {
         let db = Firestore.firestore()
-        let monthlyTransactionsRef = db.collection("MonthlyTransactions").document(targetMonth)
+        let documentId = MonthlyTransactionsDao.getMonthlyTransactionsDocumentId(walletId: walletId, targetMonth: targetMonth)
+        let monthlyTransactionsRef = db.collection("MonthlyTransactions").document(documentId)
 
         // 削除対象のTransactionを辞書に変換
         let transactionDataToRemove = transactionToRemove.toDictionary()

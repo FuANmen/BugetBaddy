@@ -101,17 +101,11 @@ class GoalItemCell: UICollectionViewCell {
         ])
     }
     
-    func configure(with goal: Goal, targetMonth: String) {
-        let balance = goal.getBalance()
-        balanceLabel.text = formatCurrency(amount: balance)
-        if let category = goal.category {
-            categoryNameLabel.text = category.name + " :"
-        }
+    func configure(category: Category, goal: Goal, categoryOfExpense: Double) {
+        categoryNameLabel.text = category.name + " :"
         
-        if let totalGoal = GoalDao().getTotalGoal(targetMonth: targetMonth) {
-            let totalAmount = totalGoal.getAmount()
-            self.updateView(goalAmount: Int(goal.getAmount()), balance: Int(balance), totalAmount: Int(totalAmount))
-        }
+        let balance = goal.budget - categoryOfExpense
+        balanceLabel.text = formatCurrency(amount: balance)
     }
     
     override func prepareForReuse() {

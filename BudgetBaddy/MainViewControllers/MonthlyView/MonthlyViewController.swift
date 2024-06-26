@@ -10,10 +10,13 @@ import RealmSwift
 
 class MonthlyViewController: UIViewController {
     internal var user: User?
+    private var userWallets: [Wallet] = []
+    
+    private var selectedWallet: Wallet?
+    private var monthlyGoalsArray: [MonthlyGoals] = []
+    private var monthlyTransactionsArray: [MonthlyTransactions] = []
     
     private let realm = try! Realm()
-    private let goalDao = GoalDao()
-    private let categoryDao = CategoryDao()
     private let dateFuncs = DateFuncs()
     
     private var targetMonth: String = "" {
@@ -30,7 +33,7 @@ class MonthlyViewController: UIViewController {
                 self.goalsView.alpha = 0.0
                 self.totalDetailView.alpha = 0.0
             }, completion: { finished in
-                self.updateDatas()
+                self.updateDataSet()
                 self.scrollToTop()
                 UIView.animate(withDuration: 0.3, animations: {
                     self.amountValue.alpha = 1.0
@@ -59,32 +62,54 @@ class MonthlyViewController: UIViewController {
             if oldValue == preview {
                 return
             }
-            
-            switch preview {
-            case .goalsView:
-                self.goalsView.configure(targetMonth: self.targetMonth)
-                validViewHorizontalAlignment?.constant = view.frame.width / 4
-                goalsViewLeadingConstraint?.constant = 0
+            if self.selectedWallet != nil {
+                let monthlyGoals: MonthlyGoals?
+                let monthlyTransactions: MonthlyTransactions?
                 
-                UIView.animate(withDuration: 0.4, animations: {
-                    self.view.layoutIfNeeded()
-                    self.mainViewLabel_1.textColor = .white
-                    self.mainViewLabel_3.textColor = .systemGray6
-                }, completion: { finished in
-                    self.scrollToTop()
-                })
-            case .totalDetail:
-                self.totalDetailView.configure(targetMonth: self.targetMonth)
-                validViewHorizontalAlignment?.constant = view.frame.width / 4 * 3
-                goalsViewLeadingConstraint?.constant = -view.frame.width
+                if let index = self.monthlyGoalsArray.firstIndex(where: {
+                    $0.targetMonth == self.targetMonth && $0.walletId == self.selectedWallet!.walletId })
+                {
+                    monthlyGoals = self.monthlyGoalsArray[index]
+                } else {
+                    return
+                }
                 
-                UIView.animate(withDuration: 0.4, animations: {
-                    self.view.layoutIfNeeded()
-                    self.mainViewLabel_1.textColor = .systemGray6
-                    self.mainViewLabel_3.textColor = .white
-                }, completion: { finished in
-                    self.scrollToTop()
-                })
+                if let index = self.monthlyTransactionsArray.firstIndex(where: {
+                    $0.targetMonth == self.targetMonth && $0.walletId == self.selectedWallet!.walletId })
+                {
+                    monthlyTransactions = self.monthlyTransactionsArray[index]
+                } else {
+                    return
+                }
+                
+                switch preview {
+                case .goalsView:
+                    self.goalsView.configure(wallet: self.selectedWallet!,
+                                             monthlyGoals: monthlyGoals!,
+                                             monthlyTransactions: monthlyTransactions!)
+                    validViewHorizontalAlignment?.constant = view.frame.width / 4
+                    goalsViewLeadingConstraint?.constant = 0
+                    
+                    UIView.animate(withDuration: 0.4, animations: {
+                        self.view.layoutIfNeeded()
+                        self.mainViewLabel_1.textColor = .white
+                        self.mainViewLabel_3.textColor = .systemGray6
+                    }, completion: { finished in
+                        self.scrollToTop()
+                    })
+                case .totalDetail:
+                    self.totalDetailView.configure(monthlyGoals: monthlyGoals!, monthlyTransactions: monthlyTransactions!)
+                    validViewHorizontalAlignment?.constant = view.frame.width / 4 * 3
+                    goalsViewLeadingConstraint?.constant = -view.frame.width
+                    
+                    UIView.animate(withDuration: 0.4, animations: {
+                        self.view.layoutIfNeeded()
+                        self.mainViewLabel_1.textColor = .systemGray6
+                        self.mainViewLabel_3.textColor = .white
+                    }, completion: { finished in
+                        self.scrollToTop()
+                    })
+                }
             }
         }
     }
@@ -291,13 +316,6 @@ class MonthlyViewController: UIViewController {
         view.backgroundColor = .systemGray4
         return view
     }()
-
-    // DIALOG
-    private let selectTargetMonthView: SelectTargetMonthView = {
-        let view = SelectTargetMonthView()
-        view.isHidden = true
-        return view
-    }()
     
     private let createBreakdownView: BreakdownEditorView = {
         let view = BreakdownEditorView()
@@ -318,12 +336,9 @@ class MonthlyViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // common
-        let currentDate = Date()
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM"
-        self.targetMonth = dateFormatter.string(from: currentDate)
-        // NavigationBarの背景色とタイトルの色を設定
+        // Data
+        self.updateDataSet(updateWallets: true, updateMonthlyGoals: true, updateMonthlyTransactions: true)
+        // View
         let appearance = UINavigationBarAppearance()
         appearance.configureWithOpaqueBackground()
         appearance.backgroundColor = .clear
@@ -331,24 +346,119 @@ class MonthlyViewController: UIViewController {
         self.navigationController?.navigationBar.standardAppearance = appearance
         self.navigationController?.navigationBar.scrollEdgeAppearance = appearance
         self.navigationController?.navigationBar.compactAppearance = appearance
-        
-        // top
         setupUI()
         addGradientBackground()
-        updateButtonState()
-        updateDatas()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
-        updateTotalGoal()
-        updateButtonState()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         navigationController?.navigationBar.isHidden = false
+    }
+    
+    private func updateDataSet(updateWallets: Bool = false,
+                               updateMonthlyGoals: Bool = false,
+                               updateMonthlyTransactions: Bool = false)
+    {
+        Task {
+            /// データの取得・設定
+            // TargetMonth: 初期値の設定のみ
+            if self.targetMonth == "" 
+            {
+                let currentDate = Date()
+                let dateFormatter = DateFormatter()
+                dateFormatter.dateFormat = "yyyy-MM"
+                self.targetMonth = dateFormatter.string(from: currentDate)
+            }
+            // UserWallets: 引数によって更新を明示された時のみ
+            if updateWallets 
+            {
+                self.userWallets = await self.user!.fetchWalletsForUser()
+                if self.selectedWallet == nil && self.userWallets.count > 0 {
+                    self.selectedWallet = self.userWallets[0]
+                }
+            }
+            // MonthlyGoals: 選択中Walletがあるとき
+            if self.selectedWallet != nil
+            {
+                if let index = self.monthlyGoalsArray.firstIndex(where: {
+                    $0.targetMonth == self.targetMonth && $0.walletId == self.selectedWallet!.walletId })
+                {
+                    // すでにtargetMonthのMonthlyGoalsがり、引数によって更新を明示された時のみ
+                    if updateMonthlyGoals {
+                        let target = await MonthlyGoalsDao.fetchMonthlyGoals(walletId: self.selectedWallet!.walletId, 
+                                                                             targetMonth: self.targetMonth)
+                        self.monthlyGoalsArray[index] = target!
+                    }
+                } 
+                else
+                {
+                    // targetMonthのMonthlyGoalsが未取得とき、データを取得する
+                    let target = await MonthlyGoalsDao.fetchMonthlyGoals(walletId: self.selectedWallet!.walletId,
+                                                                         targetMonth: self.targetMonth)
+                    if let target = target {
+                        self.monthlyGoalsArray.append(target)
+                    } else {
+                        // MonthlyGoalsが未登録のとき、データを作成する
+                        let target = MonthlyGoals(walletId: self.selectedWallet!.walletId,
+                                                  targetMonth: self.targetMonth,
+                                                  budgetBreakdowns: [],
+                                                  goals: [])
+                        self.monthlyGoalsArray.append(target)
+                        MonthlyGoalsDao.addMonthlyGoals(monthlyGoals: target)
+                    }
+                }
+            }
+            // MonthlyTransactions: 選択中Walletがあるとき
+            if self.selectedWallet != nil 
+            {
+                if let index = self.monthlyTransactionsArray.firstIndex(where: {
+                    $0.targetMonth == self.targetMonth && $0.walletId == self.selectedWallet!.walletId })
+                {
+                    // すでにtargetMonthのMonthlyTransactionsがあり、引数によって更新を明示された時のみ
+                    if updateMonthlyTransactions {
+                        let target = await MonthlyTransactionsDao.fetchMonthlyTransactions(walletId: self.selectedWallet!.walletId,
+                                                                                           targetMonth: self.targetMonth)
+                        self.monthlyTransactionsArray[index] = target!
+                    }
+                } 
+                else
+                {
+                    // targetMonthのMonthlyGoalsが未取得のとき、データを取得する
+                    let target = await MonthlyTransactionsDao.fetchMonthlyTransactions(walletId: self.selectedWallet!.walletId,
+                                                                                       targetMonth: self.targetMonth)
+                    if let target = target {
+                        self.monthlyTransactionsArray.append(target)
+                    } else {
+                        // MonthlyGoalsが未登録のとき、データを作成する
+                        let target = MonthlyTransactions(walletId: self.selectedWallet!.walletId,
+                                                         targetMonth: self.targetMonth,
+                                                         transactions: [])
+                        self.monthlyTransactionsArray.append(target)
+                        MonthlyTransactionsDao.addMonthlyTransactions(monthlyTransactions: target)
+                    }
+                }
+            }
+            /// データ取得に伴うViewの更新
+            if self.selectedWallet == nil {
+                return 
+            }
+            // 対象月のMonthlyGoals, MonthryTransactionsが取得された時のみ（バカ避け）
+            if let monthlyGoals = self.getThisMonthGoals(),
+               let monthlyTransactions = self.getThisMonthTransactions() {
+                // TopView:
+                amountValue.text = formatCurrency(amount: monthlyGoals.getTotalBudget())
+                balanceValue.text = formatCurrency(amount: monthlyGoals.getTotalBudget() - monthlyTransactions.getExpense())
+                
+                // MainView: GoalsView, TotalDetailView
+                switch preview {
+                case .goalsView:
+                    self.goalsView.configure(wallet: self.selectedWallet!, monthlyGoals: monthlyGoals, monthlyTransactions: monthlyTransactions)
+                case.totalDetail :
+                    self.totalDetailView.configure(monthlyGoals: monthlyGoals, monthlyTransactions: monthlyTransactions)
+                }
+            }
+            self.view.layoutIfNeeded()
+        }
     }
     
     private func addGradientBackground() {
@@ -388,7 +498,6 @@ class MonthlyViewController: UIViewController {
         horizonView.translatesAutoresizingMaskIntoConstraints = false
         validView.translatesAutoresizingMaskIntoConstraints = false
         mainViewLabel_1.translatesAutoresizingMaskIntoConstraints = false
-        // mainViewLabel_2.translatesAutoresizingMaskIntoConstraints = false
         mainViewLabel_3.translatesAutoresizingMaskIntoConstraints = false
         
         goalsViewLeadingConstraint = goalsView.leadingAnchor.constraint(equalTo: view.leadingAnchor)
@@ -469,6 +578,10 @@ class MonthlyViewController: UIViewController {
         amountView.addSubview(amountLabel)
         amountView.addSubview(amountValue)
         
+        monthView.translatesAutoresizingMaskIntoConstraints = false
+        monthValue.translatesAutoresizingMaskIntoConstraints = false
+        monthLabel.translatesAutoresizingMaskIntoConstraints = false
+        verticalView.translatesAutoresizingMaskIntoConstraints = false
         balanceView.translatesAutoresizingMaskIntoConstraints = false
         balanceLabel.translatesAutoresizingMaskIntoConstraints = false
         balanceValue.translatesAutoresizingMaskIntoConstraints = false
@@ -532,9 +645,6 @@ class MonthlyViewController: UIViewController {
         ])
         
         // MARK: - DIALOG
-        // SelectTargetMonthView
-        selectTargetMonthView.delegate = self
-        selectTargetMonthView.translatesAutoresizingMaskIntoConstraints = false
         // CreateBreakdownView
         createBreakdownView.delegate = self
         createBreakdownView.translatesAutoresizingMaskIntoConstraints = false
@@ -551,15 +661,6 @@ class MonthlyViewController: UIViewController {
         view.isUserInteractionEnabled = true
         view.addGestureRecognizer(panGesture)
     }
-
-    private func updateTotalGoal() {
-        UpdateGoals(targetMonth: self.targetMonth)
-        totalGoal = goalDao.getTotalGoal(targetMonth: self.targetMonth)
-        
-        balanceValue.text = formatCurrency(amount: totalGoal!.getBalance())
-        amountValue.text = formatCurrency(amount: totalGoal!.getAmount())
-        self.view.layoutIfNeeded()
-    }
     
     private func scrollToTop() {
         self.scrollView.scrollRectToVisible(.init(x: scrollView.contentOffset.x
@@ -573,34 +674,6 @@ class MonthlyViewController: UIViewController {
         scrollView.contentSize = CGSize(width: self.view.frame.width, height: height)
     }
     
-    private func updateButtonState() {
-        //previousButton.isEnabled = (currentDate > Calendar.current.date(byAdding: .year, value: -1, to: Date())!)
-        previousButton.isHidden = !previousButton.isEnabled
-        
-        //nextButton.isEnabled = (Date() >= Calendar.current.date(byAdding: .month, value: 1, to: currentDate)!)
-        nextButton.isHidden = !nextButton.isEnabled
-    }
-    
-    private func updateDatas() {
-        self.updateTotalGoal()
-        switch preview {
-        case .goalsView :
-            self.goalsView.configure(targetMonth: self.targetMonth)
-        case.totalDetail :
-            self.totalDetailView.configure(targetMonth: self.targetMonth)
-        }
-    }
-    
-    private func updateNavigationTitle() {
-        let offset = scrollView.contentOffset.y
-
-        if offset > topViewHeight / 2 {
-            self.navigationItem.title = String("\(self.targetMonth.suffix(2))\(NSLocalizedString("Month", comment: "")) - \(NSLocalizedString("Remaining", comment: "")): \(formatCurrency(amount: totalGoal!.getBalance())!)")
-        } else {
-            self.navigationItem.title = ""
-        }
-    }
-    
     private func hamburgerMenuClosedEvent() {
         switch self.hamburgerMenuClosedType {
         case .logout:
@@ -610,10 +683,50 @@ class MonthlyViewController: UIViewController {
         }
     }
     
+    private func getThisMonthGoalsIndex() -> Int? {
+        if let index = self.monthlyGoalsArray.firstIndex(where: {
+            $0.targetMonth == self.targetMonth && $0.walletId == self.selectedWallet!.walletId })
+        {
+            return index
+        } else {
+            return nil
+        }
+    }
+    
+    private func getThisMonthGoals() -> MonthlyGoals? {
+        if let index = self.monthlyGoalsArray.firstIndex(where: {
+            $0.targetMonth == self.targetMonth && $0.walletId == self.selectedWallet!.walletId })
+        {
+            return self.monthlyGoalsArray[index]
+        } else {
+            return nil
+        }
+    }
+    
+    private func getThisMonthTransactionsIndex() -> Int? {
+        if let index = self.monthlyTransactionsArray.firstIndex(where: {
+            $0.targetMonth == self.targetMonth && $0.walletId == self.selectedWallet!.walletId })
+        {
+            return index
+        } else {
+            return nil
+        }
+    }
+    
+    private func getThisMonthTransactions() -> MonthlyTransactions? {
+        if let index = self.monthlyTransactionsArray.firstIndex(where: {
+            $0.targetMonth == self.targetMonth && $0.walletId == self.selectedWallet!.walletId })
+        {
+            return self.monthlyTransactionsArray[index]
+        } else {
+            return nil
+        }
+    }
+    
     // MARK: - ActionEvent
     @objc func hamburgerButtonTapped(_ sender: UIBarButtonItem) {
         self.hamburgerMenuClosedType = .def
-        let hamburgerMenuVC = HamburgerMenuViewController()
+        let hamburgerMenuVC = HamburgerMenuViewController(userWallets: self.userWallets, selectedWallet: self.selectedWallet ?? nil)
         hamburgerMenuVC.delegate = self
         hamburgerMenuVC.modalPresentationStyle = .overFullScreen
         hamburgerMenuVC.completion = { [weak self] in
@@ -641,27 +754,6 @@ class MonthlyViewController: UIViewController {
     }
     
     // MARK: - GestureEvent
-    @objc private func targetMonthLabelTapped(_ gesture: UITapGestureRecognizer) {
-        selectTargetMonthView.setupInit(targetMonth: self.targetMonth)
-        
-        selectTargetMonthView.alpha = 0
-        self.view.addSubview(selectTargetMonthView)
-        
-        NSLayoutConstraint.activate([
-            selectTargetMonthView.topAnchor.constraint(equalTo: self.view.topAnchor),
-            selectTargetMonthView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
-            selectTargetMonthView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
-            selectTargetMonthView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor)
-        ])
-        
-        navigationController?.setNavigationBarHidden(true, animated: true)
-        self.tabBarController?.tabBar.isHidden = true
-        
-        UIView.animate(withDuration: 0.3) {
-            self.selectTargetMonthView.alpha = 1.0
-        }
-    }
-    
     @objc private func mainViewLabelTapped(_ gesture: UITapGestureRecognizer) {
         switch gesture.view!.tag {
         case 0:
@@ -713,6 +805,13 @@ class MonthlyViewController: UIViewController {
 }
 
 extension MonthlyViewController: HamburgerMenuViewDelegate {
+    func walletSelected(wallet: Wallet) {
+        if self.selectedWallet?.walletId != wallet.walletId {
+            self.selectedWallet = wallet
+            self.updateDataSet(updateMonthlyGoals: true, updateMonthlyTransactions: true)
+        }
+    }
+    
     internal func logout() {
         self.hamburgerMenuClosedType = .logout
     }
@@ -721,7 +820,7 @@ extension MonthlyViewController: HamburgerMenuViewDelegate {
 // MARK: - NAVIGATIONVIEW
 extension MonthlyViewController: UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        self.updateNavigationTitle()
+        // スクロール時イベント
     }
 }
 
@@ -733,23 +832,40 @@ extension MonthlyViewController: GoalsViewDelegate {
     }
     
     internal func addGoalButtonTapped() {
-        let addGoalViewController = CreateTransferLogViewController()
-        addGoalViewController.configure(targetMonth: self.targetMonth)
-        addGoalViewController.delegate = self
-        present(addGoalViewController, animated: true, completion: nil)
+//        let addGoalViewController = CreateTransferLogViewController()
+//        addGoalViewController.configure(targetMonth: self.targetMonth)
+//        addGoalViewController.delegate = self
+//        present(addGoalViewController, animated: true, completion: nil)
     }
     
-    internal func showGoalDetail(goal: Goal, imageColor: UIColor) {
-        let goalDetailViewController = GoalDetailViewController(category: goal.category!, targetMonth: goal.targetMonth, imageColor: imageColor)
-        goalDetailViewController.delegate = self
-        navigationController?.pushViewController(goalDetailViewController, animated: true)
+    internal func showGoalDetail(goal: Goal) {
+        if let category = self.selectedWallet?.getCategoryById(categoryId: goal.categoryId),
+           let monthlyTransactions = self.getThisMonthTransactions()
+        {
+            
+            let goalDetailViewController = GoalDetailViewController(targetMonth: self.targetMonth,
+                                                                    wallet: self.selectedWallet!,
+                                                                    goal: goal,
+                                                                    category: category,
+                                                                    transactions: monthlyTransactions.getCategoryOfTransactions(categoryId: category.categoryId))
+            goalDetailViewController.delegate = self
+            navigationController?.pushViewController(goalDetailViewController, animated: true)
+        }
     }
 }
 
 // MARK: - GoalDetailView
 extension MonthlyViewController: GoalDetailViewDelegate {
-    func didUpdateTransactions() {
-        self.updateDatas()
+    func didUpdateCategories(categories: [Category]) {
+        self.selectedWallet!.categories = categories
+        updateDataSet()
+    }
+    
+    func didUpdateTransactions(transactions: [Transaction]) {
+        if let index = self.getThisMonthTransactionsIndex() {
+            self.monthlyTransactionsArray[index].transactions = transactions
+            updateDataSet()
+        }
     }
 }
 
@@ -761,94 +877,97 @@ extension MonthlyViewController: TotalDetailDelegate {
     }
     
     internal func addBreakdownTapped() {
-        createBreakdownView.configure(targetMonth: self.targetMonth)
-        createBreakdownView.isHidden = false
-        createBreakdownView.alpha = 0
-        self.view.addSubview(createBreakdownView)
-        
-        NSLayoutConstraint.activate([
-            createBreakdownView.topAnchor.constraint(equalTo: self.view.topAnchor),
-            createBreakdownView.widthAnchor.constraint(equalTo: self.view.widthAnchor),
-            createBreakdownView.heightAnchor.constraint(equalTo: self.view.heightAnchor)
-        ])
-        
-        self.navigationController?.isNavigationBarHidden = true
-        self.tabBarController?.tabBar.isHidden = true
-        
-        UIView.animate(withDuration: 0.3) {
-            self.createBreakdownView.alpha = 1.0
+        if let walletId = self.selectedWallet?.walletId {
+            createBreakdownView.configure(walletId: walletId, targetMonth: self.targetMonth)
+            createBreakdownView.isHidden = false
+            createBreakdownView.alpha = 0
+            self.view.addSubview(createBreakdownView)
+            
+            NSLayoutConstraint.activate([
+                createBreakdownView.topAnchor.constraint(equalTo: self.view.topAnchor),
+                createBreakdownView.widthAnchor.constraint(equalTo: self.view.widthAnchor),
+                createBreakdownView.heightAnchor.constraint(equalTo: self.view.heightAnchor)
+            ])
+            
+            self.navigationController?.isNavigationBarHidden = true
+            self.tabBarController?.tabBar.isHidden = true
+            
+            UIView.animate(withDuration: 0.3) {
+                self.createBreakdownView.alpha = 1.0
+            }
         }
     }
     
-    internal func breakdownSelected(target: Breakdown) {
-        createBreakdownView.configure(targetMonth: self.targetMonth, breakdown: target)
-        createBreakdownView.isHidden = false
-        createBreakdownView.alpha = 0
-        self.view.addSubview(createBreakdownView)
-        
-        NSLayoutConstraint.activate([
-            createBreakdownView.topAnchor.constraint(equalTo: self.view.topAnchor),
-            createBreakdownView.widthAnchor.constraint(equalTo: self.view.widthAnchor),
-            createBreakdownView.heightAnchor.constraint(equalTo: self.view.heightAnchor)
-        ])
-        
-        self.navigationController?.isNavigationBarHidden = true
-        self.tabBarController?.tabBar.isHidden = true
-        
-        UIView.animate(withDuration: 0.3) {
-            self.createBreakdownView.alpha = 1.0
+    internal func breakdownSelected(target: BudgetBreakdown) {
+        if let walletId = self.selectedWallet?.walletId {
+            createBreakdownView.configure(walletId: walletId, targetMonth: self.targetMonth, breakdown: target)
+            createBreakdownView.isHidden = false
+            createBreakdownView.alpha = 0
+            self.view.addSubview(createBreakdownView)
+            
+            NSLayoutConstraint.activate([
+                createBreakdownView.topAnchor.constraint(equalTo: self.view.topAnchor),
+                createBreakdownView.widthAnchor.constraint(equalTo: self.view.widthAnchor),
+                createBreakdownView.heightAnchor.constraint(equalTo: self.view.heightAnchor)
+            ])
+            
+            self.navigationController?.isNavigationBarHidden = true
+            self.tabBarController?.tabBar.isHidden = true
+            
+            UIView.animate(withDuration: 0.3) {
+                self.createBreakdownView.alpha = 1.0
+            }
         }
     }
     
     internal func addTransactionTapped() {
-        let createTransactionView = TransactionEditorViewController()
-        createTransactionView.configure(targetMonth: self.targetMonth)
-        createTransactionView.delegate = self
-        present(createTransactionView, animated: true, completion: nil)
+        if self.selectedWallet != nil {
+            let createTransactionView = TransactionEditorViewController(wallet: self.selectedWallet!,
+                                                                        targetMonth: self.targetMonth)
+            createTransactionView.delegate = self
+            present(createTransactionView, animated: true, completion: nil)
+        }
     }
     
     internal func transactionSelected(target: Transaction) {
-        let createTransactionView = TransactionEditorViewController()
-        createTransactionView.configure(targetMonth: self.targetMonth, transaction: target)
-        createTransactionView.delegate = self
-        present(createTransactionView, animated: true, completion: nil)
+        if self.selectedWallet != nil {
+            let createTransactionView = TransactionEditorViewController(wallet: self.selectedWallet!,
+                                                                        targetMonth: self.targetMonth,
+                                                                        transaction: target)
+            createTransactionView.delegate = self
+            present(createTransactionView, animated: true, completion: nil)
+        }
     }
 }
 
-// MARK: - CreateGoal
-extension MonthlyViewController: CreateTransferLogViewDelegate {
-    internal func didAddTransferLog() {
-        self.updateDatas()
-    }
-}
-
-// MARK: - SelectTargetMonthView
-extension MonthlyViewController: SelectTargetMonthDelegate {
-    internal func okButtonTapped(targetMonth: String) {
-        // TODO
-    }
-    
-    internal func cancelButtonTapped() {
-        // TODO
-    }
-}
 // MARK: - BreakdownEditorView
 extension MonthlyViewController: BreakdownEditorViewDelegate {
-    internal func okButtonTapped_atBreakdownEditor() {
-        self.updateDatas()
-        
-        self.navigationController?.isNavigationBarHidden = false
-        self.tabBarController?.tabBar.isHidden = false
-        
-        UIView.animate(withDuration: 0.2, animations: {
-            self.createBreakdownView.alpha = 0.0
-        }, completion: { finished in
-            self.createBreakdownView.isHidden = true
-            self.createBreakdownView.removeFromSuperview()
-        })
+    internal func createdBreakdown(target: BudgetBreakdown) {
+        if let index = self.monthlyGoalsArray.firstIndex(where: { $0.walletId == self.selectedWallet?.walletId
+            && $0.targetMonth == self.targetMonth })
+        {
+            self.monthlyGoalsArray[index].budgetBreakdowns.append(target)
+        }
+        closecreateBreakdownView()
+    }
+    
+    internal func updatedBreakdonw(target: BudgetBreakdown) {
+        if let index = self.monthlyGoalsArray.firstIndex(where: { $0.walletId == self.selectedWallet?.walletId
+            && $0.targetMonth == self.targetMonth })
+        {
+            if let targetIndex = self.monthlyGoalsArray[index].budgetBreakdowns.firstIndex(where: { $0.id == target.id })
+            {
+                self.monthlyGoalsArray[index].budgetBreakdowns[targetIndex] = target
+            }
+        }
+        closecreateBreakdownView()
     }
     
     internal func cancelButtonTapped_atBreakdownEditor() {
+        closecreateBreakdownView()
+    }
+    
+    private func closecreateBreakdownView() {
         self.navigationController?.isNavigationBarHidden = false
         self.tabBarController?.tabBar.isHidden = false
         
@@ -862,7 +981,31 @@ extension MonthlyViewController: BreakdownEditorViewDelegate {
 }
 
 extension MonthlyViewController: TransactionEditorViewDelegate {
+    func addCategory(category: Category) {
+        if self.selectedWallet != nil {
+            self.selectedWallet?.categories.append(category)
+            self.updateDataSet()
+        }
+    }
+    
+    func addTransaction(transaction: Transaction) {
+        if let index = self.getThisMonthTransactionsIndex() {
+            self.monthlyTransactionsArray[index].transactions.append(transaction)
+            self.updateDataSet()
+        }
+    }
+    
+    func updateTransaction(transaction: Transaction) {
+        if let index = self.getThisMonthTransactionsIndex() {
+            if let transIndex = self.monthlyTransactionsArray[index].transactions.firstIndex(where: { $0.id == transaction.id })
+            {
+                self.monthlyTransactionsArray[index].transactions[transIndex] = transaction
+                self.updateDataSet()
+            }
+        }
+    }
+    
     func saveBtnTapped_atTransactionEditor() {
-        self.updateDatas()
+        self.updateDataSet(updateMonthlyTransactions: true)
     }
 }

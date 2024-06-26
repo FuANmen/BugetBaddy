@@ -13,6 +13,12 @@ protocol DeleteGoalDelegate: AnyObject {
 }
 
 class DeleteGoalView: UIView {
+    weak var delegate: DeleteGoalDelegate?
+    
+    var walletId: String = ""
+    var targetMonth: String = ""
+    var thisGoal: Goal? = nil
+    
     private var dialogView: UIView = {
         let view = UIView()
         view.backgroundColor = .white
@@ -105,9 +111,6 @@ class DeleteGoalView: UIView {
         line.backgroundColor = .systemGray3
         return line
     }()
-    
-    weak var delegate: DeleteGoalDelegate?
-    var thisGoal: Goal? = nil
     
     // MARK: - Initialization
     override init(frame: CGRect) {
@@ -252,19 +255,20 @@ class DeleteGoalView: UIView {
     @objc private func okButtonTapped() {
         if radioSelectedFlg_1 {
             // 今月のGoalのみ削除
-            GoalDao().deleteGoal(goal: self.thisGoal!)
-        } else if radioSelectedFlg_2 {
-            // 今月以降のGoalを削除
-            let thisMonth = DateFuncs().convertStringToDate(self.thisGoal!.targetMonth, format: "yyyy-MM")!
-            let goals = GoalDao().getGoalsByCategory(category: self.thisGoal!.category!)
-            goals.forEach { goal in
-                let targetMonth = DateFuncs().convertStringToDate(goal.targetMonth, format: "yyyy-MM")!
-                
-                if thisMonth <= targetMonth {
-                    GoalDao().deleteGoal(goal: goal)
-                }
-            }
+            MonthlyGoalsDao.removeGoalFromMonthlyGoals(walletId: self.walletId, targetMonth: self.targetMonth, goal: self.thisGoal!)
         }
+//        else if radioSelectedFlg_2 {
+//            // 今月以降のGoalを削除
+//            let thisMonth = DateFuncs().convertStringToDate(self.thisGoal!.targetMonth, format: "yyyy-MM")!
+//            let goals = GoalDao().getGoalsByCategory(category: self.thisGoal!.category!)
+//            goals.forEach { goal in
+//                let targetMonth = DateFuncs().convertStringToDate(goal.targetMonth, format: "yyyy-MM")!
+//                
+//                if thisMonth <= targetMonth {
+//                    GoalDao().deleteGoal(goal: goal)
+//                }
+//            }
+//        }
         // 削除後のイベント発火
         delegate?.okButtonTapped()
     }

@@ -10,15 +10,13 @@ import Foundation
 class MonthlyGoals {
     var walletId: String
     var targetMonth: String
-    var budget: Double
-    var transferLogs: [TransferLog]
+    var budgetBreakdowns: [BudgetBreakdown]
     var goals: [Goal]
     
-    init(walletId: String, targetMonth: String, budget: Double, transferLogs: [TransferLog], goals: [Goal]) {
+    init(walletId: String, targetMonth: String, budgetBreakdowns: [BudgetBreakdown], goals: [Goal]) {
         self.walletId = walletId
         self.targetMonth = targetMonth
-        self.budget = budget
-        self.transferLogs = transferLogs
+        self.budgetBreakdowns = budgetBreakdowns
         self.goals = goals
     }
     
@@ -26,16 +24,14 @@ class MonthlyGoals {
         guard let walletId = dictionary["walletId"] as? String,
               let targetMonth = dictionary["targetMonth"] as? String,
               let budget = dictionary["budget"] as? Double,
-              let transferLogsData = dictionary["transferLogs"] as? [[String: Any]],
+              let budgetBreakdownsData = dictionary["budgetBreakdowns"] as? [[String: Any]],
               let goalsData = dictionary["goals"] as? [[String: Any]] else {
             return nil
         }
         self.walletId = walletId
         self.targetMonth = targetMonth
-        self.budget = budget
-        
-        self.transferLogs = transferLogsData.map { document in
-            TransferLog(dictionary: document)!
+        self.budgetBreakdowns = budgetBreakdownsData.map { document in
+            BudgetBreakdown(dictionary: document)!
         }
         
         self.goals = goalsData.map { document in
@@ -47,27 +43,42 @@ class MonthlyGoals {
         return [
             "walletId": walletId,
             "targetMonth": targetMonth,
-            "budget": budget,
-            "transferLogs": transferLogs.map { $0.toDictionary() },
+            "budgetBreakdowns": budgetBreakdowns.map { $0.toDictionary() },
             "goals": goals.map { $0.toDictionary() }
         ]
     }
+    
+    internal func getTotalBudget() -> Double{
+        var budget = 0.0
+        self.budgetBreakdowns.forEach { breakdown in
+            budget += breakdown.amount
+        }
+        return budget
+    }
 }
 
-class TransferLog {
+class BudgetBreakdown {
+    var id: String
     var title: String
     var amount: Double
     
-    init(title: String, amount: Double) {
+    init(id: String? = nil, title: String, amount: Double) {
+        if id == nil {
+            self.id = BudgetBreakdown.getId()
+        } else {
+            self.id = id!
+        }
         self.title = title
         self.amount = amount
     }
     
     init?(dictionary: [String: Any]) {
-        guard let title = dictionary["title"] as? String,
+        guard let id = dictionary["id"] as? String,
+              let title = dictionary["title"] as? String,
               let amount = dictionary["amount"] as? Double else {
             return nil
         }
+        self.id = id
         self.title = title
         self.amount = amount
     }
@@ -77,6 +88,10 @@ class TransferLog {
             "title": title,
             "amount": amount
         ]
+    }
+    
+    static func getId() -> String {
+        return String(format: "%04d", CGFloat.random(in: 1...1000))
     }
 }
 

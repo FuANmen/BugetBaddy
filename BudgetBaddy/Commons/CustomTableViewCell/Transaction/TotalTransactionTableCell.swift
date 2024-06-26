@@ -64,7 +64,6 @@ class TotalTransactionTableCell: UITableViewCell {
 
     internal func configure(with transaction: Transaction) {
         dateLabel.text = DateFuncs().convertStringFromDate(transaction.date, format: "dd" + NSLocalizedString("Day", comment: ""))
-        titleLabel.text = transaction.getTitle() + " :"
         amountLabel.text = formatCurrency(amount: transaction.amount)
     }
 }

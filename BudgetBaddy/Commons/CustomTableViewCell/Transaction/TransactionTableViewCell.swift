@@ -52,11 +52,7 @@ class TransactionTableViewCell: UITableViewCell {
     }
 
     func configure(with transaction: Transaction, categoryName: String) {
-        if categoryName == NSLocalizedString("Total", comment: "") {
-            titleLabel.text = transaction.category!.name
-        } else {
-            titleLabel.text = DateFuncs().convertStringFromDate(transaction.date, format: "dd" + NSLocalizedString("Day", comment: ""))
-        }
+        titleLabel.text = DateFuncs().convertStringFromDate(transaction.date, format: "dd" + NSLocalizedString("Day", comment: ""))
         amountLabel.text = formatCurrency(amount: transaction.amount)
     }
 }

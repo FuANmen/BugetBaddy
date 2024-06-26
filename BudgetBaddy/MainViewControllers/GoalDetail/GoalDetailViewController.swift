@@ -9,23 +9,18 @@ import UIKit
 import Charts
 
 protocol GoalDetailViewDelegate: AnyObject {
-    func didUpdateTransactions()
+    func didUpdateTransactions(transactions: [Transaction])
+    func didUpdateCategories(categories: [Category])
 }
 
 class GoalDetailViewController: UIViewController {    
     weak var delegate: GoalDetailViewDelegate?
 
-    private var category: Category
     private var targetMonth: String
-    private var goal: Goal? = nil
-    
-    private var imageColor: UIColor
-    
-    private var transactions: [Transaction] = [] {
-        didSet {
-            
-        }
-    }
+    private var wallet: Wallet
+    private var category: Category
+    private var goal: Goal
+    private var transactions: [Transaction]
     
     // Navigation
     private let menuButton: UIBarButtonItem = {
@@ -201,18 +196,10 @@ class GoalDetailViewController: UIViewController {
         let button = UIButton()
         button.setImage(UIImage(systemName: "plus"), for: .normal)
         button.tintColor = .customDarkGray
-        button.addTarget(self, action: #selector(addTransLogBtnTapped), for: .touchUpInside)
         button.imageView?.contentMode = .scaleAspectFit
         button.contentHorizontalAlignment = .fill
         button.contentVerticalAlignment = .fill
         return button
-    }()
-    
-    private let transferLogsTableView: UITableView = {
-        let tableView = UITableView()
-        tableView.tag = 0
-        tableView.register(TransferLogTableCell.self, forCellReuseIdentifier: TransferLogTableCell.identifier)
-        return tableView
     }()
     
     // Expense
@@ -243,17 +230,6 @@ class GoalDetailViewController: UIViewController {
         label.textColor = .systemRed
         label.font = UIFont.systemFont(ofSize: 28, weight: .medium)
         return label
-    }()
-    
-    private let openAndCloseExpenseAriaBtn: UIButton = {
-        let button = UIButton()
-        button.tintColor = .systemRed
-        button.setImage(UIImage(systemName: "chevron.down"), for: .normal)
-        button.addTarget(self, action: #selector(openAndCloseExpenseBtnTapped), for: .touchUpInside)
-        button.imageView?.contentMode = .scaleAspectFit
-        button.contentHorizontalAlignment = .fill
-        button.contentVerticalAlignment = .fill
-        return button
     }()
     
     private let transactionsViewHeaderHeight: CGFloat = 40
@@ -304,12 +280,16 @@ class GoalDetailViewController: UIViewController {
         return dialog
     }()
     
-    init(category: Category, targetMonth: String, imageColor: UIColor) {
-        self.category = category
+    init(targetMonth: String, wallet: Wallet, goal: Goal, category: Category, transactions: [Transaction]) {
         self.targetMonth = targetMonth
-        self.goal = GoalDao().getGoalsByCategory(category: category, targetMonth: targetMonth).first!
-        self.imageColor = imageColor
+        self.wallet = wallet
+        self.goal = goal
+        self.category = category
+        self.transactions = transactions
+
         super.init(nibName: nil, bundle: nil)
+        
+        updateValues()
     }
 
     required init?(coder: NSCoder) {
@@ -335,8 +315,6 @@ class GoalDetailViewController: UIViewController {
         self.addGradientBackground()
 
         setupUI()
-        updateValues()
-        loadTransactions()
         
         setupChartData()
     }
@@ -354,13 +332,8 @@ class GoalDetailViewController: UIViewController {
     }
     
     private func setupUI() {
-        // navigation
-        if !self.goal!.is_other {
-            menuButton.target = self
-            navigationItem.rightBarButtonItem = menuButton
-        }
         // Value
-        titleLabel.text = self.goal?.category!.name
+        titleLabel.text = self.category.name
         targetDateLabel.text = DateFuncs().convertStringFromDate(Date(), format: "yyyy/MM/dd")
         
         view.addSubview(scrollView)
@@ -491,10 +464,6 @@ class GoalDetailViewController: UIViewController {
         amountView.addSubview(openAndCloseAmountAriaBtn)
         transferLogsTableAria.addSubview(addTransferLogButton)
         transferLogsTableAria.addSubview(tranLogsAriaLabel)
-        transferLogsTableAria.addSubview(transferLogsTableView)
-        
-        transferLogsTableView.delegate = self
-        transferLogsTableView.dataSource = self
         
         amountLabel.translatesAutoresizingMaskIntoConstraints = false
         amountValue.translatesAutoresizingMaskIntoConstraints = false
@@ -503,9 +472,6 @@ class GoalDetailViewController: UIViewController {
         
         addTransferLogButton.translatesAutoresizingMaskIntoConstraints = false
         tranLogsAriaLabel.translatesAutoresizingMaskIntoConstraints = false
-        transferLogsTableView.translatesAutoresizingMaskIntoConstraints = false
-        
-        openAndCloseAmountAriaBtn.isHidden = self.goal!.is_other
         
         transferLogsTableAriaHeightAnchor = transferLogsTableAria.heightAnchor.constraint(equalToConstant: 0)
         NSLayoutConstraint.activate([
@@ -523,24 +489,12 @@ class GoalDetailViewController: UIViewController {
             transferLogsTableAria.bottomAnchor.constraint(equalTo: amountView.bottomAnchor, constant: -transLogsTableAriaBottomHeight),
             transferLogsTableAria.leadingAnchor.constraint(equalTo: amountView.leadingAnchor, constant: 32),
             transferLogsTableAria.trailingAnchor.constraint(equalTo: amountView.trailingAnchor, constant: -32),
-            transferLogsTableAriaHeightAnchor!,
-            
-            tranLogsAriaLabel.centerYAnchor.constraint(equalTo: transferLogsTableAria.topAnchor, constant: transLogsTableAriaHeaderHeight / 2),
-            tranLogsAriaLabel.leadingAnchor.constraint(equalTo: transferLogsTableView.leadingAnchor, constant: 4),
-            
-            addTransferLogButton.centerYAnchor.constraint(equalTo: transferLogsTableAria.topAnchor, constant: transLogsTableAriaHeaderHeight / 2),
-            addTransferLogButton.trailingAnchor.constraint(equalTo: transferLogsTableView.trailingAnchor, constant: -4),
-
-            transferLogsTableView.topAnchor.constraint(equalTo: transferLogsTableAria.topAnchor, constant: transLogsTableAriaHeaderHeight),
-            transferLogsTableView.leadingAnchor.constraint(equalTo: transferLogsTableAria.leadingAnchor),
-            transferLogsTableView.trailingAnchor.constraint(equalTo: transferLogsTableAria.trailingAnchor),
-            transferLogsTableView.bottomAnchor.constraint(equalTo: transferLogsTableAria.bottomAnchor)
+            transferLogsTableAriaHeightAnchor!
         ])
         
         // EXPENSE
         expenseView.addSubview(expenseLabel)
         expenseView.addSubview(expenseValue)
-        expenseView.addSubview(openAndCloseExpenseAriaBtn)
         expenseView.addSubview(transactionsView)
         transactionsView.addSubview(transactionsLabel)
         transactionsView.addSubview(addTransactionButton)
@@ -549,7 +503,6 @@ class GoalDetailViewController: UIViewController {
         expenseLabel.translatesAutoresizingMaskIntoConstraints = false
         expenseValue.translatesAutoresizingMaskIntoConstraints = false
         transactionsView.translatesAutoresizingMaskIntoConstraints = false
-        openAndCloseExpenseAriaBtn.translatesAutoresizingMaskIntoConstraints = false
         
         transactionsLabel.translatesAutoresizingMaskIntoConstraints = false
         addTransactionButton.translatesAutoresizingMaskIntoConstraints = false
@@ -557,13 +510,8 @@ class GoalDetailViewController: UIViewController {
         
         transactionsViewHeightAnchor = transactionsView.heightAnchor.constraint(equalToConstant: 0)
         NSLayoutConstraint.activate([
-            openAndCloseExpenseAriaBtn.centerYAnchor.constraint(equalTo: expenseView.topAnchor, constant: expenseViewHeight / 2),
-            openAndCloseExpenseAriaBtn.leadingAnchor.constraint(equalTo: expenseView.leadingAnchor, constant: 12),
-            openAndCloseExpenseAriaBtn.widthAnchor.constraint(equalToConstant: 24),
-            openAndCloseExpenseAriaBtn.heightAnchor.constraint(equalToConstant: 24),
-            
             expenseLabel.centerYAnchor.constraint(equalTo: expenseView.topAnchor, constant: expenseViewHeight / 2),
-            expenseLabel.leadingAnchor.constraint(equalTo: openAndCloseExpenseAriaBtn.trailingAnchor, constant: 12),
+            expenseLabel.leadingAnchor.constraint(equalTo: expenseView.leadingAnchor, constant: 12),
             
             expenseValue.centerYAnchor.constraint(equalTo: expenseView.topAnchor, constant: expenseViewHeight / 2),
             expenseValue.trailingAnchor.constraint(equalTo: expenseView.trailingAnchor, constant: -24),
@@ -589,30 +537,44 @@ class GoalDetailViewController: UIViewController {
         deleteGoalView.delegate = self
     }
     
+    private func getBalance() -> Double {
+        var expence = 0.0
+        self.transactions.forEach { trans in
+            expence += trans.amount
+        }
+        return self.goal.budget - expence
+    }
+    
+    private func getExpense() -> Double {
+        var expence = 0.0
+        self.transactions.forEach { trans in
+            expence += trans.amount
+        }
+        return expence
+    }
+    
     private func updateValues() {
-        self.goal = GoalDao().getGoalsByCategory(category: self.category, targetMonth: self.targetMonth).first!
-        amountValue.text = formatCurrency(amount: goal!.getAmount())
-        balanceValue.text = formatCurrency(amount: goal!.getBalance())
-        if(goal!.getBalance() < 0) {
+        amountValue.text = formatCurrency(amount: self.goal.budget)
+        
+        let balance = getBalance()
+        balanceValue.text = formatCurrency(amount: balance)
+        if(balance < 0) {
             balanceValue.textColor = .systemRed
         } else {
             balanceValue.textColor = .systemGreen
         }
-        transferLogsTableView.reloadData()
         updateChartData()
     }
     
     private func loadTransactions() {
-        transactions = self.goal!.getTransactions(sortedBy: "date", ascending_flg: true)
         let transViewHeight = self.transactions.count == 0 ? 0.0 : TransactionTableViewCell.cellHeight * CGFloat(self.transactions.count) + transactionsViewHeaderHeight
         let transBtnImage = transViewHeight == 0.0 ? UIImage(systemName: "chevron.down") : UIImage(systemName: "chevron.up")
         self.transactionsView.alpha = transViewHeight == 0.0 ? 0.0 : 1.0
         UIView.animate(withDuration: 0, animations: { [self] in
             self.transactionsViewHeightAnchor!.constant = transViewHeight
-            self.openAndCloseExpenseAriaBtn.setImage(transBtnImage, for: .normal)
             self.expenseViewHeightAnchor!.constant = transViewHeight == 0.0 ? self.expenseViewHeight : transViewHeight + self.expenseViewHeight + self.transactionsViewBottomHeight
-            self.balanceValue.text = formatCurrency(amount: goal!.getBalance())
-            self.expenseValue.text = formatCurrency(amount: goal!.getTransactionsAmountSum())
+            self.balanceValue.text = formatCurrency(amount: self.getBalance())
+            self.expenseValue.text = formatCurrency(amount: self.getExpense())
             self.view.layoutIfNeeded()
         }, completion: { [self] finish in
             transactionsTableView.reloadData()
@@ -627,14 +589,15 @@ class GoalDetailViewController: UIViewController {
 
         // Here you can add your data points. For example:
         var values: [Double] = []
-        var valueOfDay = self.goal!.getAmount()
+        var valueOfDay = self.goal.budget
         for idx in 1...DateFuncs.numberOfDaysInMonth(yearMonth: self.targetMonth)! {
-            let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = "yyyy-MM-dd"
             let dayStr = String(format: "%02d", idx)
-            let dayTrans = self.goal?.getTransactionsAtDate(date: dateFormatter.date(from: self.targetMonth + "-" + dayStr)!)
-            dayTrans!.forEach { tran in
-                valueOfDay -= tran.amount
+            var dayTrans: [Transaction] = []
+            self.transactions.forEach { trans in
+                if DateFuncs().convertStringFromDate(trans.date, format: "yyyy-MM-dd") == self.targetMonth + "-" + dayStr {
+                    valueOfDay -= trans.amount
+                    dayTrans.append(trans)
+                }
             }
             values.append(valueOfDay)
         }
@@ -651,7 +614,7 @@ class GoalDetailViewController: UIViewController {
         lineChartView.chartDescription.textColor = .systemGray
         // データセット
         let lineDataSet = LineChartDataSet(entries: dataEntries, label: "Sample Data")
-        lineDataSet.colors = [self.imageColor]
+        lineDataSet.colors = [.systemGreen]
 //        lineDataSet.circleColors = [self.imageColor]
 //        lineDataSet.circleRadius = 1
         lineDataSet.drawCirclesEnabled = false
@@ -677,7 +640,7 @@ class GoalDetailViewController: UIViewController {
         lineChartView.xAxis.valueFormatter = CustomXAxisFormatter(targetMonth: self.targetMonth)
         // Y軸
         lineChartView.leftAxis.axisMinimum = values.min()! >= 0 ? 0 : 10000.0 * Double(floor(values.min()! / 10000.0))
-        lineChartView.leftAxis.axisMaximum = self.goal!.getAmount()
+        lineChartView.leftAxis.axisMaximum = self.goal.budget
         lineChartView.leftAxis.drawZeroLineEnabled = true
         lineChartView.leftAxis.labelCount = 4
         lineChartView.leftAxis.labelTextColor = .customDarkGray
@@ -707,13 +670,16 @@ class GoalDetailViewController: UIViewController {
         
         // Here you can add your data points. For example:
         var values: [Double] = []
-        var valueOfDay = self.goal!.getAmount()
+        var valueOfDay = self.goal.budget
         for idx in 1...DateFuncs.numberOfDaysInMonth(yearMonth: self.targetMonth)! {let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "yyyy-MM-dd"
             let dayStr = String(format: "%02d", idx)
-            let dayTrans = self.goal?.getTransactionsAtDate(date: dateFormatter.date(from: self.targetMonth + "-" + dayStr)!)
-            dayTrans!.forEach { tran in
-                valueOfDay -= tran.amount
+            var dayTrans: [Transaction] = []
+            self.transactions.forEach { trans in
+                if DateFuncs().convertStringFromDate(trans.date, format: "yyyy-MM-dd") == self.targetMonth + "-" + dayStr {
+                    valueOfDay -= trans.amount
+                    dayTrans.append(trans)
+                }
             }
             values.append(valueOfDay)
         }
@@ -727,7 +693,7 @@ class GoalDetailViewController: UIViewController {
         lineChartView.chartDescription.text = ""
         // データセット
         let lineDataSet = LineChartDataSet(entries: dataEntries, label: "Sample Data")
-        lineDataSet.colors = [self.imageColor]
+        lineDataSet.colors = [.systemGreen]
         //        lineDataSet.circleColors = [NSUIColor.systemBlue]
         //        lineDataSet.circleRadius = 0
         lineDataSet.drawCirclesEnabled = false
@@ -742,7 +708,7 @@ class GoalDetailViewController: UIViewController {
         lineDataSet.fillColor = .systemGreen
         // Y軸
         lineChartView.leftAxis.axisMinimum = values.min()! >= 0 ? 0 : 10000.0 * Double(floor(values.min()! / 10000.0))
-        lineChartView.leftAxis.axisMaximum = self.goal!.getAmount()
+        lineChartView.leftAxis.axisMaximum = self.goal.budget
         
         // 更新
         lineChartView.notifyDataSetChanged()
@@ -754,20 +720,13 @@ class GoalDetailViewController: UIViewController {
     }
     
     // MARK: - Action
-    @objc private func addTransLogBtnTapped() {
-        let addGoalViewController = CreateTransferLogViewController()
-        addGoalViewController.configure(targetMonth: self.targetMonth, destCategory: self.category)
-        addGoalViewController.delegate = self
-        present(addGoalViewController, animated: true, completion: nil)
-    }
-    
     @objc private func menuButtonTapped() {
         // メニューのアクションを作成
         let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         // アクション
         let cancelAction = UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: nil)
         let deleteAction = UIAlertAction(title: NSLocalizedString("Delete", comment: ""), style: .destructive) { [self] (action) in
-            self.deleteGoalView.setInit(goal: self.goal!)
+            self.deleteGoalView.setInit(goal: self.goal)
             self.deleteGoalView.alpha = 0
             self.view.addSubview(deleteGoalView)
             NSLayoutConstraint.activate([
@@ -789,41 +748,13 @@ class GoalDetailViewController: UIViewController {
         self.present(alertController, animated: true, completion: nil)
     }
     
-    @objc private func alertSettingButtonTapped() {
-        let alertSetVC = GoalAlertSettingViewController(goal: self.goal!)
-        // ハーフモーダル設定
-        alertSetVC.modalPresentationStyle = .popover
-        if let popover = alertSetVC.popoverPresentationController {
-            let sheet = popover.adaptiveSheetPresentationController
-            sheet.detents = [.medium()]
-            
-            sheet.prefersEdgeAttachedInCompactHeight = true
-            sheet.widthFollowsPreferredContentSizeWhenEdgeAttached = true
-        }
-        present(alertSetVC, animated: true, completion: nil)
-    }
-    
-    @objc private func settingGoalButtonTapped() {
-        let settingGoalVC = SettingGoalViewController(category: self.category)
-        // ハーフモーダル設定
-        settingGoalVC.modalPresentationStyle = .popover
-        if let popover = settingGoalVC.popoverPresentationController {
-            let sheet = popover.adaptiveSheetPresentationController
-            sheet.detents = [.large()]
-            
-            sheet.prefersEdgeAttachedInCompactHeight = true
-            sheet.widthFollowsPreferredContentSizeWhenEdgeAttached = true
-        }
-        present(settingGoalVC, animated: true, completion: nil)
-    }
-    
     @objc private func deleteGoalTapped() {
     }
     
     @objc private func openAndCloseAmountBtnTapped() {
         if transferLogsTableAriaHeightAnchor!.constant == 0 {
             UIView.animate(withDuration: 0.3, animations: { [self] in
-                let tableAriaHeight: CGFloat = CGFloat(self.goal!.transLogsAsDest.count) * TransferLogTableCell.cellHeight + transLogsTableAriaHeaderHeight
+                let tableAriaHeight: CGFloat = transLogsTableAriaHeaderHeight
                 self.transferLogsTableAriaHeightAnchor!.constant = tableAriaHeight
                 self.amountViewHeightAnchor!.constant = tableAriaHeight + self.amountViewHeight + self.transLogsTableAriaBottomHeight
                 self.openAndCloseAmountAriaBtn.setImage(UIImage(systemName: "chevron.up"), for: .normal)
@@ -853,7 +784,6 @@ class GoalDetailViewController: UIViewController {
                 let transViewHeight: CGFloat = CGFloat(transactions.count) * TransactionTableViewCell.cellHeight + transactionsViewHeaderHeight
                 self.transactionsViewHeightAnchor!.constant = transViewHeight
                 self.expenseViewHeightAnchor!.constant = transViewHeight + self.expenseViewHeight + self.transactionsViewBottomHeight
-                self.openAndCloseExpenseAriaBtn.setImage(UIImage(systemName: "chevron.up"), for: .normal)
                 self.view.layoutIfNeeded()
             }, completion: { [self] finished in
                 UIView.animate(withDuration: 0.2) {
@@ -867,7 +797,6 @@ class GoalDetailViewController: UIViewController {
                 UIView.animate(withDuration: 0.3) { [self] in
                     self.transactionsViewHeightAnchor!.constant = 0
                     self.expenseViewHeightAnchor!.constant = amountViewHeight
-                    self.openAndCloseExpenseAriaBtn.setImage(UIImage(systemName: "chevron.down"), for: .normal)
                     self.view.layoutIfNeeded()
                 }
             })
@@ -875,8 +804,7 @@ class GoalDetailViewController: UIViewController {
     }
     
     @objc private func addTransactionButtonTapped() {
-        let createTransactionView = TransactionEditorViewController()
-        createTransactionView.configure(targetMonth: self.targetMonth, defaultCategory: self.category)
+        let createTransactionView = TransactionEditorViewController(wallet: self.wallet, targetMonth: self.targetMonth, transaction: nil)
         createTransactionView.delegate = self
         present(createTransactionView, animated: true, completion: nil)
     }
@@ -898,53 +826,22 @@ class GoalDetailViewController: UIViewController {
 
 extension GoalDetailViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        switch tableView.tag {
-        case 0:
-            return self.goal!.transLogsAsDest.count
-        case 1:
-            return transactions.count
-        default:
-            return 0
-        }
+        return transactions.count
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        switch tableView.tag {
-        case 0:
-            return TransferLogTableCell.cellHeight
-        case 1:
-            return TransactionTableViewCell.cellHeight
-        default:
-            return 0
-        }
+        return TransactionTableViewCell.cellHeight
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        switch tableView.tag {
-        case 0:
-            let cell = tableView.dequeueReusableCell(withIdentifier: TransferLogTableCell.identifier, for: indexPath) as! TransferLogTableCell
-            cell.configure(transferLog: self.goal!.transLogsAsDest[indexPath.row])
-            return cell
-        case 1:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "TransactionCell", for: indexPath) as! TransactionTableViewCell
-            cell.configure(with: transactions[indexPath.row], categoryName: self.goal!.category!.name)
-            return cell
-        default:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-            return cell
-        }
+        let cell = tableView.dequeueReusableCell(withIdentifier: "TransactionCell", for: indexPath) as! TransactionTableViewCell
+        cell.configure(with: transactions[indexPath.row], categoryName: self.category.name)
+        return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        switch tableView.tag {
-        case 0:
-            return
-        case 1:
-            showEditDialog(transaction: transactions[indexPath.row])
-        default:
-            return
-        }
+        showEditDialog(transaction: transactions[indexPath.row])
     }
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
@@ -952,34 +849,32 @@ extension GoalDetailViewController: UITableViewDelegate, UITableViewDataSource {
             self?.showDeleteAlert(at: self!.transactions[indexPath.row])
             completion(true)
         }
-
-        switch tableView.tag {
-        case 1:
-            let configuration = UISwipeActionsConfiguration(actions: [deleteAction])
-            configuration.performsFirstActionWithFullSwipe = false
-            return configuration
-        default:
-            let configuration = UISwipeActionsConfiguration(actions: [])
-            return configuration
-        }
+        
+        let configuration = UISwipeActionsConfiguration(actions: [deleteAction])
+        configuration.performsFirstActionWithFullSwipe = false
+        return configuration
     }
     
     private func showDeleteAlert(at transaction: Transaction) {
         let alert = UIAlertController(title: "Delete Transaction", message: "Are you sure you want to delete this transaction?", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         alert.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: { [weak self] _ in
-            TransactionDao().deleteTransaction(transaction: transaction)
-            self!.loadTransactions()
-            self!.updateAndRefreshChart()
-            self!.delegate!.didUpdateTransactions()
+            if let index = self!.transactions.firstIndex(where: { $0.id == transaction.id }) {
+                self!.transactions.remove(at: index)
+                MonthlyTransactionsDao.removeTransactionFromMonthlyTransactions(walletId: self!.wallet.walletId,
+                                                                                targetMonth: self!.targetMonth,
+                                                                                transactionToRemove: transaction)
+                self!.loadTransactions()
+                self!.updateAndRefreshChart()
+                self!.delegate!.didUpdateTransactions(transactions: self!.transactions)
+            }
         }))
         
         present(alert, animated: true, completion: nil)
     }
 
     private func showEditDialog(transaction: Transaction) {
-        let createTransactionView = TransactionEditorViewController()
-        createTransactionView.configure(targetMonth: self.targetMonth, transaction: transaction)
+        let createTransactionView = TransactionEditorViewController(wallet: self.wallet, targetMonth: self.targetMonth, transaction: transaction)
         createTransactionView.delegate = self
         present(createTransactionView, animated: true, completion: nil)
     }
@@ -1033,17 +928,26 @@ extension GoalDetailViewController: ChartViewDelegate {
 }
 
 // MARK: -
-extension GoalDetailViewController: CreateTransferLogViewDelegate {
-    func didAddTransferLog() {
-        self.updateValues()
-    }
-}
-
 extension GoalDetailViewController: TransactionEditorViewDelegate {
-    func saveBtnTapped_atTransactionEditor() {
+    func addCategory(category: Category) {
+        self.wallet.categories.append(category)
+        self.delegate!.didUpdateCategories(categories: self.wallet.categories)
+    }
+    
+    func addTransaction(transaction: Transaction) {
+        self.transactions.append(transaction)
         loadTransactions()
         updateAndRefreshChart()
-        self.delegate!.didUpdateTransactions()
+        self.delegate!.didUpdateTransactions(transactions: self.transactions)
+    }
+    
+    func updateTransaction(transaction: Transaction) {
+        if let index = self.transactions.firstIndex(where: { $0.id == transaction.id }) {
+            self.transactions[index] = transaction
+            loadTransactions()
+            updateAndRefreshChart()
+            self.delegate!.didUpdateTransactions(transactions: self.transactions)
+        }
     }
 }
 

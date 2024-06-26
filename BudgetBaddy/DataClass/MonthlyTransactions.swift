@@ -38,6 +38,35 @@ class MonthlyTransactions {
             "transactions": transactions.map { $0.toDictionary() }
         ]
     }
+    
+    // 当月の支出総額を取得
+    internal func getExpense() -> Double {
+        var expense = 0.0
+        self.transactions.forEach { trans in
+            expense += trans.amount
+        }
+        return expense
+    }
+    
+    internal func getCategoryOfExpense(categoryId: String) -> Double {
+        var expense = 0.0
+        self.transactions.forEach { trans in
+            if trans.categoryId == categoryId {
+                expense += trans.amount
+            }
+        }
+        return expense
+    }
+    
+    internal func getCategoryOfTransactions(categoryId: String) -> [Transaction] {
+        var transactions: [Transaction] = []
+        self.transactions.forEach { trans in
+            if trans.categoryId == categoryId {
+                transactions.append(trans)
+            }
+        }
+        return transactions
+    }
 }
 
 class Transaction {
@@ -47,8 +76,12 @@ class Transaction {
     var title: String
     var amount: Double
     
-    init(id: String, date: Date, categoryId: String, title: String, amount: Double) {
-        self.id = id
+    init(id: String? = nil, date: Date, categoryId: String, title: String, amount: Double) {
+        if id != nil {
+            self.id = id!
+        } else {
+            self.id = Transaction.getId()
+        }
         self.date = date
         self.categoryId = categoryId
         self.title = title
@@ -78,5 +111,9 @@ class Transaction {
             "title": title,
             "amount": amount
         ]
+    }
+    
+    static func getId() -> String {
+        return String(format: "%04d", CGFloat.random(in: 1...1000))
     }
 }

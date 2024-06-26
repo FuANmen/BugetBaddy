@@ -476,5 +476,497 @@
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "7D1E1789-3817-471F-B764-EB51C8715F08"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BudgetBaddy/MainViewControllers/MonthlyView/MonthlyViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "358"
+            endingLineNumber = "358"
+            landmarkName = "updateDataSet(updateWallets:updateMonthlyGoals:updateMonthlyTransactions:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "AAC92600-0AE5-48E9-A5AC-592455334C14"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BudgetBaddy/MainViewControllers/LoginView/LoginViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "111"
+            endingLineNumber = "111"
+            landmarkName = "loginButtonTapped()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "AAC92600-0AE5-48E9-A5AC-592455334C14 - 74364ef6f40f13f6"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "BudgetBaddy.LoginViewController.loginButtonTapped() -&gt; ()"
+                  moduleName = "BudgetBaddy"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/kensaku/Documents/GitHub/BugetBaddy/BudgetBaddy/MainViewControllers/LoginView/LoginViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "111"
+                  endingLineNumber = "111"
+                  offsetFromSymbolStart = "644">
+               </Location>
+               <Location
+                  uuid = "AAC92600-0AE5-48E9-A5AC-592455334C14 - c66b98418c7d9b86"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Optional&lt;__C.FIRAuthDataResult&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in BudgetBaddy.LoginViewController.loginButtonTapped() -&gt; ()"
+                  moduleName = "BudgetBaddy"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/kensaku/Documents/GitHub/BugetBaddy/BudgetBaddy/MainViewControllers/LoginView/LoginViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "111"
+                  endingLineNumber = "111"
+                  offsetFromSymbolStart = "196">
+               </Location>
+               <Location
+                  uuid = "AAC92600-0AE5-48E9-A5AC-592455334C14 - b8f2dabfd4fa3a6e"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 @Sendable () async throws -&gt; () in closure #1 (Swift.Optional&lt;__C.FIRAuthDataResult&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in BudgetBaddy.LoginViewController.loginButtonTapped() -&gt; ()"
+                  moduleName = "BudgetBaddy"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/kensaku/Documents/GitHub/BugetBaddy/BudgetBaddy/MainViewControllers/LoginView/LoginViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "111"
+                  endingLineNumber = "111"
+                  offsetFromSymbolStart = "88">
+               </Location>
+               <Location
+                  uuid = "AAC92600-0AE5-48E9-A5AC-592455334C14 - d35770c196421d0d"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(2) suspend resume partial function for closure #1 @Sendable () async throws -&gt; () in closure #1 (Swift.Optional&lt;__C.FIRAuthDataResult&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in BudgetBaddy.LoginViewController.loginButtonTapped() -&gt; ()"
+                  moduleName = "BudgetBaddy"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/kensaku/Documents/GitHub/BugetBaddy/BudgetBaddy/MainViewControllers/LoginView/LoginViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "111"
+                  endingLineNumber = "111"
+                  offsetFromSymbolStart = "164">
+               </Location>
+               <Location
+                  uuid = "AAC92600-0AE5-48E9-A5AC-592455334C14 - 4a9870b3024c12dc"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #2 (__C.UIAlertAction) -&gt; () in closure #1 (Swift.Optional&lt;__C.FIRAuthDataResult&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in BudgetBaddy.LoginViewController.loginButtonTapped() -&gt; ()"
+                  moduleName = "BudgetBaddy"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/kensaku/Documents/GitHub/BugetBaddy/BudgetBaddy/MainViewControllers/LoginView/LoginViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "111"
+                  endingLineNumber = "111"
+                  offsetFromSymbolStart = "24">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "7D66E5F5-0DF6-4734-8694-ABCA8DB617CD"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BudgetBaddy/MainViewControllers/LoginView/LoginViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "112"
+            endingLineNumber = "112"
+            landmarkName = "loginButtonTapped()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "5A6251AA-73B9-444C-A2EA-B49EDEF24380"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BudgetBaddy/MainViewControllers/LoginView/LoginViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "103"
+            endingLineNumber = "103"
+            landmarkName = "loginButtonTapped()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "5A6251AA-73B9-444C-A2EA-B49EDEF24380 - 74364ef6f40f102c"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "BudgetBaddy.LoginViewController.loginButtonTapped() -&gt; ()"
+                  moduleName = "BudgetBaddy"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/kensaku/Documents/GitHub/BugetBaddy/BudgetBaddy/MainViewControllers/LoginView/LoginViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "105"
+                  endingLineNumber = "105"
+                  offsetFromSymbolStart = "104">
+               </Location>
+               <Location
+                  uuid = "5A6251AA-73B9-444C-A2EA-B49EDEF24380 - 74364ef6f40f102c"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "BudgetBaddy.LoginViewController.loginButtonTapped() -&gt; ()"
+                  moduleName = "BudgetBaddy"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/kensaku/Documents/GitHub/BugetBaddy/BudgetBaddy/MainViewControllers/LoginView/LoginViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "105"
+                  endingLineNumber = "105"
+                  offsetFromSymbolStart = "352">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "F0BB873A-B997-422C-936F-C3107BE62782"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BudgetBaddy/MainViewControllers/LoginView/LoginViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "124"
+            endingLineNumber = "124"
+            landmarkName = "loginButtonTapped()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "F0BB873A-B997-422C-936F-C3107BE62782 - 1af4c082d5f64461"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(1) suspend resume partial function for closure #1 @Sendable () async throws -&gt; () in closure #1 (Swift.Optional&lt;__C.FIRAuthDataResult&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in BudgetBaddy.LoginViewController.loginButtonTapped() -&gt; ()"
+                  moduleName = "BudgetBaddy"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/kensaku/Documents/GitHub/BugetBaddy/BudgetBaddy/MainViewControllers/LoginView/LoginViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "124"
+                  endingLineNumber = "124"
+                  offsetFromSymbolStart = "236">
+               </Location>
+               <Location
+                  uuid = "F0BB873A-B997-422C-936F-C3107BE62782 - c217c9a27662ed73"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(2) await resume partial function for closure #1 @Sendable () async throws -&gt; () in closure #1 (Swift.Optional&lt;__C.FIRAuthDataResult&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in BudgetBaddy.LoginViewController.loginButtonTapped() -&gt; ()"
+                  moduleName = "BudgetBaddy"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/kensaku/Documents/GitHub/BugetBaddy/BudgetBaddy/MainViewControllers/LoginView/LoginViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "124"
+                  endingLineNumber = "124"
+                  offsetFromSymbolStart = "44">
+               </Location>
+               <Location
+                  uuid = "F0BB873A-B997-422C-936F-C3107BE62782 - e831e00756d4826f"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(3) suspend resume partial function for closure #1 @Sendable () async throws -&gt; () in closure #1 (Swift.Optional&lt;__C.FIRAuthDataResult&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in BudgetBaddy.LoginViewController.loginButtonTapped() -&gt; ()"
+                  moduleName = "BudgetBaddy"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/kensaku/Documents/GitHub/BugetBaddy/BudgetBaddy/MainViewControllers/LoginView/LoginViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "124"
+                  endingLineNumber = "124"
+                  offsetFromSymbolStart = "96">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "2713AC77-729F-44E6-B98B-4F5F437C8F4C"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BudgetBaddy/MainViewControllers/LoginView/LoginViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "127"
+            endingLineNumber = "127"
+            landmarkName = "loginButtonTapped()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "A4939C74-6ADE-48D5-B633-9879611352D9"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BudgetBaddy/MainViewControllers/LoginView/LoginViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "125"
+            endingLineNumber = "125"
+            landmarkName = "loginButtonTapped()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "B649CB58-385D-41B3-AD29-1126A7918542"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BudgetBaddy/MainViewControllers/LoginView/LoginViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "131"
+            endingLineNumber = "131"
+            landmarkName = "loginButtonTapped()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "4EBA1D51-9D0A-429D-A891-04CB3A7AE755"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BudgetBaddy/DaoClass/UsersDao.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "16"
+            endingLineNumber = "16"
+            landmarkName = "fetchUser(userId:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "4EBA1D51-9D0A-429D-A891-04CB3A7AE755 - 3d42c8b0f7a4d5ca"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(3) suspend resume partial function for static BudgetBaddy.UsersDao.fetchUser(userId: Swift.String) async -&gt; Swift.Optional&lt;BudgetBaddy.User&gt;"
+                  moduleName = "BudgetBaddy"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/kensaku/Documents/GitHub/BugetBaddy/BudgetBaddy/DaoClass/UsersDao.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "16"
+                  endingLineNumber = "16"
+                  offsetFromSymbolStart = "468">
+               </Location>
+               <Location
+                  uuid = "4EBA1D51-9D0A-429D-A891-04CB3A7AE755 - 3d42c8b0f7a4d5ca"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(3) suspend resume partial function for static BudgetBaddy.UsersDao.fetchUser(userId: Swift.String) async -&gt; Swift.Optional&lt;BudgetBaddy.User&gt;"
+                  moduleName = "BudgetBaddy"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/kensaku/Documents/GitHub/BugetBaddy/BudgetBaddy/DaoClass/UsersDao.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "16"
+                  endingLineNumber = "16"
+                  offsetFromSymbolStart = "628">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "D77C9494-8518-4076-A470-44E7CA51C955"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BudgetBaddy/DaoClass/UsersDao.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "21"
+            endingLineNumber = "21"
+            landmarkName = "fetchUser(userId:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "D77C9494-8518-4076-A470-44E7CA51C955 - 3d42c8b0f7a4d480"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(3) suspend resume partial function for static BudgetBaddy.UsersDao.fetchUser(userId: Swift.String) async -&gt; Swift.Optional&lt;BudgetBaddy.User&gt;"
+                  moduleName = "BudgetBaddy"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/kensaku/Documents/GitHub/BugetBaddy/BudgetBaddy/DaoClass/UsersDao.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "22"
+                  endingLineNumber = "22"
+                  offsetFromSymbolStart = "528">
+               </Location>
+               <Location
+                  uuid = "D77C9494-8518-4076-A470-44E7CA51C955 - d9a47ceceef95a87"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(4) suspend resume partial function for static BudgetBaddy.UsersDao.fetchUser(userId: Swift.String) async -&gt; Swift.Optional&lt;BudgetBaddy.User&gt;"
+                  moduleName = "BudgetBaddy"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/kensaku/Documents/GitHub/BugetBaddy/BudgetBaddy/DaoClass/UsersDao.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "22"
+                  endingLineNumber = "22"
+                  offsetFromSymbolStart = "172">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "5B7638D8-AA54-4C16-B155-B6FD902977BC"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BudgetBaddy/DaoClass/UsersDao.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "19"
+            endingLineNumber = "19"
+            landmarkName = "fetchUser(userId:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "5B7638D8-AA54-4C16-B155-B6FD902977BC - d9a47ceceef95b68"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(4) suspend resume partial function for static BudgetBaddy.UsersDao.fetchUser(userId: Swift.String) async -&gt; Swift.Optional&lt;BudgetBaddy.User&gt;"
+                  moduleName = "BudgetBaddy"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/kensaku/Documents/GitHub/BugetBaddy/BudgetBaddy/DaoClass/UsersDao.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "19"
+                  endingLineNumber = "19"
+                  offsetFromSymbolStart = "108">
+               </Location>
+               <Location
+                  uuid = "5B7638D8-AA54-4C16-B155-B6FD902977BC - 3d42c8b0f7a4d56f"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(3) suspend resume partial function for static BudgetBaddy.UsersDao.fetchUser(userId: Swift.String) async -&gt; Swift.Optional&lt;BudgetBaddy.User&gt;"
+                  moduleName = "BudgetBaddy"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/kensaku/Documents/GitHub/BugetBaddy/BudgetBaddy/DaoClass/UsersDao.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "19"
+                  endingLineNumber = "19"
+                  offsetFromSymbolStart = "516">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "BFD35451-F55D-46EB-8C55-F9E6EBEB77C6"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BudgetBaddy/DaoClass/UsersDao.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "12"
+            endingLineNumber = "12"
+            landmarkName = "fetchUser(userId:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "BFD35451-F55D-46EB-8C55-F9E6EBEB77C6 - e51067c82543d654"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(1) suspend resume partial function for static BudgetBaddy.UsersDao.fetchUser(userId: Swift.String) async -&gt; Swift.Optional&lt;BudgetBaddy.User&gt;"
+                  moduleName = "BudgetBaddy"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/kensaku/Documents/GitHub/BugetBaddy/BudgetBaddy/DaoClass/UsersDao.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "12"
+                  endingLineNumber = "12"
+                  offsetFromSymbolStart = "100">
+               </Location>
+               <Location
+                  uuid = "BFD35451-F55D-46EB-8C55-F9E6EBEB77C6 - 3d42c8b0f7a4d256"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(3) suspend resume partial function for static BudgetBaddy.UsersDao.fetchUser(userId: Swift.String) async -&gt; Swift.Optional&lt;BudgetBaddy.User&gt;"
+                  moduleName = "BudgetBaddy"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/kensaku/Documents/GitHub/BugetBaddy/BudgetBaddy/DaoClass/UsersDao.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "12"
+                  endingLineNumber = "12"
+                  offsetFromSymbolStart = "340">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "0A20371E-5F19-4CF4-8B3C-C88B2ACD0F00"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BudgetBaddy/DataClass/User.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "38"
+            endingLineNumber = "38"
+            landmarkName = "init?(dictionary:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
    </Breakpoints>
 </Bucket>

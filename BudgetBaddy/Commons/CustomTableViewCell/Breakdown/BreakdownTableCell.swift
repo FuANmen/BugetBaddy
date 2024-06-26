@@ -51,7 +51,7 @@ class BreakdownTableCell: UITableViewCell {
     }
 
     
-    internal func configure(with breakdown: Breakdown) {
+    internal func configure(with breakdown: BudgetBreakdown) {
         titleLabel.text = breakdown.title + " :"
         amountLabel.text = formatCurrency(amount: breakdown.amount)
     }

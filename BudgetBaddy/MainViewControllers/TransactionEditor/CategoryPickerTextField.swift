@@ -10,7 +10,7 @@ import RealmSwift
 
 
 protocol CategoryPickerTextFieldDelegate: AnyObject {
-    func checkAddCategory(name: String) -> Bool!
+    func addCategory(category: Category)
     func enterdCategory(category: Category)
 }
 
@@ -20,24 +20,24 @@ class CategoryPickerTextField: UITextField {
     private var categoryPicker: UIPickerView!
     private var toolbar: UIToolbar!
 
-    private var categories: [Category] = []
-    private let categoryDao = CategoryDao()
-    
-    var tranInputTarget_flg: Bool = false
-    var targetMonth: String = ""
+    private var wallet: Wallet? = nil
+    private var targetMonth: String = ""
 
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupPicker()
-        loadCategories()
     }
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        setupPicker()
-        loadCategories()
     }
 
+    internal func configure(wallet: Wallet, targetMonth: String) {
+        self.wallet = wallet
+        self.targetMonth = targetMonth
+        categoryPicker.reloadAllComponents()
+    }
+    
     private func setupPicker() {
         categoryPicker = UIPickerView()
         categoryPicker.delegate = self
@@ -56,16 +56,6 @@ class CategoryPickerTextField: UITextField {
 
         toolbar.setItems([addButton, spaceButton, doneButton], animated: false)
         self.inputAccessoryView = toolbar
-    }
-
-    private func selectInitialCategory() {
-        // カテゴリが存在する場合、最初のカテゴリを選択する
-        if self.text == "" {
-            if let initialCategory = categories.first ,let rowIndex = categories.index(of: initialCategory) {
-                categoryPicker.selectRow(rowIndex, inComponent: 0, animated: false)
-                self.text = initialCategory.name
-            }
-        }
     }
 
     @objc private func addButtonTapped() {
@@ -103,7 +93,7 @@ class CategoryPickerTextField: UITextField {
 
     @objc private func doneButtonTapped() {
         let selectedRow = categoryPicker.selectedRow(inComponent: 0)
-        let selectedCategory = categories[selectedRow]
+        let selectedCategory = self.wallet!.categories[selectedRow]
         
         self.text = selectedCategory.name
         myDelegate?.enterdCategory(category: selectedCategory)
@@ -111,25 +101,17 @@ class CategoryPickerTextField: UITextField {
         self.resignFirstResponder()
     }
 
-    public func loadCategories() {
-        self.categories = []
-        // RealmからCategoryデータを取得
-        self.categories.append(categoryDao.getOrCreateOtherCategory())
-        GoalDao().getInExGoals(targetMonth: self.targetMonth).forEach { goal in
-            self.categories.append(goal.category!)
-        }
-        categoryPicker.reloadAllComponents()
-        selectInitialCategory()
-    }
-
     private func addNewCategory(name: String) {
-        if myDelegate!.checkAddCategory(name: name) {
-            categoryDao.addCategory(name: name, category_type_div: 0)
-            loadCategories()
+        let newCategory = Category(categoryId: nil, name: name)
+        myDelegate!.addCategory(category: newCategory)
+        
+        if self.wallet!.categories.firstIndex(where: { $0.name == name }) == nil {
+            WalletsDao.addCategoryToWallet(walletId: self.wallet!.walletId, newCategory: newCategory)
+            self.wallet!.categories.append(newCategory)
             // データを再読み込み
             categoryPicker.reloadAllComponents()
             // 追加したカテゴリの行を選択
-            let rowIndex = categories.count
+            let rowIndex = self.wallet!.categories.count
             categoryPicker.selectRow(rowIndex, inComponent: 0, animated: false)
             self.text = name
         }
@@ -144,10 +126,10 @@ extension CategoryPickerTextField: UIPickerViewDelegate, UIPickerViewDataSource 
     }
 
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return categories.count ?? 0
+        return self.wallet?.categories.count ?? 0
     }
 
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return categories[row].name
+        return self.wallet?.categories[row].name ?? ""
     }
 }

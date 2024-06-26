@@ -9,7 +9,7 @@ import UIKit
 
 protocol TotalDetailDelegate: AnyObject {
     func addBreakdownTapped()
-    func breakdownSelected(target: Breakdown)
+    func breakdownSelected(target: BudgetBreakdown)
     func addTransactionTapped()
     func transactionSelected(target: Transaction)
     func updatedTotalDetailViewHeight(viewHeight: CGFloat)
@@ -18,15 +18,10 @@ protocol TotalDetailDelegate: AnyObject {
 class TotalDetailView: UIView {
     weak var delegate: TotalDetailDelegate? = nil
     
-    private var targetMonth: String = "" {
-        didSet {
-            totalGoal = GoalDao().getTotalGoal(targetMonth: targetMonth)
-            updateDatas()
-        }
-    }
-    private var totalGoal: Goal? = nil
+    private var monthlyGoals: MonthlyGoals?
+    private var monthlyTransactions: MonthlyTransactions?
     
-    private var breakdowns: [Breakdown] = []
+    private var breakdowns: [BudgetBreakdown] = []
     private var transactions: [Transaction] = []
     
     // TITLE
@@ -187,16 +182,39 @@ class TotalDetailView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    internal func configure(targetMonth: String) {
-        self.targetMonth = targetMonth
+    internal func configure(monthlyGoals: MonthlyGoals, monthlyTransactions: MonthlyTransactions) {
+        self.monthlyGoals = monthlyGoals
+        self.monthlyTransactions = monthlyTransactions
+        
+        self.updateViews()
+    }
+    
+    private func updateViews() {
+        if self.monthlyGoals != nil {
+            self.breakdowns = self.monthlyGoals!.budgetBreakdowns
+            
+            let income = self.monthlyGoals!.getTotalBudget()
+            incomTotalValue.text = "+ " + formatCurrency(amount: income)!
+            expenseTableView.reloadData()
+        }
+        
+        if self.monthlyTransactions != nil {
+            self.transactions = self.monthlyTransactions!.transactions
+            
+            let expense = self.monthlyTransactions!.getExpense()
+            expenseTotalValue.text = "- " + formatCurrency(amount: expense)!
+            
+            incomTableView.reloadData()
+        }
+        self.updateTableHeight()
     }
     
     private func setupUI() {
         self.addSubview(titleLabel)
         self.addSubview(underLine)
-        self.addSubview(incomTitleLabel)
-        self.addSubview(addBreakdownBtn)
-        self.addSubview(incomTableAria)
+//        self.addSubview(incomTitleLabel)
+//        self.addSubview(addBreakdownBtn)
+//        self.addSubview(incomTableAria)
         self.addSubview(expenseTitleLabel)
         self.addSubview(addTransactionBtn)
         self.addSubview(expenseTableAria)
@@ -317,25 +335,6 @@ class TotalDetailView: UIView {
         ])
     }
     
-    private func updateDatas() {
-        var breakdowns: [Breakdown] = []
-        breakdowns.append(contentsOf: BreakdownDao().getMonthryBreakdown(targetMonth: self.targetMonth))
-        self.breakdowns = breakdowns
-        
-        var transactions: [Transaction] = []
-        transactions.append(contentsOf: TransactionDao().getTotalTransactions(targetMonth: self.targetMonth, sortedBy: "date", ascending_flg: true))
-        self.transactions = transactions
-        
-        let income = self.totalGoal!.getAmount()
-        let expense = self.totalGoal!.getAmount() - self.totalGoal!.getBalance()
-        incomTotalValue.text = "+ " + formatCurrency(amount: income)!
-        expenseTotalValue.text = "- " + formatCurrency(amount: expense)!
-
-        incomTableView.reloadData()
-        expenseTableView.reloadData()
-        self.updateTableHeight()
-    }
-    
     private func updateTableHeight() {
         var incomTotalHeight: CGFloat = 0
         for section in 0..<incomTableView.numberOfSections {
@@ -403,7 +402,7 @@ extension TotalDetailView: UITableViewDelegate, UITableViewDataSource {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: BreakdownTableCell.identifier, for: indexPath) as? BreakdownTableCell else {
                 return UITableViewCell()
             }
-            let breakdown = breakdowns[indexPath.row]
+            let breakdown = self.breakdowns[indexPath.row]
             cell.configure(with: breakdown)
             return cell
         case 1:

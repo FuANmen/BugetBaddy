@@ -8,14 +8,18 @@
 import UIKit
 
 protocol BreakdownEditorViewDelegate: AnyObject {
-    func okButtonTapped_atBreakdownEditor()
+    func createdBreakdown(target: BudgetBreakdown)
+    func updatedBreakdonw(target: BudgetBreakdown)
     func cancelButtonTapped_atBreakdownEditor()
 }
 
 class BreakdownEditorView: UIView {
     weak var delegate: BreakdownEditorViewDelegate?
-    private var targetMonth: String = ""
-    private var breakdown: Breakdown? = nil {
+    
+    private var walletId: String?
+    private var targetMonth: String?
+    
+    private var breakdown: BudgetBreakdown? = nil {
         didSet {
             if breakdown == nil {
                 headerLabel.text = NSLocalizedString("BreadownEditor_Add_Title", comment: "")
@@ -101,21 +105,23 @@ class BreakdownEditorView: UIView {
     }()
     
     // MARK: - Initialization
-    
     override init(frame: CGRect) {
         super.init(frame: frame)
+        
         setupDialogView()
     }
     
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        setupDialogView()
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
-    func configure(targetMonth: String, breakdown: Breakdown? = nil) {
+    internal func configure(walletId: String, targetMonth: String, breakdown: BudgetBreakdown? = nil) {
+        self.walletId = walletId
         self.targetMonth = targetMonth
+        
         self.breakdown = breakdown
     }
+    
     
     // MARK: - Setup
     private func setupDialogView() {
@@ -212,17 +218,19 @@ class BreakdownEditorView: UIView {
     }
     
     @objc private func okButtonTapped() {
+        // TODO: 入力チェック
         if self.breakdown == nil {
-            BreakdownDao().addBreakDown(targetMonth: self.targetMonth
-                                        , title: nameField.text!
-                                        , amount: Double(amountField.text!)!
-                                        , source_pattern: "0")
+            let newBreakdown = BudgetBreakdown(title: nameField.text!, amount: Double(amountField.text!)!)
+            MonthlyGoalsDao.addBudgetBreakdownToMonthlyGoals(walletId: self.walletId!,
+                                                             targetMonth: self.targetMonth!,
+                                                             newBudgetBreakdown: newBreakdown)
+            delegate?.createdBreakdown(target: newBreakdown)
         } else {
-            BreakdownDao().updateBreakDown(breakdown: self.breakdown!
-                                           , title: nameField.text!
-                                           , amount: Double(amountField.text!))
+            let updateBreakdown = BudgetBreakdown(id: self.breakdown!.id, title: nameField.text!, amount: Double(amountField.text!)!)
+            MonthlyGoalsDao.updateBudgetBreakdownInMonthlyGoals(walletId: self.walletId!,
+                                                                targetMonth: self.targetMonth!,
+                                                                editedBudgetBreakdown: updateBreakdown)
         }
-        delegate?.okButtonTapped_atBreakdownEditor()
     }
     
     @objc private func cancelButtonTapped() {

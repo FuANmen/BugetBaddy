@@ -72,6 +72,30 @@ class WalletsDao {
         }
     }
     
+    static func fetchWalletsForUser(userId: String, sharedWalletIds: [String]) async throws -> [Wallet] {
+        let db = Firestore.firestore()
+        let walletsRef = db.collection("Wallets")
+
+        var wallets: [Wallet] = []
+
+        // クエリを実行してownerIdが一致するwalletを取得
+        let querySnapshot1 = try await walletsRef.whereField("ownerId", isEqualTo: userId).getDocuments()
+        for document in querySnapshot1.documents {
+            if let wallet = Wallet(dictionary: document.data()) {
+                wallets.append(wallet)
+            }
+        }
+
+        // クエリを実行してsharedWalletIdsに含まれるwalletを取得
+        let querySnapshot2 = try await walletsRef.whereField("walletId", in: sharedWalletIds).getDocuments()
+        for document in querySnapshot2.documents {
+            if let wallet = Wallet(dictionary: document.data()), !wallets.contains(where: { $0.walletId == wallet.walletId }) {
+                wallets.append(wallet)
+            }
+        }
+        return wallets
+    }
+    
     //　MARK: - SharedUserInfo
     static func addSharedUserToWallet(walletId: String, newUser: User) {
         let db = Firestore.firestore()
@@ -193,7 +217,7 @@ class WalletsDao {
                 
                 // Firestoreドキュメントを更新
                 walletRef.updateData([
-                    "goals": categories
+                    "categories": categories
                 ]) { error in
                     if let error = error {
                         print("Error updating category in Wallet: \(error)")

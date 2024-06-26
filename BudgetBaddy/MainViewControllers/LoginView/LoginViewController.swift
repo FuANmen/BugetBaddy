@@ -110,7 +110,7 @@ class LoginViewController: UIViewController {
             // Firebase Authenticationを使ってログイン
             Auth.auth().signIn(withEmail: email, password: password) { [weak self] authResult, error in
                 do {
-                    if let error = error {
+                    if error != nil {
                         throw SomeError.error("ログインに失敗")
                     }
                     
@@ -120,7 +120,8 @@ class LoginViewController: UIViewController {
                     }
                     
                     Task {
-                        if let user = await UsersDao.fetchUserData(userId: userId) {
+                        print(userId)
+                        if let user = await UsersDao.fetchUser(userId: userId) {
                             self!.navigateToMainScreen(user: user)
                         } else {
                             throw SomeError.error("ユーザ情報の取得に失敗")

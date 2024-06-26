@@ -129,7 +129,7 @@ class SignUpViewController: UIViewController {
                 
                 // アカウントに紐づく情報の登録
                 Task {
-                    if await UsersDao.saveUserData(userId: userId, email: email, username: username) {
+                    if await UsersDao.saveUser(userId: userId, email: email, username: username) {
                         self.dismiss(animated: true)
                     } else {
                         throw SignUpError.error("ユーザ情報の取得に失敗")

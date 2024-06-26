@@ -28,22 +28,6 @@ class MonthlyGoalsDao {
         }
     }
     
-    static func updateMonthlyGoals(editedMonthlyGoals: MonthlyGoals) {
-        let db = Firestore.firestore()
-        let documentId = MonthlyGoalsDao.getMonthlyGoalsDocumentId(walletId: editedMonthlyGoals.walletId, targetMonth: editedMonthlyGoals.targetMonth)
-        let monthlyGoalsRef = db.collection("MonthlyGoals").document(documentId)
-
-        monthlyGoalsRef.updateData([
-            "budget": editedMonthlyGoals.budget
-        ]) { error in
-            if let error = error {
-                print("Error update Wallet: \(error)")
-            } else {
-                print("Update wallet successfully")
-            }
-        }
-    }
-    
     static func deleteMonthlyGoals(monthlyGoals: MonthlyGoals, completion: @escaping (Error?) -> Void) {
         let db = Firestore.firestore()
         let documentId = MonthlyGoalsDao.getMonthlyGoalsDocumentId(walletId: monthlyGoals.walletId, targetMonth: monthlyGoals.targetMonth)
@@ -60,39 +44,41 @@ class MonthlyGoalsDao {
         }
     }
     
-    static func fetchMonthlyGoals(walletId: String, targetMonth: String, completion: @escaping (MonthlyGoals?) -> Void) {
+    static func fetchMonthlyGoals(walletId: String, targetMonth: String) async -> MonthlyGoals? {
         let db = Firestore.firestore()
         let documentId = MonthlyGoalsDao.getMonthlyGoalsDocumentId(walletId: walletId, targetMonth: targetMonth)
         let monthlyGoalsRef = db.collection("MonthlyGoals").document(documentId)
-
-        monthlyGoalsRef.getDocument { (document, error) in
-            if let document = document, document.exists {
-                let data = document.data()
-                let monthlyGoals = MonthlyGoals(dictionary: data!)
-                completion(monthlyGoals)
+        do {
+            let document = try await monthlyGoalsRef.getDocument()
+            if let data = document.data() {
+                let monthlyGoals = MonthlyGoals(dictionary: data)
+                return monthlyGoals
             } else {
-                completion(nil)
+                return nil
             }
+        } catch {
+            print("Error fetching document: \(error)")
+            return nil
         }
     }
     
-    // MARK: - TransferLog
-    static func addTransferLogToMonthlyGoals(walletId: String, targetMonth: String, newTransferLog: TransferLog) {
+    // MARK: - BudgetBreakdown
+    static func addBudgetBreakdownToMonthlyGoals(walletId: String, targetMonth: String, newBudgetBreakdown: BudgetBreakdown) {
         let db = Firestore.firestore()
         let documentId = MonthlyGoalsDao.getMonthlyGoalsDocumentId(walletId: walletId, targetMonth: targetMonth)
         let monthlyGoalsRef = db.collection("MonthlyGoals").document(documentId)
 
-        let newTransferLogData = newTransferLog.toDictionary()
+        let newBudgetBreakdownData = newBudgetBreakdown.toDictionary()
         
         monthlyGoalsRef.getDocument { (document, error) in
             if let document = document, document.exists {
                 monthlyGoalsRef.updateData([
-                    "transferLogs": FieldValue.arrayUnion([newTransferLogData])
+                    "budgetBreakdown": FieldValue.arrayUnion([newBudgetBreakdownData])
                 ]) { error in
                     if let error = error {
-                        print("Error adding TransferLog to MonthlyGoals: \(error)")
+                        print("Error adding BudgetBreakdown to MonthlyGoals: \(error)")
                     } else {
-                        print("TransferLog added to MonthlyGoals successfully")
+                        print("BudgetBreakdown added to MonthlyGoals successfully")
                     }
                 }
             } else {
@@ -101,23 +87,33 @@ class MonthlyGoalsDao {
         }
     }
     
-    static func updateTransferLogInMonthlyGoals(walletId: String, targetMonth: String, editedTransferLog: TransferLog) {
+    static func updateBudgetBreakdownInMonthlyGoals(walletId: String, targetMonth: String, editedBudgetBreakdown: BudgetBreakdown) {
         let db = Firestore.firestore()
         let documentId = MonthlyGoalsDao.getMonthlyGoalsDocumentId(walletId: walletId, targetMonth: targetMonth)
         let monthlyGoalsRef = db.collection("MonthlyGoals").document(documentId)
+        
+        let editedBudgetBreakdownData = editedBudgetBreakdown.toDictionary()
 
         monthlyGoalsRef.getDocument { (document, error) in
             if let document = document, document.exists {
                 var monthlyGoalsData = document.data()!
-
+                var breakdowns = monthlyGoalsData["budgetBreakdowns"] as! [[String: Any]]
+                
+                if let index = breakdowns.firstIndex(where: { $0["id"] as? String == editedBudgetBreakdown.id }) {
+                    breakdowns[index] = editedBudgetBreakdownData
+                } else {
+                    print("Breakdown not found")
+                    return
+                }
+                
+                // Firestoreドキュメントを更新
                 monthlyGoalsRef.updateData([
-                    "title": editedTransferLog.title,
-                    "amount": editedTransferLog.amount
+                    "budgetBreakdowns": breakdowns
                 ]) { error in
                     if let error = error {
-                        print("Error update TransferLog from MonthlyGoals: \(error)")
+                        print("Error update BudgetBreakdown from MonthlyGoals: \(error)")
                     } else {
-                        print("TransferLog update from MonthlyGoals successfully")
+                        print("BudgetBreakdown update from MonthlyGoals successfully")
                     }
                 }
             } else {
@@ -126,15 +122,15 @@ class MonthlyGoalsDao {
         }
     }
     
-    static func removeTransferLogFromMonthlyGoals(walletId: String, targetMonth: String, transferLog: TransferLog) {
+    static func removeBudgetBreakdownFromMonthlyGoals(walletId: String, targetMonth: String, budgetBreakdown: BudgetBreakdown) {
         let db = Firestore.firestore()
         let documentId = MonthlyGoalsDao.getMonthlyGoalsDocumentId(walletId: walletId, targetMonth: targetMonth)
         let monthlyGoalsRef = db.collection("MonthlyGoals").document(documentId)
 
-        let transferLogData = transferLog.toDictionary()
+        let budgetBreakdownData = budgetBreakdown.toDictionary()
 
         monthlyGoalsRef.updateData([
-            "transferLogs": FieldValue.arrayRemove([transferLogData])
+            "budgetBreakdown": FieldValue.arrayRemove([budgetBreakdownData])
         ]) { error in
             if let error = error {
                 print("Error removing category from Wallet: \(error)")
@@ -173,14 +169,24 @@ class MonthlyGoalsDao {
         let db = Firestore.firestore()
         let documentId = MonthlyGoalsDao.getMonthlyGoalsDocumentId(walletId: walletId, targetMonth: targetMonth)
         let monthlyGoalsRef = db.collection("MonthlyGoals").document(documentId)
+        
+        let editedGoalData = editedGoal.toDictionary()
 
         monthlyGoalsRef.getDocument { (document, error) in
             if let document = document, document.exists {
                 var monthlyGoalsData = document.data()!
-
+                var goals = monthlyGoalsData["goals"] as! [[String: Any]]
+                
+                if let index = goals.firstIndex(where: { $0["categoryId"] as? String == editedGoal.categoryId }) {
+                    goals[index] = editedGoalData
+                } else {
+                    print("Goal not found")
+                    return
+                }
+                
+                // Firestoreドキュメントを更新
                 monthlyGoalsRef.updateData([
-                    "categoryId": editedGoal.categoryId,
-                    "budget": editedGoal.budget
+                    "goals": goals
                 ]) { error in
                     if let error = error {
                         print("Error update Goal from MonthlyGoals: \(error)")

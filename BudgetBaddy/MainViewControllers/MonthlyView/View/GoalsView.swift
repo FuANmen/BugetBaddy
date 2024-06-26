@@ -9,12 +9,14 @@ import UIKit
 
 protocol GoalsViewDelegate: AnyObject {
     func addGoalButtonTapped()
-    func showGoalDetail(goal: Goal, imageColor: UIColor)
+    func showGoalDetail(goal: Goal)
     func updatedGoalsViewHeight(viewHeight: CGFloat)
 }
 
 class GoalsView: UIView {
-    private var targetMonth: String = ""
+    private var wallet: Wallet?
+    private var monthlyGoals: MonthlyGoals?
+    private var monthlyTransactions: MonthlyTransactions?
     
     weak var delegate: GoalsViewDelegate?
     
@@ -81,10 +83,6 @@ class GoalsView: UIView {
     private let inExGoalsMinmumLineSpacing: CGFloat = 16
     private var inExGoalCollectionView: UICollectionView?
     
-    // TotalGoal
-    private var otherAriaHeightConstraint: NSLayoutConstraint?
-    private var otherGoalCollectionView: UICollectionView?
-    
     // INITIALIZE
     init() {
         super.init(frame: .zero)
@@ -95,13 +93,22 @@ class GoalsView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    internal func configure(targetMonth: String) {
-        self.targetMonth = targetMonth
-        self.inExGoals = GoalDao().getInExGoals(targetMonth: targetMonth)
-        self.remainingGoal = GoalDao().getOtherGoal(targetMonth: targetMonth)
-        inExGoalCollectionView!.reloadData()
-        otherGoalCollectionView!.reloadData()
-        updateTableViewHeight()
+    internal func configure(wallet: Wallet,
+                            monthlyGoals: MonthlyGoals,
+                            monthlyTransactions: MonthlyTransactions) {
+        self.wallet = wallet
+        self.monthlyGoals = monthlyGoals
+        self.monthlyTransactions = monthlyTransactions
+        
+        self.updateViews()
+    }
+    
+    private func updateViews() {
+        if self.monthlyGoals != nil {
+            self.inExGoals = self.monthlyGoals!.goals
+            inExGoalCollectionView!.reloadData()
+            updateTableViewHeight()
+        }
     }
     
     private func setupUI() {
@@ -111,19 +118,14 @@ class GoalsView: UIView {
         self.addSubview(mainShadowAria)
         self.addSubview(mainAria)
         
-        setupOtherGoalCollectionView()
-        self.addSubview(otherGoalCollectionView!)
-        
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         addGoalButton.translatesAutoresizingMaskIntoConstraints = false
         underLine.translatesAutoresizingMaskIntoConstraints = false
         mainAria.translatesAutoresizingMaskIntoConstraints = false
         mainShadowAria.translatesAutoresizingMaskIntoConstraints = false
-        otherGoalCollectionView!.translatesAutoresizingMaskIntoConstraints = false
         
         // 可変レイアウト
         mainAriaHeightConstraint = mainAria.heightAnchor.constraint(equalToConstant: toolbarHeight)
-        otherAriaHeightConstraint = otherGoalCollectionView!.heightAnchor.constraint(equalToConstant: 0)
         
         NSLayoutConstraint.activate([
             // TITLE
@@ -149,13 +151,7 @@ class GoalsView: UIView {
             mainShadowAria.topAnchor.constraint(equalTo: mainAria.topAnchor),
             mainShadowAria.leadingAnchor.constraint(equalTo: mainAria.leadingAnchor),
             mainShadowAria.trailingAnchor.constraint(equalTo: mainAria.trailingAnchor),
-            mainShadowAria.bottomAnchor.constraint(equalTo: mainAria.bottomAnchor),
-          
-            // TOTAL
-            otherGoalCollectionView!.topAnchor.constraint(equalTo: mainAria.bottomAnchor, constant: 28),
-            otherGoalCollectionView!.leadingAnchor.constraint(equalTo: self.leadingAnchor),
-            otherGoalCollectionView!.trailingAnchor.constraint(equalTo: self.trailingAnchor),
-            otherAriaHeightConstraint!
+            mainShadowAria.bottomAnchor.constraint(equalTo: mainAria.bottomAnchor)
         ])
         
         // MainAria
@@ -195,22 +191,6 @@ class GoalsView: UIView {
         inExGoalCollectionView!.tag = 1
     }
     
-    private func setupOtherGoalCollectionView() {
-        let layout = UICollectionViewFlowLayout()
-        layout.itemSize = CGSize(width: UIScreen.main.bounds.width * 0.9, height: OtherGoalItemCell.itemHeight)
-        layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-        layout.minimumLineSpacing = 0
-        
-        otherGoalCollectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        otherGoalCollectionView!.backgroundColor = .clear
-        otherGoalCollectionView!.dataSource = self
-        otherGoalCollectionView!.delegate = self
-        otherGoalCollectionView!.register(OtherGoalItemCell.self, forCellWithReuseIdentifier: OtherGoalItemCell.identifier)
-        otherGoalCollectionView!.isScrollEnabled = false
-        otherGoalCollectionView!.layer.masksToBounds = false
-        otherGoalCollectionView!.tag = 2 // Unique tag for identification
-    }
-    
     // MARK: - ACTIONS
     @objc private func addGoalButtonTapped() {
         self.delegate!.addGoalButtonTapped()
@@ -221,22 +201,14 @@ class GoalsView: UIView {
         var totalHeight: CGFloat = 0
         for section in 0..<inExGoalCollectionView!.numberOfSections {
             for row in 0..<inExGoalCollectionView!.numberOfItems(inSection: section) {
-                let indexPath = IndexPath(row: row, section: section)
                 totalHeight += GoalItemCell.itemHeight + inExGoalsMinmumLineSpacing
             }
         }
         mainAriaHeightConstraint?.constant = toolbarHeight + totalHeight
         
-        var otherTotalHeight: CGFloat = 0
-        for row in 0..<otherGoalCollectionView!.numberOfItems(inSection: 0) {
-            let indexPath = IndexPath(row: row, section: 0)
-            otherTotalHeight += OtherGoalItemCell.itemHeight
-        }
-        otherAriaHeightConstraint?.constant = otherTotalHeight
-        
         self.layoutIfNeeded()
         
-        let contentHeight = max(UIScreen.main.bounds.height + 40, otherGoalCollectionView!.frame.maxY + 80)
+        let contentHeight = max(UIScreen.main.bounds.height + 40, inExGoalCollectionView!.frame.maxY + 80)
         
         self.delegate!.updatedGoalsViewHeight(viewHeight: contentHeight)
     }
@@ -249,42 +221,26 @@ extension GoalsView: UICollectionViewDataSource, UICollectionViewDelegate {
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        switch collectionView.tag {
-        case 1:
-            return inExGoals.count
-        case 2:
-            return remainingGoal?.getAmount() ?? 0 > 0 ? 1 : 0
-        default:
-            return 0
-        }
+        return self.inExGoals.count
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        switch collectionView.tag {
-        case 1:
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: GoalItemCell.identifier, for: indexPath) as! GoalItemCell
-            cell.configure(with: inExGoals[indexPath.row], targetMonth: self.targetMonth)
-            cell.contentView.backgroundColor = .customWhiteSmoke
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: GoalItemCell.identifier, for: indexPath) as! GoalItemCell
+        cell.contentView.backgroundColor = .customWhiteSmoke
+        
+        let goal = self.inExGoals[indexPath.row]
+        guard let category = self.wallet!.getCategoryById(categoryId: goal.categoryId) else {
             return cell
-        case 2:
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: OtherGoalItemCell.identifier, for: indexPath) as! OtherGoalItemCell
-            cell.configure(targetMonth: self.targetMonth)
-            cell.contentView.backgroundColor = .customWhiteSmoke
-            return cell
-        default:
-            fatalError("Unknown collection view tag")
         }
+        cell.configure(category: category,
+                       goal: goal,
+                       categoryOfExpense: self.monthlyTransactions!.getCategoryOfExpense(categoryId: goal.categoryId))
+        return cell
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         collectionView.deselectItem(at: indexPath, animated: true)
-        switch collectionView.tag {
-        case 1:
-            let cell = inExGoalCollectionView?.cellForItem(at: indexPath) as! GoalItemCell
-            self.delegate!.showGoalDetail(goal: self.inExGoals[indexPath.row], imageColor: cell.imageColor)
-        case 2:
-            self.delegate!.showGoalDetail(goal: self.remainingGoal!, imageColor: .systemTeal)
-        default: break
-        }
+        let cell = inExGoalCollectionView?.cellForItem(at: indexPath) as! GoalItemCell
+        self.delegate!.showGoalDetail(goal: self.inExGoals[indexPath.row])
     }
 }
