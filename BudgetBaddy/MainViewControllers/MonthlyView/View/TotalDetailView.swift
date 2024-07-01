@@ -18,9 +18,6 @@ protocol TotalDetailDelegate: AnyObject {
 class TotalDetailView: UIView {
     weak var delegate: TotalDetailDelegate? = nil
     
-    private var monthlyGoals: MonthlyGoals?
-    private var monthlyTransactions: MonthlyTransactions?
-    
     private var breakdowns: [BudgetBreakdown] = []
     private var transactions: [Transaction] = []
     
@@ -183,38 +180,28 @@ class TotalDetailView: UIView {
     }
     
     internal func configure(monthlyGoals: MonthlyGoals, monthlyTransactions: MonthlyTransactions) {
-        self.monthlyGoals = monthlyGoals
-        self.monthlyTransactions = monthlyTransactions
+        self.breakdowns = monthlyGoals.budgetBreakdowns
+        self.transactions = monthlyTransactions.transactions
+            
+        // Income
+        let income = monthlyGoals.getTotalBudget()
+        incomTotalValue.text = "+ " + formatCurrency(amount: income)!
+        expenseTableView.reloadData()
+        // Expece
+        let expense = monthlyTransactions.getExpense()
+        expenseTotalValue.text = "- " + formatCurrency(amount: expense)!
         
-        self.updateViews()
-    }
-    
-    private func updateViews() {
-        if self.monthlyGoals != nil {
-            self.breakdowns = self.monthlyGoals!.budgetBreakdowns
-            
-            let income = self.monthlyGoals!.getTotalBudget()
-            incomTotalValue.text = "+ " + formatCurrency(amount: income)!
-            expenseTableView.reloadData()
-        }
-        
-        if self.monthlyTransactions != nil {
-            self.transactions = self.monthlyTransactions!.transactions
-            
-            let expense = self.monthlyTransactions!.getExpense()
-            expenseTotalValue.text = "- " + formatCurrency(amount: expense)!
-            
-            incomTableView.reloadData()
-        }
+        incomTableView.reloadData()
+
         self.updateTableHeight()
     }
     
     private func setupUI() {
         self.addSubview(titleLabel)
         self.addSubview(underLine)
-//        self.addSubview(incomTitleLabel)
-//        self.addSubview(addBreakdownBtn)
-//        self.addSubview(incomTableAria)
+        self.addSubview(incomTitleLabel)
+        self.addSubview(addBreakdownBtn)
+        self.addSubview(incomTableAria)
         self.addSubview(expenseTitleLabel)
         self.addSubview(addTransactionBtn)
         self.addSubview(expenseTableAria)

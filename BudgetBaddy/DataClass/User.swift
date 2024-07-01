@@ -38,9 +38,18 @@ class User {
         self.sharedWalletIds = sharedWalletIds
     }
     
-    internal func fetchWalletsForUser() async -> [Wallet] {
+    internal func fetchUserWallets() async -> [Wallet] {
         do {
-            let wallets = try await WalletsDao.fetchWalletsForUser(userId: self.userId, sharedWalletIds: self.sharedWalletIds)
+            let wallets = try await WalletsDao.fetchUserWallets(userId: self.userId)
+            return wallets
+        } catch {
+            return []
+        }
+    }
+    
+    internal func fetchSharedWallets() async -> [Wallet] {
+        do {
+            let wallets = try await WalletsDao.fetchSharedWallets(userId: self.userId, sharedWalletIds: self.sharedWalletIds)
             return wallets
         } catch {
             return []

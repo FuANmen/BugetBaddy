@@ -106,6 +106,7 @@ class GoalItemCell: UICollectionViewCell {
         
         let balance = goal.budget - categoryOfExpense
         balanceLabel.text = formatCurrency(amount: balance)
+        self.updateView(goalAmount: Int(goal.budget), balance: Int(balance), totalAmount: Int(categoryOfExpense))
     }
     
     override func prepareForReuse() {

@@ -10,22 +10,27 @@ import FirebaseFirestore
 
 class WalletsDao {
     //　MARK: - Wallets
-    static func addWallet(wallet: Wallet) {
+    static func addWallet(wallet: Wallet) async -> Bool {
         let db = Firestore.firestore()
-        let walletRef = db.collection("Wallets").document(wallet.walletId)
-        
-        walletRef.setData(wallet.toDictionary()) { error in
-            if let error = error {
-                print("Error adding wallet: \(error)")
-            } else {
-                print("Wallet added successfully")
+        do {
+            let walletRef = db.collection("wallets").document(wallet.walletId)
+            
+            walletRef.setData(wallet.toDictionary()) { error in
+                if let error = error {
+                    print("Error adding wallet: \(error)")
+                } else {
+                    print("Wallet added successfully")
+                }
             }
+            return true
+        } catch {
+            return false
         }
     }
     
     static func updateWallet(editedWallet: Wallet) {
         let db = Firestore.firestore()
-        let walletRef = db.collection("Wallets").document(editedWallet.walletId)
+        let walletRef = db.collection("wallets").document(editedWallet.walletId)
 
         walletRef.updateData([
             "name": editedWallet.name,
@@ -43,7 +48,7 @@ class WalletsDao {
     
     static func deleteWallet(wallet: Wallet, completion: @escaping (Error?) -> Void) {
         let db = Firestore.firestore()
-        let walletRef = db.collection("Wallets").document(wallet.walletId)
+        let walletRef = db.collection("wallets").document(wallet.walletId)
 
         walletRef.delete { error in
             if let error = error {
@@ -58,12 +63,13 @@ class WalletsDao {
     
     static func fetchWallet(walletId: String, completion: @escaping (Wallet?) -> Void) {
         let db = Firestore.firestore()
-        let walletRef = db.collection("Wallets").document(walletId)
+        let walletRef = db.collection("wallets").document(walletId)
 
         walletRef.getDocument { (document, error) in
             if let document = document, document.exists {
                 let data = document.data()
                 let wallet = Wallet(dictionary: data!)
+                print("Fetch Wallet")
                 completion(wallet)
             } else {
                 print("Wallet not found")
@@ -72,34 +78,69 @@ class WalletsDao {
         }
     }
     
-    static func fetchWalletsForUser(userId: String, sharedWalletIds: [String]) async throws -> [Wallet] {
+    static func fetchUserWallets(userId: String) async throws -> [Wallet] {
         let db = Firestore.firestore()
-        let walletsRef = db.collection("Wallets")
-
+        let walletsRef = db.collection("wallets")
+        
         var wallets: [Wallet] = []
-
-        // クエリを実行してownerIdが一致するwalletを取得
+        
+        // クエリを実行してownerIdがuserIdが一致するwalletを取得
         let querySnapshot1 = try await walletsRef.whereField("ownerId", isEqualTo: userId).getDocuments()
         for document in querySnapshot1.documents {
             if let wallet = Wallet(dictionary: document.data()) {
                 wallets.append(wallet)
             }
         }
+        print("Fetch user wallets")
+        return wallets
+    }
 
-        // クエリを実行してsharedWalletIdsに含まれるwalletを取得
-        let querySnapshot2 = try await walletsRef.whereField("walletId", in: sharedWalletIds).getDocuments()
-        for document in querySnapshot2.documents {
-            if let wallet = Wallet(dictionary: document.data()), !wallets.contains(where: { $0.walletId == wallet.walletId }) {
-                wallets.append(wallet)
+    static func fetchSharedWallets(userId: String, sharedWalletIds: [String]) async throws -> [Wallet] {
+        let db = Firestore.firestore()
+        let walletsRef = db.collection("wallets")
+        
+        var wallets: [Wallet] = []
+        // クエリを実行してsharedWalletIdsにuserIdが含まれるwalletを取得
+        if sharedWalletIds.count > 0 {
+            let querySnapshot2 = try await walletsRef.whereField("walletId", in: sharedWalletIds).getDocuments()
+            for document in querySnapshot2.documents {
+                if let wallet = Wallet(dictionary: document.data()), !wallets.contains(where: { $0.walletId == wallet.walletId }) {
+                    wallets.append(wallet)
+                }
             }
         }
+        print("Fetch shared wallets")
         return wallets
+    }
+    
+    static func addSharingUserToWallet(wallet: Wallet, userInfo: UserInfo) {
+        let db = Firestore.firestore()
+        let walletRef = db.collection("wallets").document(wallet.walletId)
+        
+        // 新しいTransactionを辞書に変換
+        let newUserInfoData = userInfo.toDictionary()
+
+        walletRef.getDocument { (document, error) in
+            if let document = document, document.exists {
+                walletRef.updateData([
+                    "sharedUsersInfo": FieldValue.arrayUnion([newUserInfoData])
+                ]) { error in
+                    if let error = error {
+                        print("Error adding SharingUser to wallet: \(error)")
+                    } else {
+                        print("SharingUser added to wallet successfully")
+                    }
+                }
+            } else {
+                print("wallet document does not exist")
+            }
+        }
     }
     
     //　MARK: - SharedUserInfo
     static func addSharedUserToWallet(walletId: String, newUser: User) {
         let db = Firestore.firestore()
-        let walletRef = db.collection("Wallets").document(walletId)
+        let walletRef = db.collection("wallets").document(walletId)
 
         walletRef.getDocument { (document, error) in
             if let document = document, document.exists {
@@ -123,7 +164,7 @@ class WalletsDao {
     
     static func updateSharedUserInWallet(walletId: String, editedUserInfo: UserInfo) {
         let db = Firestore.firestore()
-        let walletRef = db.collection("Wallets").document(walletId)
+        let walletRef = db.collection("wallets").document(walletId)
 
         let editedUserInfoData = editedUserInfo.toDictionary()
 
@@ -157,7 +198,7 @@ class WalletsDao {
     
     static func removeSharedUserFromWallet(walletId: String, userInfo: UserInfo) {
         let db = Firestore.firestore()
-        let walletRef = db.collection("Wallets").document(walletId)
+        let walletRef = db.collection("wallets").document(walletId)
 
         let userInfoData = userInfo.toDictionary()
 
@@ -176,7 +217,7 @@ class WalletsDao {
     //　MARK: - Category
     static func addCategoryToWallet(walletId: String, newCategory: Category) {
         let db = Firestore.firestore()
-        let walletRef = db.collection("Wallets").document(walletId)
+        let walletRef = db.collection("wallets").document(walletId)
         
         let newCategoryData = newCategory.toDictionary()
 
@@ -199,7 +240,7 @@ class WalletsDao {
     
     static func updateCategoryInWallet(walletId: String, editedCategory: Category) {
         let db = Firestore.firestore()
-        let walletRef = db.collection("Wallets").document(walletId)
+        let walletRef = db.collection("wallets").document(walletId)
 
         let editedCategoryData = editedCategory.toDictionary()
 
@@ -233,7 +274,7 @@ class WalletsDao {
     
     static func removeCategoryFromWallet(walletId: String, category: Category) {
         let db = Firestore.firestore()
-        let walletRef = db.collection("Wallets").document(walletId)
+        let walletRef = db.collection("wallets").document(walletId)
 
         let categoryData = category.toDictionary()
 

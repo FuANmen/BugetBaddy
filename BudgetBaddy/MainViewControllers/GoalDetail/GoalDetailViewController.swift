@@ -13,7 +13,7 @@ protocol GoalDetailViewDelegate: AnyObject {
     func didUpdateCategories(categories: [Category])
 }
 
-class GoalDetailViewController: UIViewController {    
+class GoalDetailViewController: UIViewController {
     weak var delegate: GoalDetailViewDelegate?
 
     private var targetMonth: String
@@ -149,17 +149,6 @@ class GoalDetailViewController: UIViewController {
         return view
     }()
     
-    private let openAndCloseAmountAriaBtn: UIButton = {
-        let button = UIButton()
-        button.tintColor = .systemBlue
-        button.setImage(UIImage(systemName: "chevron.down"), for: .normal)
-        button.addTarget(self, action: #selector(openAndCloseAmountBtnTapped), for: .touchUpInside)
-        button.imageView?.contentMode = .scaleAspectFit
-        button.contentHorizontalAlignment = .fill
-        button.contentVerticalAlignment = .fill
-        return button
-    }()
-    
     private let amountLabel: UILabel = {
         let label = UILabel()
         label.text = NSLocalizedString("Budget", comment: "") + " :"
@@ -184,24 +173,6 @@ class GoalDetailViewController: UIViewController {
         return view
     }()
     
-    private let tranLogsAriaLabel: UILabel = {
-        let label = UILabel()
-        label.text = NSLocalizedString("Breakdown", comment: "")
-        label.textColor = .customDarkGray
-        label.font = UIFont.systemFont(ofSize: 20, weight: .light)
-        return label
-    }()
-    
-    private let addTransferLogButton: UIButton = {
-        let button = UIButton()
-        button.setImage(UIImage(systemName: "plus"), for: .normal)
-        button.tintColor = .customDarkGray
-        button.imageView?.contentMode = .scaleAspectFit
-        button.contentHorizontalAlignment = .fill
-        button.contentVerticalAlignment = .fill
-        return button
-    }()
-    
     // Expense
     private let expenseViewHeight: CGFloat = 60
     private var expenseViewHeightAnchor: NSLayoutConstraint?
@@ -215,6 +186,17 @@ class GoalDetailViewController: UIViewController {
         view.layer.shadowOffset = CGSize(width: 0, height: 2)
         view.layer.shadowRadius = 5
         return view
+    }()
+    
+    private let openAndCloseExpenseAriaBtn: UIButton = {
+        let button = UIButton()
+        button.tintColor = .systemRed
+        button.setImage(UIImage(systemName: "chevron.down"), for: .normal)
+        button.addTarget(self, action: #selector(openAndCloseExpenseBtnTapped), for: .touchUpInside)
+        button.imageView?.contentMode = .scaleAspectFit
+        button.contentHorizontalAlignment = .fill
+        button.contentVerticalAlignment = .fill
+        return button
     }()
     
     private let expenseLabel: UILabel = {
@@ -237,7 +219,7 @@ class GoalDetailViewController: UIViewController {
     private var transactionsViewHeightAnchor: NSLayoutConstraint?
     private let transactionsView: UIView = {
         let view = UIView()
-        view.alpha = 1.0
+        view.alpha = 0.0
         return view
     }()
     
@@ -315,6 +297,7 @@ class GoalDetailViewController: UIViewController {
         self.addGradientBackground()
 
         setupUI()
+        loadTransactions()
         
         setupChartData()
     }
@@ -457,42 +440,8 @@ class GoalDetailViewController: UIViewController {
             selectedDayViewIcon.widthAnchor.constraint(equalToConstant: 16)
         ])
         
-        // Amount
-        amountView.addSubview(amountLabel)
-        amountView.addSubview(amountValue)
-        amountView.addSubview(transferLogsTableAria)
-        amountView.addSubview(openAndCloseAmountAriaBtn)
-        transferLogsTableAria.addSubview(addTransferLogButton)
-        transferLogsTableAria.addSubview(tranLogsAriaLabel)
-        
-        amountLabel.translatesAutoresizingMaskIntoConstraints = false
-        amountValue.translatesAutoresizingMaskIntoConstraints = false
-        transferLogsTableAria.translatesAutoresizingMaskIntoConstraints = false
-        openAndCloseAmountAriaBtn.translatesAutoresizingMaskIntoConstraints = false
-        
-        addTransferLogButton.translatesAutoresizingMaskIntoConstraints = false
-        tranLogsAriaLabel.translatesAutoresizingMaskIntoConstraints = false
-        
-        transferLogsTableAriaHeightAnchor = transferLogsTableAria.heightAnchor.constraint(equalToConstant: 0)
-        NSLayoutConstraint.activate([
-            openAndCloseAmountAriaBtn.centerYAnchor.constraint(equalTo: amountView.topAnchor, constant: amountViewHeight / 2),
-            openAndCloseAmountAriaBtn.leadingAnchor.constraint(equalTo: amountView.leadingAnchor, constant: 12),
-            openAndCloseAmountAriaBtn.widthAnchor.constraint(equalToConstant: 24),
-            openAndCloseAmountAriaBtn.heightAnchor.constraint(equalToConstant: 24),
-            
-            amountLabel.centerYAnchor.constraint(equalTo: amountView.topAnchor, constant: amountViewHeight / 2),
-            amountLabel.leadingAnchor.constraint(equalTo: openAndCloseAmountAriaBtn.trailingAnchor, constant: 12),
-            
-            amountValue.centerYAnchor.constraint(equalTo: amountLabel.centerYAnchor),
-            amountValue.trailingAnchor.constraint(equalTo: amountView.trailingAnchor, constant: -24),
-            
-            transferLogsTableAria.bottomAnchor.constraint(equalTo: amountView.bottomAnchor, constant: -transLogsTableAriaBottomHeight),
-            transferLogsTableAria.leadingAnchor.constraint(equalTo: amountView.leadingAnchor, constant: 32),
-            transferLogsTableAria.trailingAnchor.constraint(equalTo: amountView.trailingAnchor, constant: -32),
-            transferLogsTableAriaHeightAnchor!
-        ])
-        
         // EXPENSE
+        expenseView.addSubview(openAndCloseExpenseAriaBtn)
         expenseView.addSubview(expenseLabel)
         expenseView.addSubview(expenseValue)
         expenseView.addSubview(transactionsView)
@@ -500,6 +449,7 @@ class GoalDetailViewController: UIViewController {
         transactionsView.addSubview(addTransactionButton)
         transactionsView.addSubview(transactionsTableView)
         
+        openAndCloseExpenseAriaBtn.translatesAutoresizingMaskIntoConstraints = false
         expenseLabel.translatesAutoresizingMaskIntoConstraints = false
         expenseValue.translatesAutoresizingMaskIntoConstraints = false
         transactionsView.translatesAutoresizingMaskIntoConstraints = false
@@ -510,8 +460,13 @@ class GoalDetailViewController: UIViewController {
         
         transactionsViewHeightAnchor = transactionsView.heightAnchor.constraint(equalToConstant: 0)
         NSLayoutConstraint.activate([
+            openAndCloseExpenseAriaBtn.centerYAnchor.constraint(equalTo: expenseView.topAnchor, constant: expenseViewHeight / 2),
+            openAndCloseExpenseAriaBtn.leadingAnchor.constraint(equalTo: expenseView.leadingAnchor, constant: 12),
+            openAndCloseExpenseAriaBtn.widthAnchor.constraint(equalToConstant: 24),
+            openAndCloseExpenseAriaBtn.heightAnchor.constraint(equalToConstant: 24),
+            
             expenseLabel.centerYAnchor.constraint(equalTo: expenseView.topAnchor, constant: expenseViewHeight / 2),
-            expenseLabel.leadingAnchor.constraint(equalTo: expenseView.leadingAnchor, constant: 12),
+            expenseLabel.leadingAnchor.constraint(equalTo: openAndCloseExpenseAriaBtn.trailingAnchor, constant: 12),
             
             expenseValue.centerYAnchor.constraint(equalTo: expenseView.topAnchor, constant: expenseViewHeight / 2),
             expenseValue.trailingAnchor.constraint(equalTo: expenseView.trailingAnchor, constant: -24),
@@ -531,6 +486,29 @@ class GoalDetailViewController: UIViewController {
             transactionsTableView.leadingAnchor.constraint(equalTo: transactionsView.leadingAnchor),
             transactionsTableView.trailingAnchor.constraint(equalTo: transactionsView.trailingAnchor),
             transactionsTableView.bottomAnchor.constraint(equalTo: transactionsView.bottomAnchor, constant: -8)
+        ])
+        
+        // Amount
+        amountView.addSubview(amountLabel)
+        amountView.addSubview(amountValue)
+        amountView.addSubview(transferLogsTableAria)
+        
+        amountLabel.translatesAutoresizingMaskIntoConstraints = false
+        amountValue.translatesAutoresizingMaskIntoConstraints = false
+        transferLogsTableAria.translatesAutoresizingMaskIntoConstraints = false
+        
+        transferLogsTableAriaHeightAnchor = transferLogsTableAria.heightAnchor.constraint(equalToConstant: 0)
+        NSLayoutConstraint.activate([
+            amountLabel.centerYAnchor.constraint(equalTo: amountView.topAnchor, constant: amountViewHeight / 2),
+            amountLabel.leadingAnchor.constraint(equalTo: expenseLabel.leadingAnchor),
+            
+            amountValue.centerYAnchor.constraint(equalTo: amountLabel.centerYAnchor),
+            amountValue.trailingAnchor.constraint(equalTo: amountView.trailingAnchor, constant: -24),
+            
+            transferLogsTableAria.bottomAnchor.constraint(equalTo: amountView.bottomAnchor, constant: -transLogsTableAriaBottomHeight),
+            transferLogsTableAria.leadingAnchor.constraint(equalTo: amountView.leadingAnchor, constant: 32),
+            transferLogsTableAria.trailingAnchor.constraint(equalTo: amountView.trailingAnchor, constant: -32),
+            transferLogsTableAriaHeightAnchor!
         ])
         
         // DIALOG
@@ -555,6 +533,7 @@ class GoalDetailViewController: UIViewController {
     
     private func updateValues() {
         amountValue.text = formatCurrency(amount: self.goal.budget)
+        expenseValue.text = formatCurrency(amount: self.getExpense())
         
         let balance = getBalance()
         balanceValue.text = formatCurrency(amount: balance)
@@ -628,7 +607,6 @@ class GoalDetailViewController: UIViewController {
         lineDataSet.drawFilledEnabled = true
         lineDataSet.fillColor = .systemGreen
         // X軸
-        print(values.count)
         lineChartView.xAxis.labelPosition = .bottom
         lineChartView.xAxis.axisMinimum = 1.0
         lineChartView.xAxis.labelTextColor = .customDarkGray
@@ -751,33 +729,6 @@ class GoalDetailViewController: UIViewController {
     @objc private func deleteGoalTapped() {
     }
     
-    @objc private func openAndCloseAmountBtnTapped() {
-        if transferLogsTableAriaHeightAnchor!.constant == 0 {
-            UIView.animate(withDuration: 0.3, animations: { [self] in
-                let tableAriaHeight: CGFloat = transLogsTableAriaHeaderHeight
-                self.transferLogsTableAriaHeightAnchor!.constant = tableAriaHeight
-                self.amountViewHeightAnchor!.constant = tableAriaHeight + self.amountViewHeight + self.transLogsTableAriaBottomHeight
-                self.openAndCloseAmountAriaBtn.setImage(UIImage(systemName: "chevron.up"), for: .normal)
-                self.view.layoutIfNeeded()
-            }, completion: { [self] finished in
-                UIView.animate(withDuration: 0.2) {
-                    self.transferLogsTableAria.alpha = 1.0
-                }
-            })
-        } else {
-            UIView.animate(withDuration: 0.2, animations: {
-                self.transferLogsTableAria.alpha = 0.0
-            }, completion: { [self] finished in
-                UIView.animate(withDuration: 0.3) { [self] in
-                    self.transferLogsTableAriaHeightAnchor!.constant = 0
-                    self.amountViewHeightAnchor!.constant = amountViewHeight
-                    self.openAndCloseAmountAriaBtn.setImage(UIImage(systemName: "chevron.down"), for: .normal)
-                    self.view.layoutIfNeeded()
-                }
-            })
-        }
-    }
-    
     @objc private func openAndCloseExpenseBtnTapped() {
         if transactionsViewHeightAnchor!.constant == 0 {
             UIView.animate(withDuration: 0.3, animations: { [self] in
@@ -807,20 +758,6 @@ class GoalDetailViewController: UIViewController {
         let createTransactionView = TransactionEditorViewController(wallet: self.wallet, targetMonth: self.targetMonth, transaction: nil)
         createTransactionView.delegate = self
         present(createTransactionView, animated: true, completion: nil)
-    }
-    
-    // MARK: - Gesture
-    @objc private func closeAmountAria() {
-        UIView.animate(withDuration: 0.3, animations: {
-            self.transferLogsTableAria.alpha = 0.0
-        }, completion: { [self] finished in
-            UIView.animate(withDuration: 0.4) { [self] in
-                self.transferLogsTableAriaHeightAnchor!.constant = 0
-                self.amountViewHeightAnchor!.constant = amountViewHeight
-                self.openAndCloseAmountAriaBtn.setImage(UIImage(systemName: "chevron.down"), for: .normal)
-                self.view.layoutIfNeeded()
-            }
-        })
     }
 }
 
@@ -862,7 +799,6 @@ extension GoalDetailViewController: UITableViewDelegate, UITableViewDataSource {
             if let index = self!.transactions.firstIndex(where: { $0.id == transaction.id }) {
                 self!.transactions.remove(at: index)
                 MonthlyTransactionsDao.removeTransactionFromMonthlyTransactions(walletId: self!.wallet.walletId,
-                                                                                targetMonth: self!.targetMonth,
                                                                                 transactionToRemove: transaction)
                 self!.loadTransactions()
                 self!.updateAndRefreshChart()
@@ -930,7 +866,6 @@ extension GoalDetailViewController: ChartViewDelegate {
 // MARK: -
 extension GoalDetailViewController: TransactionEditorViewDelegate {
     func addCategory(category: Category) {
-        self.wallet.categories.append(category)
         self.delegate!.didUpdateCategories(categories: self.wallet.categories)
     }
     

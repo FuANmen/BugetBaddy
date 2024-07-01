@@ -51,6 +51,11 @@ class SignUpViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
+        
+        emailTextField.text = "s.ke.marisa@gmail.com"
+        passwordTextField.text = "K68k4839"
+        usernameTextField.text = "KENSAKU"
+        
         setupUI()
     }
     
@@ -127,13 +132,34 @@ class SignUpViewController: UIViewController {
                 
                 guard let userId = authResult?.user.uid else { return }
                 
-                // アカウントに紐づく情報の登録
                 Task {
-                    if await UsersDao.saveUser(userId: userId, email: email, username: username) {
-                        self.dismiss(animated: true)
-                    } else {
-                        throw SignUpError.error("ユーザ情報の取得に失敗")
+                    // アカウントに紐づく情報の登録
+                    guard await UsersDao.saveUser(userId: userId, email: email, username: username) else {
+                        throw SignUpError.error("ユーザ情報の登録に失敗")
                     }
+                    
+                    // プライベートWalletを登録
+                    let privateWallet = Wallet(name: NSLocalizedString("Private", comment: "Private"),
+                                               ownerId: userId,
+                                               is_default: false,
+                                               is_private: true,
+                                               sharedUsersInfo: [],
+                                               sort_order: 0)
+                    guard await WalletsDao.addWallet(wallet: privateWallet) else {
+                        throw SignUpError.error("プライベートWalletの登録に失敗")
+                    }
+                    // シェアWalletを登録
+                    let sharingWallet = Wallet(name: NSLocalizedString("Sharing", comment: "Sharing"),
+                                               ownerId: userId,
+                                               is_default: false,
+                                               is_private: false,
+                                               sharedUsersInfo: [],
+                                               sort_order: 0)
+                    guard await WalletsDao.addWallet(wallet: sharingWallet) else {
+                        throw SignUpError.error("共有Walletの登録に失敗")
+                    }
+                    
+                    self.dismiss(animated: true)
                 }
             } catch SignUpError.error(let message) {
                 let alert = UIAlertController(title: NSLocalizedString("Error", comment: ""), message: message, preferredStyle: .alert)
@@ -141,7 +167,7 @@ class SignUpViewController: UIViewController {
                     self.dismiss(animated: true, completion: nil)
                 }
                 alert.addAction(ok)
-                self.present(alert, animated: true, completion: nil)
+                //self.present(alert, animated: true, completion: nil)
             } catch {
                 return 
             }

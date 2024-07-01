@@ -37,6 +37,7 @@
 "Breakdown" = "内訳";
 "Remaining" = "残り";
 "Categorized" = "カテゴリ別";
+"Category" = "カテゴリ";
 
 "IncomTotal" = "総収入";
 "ExpensesTotal" = "総支出";
@@ -61,6 +62,11 @@
 "Backup" = "バックアップ";
 "Export" = "データ出力";
 "Import" = "データ登録";
+
+"MemberList" = "メンバーリスト (%@)";
+"AddMember" = "メンバー追加";
+
+"InputUserId_Placeholder" = "ユーザIDを入力";
 
 // Mark: - HamburgerMenu
 "Logout" = "ログアウト";

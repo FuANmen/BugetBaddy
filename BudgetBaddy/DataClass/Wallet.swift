@@ -10,8 +10,12 @@ class Wallet {
     var sort_order: Int
     var categories: [Category]
     
-    init(walletId: String, name: String, ownerId: String, is_default: Bool, is_private: Bool, sharedUsersInfo: [UserInfo], sort_order: Int, categories: [Category] = []) {
-        self.walletId = walletId
+    init(walletId: String? = nil, name: String, ownerId: String, is_default: Bool, is_private: Bool, sharedUsersInfo: [UserInfo], sort_order: Int, categories: [Category] = []) {
+        if walletId != nil {
+            self.walletId = walletId!
+        } else {
+            self.walletId = Wallet.getId()
+        }
         self.name = name
         self.ownerId = ownerId
         self.is_default = is_default
@@ -57,6 +61,10 @@ class Wallet {
             "sort_order": sort_order,
             "categories": categories.map { $0.toDictionary() }
         ]
+    }
+    
+    static func getId() -> String {
+        return String(format: "%04d", Int.random(in: 1...1000))
     }
     
     internal func getCategoryById(categoryId: String) -> Category? {
@@ -129,6 +137,6 @@ class Category {
     }
     
     static func getId() -> String {
-        return String(format: "%04d", CGFloat.random(in: 1...1000))
+        return String(format: "%04d", Int.random(in: 1...1000))
     }
 }

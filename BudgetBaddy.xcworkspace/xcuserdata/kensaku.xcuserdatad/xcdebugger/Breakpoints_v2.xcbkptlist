@@ -486,8 +486,8 @@
             filePath = "BudgetBaddy/MainViewControllers/MonthlyView/MonthlyViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "358"
-            endingLineNumber = "358"
+            startingLineNumber = "380"
+            endingLineNumber = "380"
             landmarkName = "updateDataSet(updateWallets:updateMonthlyGoals:updateMonthlyTransactions:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -659,8 +659,8 @@
             filePath = "BudgetBaddy/MainViewControllers/LoginView/LoginViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "124"
-            endingLineNumber = "124"
+            startingLineNumber = "123"
+            endingLineNumber = "123"
             landmarkName = "loginButtonTapped()"
             landmarkType = "7">
             <Locations>
@@ -716,16 +716,48 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "2713AC77-729F-44E6-B98B-4F5F437C8F4C"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BudgetBaddy/MainViewControllers/LoginView/LoginViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "127"
-            endingLineNumber = "127"
+            startingLineNumber = "126"
+            endingLineNumber = "126"
             landmarkName = "loginButtonTapped()"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "2713AC77-729F-44E6-B98B-4F5F437C8F4C - e831e00756d482f2"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(3) suspend resume partial function for closure #1 @Sendable () async throws -&gt; () in closure #1 (Swift.Optional&lt;__C.FIRAuthDataResult&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in BudgetBaddy.LoginViewController.loginButtonTapped() -&gt; ()"
+                  moduleName = "BudgetBaddy"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/kensaku/Documents/GitHub/BugetBaddy/BudgetBaddy/MainViewControllers/LoginView/LoginViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "127"
+                  endingLineNumber = "127"
+                  offsetFromSymbolStart = "260">
+               </Location>
+               <Location
+                  uuid = "2713AC77-729F-44E6-B98B-4F5F437C8F4C - d35770c19645e322"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(2) suspend resume partial function for closure #1 @Sendable () async throws -&gt; () in closure #1 (Swift.Optional&lt;__C.FIRAuthDataResult&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in BudgetBaddy.LoginViewController.loginButtonTapped() -&gt; ()"
+                  moduleName = "BudgetBaddy"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/kensaku/Documents/GitHub/BugetBaddy/BudgetBaddy/MainViewControllers/LoginView/LoginViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "126"
+                  endingLineNumber = "126"
+                  offsetFromSymbolStart = "260">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -738,8 +770,8 @@
             filePath = "BudgetBaddy/MainViewControllers/LoginView/LoginViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "125"
-            endingLineNumber = "125"
+            startingLineNumber = "124"
+            endingLineNumber = "124"
             landmarkName = "loginButtonTapped()"
             landmarkType = "7">
          </BreakpointContent>
@@ -754,8 +786,8 @@
             filePath = "BudgetBaddy/MainViewControllers/LoginView/LoginViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "131"
-            endingLineNumber = "131"
+            startingLineNumber = "130"
+            endingLineNumber = "130"
             landmarkName = "loginButtonTapped()"
             landmarkType = "7">
          </BreakpointContent>
@@ -764,7 +796,7 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "4EBA1D51-9D0A-429D-A891-04CB3A7AE755"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BudgetBaddy/DaoClass/UsersDao.swift"
@@ -860,7 +892,7 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "5B7638D8-AA54-4C16-B155-B6FD902977BC"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BudgetBaddy/DaoClass/UsersDao.swift"
@@ -900,6 +932,36 @@
                   startingLineNumber = "19"
                   endingLineNumber = "19"
                   offsetFromSymbolStart = "516">
+               </Location>
+               <Location
+                  uuid = "5B7638D8-AA54-4C16-B155-B6FD902977BC - 3d42c8b0f7a4d50c"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(3) suspend resume partial function for static BudgetBaddy.UsersDao.fetchUser(userId: Swift.String) async -&gt; Swift.Optional&lt;BudgetBaddy.User&gt;"
+                  moduleName = "BudgetBaddy"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/kensaku/Documents/GitHub/BugetBaddy/BudgetBaddy/DaoClass/UsersDao.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "18"
+                  endingLineNumber = "18"
+                  offsetFromSymbolStart = "392">
+               </Location>
+               <Location
+                  uuid = "5B7638D8-AA54-4C16-B155-B6FD902977BC - 3d42c8b0f7a4d50c"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(3) suspend resume partial function for static BudgetBaddy.UsersDao.fetchUser(userId: Swift.String) async -&gt; Swift.Optional&lt;BudgetBaddy.User&gt;"
+                  moduleName = "BudgetBaddy"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/kensaku/Documents/GitHub/BugetBaddy/BudgetBaddy/DaoClass/UsersDao.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "18"
+                  endingLineNumber = "18"
+                  offsetFromSymbolStart = "356">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -956,7 +1018,7 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "0A20371E-5F19-4CF4-8B3C-C88B2ACD0F00"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BudgetBaddy/DataClass/User.swift"
@@ -966,6 +1028,1512 @@
             endingLineNumber = "38"
             landmarkName = "init?(dictionary:)"
             landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "2B4E554F-03D2-471F-BC78-B38B702C118D"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BudgetBaddy/DaoClass/WalletsDao.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "105"
+            endingLineNumber = "105"
+            landmarkName = "fetchSharedWallets(userId:sharedWalletIds:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "4EE977B9-8897-4EEC-B451-CD098480A169"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BudgetBaddy/DaoClass/WalletsDao.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "113"
+            endingLineNumber = "113"
+            landmarkName = "fetchSharedWallets(userId:sharedWalletIds:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "DA8BDF20-390C-440E-BD94-328147CCB574"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BudgetBaddy/MainViewControllers/MonthlyView/MonthlyViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "399"
+            endingLineNumber = "399"
+            landmarkName = "updateDataSet(updateWallets:updateMonthlyGoals:updateMonthlyTransactions:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "9C608463-7462-4970-A7F3-F18FDEBF8C7C"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BudgetBaddy/DaoClass/WalletsDao.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "90"
+            endingLineNumber = "90"
+            landmarkName = "fetchUserWallets(userId:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "77D82CDF-F603-447F-BA31-23E5DB5A20B4"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BudgetBaddy/DaoClass/WalletsDao.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "107"
+            endingLineNumber = "107"
+            landmarkName = "fetchSharedWallets(userId:sharedWalletIds:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "77D82CDF-F603-447F-BA31-23E5DB5A20B4 - 522f99a9dc63a9df"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(5) suspend resume partial function for static BudgetBaddy.WalletsDao.fetchWalletsForUser(userId: Swift.String, sharedWalletIds: Swift.Array&lt;Swift.String&gt;) async throws -&gt; Swift.Array&lt;BudgetBaddy.Wallet&gt;"
+                  moduleName = "BudgetBaddy"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/kensaku/Documents/GitHub/BugetBaddy/BudgetBaddy/DaoClass/WalletsDao.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "93"
+                  endingLineNumber = "93"
+                  offsetFromSymbolStart = "641">
+               </Location>
+               <Location
+                  uuid = "77D82CDF-F603-447F-BA31-23E5DB5A20B4 - 522f99a9dc63a9df"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(5) suspend resume partial function for static BudgetBaddy.WalletsDao.fetchWalletsForUser(userId: Swift.String, sharedWalletIds: Swift.Array&lt;Swift.String&gt;) async throws -&gt; Swift.Array&lt;BudgetBaddy.Wallet&gt;"
+                  moduleName = "BudgetBaddy"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/kensaku/Documents/GitHub/BugetBaddy/BudgetBaddy/DaoClass/WalletsDao.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "93"
+                  endingLineNumber = "93"
+                  offsetFromSymbolStart = "921">
+               </Location>
+               <Location
+                  uuid = "77D82CDF-F603-447F-BA31-23E5DB5A20B4 - 5471a8a7e931fc88"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (BudgetBaddy.Wallet) -&gt; Swift.Bool in static BudgetBaddy.WalletsDao.fetchWalletsForUser(userId: Swift.String, sharedWalletIds: Swift.Array&lt;Swift.String&gt;) async throws -&gt; Swift.Array&lt;BudgetBaddy.Wallet&gt;"
+                  moduleName = "BudgetBaddy"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/kensaku/Documents/GitHub/BugetBaddy/BudgetBaddy/DaoClass/WalletsDao.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "93"
+                  endingLineNumber = "93"
+                  offsetFromSymbolStart = "45">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "D62A94E6-A54E-4F48-A96D-EC34B1850785"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BudgetBaddy/DaoClass/WalletsDao.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "89"
+            endingLineNumber = "89"
+            landmarkName = "fetchUserWallets(userId:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "2B2D9F5C-25A5-4462-A706-F2D2607E91A3"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BudgetBaddy/MainViewControllers/MonthlyView/MonthlyViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "407"
+            endingLineNumber = "407"
+            landmarkName = "updateDataSet(updateWallets:updateMonthlyGoals:updateMonthlyTransactions:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "2B2D9F5C-25A5-4462-A706-F2D2607E91A3 - 9f9143c0982e775e"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(1) suspend resume partial function for closure #1 @Sendable () async -&gt; () in BudgetBaddy.MonthlyViewController.updateDataSet(updateWallets: Swift.Bool, updateMonthlyGoals: Swift.Bool, updateMonthlyTransactions: Swift.Bool) -&gt; ()"
+                  moduleName = "BudgetBaddy"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/kensaku/Documents/GitHub/BugetBaddy/BudgetBaddy/MainViewControllers/MonthlyView/MonthlyViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "382"
+                  endingLineNumber = "382"
+                  offsetFromSymbolStart = "1048">
+               </Location>
+               <Location
+                  uuid = "2B2D9F5C-25A5-4462-A706-F2D2607E91A3 - 441978def404bbd8"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(3) suspend resume partial function for closure #1 @Sendable () async -&gt; () in BudgetBaddy.MonthlyViewController.updateDataSet(updateWallets: Swift.Bool, updateMonthlyGoals: Swift.Bool, updateMonthlyTransactions: Swift.Bool) -&gt; ()"
+                  moduleName = "BudgetBaddy"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/kensaku/Documents/GitHub/BugetBaddy/BudgetBaddy/MainViewControllers/MonthlyView/MonthlyViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "382"
+                  endingLineNumber = "382"
+                  offsetFromSymbolStart = "948">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "2808D234-5C3A-494C-81BD-CB55805ED972"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BudgetBaddy/DaoClass/WalletsDao.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "106"
+            endingLineNumber = "106"
+            landmarkName = "fetchSharedWallets(userId:sharedWalletIds:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "4D8C9C9D-D215-4444-9A1A-A54E2849F2A4"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BudgetBaddy/DataClass/Wallet.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "37"
+            endingLineNumber = "37"
+            landmarkName = "init?(dictionary:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "4D8C9C9D-D215-4444-9A1A-A54E2849F2A4 - a3463abe8a71fd9a"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "BudgetBaddy.Wallet.init(dictionary: Swift.Dictionary&lt;Swift.String, Any&gt;) -&gt; Swift.Optional&lt;BudgetBaddy.Wallet&gt;"
+                  moduleName = "BudgetBaddy"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/kensaku/Documents/GitHub/BugetBaddy/BudgetBaddy/DataClass/Wallet.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "35"
+                  endingLineNumber = "35"
+                  offsetFromSymbolStart = "2612">
+               </Location>
+               <Location
+                  uuid = "4D8C9C9D-D215-4444-9A1A-A54E2849F2A4 - a3463abe8a71fd9a"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "BudgetBaddy.Wallet.init(dictionary: Swift.Dictionary&lt;Swift.String, Any&gt;) -&gt; Swift.Optional&lt;BudgetBaddy.Wallet&gt;"
+                  moduleName = "BudgetBaddy"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/kensaku/Documents/GitHub/BugetBaddy/BudgetBaddy/DataClass/Wallet.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "35"
+                  endingLineNumber = "35"
+                  offsetFromSymbolStart = "2983">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "3C216053-78E3-410D-91C5-818F58F2E028"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BudgetBaddy/DataClass/Wallet.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "36"
+            endingLineNumber = "36"
+            landmarkName = "init?(dictionary:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "3C216053-78E3-410D-91C5-818F58F2E028 - a3463abe8a71fd3f"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "BudgetBaddy.Wallet.init(dictionary: Swift.Dictionary&lt;Swift.String, Any&gt;) -&gt; Swift.Optional&lt;BudgetBaddy.Wallet&gt;"
+                  moduleName = "BudgetBaddy"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/kensaku/Documents/GitHub/BugetBaddy/BudgetBaddy/DataClass/Wallet.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "32"
+                  endingLineNumber = "32"
+                  offsetFromSymbolStart = "2324">
+               </Location>
+               <Location
+                  uuid = "3C216053-78E3-410D-91C5-818F58F2E028 - a3463abe8a71fd3f"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "BudgetBaddy.Wallet.init(dictionary: Swift.Dictionary&lt;Swift.String, Any&gt;) -&gt; Swift.Optional&lt;BudgetBaddy.Wallet&gt;"
+                  moduleName = "BudgetBaddy"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/kensaku/Documents/GitHub/BugetBaddy/BudgetBaddy/DataClass/Wallet.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "32"
+                  endingLineNumber = "32"
+                  offsetFromSymbolStart = "2603">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "82111FD0-02E1-465C-868A-DA3D05C82C5D"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BudgetBaddy/DataClass/Wallet.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "29"
+            endingLineNumber = "29"
+            landmarkName = "init?(dictionary:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "5AA3ADE4-78B3-4CC7-B0F8-FC626306075E"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BudgetBaddy/DataClass/MonthlyGoals.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "24"
+            endingLineNumber = "24"
+            landmarkName = "init?(dictionary:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "276A1612-4A86-41B3-8B4D-38E7B692E2D4"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BudgetBaddy/MainViewControllers/MonthlyView/MonthlyViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "445"
+            endingLineNumber = "445"
+            landmarkName = "updateDataSet(updateWallets:updateMonthlyGoals:updateMonthlyTransactions:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "276A1612-4A86-41B3-8B4D-38E7B692E2D4 - 9f9143c0982e7a13"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(1) suspend resume partial function for closure #1 @Sendable () async -&gt; () in BudgetBaddy.MonthlyViewController.updateDataSet(updateWallets: Swift.Bool, updateMonthlyGoals: Swift.Bool, updateMonthlyTransactions: Swift.Bool) -&gt; ()"
+                  moduleName = "BudgetBaddy"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/kensaku/Documents/GitHub/BugetBaddy/BudgetBaddy/MainViewControllers/MonthlyView/MonthlyViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "419"
+                  endingLineNumber = "419"
+                  offsetFromSymbolStart = "4126">
+               </Location>
+               <Location
+                  uuid = "276A1612-4A86-41B3-8B4D-38E7B692E2D4 - 441978def404b695"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(3) suspend resume partial function for closure #1 @Sendable () async -&gt; () in BudgetBaddy.MonthlyViewController.updateDataSet(updateWallets: Swift.Bool, updateMonthlyGoals: Swift.Bool, updateMonthlyTransactions: Swift.Bool) -&gt; ()"
+                  moduleName = "BudgetBaddy"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/kensaku/Documents/GitHub/BugetBaddy/BudgetBaddy/MainViewControllers/MonthlyView/MonthlyViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "419"
+                  endingLineNumber = "419"
+                  offsetFromSymbolStart = "3753">
+               </Location>
+               <Location
+                  uuid = "276A1612-4A86-41B3-8B4D-38E7B692E2D4 - 1617dd4d0f2f117"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(5) suspend resume partial function for closure #1 @Sendable () async -&gt; () in BudgetBaddy.MonthlyViewController.updateDataSet(updateWallets: Swift.Bool, updateMonthlyGoals: Swift.Bool, updateMonthlyTransactions: Swift.Bool) -&gt; ()"
+                  moduleName = "BudgetBaddy"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/kensaku/Documents/GitHub/BugetBaddy/BudgetBaddy/MainViewControllers/MonthlyView/MonthlyViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "419"
+                  endingLineNumber = "419"
+                  offsetFromSymbolStart = "2003">
+               </Location>
+               <Location
+                  uuid = "276A1612-4A86-41B3-8B4D-38E7B692E2D4 - cfe972ed2caf2d99"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(7) suspend resume partial function for closure #1 @Sendable () async -&gt; () in BudgetBaddy.MonthlyViewController.updateDataSet(updateWallets: Swift.Bool, updateMonthlyGoals: Swift.Bool, updateMonthlyTransactions: Swift.Bool) -&gt; ()"
+                  moduleName = "BudgetBaddy"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/kensaku/Documents/GitHub/BugetBaddy/BudgetBaddy/MainViewControllers/MonthlyView/MonthlyViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "419"
+                  endingLineNumber = "419"
+                  offsetFromSymbolStart = "2423">
+               </Location>
+               <Location
+                  uuid = "276A1612-4A86-41B3-8B4D-38E7B692E2D4 - 1d1553f03702ccef"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(8) await resume partial function for closure #1 @Sendable () async -&gt; () in BudgetBaddy.MonthlyViewController.updateDataSet(updateWallets: Swift.Bool, updateMonthlyGoals: Swift.Bool, updateMonthlyTransactions: Swift.Bool) -&gt; ()"
+                  moduleName = "BudgetBaddy"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/kensaku/Documents/GitHub/BugetBaddy/BudgetBaddy/MainViewControllers/MonthlyView/MonthlyViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "419"
+                  endingLineNumber = "419"
+                  offsetFromSymbolStart = "37">
+               </Location>
+               <Location
+                  uuid = "276A1612-4A86-41B3-8B4D-38E7B692E2D4 - b47177eb0885681b"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(9) suspend resume partial function for closure #1 @Sendable () async -&gt; () in BudgetBaddy.MonthlyViewController.updateDataSet(updateWallets: Swift.Bool, updateMonthlyGoals: Swift.Bool, updateMonthlyTransactions: Swift.Bool) -&gt; ()"
+                  moduleName = "BudgetBaddy"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/kensaku/Documents/GitHub/BugetBaddy/BudgetBaddy/MainViewControllers/MonthlyView/MonthlyViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "419"
+                  endingLineNumber = "419"
+                  offsetFromSymbolStart = "370">
+               </Location>
+               <Location
+                  uuid = "276A1612-4A86-41B3-8B4D-38E7B692E2D4 - b47177eb0885681b"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(9) suspend resume partial function for closure #1 @Sendable () async -&gt; () in BudgetBaddy.MonthlyViewController.updateDataSet(updateWallets: Swift.Bool, updateMonthlyGoals: Swift.Bool, updateMonthlyTransactions: Swift.Bool) -&gt; ()"
+                  moduleName = "BudgetBaddy"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/kensaku/Documents/GitHub/BugetBaddy/BudgetBaddy/MainViewControllers/MonthlyView/MonthlyViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "419"
+                  endingLineNumber = "419"
+                  offsetFromSymbolStart = "387">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "38563B77-229B-4F31-B74D-86D93C2C2287"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BudgetBaddy/DaoClass/MonthlyGoalsDao.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "36"
+            endingLineNumber = "36"
+            landmarkName = "deleteMonthlyGoals(monthlyGoals:completion:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "38563B77-229B-4F31-B74D-86D93C2C2287 - 96914ae7f99d29e1"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "static BudgetBaddy.MonthlyGoalsDao.deleteMonthlyGoals(monthlyGoals: BudgetBaddy.MonthlyGoals, completion: (Swift.Optional&lt;Swift.Error&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "BudgetBaddy"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/kensaku/Documents/GitHub/BugetBaddy/BudgetBaddy/DaoClass/MonthlyGoalsDao.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "36"
+                  endingLineNumber = "36"
+                  offsetFromSymbolStart = "723">
+               </Location>
+               <Location
+                  uuid = "38563B77-229B-4F31-B74D-86D93C2C2287 - c3c2e81792bf6838"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Optional&lt;Swift.Error&gt;) -&gt; () in static BudgetBaddy.MonthlyGoalsDao.deleteMonthlyGoals(monthlyGoals: BudgetBaddy.MonthlyGoals, completion: (Swift.Optional&lt;Swift.Error&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "BudgetBaddy"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/kensaku/Documents/GitHub/BugetBaddy/BudgetBaddy/DaoClass/MonthlyGoalsDao.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "37"
+                  endingLineNumber = "37"
+                  offsetFromSymbolStart = "97">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "166F1ECE-37A8-4EEC-BB21-E5DC2A86D515"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BudgetBaddy/DaoClass/MonthlyGoalsDao.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "53"
+            endingLineNumber = "53"
+            landmarkName = "fetchMonthlyGoals(walletId:targetMonth:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "166F1ECE-37A8-4EEC-BB21-E5DC2A86D515 - 486d1999e1a23e87"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(3) suspend resume partial function for static BudgetBaddy.MonthlyGoalsDao.fetchMonthlyGoals(walletId: Swift.String, targetMonth: Swift.String) async -&gt; Swift.Optional&lt;BudgetBaddy.MonthlyGoals&gt;"
+                  moduleName = "BudgetBaddy"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/kensaku/Documents/GitHub/BugetBaddy/BudgetBaddy/DaoClass/MonthlyGoalsDao.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "53"
+                  endingLineNumber = "53"
+                  offsetFromSymbolStart = "201">
+               </Location>
+               <Location
+                  uuid = "166F1ECE-37A8-4EEC-BB21-E5DC2A86D515 - 486d1999e1a23e87"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(3) suspend resume partial function for static BudgetBaddy.MonthlyGoalsDao.fetchMonthlyGoals(walletId: Swift.String, targetMonth: Swift.String) async -&gt; Swift.Optional&lt;BudgetBaddy.MonthlyGoals&gt;"
+                  moduleName = "BudgetBaddy"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/kensaku/Documents/GitHub/BugetBaddy/BudgetBaddy/DaoClass/MonthlyGoalsDao.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "53"
+                  endingLineNumber = "53"
+                  offsetFromSymbolStart = "128">
+               </Location>
+               <Location
+                  uuid = "166F1ECE-37A8-4EEC-BB21-E5DC2A86D515 - 486d1999e1a23e87"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(3) suspend resume partial function for static BudgetBaddy.MonthlyGoalsDao.fetchMonthlyGoals(walletId: Swift.String, targetMonth: Swift.String) async -&gt; Swift.Optional&lt;BudgetBaddy.MonthlyGoals&gt;"
+                  moduleName = "BudgetBaddy"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/kensaku/Documents/GitHub/BugetBaddy/BudgetBaddy/DaoClass/MonthlyGoalsDao.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "53"
+                  endingLineNumber = "53"
+                  offsetFromSymbolStart = "148">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "AEF229F8-8DFE-4D6E-9322-96194945FEB8"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BudgetBaddy/MainViewControllers/MonthlyView/Dialog/BreakdownEditorView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "224"
+            endingLineNumber = "224"
+            landmarkName = "okButtonTapped()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "B723C7B2-79A6-455D-90EE-3E898B309A02"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BudgetBaddy/DaoClass/MonthlyGoalsDao.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "74"
+            endingLineNumber = "74"
+            landmarkName = "addBudgetBreakdownToMonthlyGoals(walletId:targetMonth:newBudgetBreakdown:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "B723C7B2-79A6-455D-90EE-3E898B309A02 - 7824160397f7fffd"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "static BudgetBaddy.MonthlyGoalsDao.addBudgetBreakdownToMonthlyGoals(walletId: Swift.String, targetMonth: Swift.String, newBudgetBreakdown: BudgetBaddy.BudgetBreakdown) -&gt; ()"
+                  moduleName = "BudgetBaddy"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/kensaku/Documents/GitHub/BugetBaddy/BudgetBaddy/DaoClass/MonthlyGoalsDao.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "73"
+                  endingLineNumber = "73"
+                  offsetFromSymbolStart = "603">
+               </Location>
+               <Location
+                  uuid = "B723C7B2-79A6-455D-90EE-3E898B309A02 - 74769221fd4e891e"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Optional&lt;__C.FIRDocumentSnapshot&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in static BudgetBaddy.MonthlyGoalsDao.addBudgetBreakdownToMonthlyGoals(walletId: Swift.String, targetMonth: Swift.String, newBudgetBreakdown: BudgetBaddy.BudgetBreakdown) -&gt; ()"
+                  moduleName = "BudgetBaddy"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/kensaku/Documents/GitHub/BugetBaddy/BudgetBaddy/DaoClass/MonthlyGoalsDao.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "74"
+                  endingLineNumber = "74"
+                  offsetFromSymbolStart = "145">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "A4DC6741-6547-4C2F-B0B7-2E9C9860BF8D"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BudgetBaddy/MainViewControllers/MonthlyView/MonthlyViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "81"
+            endingLineNumber = "81"
+            landmarkName = "preview"
+            landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "E03FBC01-771B-40C1-BEB3-91DBD51141B0"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BudgetBaddy/DataClass/MonthlyTransactions.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "93"
+            endingLineNumber = "93"
+            landmarkName = "init?(dictionary:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "E03FBC01-771B-40C1-BEB3-91DBD51141B0 - 60c4504feb412eb4"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "BudgetBaddy.Transaction.init(dictionary: Swift.Dictionary&lt;Swift.String, Any&gt;) -&gt; Swift.Optional&lt;BudgetBaddy.Transaction&gt;"
+                  moduleName = "BudgetBaddy"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/kensaku/Documents/GitHub/BugetBaddy/BudgetBaddy/DataClass/MonthlyTransactions.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "92"
+                  endingLineNumber = "92"
+                  offsetFromSymbolStart = "336">
+               </Location>
+               <Location
+                  uuid = "E03FBC01-771B-40C1-BEB3-91DBD51141B0 - 60c4504feb412ed7"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "BudgetBaddy.Transaction.init(dictionary: Swift.Dictionary&lt;Swift.String, Any&gt;) -&gt; Swift.Optional&lt;BudgetBaddy.Transaction&gt;"
+                  moduleName = "BudgetBaddy"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/kensaku/Documents/GitHub/BugetBaddy/BudgetBaddy/DataClass/MonthlyTransactions.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "93"
+                  endingLineNumber = "93"
+                  offsetFromSymbolStart = "216">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "3B8648FC-91B7-472B-896E-E6EC76F337E1"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BudgetBaddy/DataClass/MonthlyTransactions.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "108"
+            endingLineNumber = "108"
+            landmarkName = "toDictionary()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "3B8648FC-91B7-472B-896E-E6EC76F337E1 - 5192b9d50c412c36"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "BudgetBaddy.Transaction.toDictionary() -&gt; Swift.Dictionary&lt;Swift.String, Any&gt;"
+                  moduleName = "BudgetBaddy"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/kensaku/Documents/GitHub/BugetBaddy/BudgetBaddy/DataClass/MonthlyTransactions.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "107"
+                  endingLineNumber = "107"
+                  offsetFromSymbolStart = "52">
+               </Location>
+               <Location
+                  uuid = "3B8648FC-91B7-472B-896E-E6EC76F337E1 - 5192b9d50c412c57"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "BudgetBaddy.Transaction.toDictionary() -&gt; Swift.Dictionary&lt;Swift.String, Any&gt;"
+                  moduleName = "BudgetBaddy"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/kensaku/Documents/GitHub/BugetBaddy/BudgetBaddy/DataClass/MonthlyTransactions.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "108"
+                  endingLineNumber = "108"
+                  offsetFromSymbolStart = "52">
+               </Location>
+               <Location
+                  uuid = "3B8648FC-91B7-472B-896E-E6EC76F337E1 - 5192b9d50c412c57"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "BudgetBaddy.Transaction.toDictionary() -&gt; Swift.Dictionary&lt;Swift.String, Any&gt;"
+                  moduleName = "BudgetBaddy"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/kensaku/Documents/GitHub/BugetBaddy/BudgetBaddy/DataClass/MonthlyTransactions.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "108"
+                  endingLineNumber = "108"
+                  offsetFromSymbolStart = "26">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "8B959760-A136-426C-AF8D-DCA4C9D3F622"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BudgetBaddy/MainViewControllers/MonthlyView/MonthlyViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "80"
+            endingLineNumber = "80"
+            landmarkName = "preview"
+            landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "32FAC128-657B-413A-8C67-B2A87E86E525"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BudgetBaddy/MainViewControllers/MonthlyView/View/TotalDetailView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "380"
+            endingLineNumber = "380"
+            landmarkName = "tableView(_:heightForRowAt:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "CCB0AD9C-C2FB-45DE-9405-0D949F7DEB37"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BudgetBaddy/MainViewControllers/MonthlyView/View/TotalDetailView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "369"
+            endingLineNumber = "369"
+            landmarkName = "tableView(_:numberOfRowsInSection:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "75C91D81-C894-414E-A1E2-0806F9213107"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BudgetBaddy/MainViewControllers/MonthlyView/View/TotalDetailView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "367"
+            endingLineNumber = "367"
+            landmarkName = "tableView(_:numberOfRowsInSection:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "290E530B-DE18-4CD7-A552-A32009830BCE"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BudgetBaddy/MainViewControllers/MonthlyView/View/TotalDetailView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "187"
+            endingLineNumber = "187"
+            landmarkName = "configure(monthlyGoals:monthlyTransactions:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "FA00E042-6F1F-4998-A104-E042D5B37F99"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BudgetBaddy/MainViewControllers/MonthlyView/View/TotalDetailView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "191"
+            endingLineNumber = "191"
+            landmarkName = "configure(monthlyGoals:monthlyTransactions:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "9D56ECD3-7699-45A9-8A41-BDF375277321"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BudgetBaddy/MainViewControllers/MonthlyView/View/TotalDetailView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "184"
+            endingLineNumber = "184"
+            landmarkName = "configure(monthlyGoals:monthlyTransactions:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "AA29C292-5987-4844-8907-7C987FCE8749"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BudgetBaddy/MainViewControllers/MonthlyView/View/GoalsView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "109"
+            endingLineNumber = "109"
+            landmarkName = "updateViews()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "FE50DBC3-E786-4C0A-85BB-9FB00796A425"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BudgetBaddy/DataClass/MonthlyGoals.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "107"
+            endingLineNumber = "107"
+            landmarkName = "init?(dictionary:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "4492FF8A-F45E-4874-B223-80946C18A678"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BudgetBaddy/MainViewControllers/LoginView/LoginViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "118"
+            endingLineNumber = "118"
+            landmarkName = "loginButtonTapped()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "2FE8FEA5-8404-4968-B888-F23F83CBBF81"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BudgetBaddy/MainViewControllers/TransactionEditor/CategoryPickerTextField.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "108"
+            endingLineNumber = "108"
+            landmarkName = "addNewCategory(name:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "2FE8FEA5-8404-4968-B888-F23F83CBBF81 - 826583267eebe436"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "BudgetBaddy.CategoryPickerTextField.addNewCategory(name: Swift.String) -&gt; ()"
+                  moduleName = "BudgetBaddy"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/kensaku/Documents/GitHub/BugetBaddy/BudgetBaddy/MainViewControllers/TransactionEditor/CategoryPickerTextField.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "108"
+                  endingLineNumber = "108"
+                  offsetFromSymbolStart = "632">
+               </Location>
+               <Location
+                  uuid = "2FE8FEA5-8404-4968-B888-F23F83CBBF81 - 826583267eebe436"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "BudgetBaddy.CategoryPickerTextField.addNewCategory(name: Swift.String) -&gt; ()"
+                  moduleName = "BudgetBaddy"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/kensaku/Documents/GitHub/BugetBaddy/BudgetBaddy/MainViewControllers/TransactionEditor/CategoryPickerTextField.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "108"
+                  endingLineNumber = "108"
+                  offsetFromSymbolStart = "574">
+               </Location>
+               <Location
+                  uuid = "2FE8FEA5-8404-4968-B888-F23F83CBBF81 - 826583267eebe436"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "BudgetBaddy.CategoryPickerTextField.addNewCategory(name: Swift.String) -&gt; ()"
+                  moduleName = "BudgetBaddy"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/kensaku/Documents/GitHub/BugetBaddy/BudgetBaddy/MainViewControllers/TransactionEditor/CategoryPickerTextField.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "108"
+                  endingLineNumber = "108"
+                  offsetFromSymbolStart = "612">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "11DB6642-AF5E-46BF-8DEA-6A9D0375F90F"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BudgetBaddy/MainViewControllers/TransactionEditor/CategoryPickerTextField.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "110"
+            endingLineNumber = "110"
+            landmarkName = "addNewCategory(name:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "11DB6642-AF5E-46BF-8DEA-6A9D0375F90F - 826583267eebfbf0"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "BudgetBaddy.CategoryPickerTextField.addNewCategory(name: Swift.String) -&gt; ()"
+                  moduleName = "BudgetBaddy"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/kensaku/Documents/GitHub/BugetBaddy/BudgetBaddy/MainViewControllers/TransactionEditor/CategoryPickerTextField.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "110"
+                  endingLineNumber = "110"
+                  offsetFromSymbolStart = "937">
+               </Location>
+               <Location
+                  uuid = "11DB6642-AF5E-46BF-8DEA-6A9D0375F90F - 826583267eebfbf0"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "BudgetBaddy.CategoryPickerTextField.addNewCategory(name: Swift.String) -&gt; ()"
+                  moduleName = "BudgetBaddy"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/kensaku/Documents/GitHub/BugetBaddy/BudgetBaddy/MainViewControllers/TransactionEditor/CategoryPickerTextField.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "110"
+                  endingLineNumber = "110"
+                  offsetFromSymbolStart = "873">
+               </Location>
+               <Location
+                  uuid = "11DB6642-AF5E-46BF-8DEA-6A9D0375F90F - 826583267eebfbf0"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "BudgetBaddy.CategoryPickerTextField.addNewCategory(name: Swift.String) -&gt; ()"
+                  moduleName = "BudgetBaddy"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/kensaku/Documents/GitHub/BugetBaddy/BudgetBaddy/MainViewControllers/TransactionEditor/CategoryPickerTextField.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "110"
+                  endingLineNumber = "110"
+                  offsetFromSymbolStart = "972">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "FC43E8D2-E2EB-4FE4-819A-490865393A45"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BudgetBaddy/DaoClass/WalletsDao.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "220"
+            endingLineNumber = "220"
+            landmarkName = "addCategoryToWallet(walletId:newCategory:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "FCBDAB44-57A7-4150-A5C8-2D29210315C8"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BudgetBaddy/DaoClass/WalletsDao.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "224"
+            endingLineNumber = "224"
+            landmarkName = "addCategoryToWallet(walletId:newCategory:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "FCBDAB44-57A7-4150-A5C8-2D29210315C8 - 2a59a4da285c04b0"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "static BudgetBaddy.WalletsDao.addCategoryToWallet(walletId: Swift.String, newCategory: BudgetBaddy.Category) -&gt; ()"
+                  moduleName = "BudgetBaddy"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/kensaku/Documents/GitHub/BugetBaddy/BudgetBaddy/DaoClass/WalletsDao.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "187"
+                  endingLineNumber = "187"
+                  offsetFromSymbolStart = "498">
+               </Location>
+               <Location
+                  uuid = "FCBDAB44-57A7-4150-A5C8-2D29210315C8 - 75499bed63490990"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Optional&lt;__C.FIRDocumentSnapshot&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in static BudgetBaddy.WalletsDao.addCategoryToWallet(walletId: Swift.String, newCategory: BudgetBaddy.Category) -&gt; ()"
+                  moduleName = "BudgetBaddy"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/kensaku/Documents/GitHub/BugetBaddy/BudgetBaddy/DaoClass/WalletsDao.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "188"
+                  endingLineNumber = "188"
+                  offsetFromSymbolStart = "145">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "F3249598-C00E-498D-BEE1-C230F30C70EE"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BudgetBaddy/DaoClass/WalletsDao.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "225"
+            endingLineNumber = "225"
+            landmarkName = "addCategoryToWallet(walletId:newCategory:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "F3249598-C00E-498D-BEE1-C230F30C70EE - 75499bed63490990"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Optional&lt;__C.FIRDocumentSnapshot&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in static BudgetBaddy.WalletsDao.addCategoryToWallet(walletId: Swift.String, newCategory: BudgetBaddy.Category) -&gt; ()"
+                  moduleName = "BudgetBaddy"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/kensaku/Documents/GitHub/BugetBaddy/BudgetBaddy/DaoClass/WalletsDao.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "188"
+                  endingLineNumber = "188"
+                  offsetFromSymbolStart = "145">
+               </Location>
+               <Location
+                  uuid = "F3249598-C00E-498D-BEE1-C230F30C70EE - 75499bed63490990"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Optional&lt;__C.FIRDocumentSnapshot&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in static BudgetBaddy.WalletsDao.addCategoryToWallet(walletId: Swift.String, newCategory: BudgetBaddy.Category) -&gt; ()"
+                  moduleName = "BudgetBaddy"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/kensaku/Documents/GitHub/BugetBaddy/BudgetBaddy/DaoClass/WalletsDao.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "188"
+                  endingLineNumber = "188"
+                  offsetFromSymbolStart = "197">
+               </Location>
+               <Location
+                  uuid = "F3249598-C00E-498D-BEE1-C230F30C70EE - 75499bed63490ccb"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Optional&lt;__C.FIRDocumentSnapshot&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in static BudgetBaddy.WalletsDao.addCategoryToWallet(walletId: Swift.String, newCategory: BudgetBaddy.Category) -&gt; ()"
+                  moduleName = "BudgetBaddy"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/kensaku/Documents/GitHub/BugetBaddy/BudgetBaddy/DaoClass/WalletsDao.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "225"
+                  endingLineNumber = "225"
+                  offsetFromSymbolStart = "80">
+               </Location>
+               <Location
+                  uuid = "F3249598-C00E-498D-BEE1-C230F30C70EE - 75499bed63490ccb"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Optional&lt;__C.FIRDocumentSnapshot&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in static BudgetBaddy.WalletsDao.addCategoryToWallet(walletId: Swift.String, newCategory: BudgetBaddy.Category) -&gt; ()"
+                  moduleName = "BudgetBaddy"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/kensaku/Documents/GitHub/BugetBaddy/BudgetBaddy/DaoClass/WalletsDao.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "225"
+                  endingLineNumber = "225"
+                  offsetFromSymbolStart = "136">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "936A7AD1-C489-43A1-91F5-08B7D7BBF103"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BudgetBaddy/DaoClass/WalletsDao.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "227"
+            endingLineNumber = "227"
+            landmarkName = "addCategoryToWallet(walletId:newCategory:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "DEC7EEFE-8BEE-4860-BA3D-115299E142B6"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BudgetBaddy/DaoClass/WalletsDao.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "226"
+            endingLineNumber = "226"
+            landmarkName = "addCategoryToWallet(walletId:newCategory:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "A24D1748-6D96-4844-BC12-8A4D1BA208EB"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BudgetBaddy/MainViewControllers/WalletDetail/AddSharingMemberViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "169"
+            endingLineNumber = "169"
+            landmarkName = "textFieldDidEndEditing(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "2910A274-A7F9-4815-B42A-E5C974AC5B4A"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BudgetBaddy/MainViewControllers/WalletDetail/AddSharingMemberViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "166"
+            endingLineNumber = "166"
+            landmarkName = "textFieldDidEndEditing(_:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "2910A274-A7F9-4815-B42A-E5C974AC5B4A - a205360ce19bc92"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "BudgetBaddy.AddSharingMemberViewController.textFieldDidEndEditing(__C.UITextField) -&gt; ()"
+                  moduleName = "BudgetBaddy"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/kensaku/Documents/GitHub/BugetBaddy/BudgetBaddy/MainViewControllers/WalletDetail/AddSharingMemberViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "163"
+                  endingLineNumber = "163"
+                  offsetFromSymbolStart = "524">
+               </Location>
+               <Location
+                  uuid = "2910A274-A7F9-4815-B42A-E5C974AC5B4A - a205360ce19836f"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "BudgetBaddy.AddSharingMemberViewController.textFieldDidEndEditing(__C.UITextField) -&gt; ()"
+                  moduleName = "BudgetBaddy"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/kensaku/Documents/GitHub/BugetBaddy/BudgetBaddy/MainViewControllers/WalletDetail/AddSharingMemberViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "166"
+                  endingLineNumber = "166"
+                  offsetFromSymbolStart = "524">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "EBB5861C-5502-4E06-8B92-784AB079E2DE"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BudgetBaddy/MainViewControllers/WalletDetail/AddSharingMemberViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "176"
+            endingLineNumber = "176"
+            landmarkName = "textFieldDidEndEditing(_:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "EBB5861C-5502-4E06-8B92-784AB079E2DE - 1125a5d3a0229e87"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(2) suspend resume partial function for closure #2 @Sendable () async -&gt; () in BudgetBaddy.AddSharingMemberViewController.textFieldDidEndEditing(__C.UITextField) -&gt; ()"
+                  moduleName = "BudgetBaddy"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/kensaku/Documents/GitHub/BugetBaddy/BudgetBaddy/MainViewControllers/WalletDetail/AddSharingMemberViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "173"
+                  endingLineNumber = "173"
+                  offsetFromSymbolStart = "120">
+               </Location>
+               <Location
+                  uuid = "EBB5861C-5502-4E06-8B92-784AB079E2DE - 1125a5d3a0229ee2"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(2) suspend resume partial function for closure #2 @Sendable () async -&gt; () in BudgetBaddy.AddSharingMemberViewController.textFieldDidEndEditing(__C.UITextField) -&gt; ()"
+                  moduleName = "BudgetBaddy"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/kensaku/Documents/GitHub/BugetBaddy/BudgetBaddy/MainViewControllers/WalletDetail/AddSharingMemberViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "176"
+                  endingLineNumber = "176"
+                  offsetFromSymbolStart = "120">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "ED526725-7EE4-43D5-92CE-757E7BA05E2B"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BudgetBaddy/MainViewControllers/WalletDetail/AddSharingMemberViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "178"
+            endingLineNumber = "178"
+            landmarkName = "textFieldDidEndEditing(_:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "ED526725-7EE4-43D5-92CE-757E7BA05E2B - 1125a5d3a0229ec5"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(2) suspend resume partial function for closure #2 @Sendable () async -&gt; () in BudgetBaddy.AddSharingMemberViewController.textFieldDidEndEditing(__C.UITextField) -&gt; ()"
+                  moduleName = "BudgetBaddy"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/kensaku/Documents/GitHub/BugetBaddy/BudgetBaddy/MainViewControllers/WalletDetail/AddSharingMemberViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "175"
+                  endingLineNumber = "175"
+                  offsetFromSymbolStart = "160">
+               </Location>
+               <Location
+                  uuid = "ED526725-7EE4-43D5-92CE-757E7BA05E2B - 1125a5d3a0229e20"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(2) suspend resume partial function for closure #2 @Sendable () async -&gt; () in BudgetBaddy.AddSharingMemberViewController.textFieldDidEndEditing(__C.UITextField) -&gt; ()"
+                  moduleName = "BudgetBaddy"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/kensaku/Documents/GitHub/BugetBaddy/BudgetBaddy/MainViewControllers/WalletDetail/AddSharingMemberViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "178"
+                  endingLineNumber = "178"
+                  offsetFromSymbolStart = "160">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "33CB2C6F-8B2E-4159-839A-15671C922B92"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BudgetBaddy/MainViewControllers/WalletDetail/WalletEditorViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "129"
+            endingLineNumber = "129"
+            landmarkName = "tableView(_:numberOfRowsInSection:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "579F678C-A977-4A4D-A4A6-3E73AE013E4F"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BudgetBaddy/MainViewControllers/HamburgerMenuView/HamburgerMenuViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "319"
+            endingLineNumber = "319"
+            landmarkName = "numberOfSections(in:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "C43D2FE9-32D6-43EE-84A2-13DA76FED4A0"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BudgetBaddy/MainViewControllers/MonthlyView/MonthlyViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "390"
+            endingLineNumber = "390"
+            landmarkName = "updateDataSet(updateWallets:updateMonthlyGoals:updateMonthlyTransactions:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "2739B1FC-ADD8-48C3-B78F-97748192A49B"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BudgetBaddy/DataClass/User.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "52"
+            endingLineNumber = "52"
+            landmarkName = "fetchSharedWallets()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "2739B1FC-ADD8-48C3-B78F-97748192A49B - 8d3fb552e5b380a7"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(1) suspend resume partial function for BudgetBaddy.User.fetchSharedWallets() async -&gt; Swift.Array&lt;BudgetBaddy.Wallet&gt;"
+                  moduleName = "BudgetBaddy"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/kensaku/Documents/GitHub/BugetBaddy/BudgetBaddy/DataClass/User.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "52"
+                  endingLineNumber = "52"
+                  offsetFromSymbolStart = "68">
+               </Location>
+               <Location
+                  uuid = "2739B1FC-ADD8-48C3-B78F-97748192A49B - 1f640b82a15b5773"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(2) await resume partial function for BudgetBaddy.User.fetchSharedWallets() async -&gt; Swift.Array&lt;BudgetBaddy.Wallet&gt;"
+                  moduleName = "BudgetBaddy"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/kensaku/Documents/GitHub/BugetBaddy/BudgetBaddy/DataClass/User.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "52"
+                  endingLineNumber = "52"
+                  offsetFromSymbolStart = "40">
+               </Location>
+               <Location
+                  uuid = "2739B1FC-ADD8-48C3-B78F-97748192A49B - dc1f308700d4dc99"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(3) suspend resume partial function for BudgetBaddy.User.fetchSharedWallets() async -&gt; Swift.Array&lt;BudgetBaddy.Wallet&gt;"
+                  moduleName = "BudgetBaddy"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/kensaku/Documents/GitHub/BugetBaddy/BudgetBaddy/DataClass/User.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "52"
+                  endingLineNumber = "52"
+                  offsetFromSymbolStart = "36">
+               </Location>
+               <Location
+                  uuid = "2739B1FC-ADD8-48C3-B78F-97748192A49B - b790fdee5db9be98"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(4) suspend resume partial function for BudgetBaddy.User.fetchSharedWallets() async -&gt; Swift.Array&lt;BudgetBaddy.Wallet&gt;"
+                  moduleName = "BudgetBaddy"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/kensaku/Documents/GitHub/BugetBaddy/BudgetBaddy/DataClass/User.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "52"
+                  endingLineNumber = "52"
+                  offsetFromSymbolStart = "36">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

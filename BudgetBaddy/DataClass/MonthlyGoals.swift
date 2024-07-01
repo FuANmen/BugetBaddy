@@ -7,7 +7,7 @@
 
 import Foundation
 
-class MonthlyGoals {
+class MonthlyGoals { 
     var walletId: String
     var targetMonth: String
     var budgetBreakdowns: [BudgetBreakdown]
@@ -23,7 +23,6 @@ class MonthlyGoals {
     init?(dictionary: [String: Any]) {
         guard let walletId = dictionary["walletId"] as? String,
               let targetMonth = dictionary["targetMonth"] as? String,
-              let budget = dictionary["budget"] as? Double,
               let budgetBreakdownsData = dictionary["budgetBreakdowns"] as? [[String: Any]],
               let goalsData = dictionary["goals"] as? [[String: Any]] else {
             return nil
@@ -33,7 +32,6 @@ class MonthlyGoals {
         self.budgetBreakdowns = budgetBreakdownsData.map { document in
             BudgetBreakdown(dictionary: document)!
         }
-        
         self.goals = goalsData.map { document in
             Goal(dictionary: document)!
         }
@@ -85,13 +83,14 @@ class BudgetBreakdown {
     
     func toDictionary() -> [String: Any] {
         return [
+            "id": id,
             "title": title,
             "amount": amount
         ]
     }
     
     static func getId() -> String {
-        return String(format: "%04d", CGFloat.random(in: 1...1000))
+        return String(format: "%04d", Int.random(in: 1...1000))
     }
 }
 

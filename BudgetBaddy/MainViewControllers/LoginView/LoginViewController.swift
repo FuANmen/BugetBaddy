@@ -120,7 +120,6 @@ class LoginViewController: UIViewController {
                     }
                     
                     Task {
-                        print(userId)
                         if let user = await UsersDao.fetchUser(userId: userId) {
                             self!.navigateToMainScreen(user: user)
                         } else {

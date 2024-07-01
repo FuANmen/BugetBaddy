@@ -26,16 +26,17 @@ class HamburgerMenuViewController: UIViewController {
 
     var completion: (() -> Void)?
     
+    private var loginUserInfo: User
     private var userWallets: [Wallet]
+    private var sharedWallets: [Wallet]
     private var selectedWallet: Wallet?
     
     private var menuViewWidth: CGFloat = 0.0
     
     // MenuTable
     private let tableCellsInSections: [TableCellsInSection] = [
-        TableCellsInSection(section: NSLocalizedString("Wallet", comment: ""), cells: []),
-        TableCellsInSection(section: NSLocalizedString("Action", comment: ""),
-                            cells: [NSLocalizedString("Logout", comment: "")])
+        TableCellsInSection(section: "My Wallets", cells: []),
+        TableCellsInSection(section: "Shared Wallets", cells: [])
     ]
     
     private let outView: UIView = {
@@ -58,7 +59,7 @@ class HamburgerMenuViewController: UIViewController {
     }()
     
     // Menu
-    private let headerViewHeight: CGFloat = 180
+    private let headerViewHeight: CGFloat = 100
     private let headerView: UIView = {
         let view = UIView()
         view.backgroundColor = .white
@@ -89,6 +90,39 @@ class HamburgerMenuViewController: UIViewController {
         return view
     }()
     
+    // Menu - hewadder
+    private let userSettingBtn: UIButton = {
+        let button = UIButton()
+        button.tintColor = .systemBlue
+        button.setImage(UIImage(systemName: "gearshape.fill"), for: .normal)
+        button.imageView?.contentMode = .scaleAspectFill
+        button.contentHorizontalAlignment = .fill
+        button.contentVerticalAlignment = .fill
+        button.addTarget(self, action: #selector(userSettingBtnTapped), for: .touchUpInside)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
+    
+    private let userNameLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.systemFont(ofSize: 22, weight: .medium)
+        label.adjustsFontSizeToFitWidth = true
+        label.textAlignment = .left
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
+    private let userAdressLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = .systemGray3
+        label.font = UIFont.systemFont(ofSize: 20, weight: .regular)
+        label.adjustsFontSizeToFitWidth = true
+        label.textAlignment = .left
+        label.textAlignment = .center
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
     // Menu - main
     private let tableView: UITableView = {
         let tableView = UITableView()
@@ -96,8 +130,31 @@ class HamburgerMenuViewController: UIViewController {
         return tableView
     }()
     
-    init(userWallets: [Wallet], selectedWallet: Wallet?) {
+    // Menu - footer
+    private let logoutButton: UIButton = {
+        let button = UIButton()
+        button.tintColor = .systemBlue
+        button.setTitleColor(.systemBlue, for: .normal)
+        button.setTitle(NSLocalizedString("Logout", comment: ""), for: .normal)
+        button.setImage(UIImage(systemName: "rectangle.portrait.and.arrow.forward"), for: .normal)
+        button.imageView?.contentMode = .scaleAspectFill
+        button.contentHorizontalAlignment = .fill
+        button.contentVerticalAlignment = .fill
+        button.addTarget(self, action: #selector(logoutBtnTapped), for: .touchUpInside)
+        
+        var config = UIButton.Configuration.plain()
+        config.imagePadding = 10.0
+        config.baseForegroundColor = .systemBlue
+        button.configuration = config
+        
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
+    
+    init(loginUserInfo: User, userWallets: [Wallet], sharedWallets: [Wallet], selectedWallet: Wallet?) {
+        self.loginUserInfo = loginUserInfo
         self.userWallets = userWallets
+        self.sharedWallets = sharedWallets
         self.selectedWallet = selectedWallet
         super.init(nibName: nil, bundle: nil)
     }
@@ -111,11 +168,17 @@ class HamburgerMenuViewController: UIViewController {
         self.menuViewWidth = UIScreen.main.bounds.width * 0.7
         
         self.setupUI()
+        self.setupValue()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         self.openThisView()
+    }
+    
+    private func setupValue() {
+        self.userNameLabel.text = self.loginUserInfo.username
+        self.userAdressLabel.text = self.loginUserInfo.email
     }
     
     private func setupUI() {
@@ -140,8 +203,14 @@ class HamburgerMenuViewController: UIViewController {
         menuView.addSubview(mainView)
         menuView.addSubview(headerView)
         menuView.addSubview(footerView)
+        // header
+        headerView.addSubview(userSettingBtn)
+        headerView.addSubview(userNameLabel)
+        headerView.addSubview(userAdressLabel)
         // main
         mainView.addSubview(tableView)
+        // footer
+        footerView.addSubview(logoutButton)
         
         tableView.delegate = self
         tableView.dataSource = self
@@ -153,6 +222,17 @@ class HamburgerMenuViewController: UIViewController {
             headerView.leadingAnchor.constraint(equalTo: menuView.leadingAnchor),
             headerView.trailingAnchor.constraint(equalTo: menuView.trailingAnchor),
             headerView.heightAnchor.constraint(equalToConstant: headerViewHeight),
+            
+            userSettingBtn.topAnchor.constraint(equalTo: headerView.topAnchor, constant: 12),
+            userSettingBtn.trailingAnchor.constraint(equalTo: headerView.trailingAnchor, constant: -16),
+            
+            userAdressLabel.leadingAnchor.constraint(equalTo: headerView.leadingAnchor, constant: 20),
+            userAdressLabel.trailingAnchor.constraint(equalTo: headerView.trailingAnchor, constant: -32),
+            userAdressLabel.bottomAnchor.constraint(equalTo: headerView.bottomAnchor, constant: -8),
+            
+            userNameLabel.leadingAnchor.constraint(equalTo: userAdressLabel.leadingAnchor),
+            userNameLabel.trailingAnchor.constraint(equalTo: headerView.trailingAnchor, constant: -20),
+            userNameLabel.bottomAnchor.constraint(equalTo: userAdressLabel.topAnchor, constant: 2),
             
             // main
             mainView.topAnchor.constraint(equalTo: headerView.bottomAnchor),
@@ -169,7 +249,10 @@ class HamburgerMenuViewController: UIViewController {
             footerView.leadingAnchor.constraint(equalTo: menuView.leadingAnchor),
             footerView.trailingAnchor.constraint(equalTo: menuView.trailingAnchor),
             footerView.heightAnchor.constraint(equalToConstant: footerViewHeight),
-            footerView.bottomAnchor.constraint(equalTo: menuView.bottomAnchor)
+            footerView.bottomAnchor.constraint(equalTo: menuView.bottomAnchor),
+            
+            logoutButton.centerYAnchor.constraint(equalTo: footerView.centerYAnchor),
+            logoutButton.leadingAnchor.constraint(equalTo: footerView.leadingAnchor, constant: 20)
         ])
         
         // MARK: - GESTURE
@@ -205,6 +288,15 @@ class HamburgerMenuViewController: UIViewController {
         self.closeThisView()
     }
     
+    @objc func userSettingBtnTapped() {
+        
+    }
+    
+    @objc func logoutBtnTapped() {
+        self.closeThisView()
+        self.delegate?.logout()
+    }
+    
     @objc private func viewPanGesture(_ gesture: UIPanGestureRecognizer) {
         let translation = gesture.translation(in: view)
         switch gesture.state {
@@ -222,7 +314,11 @@ class HamburgerMenuViewController: UIViewController {
 
 extension HamburgerMenuViewController: UITableViewDelegate, UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
-        return self.tableCellsInSections.count
+        var sectionCount: Int = 0
+        if self.userWallets.count > 0 { sectionCount += 1 }
+        if self.sharedWallets.count > 0 { sectionCount += 1 }
+        
+        return sectionCount
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
@@ -230,6 +326,11 @@ extension HamburgerMenuViewController: UITableViewDelegate, UITableViewDataSourc
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if section == 0 {
+            return self.userWallets.count
+        } else if section == 1 {
+            return self.sharedWallets.count
+        }
         return self.tableCellsInSections[section].cells.count
     }
     
@@ -240,7 +341,11 @@ extension HamburgerMenuViewController: UITableViewDelegate, UITableViewDataSourc
             if self.userWallets[indexPath.row].walletId == self.selectedWallet?.walletId {
                 cell.backgroundColor = .systemYellow
             }
-            cell.accessoryType = .disclosureIndicator
+        } else if indexPath.section == 1 {
+            cell.textLabel?.text = self.sharedWallets[indexPath.row].name
+            if self.sharedWallets[indexPath.row].walletId == self.selectedWallet?.walletId {
+                cell.backgroundColor = .systemYellow
+            }
         } else {
             cell.textLabel?.text = self.tableCellsInSections[indexPath.section].cells[indexPath.row]
         }
@@ -253,13 +358,8 @@ extension HamburgerMenuViewController: UITableViewDelegate, UITableViewDataSourc
             self.delegate?.walletSelected(wallet: self.userWallets[indexPath.row])
             self.closeThisView()
         case 1:
-            switch indexPath.row {
-            case 0:
-                self.closeThisView()
-                self.delegate?.logout()
-            default:
-                break
-            }
+            self.delegate?.walletSelected(wallet: self.sharedWallets[indexPath.row])
+            self.closeThisView()
         default:
             break
         }

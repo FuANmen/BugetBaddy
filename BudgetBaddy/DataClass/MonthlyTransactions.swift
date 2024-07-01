@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import FirebaseFirestoreInternal
 
 class MonthlyTransactions {
     var walletId: String
@@ -16,7 +17,7 @@ class MonthlyTransactions {
         self.walletId = walletId
         self.targetMonth = targetMonth
         self.transactions = transactions
-    }
+    } 
     
     init?(dictionary: [String: Any]) {
         guard let walletId = dictionary["walletId"] as? String,
@@ -90,14 +91,14 @@ class Transaction {
     
     init?(dictionary: [String: Any]) {
         guard let id = dictionary["id"] as? String,
-              let date = dictionary["date"] as? Date,
+              let date = dictionary["date"] as? Timestamp,
               let categoryId = dictionary["categoryId"] as? String,
               let title = dictionary["title"] as? String,
               let amount = dictionary["amount"] as? Double else {
             return nil
         }
         self.id = id
-        self.date = date
+        self.date = date.dateValue()
         self.categoryId = categoryId
         self.title = title
         self.amount = amount
@@ -114,6 +115,6 @@ class Transaction {
     }
     
     static func getId() -> String {
-        return String(format: "%04d", CGFloat.random(in: 1...1000))
+        return String(format: "%04d", Int.random(in: 1...1000))
     }
 }

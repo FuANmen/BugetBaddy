@@ -11,6 +11,7 @@ import RealmSwift
 
 protocol CategoryPickerTextFieldDelegate: AnyObject {
     func addCategory(category: Category)
+    func failureAddCategory(category: Category, duplicateId: String)
     func enterdCategory(category: Category)
 }
 
@@ -103,18 +104,22 @@ class CategoryPickerTextField: UITextField {
 
     private func addNewCategory(name: String) {
         let newCategory = Category(categoryId: nil, name: name)
-        myDelegate!.addCategory(category: newCategory)
-        
-        if self.wallet!.categories.firstIndex(where: { $0.name == name }) == nil {
+        if let dupliCategory = self.wallet!.categories.first(where: { $0.name == name }) {
+            myDelegate!.failureAddCategory(category: newCategory, duplicateId: dupliCategory.categoryId)
+        } else {
             WalletsDao.addCategoryToWallet(walletId: self.wallet!.walletId, newCategory: newCategory)
+            
             self.wallet!.categories.append(newCategory)
+            myDelegate!.addCategory(category: newCategory)
+            
             // データを再読み込み
             categoryPicker.reloadAllComponents()
             // 追加したカテゴリの行を選択
-            let rowIndex = self.wallet!.categories.count
+            let rowIndex = self.wallet!.categories.count - 1
             categoryPicker.selectRow(rowIndex, inComponent: 0, animated: false)
             self.text = name
         }
+                                           
         self.resignFirstResponder()
     }
 }

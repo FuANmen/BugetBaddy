@@ -11,6 +11,7 @@ import RealmSwift
 class MonthlyViewController: UIViewController {
     internal var user: User?
     private var userWallets: [Wallet] = []
+    private var sharedWallets: [Wallet] = []
     
     private var selectedWallet: Wallet?
     private var monthlyGoalsArray: [MonthlyGoals] = []
@@ -98,7 +99,8 @@ class MonthlyViewController: UIViewController {
                         self.scrollToTop()
                     })
                 case .totalDetail:
-                    self.totalDetailView.configure(monthlyGoals: monthlyGoals!, monthlyTransactions: monthlyTransactions!)
+                    self.totalDetailView.configure(monthlyGoals: monthlyGoals!,
+                                                   monthlyTransactions: monthlyTransactions!)
                     validViewHorizontalAlignment?.constant = view.frame.width / 4 * 3
                     goalsViewLeadingConstraint?.constant = -view.frame.width
                     
@@ -126,6 +128,14 @@ class MonthlyViewController: UIViewController {
         button.tintColor = .customWhiteSmoke
         button.image = UIImage(systemName: "line.3.horizontal")
         button.action = #selector(hamburgerButtonTapped)
+        return button
+    }()
+    
+    private let walletSettingBtn: UIBarButtonItem = {
+        let button = UIBarButtonItem()
+        button.tintColor = .customWhiteSmoke
+        button.image = UIImage(systemName: "gearshape.fill")
+        button.action = #selector(showWalletEditor)
         return button
     }()
     
@@ -372,9 +382,13 @@ class MonthlyViewController: UIViewController {
             // UserWallets: 引数によって更新を明示された時のみ
             if updateWallets 
             {
-                self.userWallets = await self.user!.fetchWalletsForUser()
+                self.userWallets = await self.user!.fetchUserWallets()
                 if self.selectedWallet == nil && self.userWallets.count > 0 {
                     self.selectedWallet = self.userWallets[0]
+                }
+                self.sharedWallets = await self.user!.fetchSharedWallets()
+                if self.selectedWallet == nil && self.sharedWallets.count > 0 {
+                    self.selectedWallet = self.sharedWallets[0]
                 }
             }
             // MonthlyGoals: 選択中Walletがあるとき
@@ -438,6 +452,7 @@ class MonthlyViewController: UIViewController {
                     }
                 }
             }
+            
             /// データ取得に伴うViewの更新
             if self.selectedWallet == nil {
                 return 
@@ -475,7 +490,9 @@ class MonthlyViewController: UIViewController {
     private func setupUI() {
         // navigation
         hamburgerButton.target = self
+        walletSettingBtn.target = self
         navigationItem.leftBarButtonItem = hamburgerButton
+        navigationItem.rightBarButtonItem = walletSettingBtn
         
         // view
         view.addSubview(scrollView)
@@ -726,13 +743,21 @@ class MonthlyViewController: UIViewController {
     // MARK: - ActionEvent
     @objc func hamburgerButtonTapped(_ sender: UIBarButtonItem) {
         self.hamburgerMenuClosedType = .def
-        let hamburgerMenuVC = HamburgerMenuViewController(userWallets: self.userWallets, selectedWallet: self.selectedWallet ?? nil)
+        let hamburgerMenuVC = HamburgerMenuViewController(loginUserInfo: self.user!, userWallets: self.userWallets, sharedWallets: self.sharedWallets, selectedWallet: self.selectedWallet ?? nil)
         hamburgerMenuVC.delegate = self
         hamburgerMenuVC.modalPresentationStyle = .overFullScreen
         hamburgerMenuVC.completion = { [weak self] in
             self?.hamburgerMenuClosedEvent()
         }
         self.present(hamburgerMenuVC, animated: false, completion: nil)
+    }
+    
+    @objc func showWalletEditor(_ sender: UIBarButtonItem) {
+        if self.selectedWallet != nil {
+            let modalViewController = WalletEditorViewController(wallet: self.selectedWallet!)
+            modalViewController.modalPresentationStyle = .automatic
+            self.present(modalViewController, animated: true, completion: nil)
+        }
     }
     
     @objc func previousButtonTapped() {
@@ -803,7 +828,7 @@ class MonthlyViewController: UIViewController {
         }
     }
 }
-
+// MARK: - HamburgerMenu
 extension MonthlyViewController: HamburgerMenuViewDelegate {
     func walletSelected(wallet: Wallet) {
         if self.selectedWallet?.walletId != wallet.walletId {
@@ -948,6 +973,7 @@ extension MonthlyViewController: BreakdownEditorViewDelegate {
         {
             self.monthlyGoalsArray[index].budgetBreakdowns.append(target)
         }
+        updateDataSet()
         closecreateBreakdownView()
     }
     
@@ -960,6 +986,7 @@ extension MonthlyViewController: BreakdownEditorViewDelegate {
                 self.monthlyGoalsArray[index].budgetBreakdowns[targetIndex] = target
             }
         }
+        updateDataSet()
         closecreateBreakdownView()
     }
     
@@ -983,7 +1010,6 @@ extension MonthlyViewController: BreakdownEditorViewDelegate {
 extension MonthlyViewController: TransactionEditorViewDelegate {
     func addCategory(category: Category) {
         if self.selectedWallet != nil {
-            self.selectedWallet?.categories.append(category)
             self.updateDataSet()
         }
     }

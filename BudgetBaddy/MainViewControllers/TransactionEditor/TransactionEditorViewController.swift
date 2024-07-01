@@ -69,7 +69,17 @@ class TransactionEditorViewController: UIViewController {
         self.wallet = wallet
         self.targetMonth = targetMonth
         self.transaction = transaction
-        self.selectedCategoryId = transaction == nil ? wallet.categories[0].categoryId : transaction!.categoryId
+        if transaction == nil {
+            self.selectedCategoryId = wallet.categories[0].categoryId
+            self.categoryPickerTextField.text = wallet.categories[0].name
+        } else {
+            self.selectedCategoryId = transaction!.categoryId
+            if let category = wallet.categories.first(where: { $0.categoryId == transaction!.categoryId})
+            {
+                self.categoryPickerTextField.text = category.name
+            }
+            self.amountTextField.text = String(Int(transaction!.amount))
+        }
         
         super.init(nibName: nil, bundle: nil)
         
@@ -93,7 +103,6 @@ class TransactionEditorViewController: UIViewController {
         view.addSubview(amountTextField)
         view.addSubview(saveButton)
         
-        categoryPickerTextField.delegate = self
         categoryPickerTextField.myDelegate = self
 
         datePicker.translatesAutoresizingMaskIntoConstraints = false
@@ -136,7 +145,7 @@ class TransactionEditorViewController: UIViewController {
                                        categoryId: self.selectedCategoryId,
                                        title: "",
                                        amount: Double(self.amountTextField.text!)!)
-            MonthlyTransactionsDao.addTransactionToMonthlyTransactions(walletId: self.wallet.walletId, targetMonth: self.targetMonth, newTransaction: newTrans)
+            MonthlyTransactionsDao.addTransactionToMonthlyTransactions(walletId: self.wallet.walletId, newTransaction: newTrans)
             self.delegate?.addTransaction(transaction: newTrans)
         } else {
             let updTrans = Transaction(id: self.transaction!.id,
@@ -144,7 +153,7 @@ class TransactionEditorViewController: UIViewController {
                                        categoryId: self.selectedCategoryId,
                                        title: "",
                                        amount: Double(self.amountTextField.text!)!)
-            MonthlyTransactionsDao.updateTransactionInMonthlyTransactions(walletId: self.wallet.walletId, targetMonth: self.targetMonth, updatedTransaction: updTrans)
+            MonthlyTransactionsDao.updateTransactionInMonthlyTransactions(walletId: self.wallet.walletId, updatedTransaction: updTrans)
             self.delegate?.updateTransaction(transaction: updTrans)
         }
         dismiss(animated: true, completion: nil)
@@ -159,17 +168,18 @@ class TransactionEditorViewController: UIViewController {
 }
 
 extension TransactionEditorViewController: UITextFieldDelegate, CategoryPickerTextFieldDelegate {
-    func addCategory(category: Category) {
-        if wallet.categories.firstIndex(where: { $0.name == category.name }) != nil {
-            present(ShowAlerts().showErrorAlert(message:  NSLocalizedString("In_MS_Error001", comment: "")), animated: true, completion: nil)
-            return
-        } else {
-            self.wallet.categories.append(category)
-        }
+    func addCategory(category: Category) { 
+        self.selectedCategoryId = category.categoryId
         self.delegate!.addCategory(category: category)
+    }
+    
+    func failureAddCategory(category: Category, duplicateId: String) {
+        present(ShowAlerts().showErrorAlert(message:  NSLocalizedString("In_MS_Error001", comment: "")), animated: true, completion: nil)
+        return
     }
     
     func enterdCategory(category: Category) {
         self.selectedCategoryId = category.categoryId
     }
 }
+ 

@@ -15,7 +15,7 @@ class UsersDao {
             guard let data = document.data() else {
                 return nil
             }
-            print(data)
+            print("Fetch User")
             return User(dictionary: data)
         } catch {
             return nil
@@ -29,6 +29,7 @@ class UsersDao {
                 "userId": userId,
                 "email": email,
                 "username": username,
+                "sharedWalletIds": [],
                 "created_at": Timestamp(date: Date())
             ])
             return true
@@ -39,7 +40,7 @@ class UsersDao {
     
     static func updateUser(updateUser: User) {
         let db = Firestore.firestore()
-        let walletRef = db.collection("Users").document(updateUser.userId)
+        let walletRef = db.collection("users").document(updateUser.userId)
 
         walletRef.updateData([
             "userId": updateUser.userId,
@@ -58,13 +59,13 @@ class UsersDao {
     // SharedWalletId
     static func addSharedWalletIdToUser(userId: String, walletId: String) {
         let db = Firestore.firestore()
-        let userRef = db.collection("Users").document(userId)
+        let userRef = db.collection("users").document(userId)
         
         userRef.getDocument { (document, error) in
             if let document = document, document.exists {
                 
                 userRef.updateData([
-                    "sharedWalletId": FieldValue.arrayUnion([walletId])
+                    "sharedWalletIds": FieldValue.arrayUnion([walletId])
                 ]) { error in
                     if let error = error {
                         print("Error adding sharedWalletId to User: \(error)")
@@ -80,10 +81,10 @@ class UsersDao {
     
     static func removeSharedWalletIdFromUser(userId: String, walletId: String) {
         let db = Firestore.firestore()
-        let userRef = db.collection("Users").document(walletId)
+        let userRef = db.collection("users").document(walletId)
 
         userRef.updateData([
-            "sharedWalletId": FieldValue.arrayRemove([walletId])
+            "sharedWalletIds": FieldValue.arrayRemove([walletId])
         ]) { error in
             if let error = error {
                 print("Error removing sharedWalletId from User: \(error)")

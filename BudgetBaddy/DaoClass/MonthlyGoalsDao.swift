@@ -52,6 +52,7 @@ class MonthlyGoalsDao {
             let document = try await monthlyGoalsRef.getDocument()
             if let data = document.data() {
                 let monthlyGoals = MonthlyGoals(dictionary: data)
+                print("Fetch monthly goals")
                 return monthlyGoals
             } else {
                 return nil
@@ -73,7 +74,7 @@ class MonthlyGoalsDao {
         monthlyGoalsRef.getDocument { (document, error) in
             if let document = document, document.exists {
                 monthlyGoalsRef.updateData([
-                    "budgetBreakdown": FieldValue.arrayUnion([newBudgetBreakdownData])
+                    "budgetBreakdowns": FieldValue.arrayUnion([newBudgetBreakdownData])
                 ]) { error in
                     if let error = error {
                         print("Error adding BudgetBreakdown to MonthlyGoals: \(error)")
